@@ -50,4 +50,22 @@ footer ul {
   }
 }
 
-/*# sourceMappingURL=style.css.map */
+.suggestions {
+  border: 1px solid #ccc;
+  max-height: 150px;
+  overflow-y: auto;
+  position: absolute;
+  background-color: white;
+  width: 100%;
+  z-index: 1000;
+  cursor: pointer;
+}
+
+.suggestion {
+  padding: 8px 10px;
+  border-bottom: 1px solid #eee;
+}
+
+.suggestion:hover {
+  background-color: #f0f0f0;
+}
