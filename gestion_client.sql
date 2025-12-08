@@ -1,0 +1,19 @@
+
+-- CREATION DE LA BASE DE DONNÉES --
+
+CREATE DATABASE IF NOT EXISTS gestion_client
+    CHARACTER SET utf8mb4
+    COLLATE utf8mb4_general_ci;
+
+-- MAINTENANT ON EXPLIQUE À SQL QU'ON UTILISE LA BASE DE DONNÉES orphelinat --
+USE gestion_client;
+
+-- CREATION DE LA TABLE ENFANT --
+
+CREATE TABLE client(
+    id_client INT AUTO_INCREMENT PRIMARY KEY,
+    firstname VARCHAR(100) NOT NULL,
+    lastname VARCHAR(100) NOT NULL,
+    birthdate DATE NOT NULL,
+    demande TEXT NOT NULL
+)

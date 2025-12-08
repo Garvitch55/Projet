@@ -1,0 +1,119 @@
+// SASS => Syntactically Awesome Style Sheet 
+// C'est un préprocesseur CSS ou superset 
+// C'est un outil qui permet d'écrire du CSS amélioré, puis de le compiler en CSS standard
+// Que rajoute le SASS ou CSS ?
+/*
+* Variables
+* Imbrication(nesting)
+* Importe
+* Mixins(fonctions)
+* Héritages
+* Calculs
+* Conditions et des boucles
+*/
+
+// Calcul
+/*
+@use 'sass:math';
+@use 'sass:list';
+
+@debug 4px * 10%;
+
+// Liste
+
+$color-liste: red, blue, green;
+
+.color-test {
+    // On recupère la deuxième couleur, l'index commence par 1 en scss
+    color: list.nth($color-liste, 2);
+}
+
+// Exemple concret de list avec boucle
+
+$flex-direction: row, column;
+$justify-content: center, space-between, space-evenly, space-around, start, end;
+$align-items: start, end, center, stretch;
+
+@each $direction in $flex-direction {
+    @each $jc in $justify-content {
+        @each $ai in $align-items {
+            .flex-#{$direction}-#{$jc}-#{$ai} {
+                display: flex;
+                flex-direction: $direction;
+                justify-content: $jc;
+                align-items: $ai;
+                flex-wrap: wrap;
+            }
+        }
+    }
+}
+
+//boucle for
+
+$base-color: rgb(0, 58, 0);
+
+@for $i from 1 through 50 {
+    .square-#{$i}{
+        background-color: adjust-color($base-color, $lightness: $i*2%);
+        height: 50px;
+        width: 50px;
+    }
+}
+
+h1 {
+    text-align: center;
+}
+
+$button_validation_color: #2f8ce3;
+// Fonction qui rend le button plus foncé quand la souris passe dessus
+// @function hover-dark($color) {
+//     @return darken($color, 10%);
+// }
+
+// .btn-validation {
+//     padding: 0.5rem 1rem;
+//     border: none;
+//     background-color: $button_validation_color;
+//     color: white;
+//     border-radius: 10px;
+//     cursor: pointer;
+//     &:hover{
+//         background-color: hover-dark($button_validation_color);
+//     }
+// }
+
+@mixin zero_box {
+    margin: 0;
+    padding: 0;
+}
+
+* {
+    @include zero_box;
+    box-sizing: border-box
+}
+
+// Exemple de mixin d'élément
+
+@mixin reset-list {
+    @include zero_box;
+    list-style: none;
+}
+
+.list {
+    @include reset_list;
+    li:first-child {
+        font-size: 2rem;
+        color: red;
+    }
+}
+
+//extend
+
+.error {
+    border: 1px solid red;
+    color: red;
+    &-very-important{
+        @extend .error;
+        border-width: 3px;
+    }
+}*/

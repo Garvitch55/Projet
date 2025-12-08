@@ -1,0 +1,59 @@
+// SASS => Syntactically Awesome Style Sheet 
+// C'est un préprocesseur CSS ou superset 
+// C'est un outil qui permet d'écrire du CSS amélioré, puis de le compiler en CSS standard
+// Que rajoute le SASS ou CSS ?
+/*
+* Variables
+* Imbrication(nesting)
+* Importe
+* Mixins(fonctions)
+* Héritages
+* Calculs
+* Conditions et des boucles
+*/
+
+@mixin zero_box {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    background-color: #ebdfd6;
+}
+
+footer {
+    padding: 2rem 0;
+    background-color: black;
+    width: 100%;
+    ul {
+        list-style: none;
+        @include zero_box;
+    }
+}
+
+.notification {
+    position: relative;
+    left: 75%;
+    width: auto;
+    padding: 0.5rem;
+    border-radius: 10px;
+    animation-name: notification-popup;
+    animation-duration: 1s;
+    //animation-iteration-count: 1;
+    animation-timing-function: cubic-bezier(.22,0,.68,1);
+    &-success {
+        border: 3px solid #198754;
+    }
+    &-danger {
+        border: 3px solid #Dc3545;
+    }
+}
+
+@keyframes notification-popup {
+    0% {
+        left: 100%;
+    }
+    100% {
+        left: 75%;
+    }
+}

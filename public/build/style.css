@@ -1,0 +1,53 @@
+@charset "UTF-8";
+/*
+* Variables
+* Imbrication(nesting)
+* Importe
+* Mixins(fonctions)
+* Héritages
+* Calculs
+* Conditions et des boucles
+*/
+body {
+  background-color: #ebdfd6;
+}
+
+footer {
+  padding: 2rem 0;
+  background-color: black;
+  width: 100%;
+}
+footer ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.notification {
+  position: absolute;
+  left: 25%;
+  width: 50%;
+  text-align: center;
+  padding: 0.5rem;
+  border-radius: 10px;
+  animation-name: notification-popup;
+  animation-duration: 1s;
+  animation-timing-function: cubic-bezier(0.22, 0, 0.68, 1);
+}
+.notification-success {
+  border: 3px solid #198754;
+}
+.notification-danger {
+  border: 3px solid #Dc3545;
+}
+
+@keyframes notification-popup {
+  0% {
+    left: 100%;
+  }
+  100% {
+    left: 25%;
+  }
+}
+
+/*# sourceMappingURL=style.css.map */
