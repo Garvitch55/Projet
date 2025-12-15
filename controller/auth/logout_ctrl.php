@@ -15,5 +15,5 @@ if (ini_get("session.use_cookies")) {
 }
 
 // Redirection vers la page homepage
-header("Location: ../../../views/homepage.php?status=success&message=Déconnexion réussie");
+header("Location: ../../views/homepage.php?status=success&message=Déconnexion réussie");
 exit;

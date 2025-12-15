@@ -75,6 +75,40 @@ include_once "../../notification.php";
         </div>
     </div>
 
+<!-- Mot de passe -->
+<div class="row">
+    <div class="mb-3 w-50">
+        <label for="password" class="form-label required">
+            Mot de passe : <span class="text-danger">*</span>
+        </label>
+        <input
+            type="password"
+            name="password"
+            id="password"
+            class="form-control"
+            required
+            minlength="6"
+            placeholder="Entrez votre mot de passe">
+    </div>
+
+    <div class="mb-3 w-50">
+        <label for="password_confirm" class="form-label required">
+            Confirmez le mot de passe : <span class="text-danger">*</span>
+        </label>
+        <input
+            type="password"
+            name="password_confirm"
+            id="password_confirm"
+            class="form-control"
+            required
+            minlength="6"
+            placeholder="Confirmez votre mot de passe">
+    </div>
+</div>
+
+
+
+
     <!-- votre date naissance -->
     <div class="mb-3">
         <label for="birthdate" class="form-label">Votre date de naissance : </label>

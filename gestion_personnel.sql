@@ -7,16 +7,17 @@ CREATE DATABASE IF NOT EXISTS gestion_entreprise
 
 USE gestion_entreprise;
 
-CREATE TABLE gestion_client (
-    id_client INT AUTO_INCREMENT PRIMARY KEY,
+CREATE TABLE gestion_personnel (
+    id_personnel INT AUTO_INCREMENT PRIMARY KEY,
 
     -- Identité --
     firstname VARCHAR(100) NOT NULL,
     lastname VARCHAR(100) NOT NULL,
+    mail VARCHAR(150) NOT NULL UNIQUE,
     birthdate DATE NULL,
-
+   
     -- Contact --
-    phone VARCHAR(20) NOT NULL,
+    phone VARCHAR(12) NOT NULL,
     email VARCHAR(150) NOT NULL UNIQUE,
 
     -- Adresse --
@@ -24,9 +25,13 @@ CREATE TABLE gestion_client (
     cp VARCHAR(20) NOT NULL,
     ville VARCHAR(150) NOT NULL,
 
-    -- Demande client --
-    demande TEXT NOT NULL,
-
     -- Mot de passe (hashé) --
-    password VARCHAR(255) NOT NULL
-);
+    password VARCHAR(255) NOT NULL,
+
+    -- role --
+    fonction text
+
+    );
+
+
+

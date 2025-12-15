@@ -45,7 +45,7 @@ function start_page(string $title) {
 }
 
 function getPDO() {
-    $pdo = new PDO("mysql:host=db;dbname=gestion_client;chartset=utf8", "root", "1234");
+    $pdo = new PDO("mysql:host=localhost;dbname=gestion_entreprise;chartset=utf8", "root", "");
     $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
     return $pdo;
 }
@@ -77,4 +77,14 @@ function firstLetterVowelDetector($name, $noApo, $apo) : string {
         return $noApo;
     }
 
+}
+
+
+
+// function isUserLoggedIn() {
+//     return isset($_SESSION['user_id']);
+// }
+
+function getUserRole() {
+    return $_SESSION['role'] ?? null; // "admin", "employe", "client"
 }

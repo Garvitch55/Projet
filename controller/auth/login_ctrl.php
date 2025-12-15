@@ -1,57 +1,73 @@
 <?php
+include_once "../../config.php";
 
-require_once __DIR__ . "/../../config.php";
+// Vérifie que la requête est en POST
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    $email = trim($_POST['mail'] ?? '');
+    $password = $_POST['psw'] ?? '';
 
-if ($_SERVER["REQUEST_METHOD"] !== "POST") {
-    header("Location: ../../index.php");
-    exit;
-}
-
-$email = trim($_POST['mail'] ?? '');
-$password = $_POST['psw'] ?? '';
-
-if (empty($email) || empty($password)) {
-    header("Location: ./login.php?status=danger?message=Veuillez remplir tous les champs.");
-    exit;
-}
-
-try {
-    // on récupère l'utilisateur par son mail
-    $pdo = getPDO();
-
-    $sql = "SELECT id_gestion, mail, psw, firstname, lastname, role 
-    FROM staff WHERE mail = ?";
-    $stmt = $pdo->prepare($sql);
-    $stmt->execute([$email]);
-    // si le mail est bon, staff est la parsonne qu'on recherche avec le mail
-    // sinon il retourne un booléen false
-    $staff = $stmt->fetch(PDO::FETCH_ASSOC);
-
-    if(!$staff) {
-        header("Location: ../../login.php?status=danger&message=Email ou mot de passe incorrect.");
+    if (empty($email) || empty($password)) {
+        header("Location: ../../views/login.php?status=danger&message=Veuillez remplir tous les champs.");
+        exit;
     }
 
-    // ----- On vérifie le mot de passe -----
-    if(!password_verify($password, $staff['psw'])) {
-        header("Location: ../../login.php?status=danger&message=Mot de passe incorrect.");
-        exit; // Une fois hashé, on ne plus le rendre non hashé
-        // hashage =/= cryptage
-    }
+    try {
+        $pdo = getPDO();
 
-    // ----- Ouverture de session -----
-    // Pour que le système de session marche, il nous faut une session_start()
-    // Il nous faut uniquement un par page, sinon erreur, si zero, le système de session ne marche pas
-    // $_SESSION est du BACK-END !
-    $_SESSION["name"] = $staff["firstname"] . " " . $staff["lastname"];
-    $_SESSION["role"] = $staff["role"];
-    // On va générer un token CSRF (Cross Site Request Forgery)
-    // Ici on génère un chiffre en binaire avec 32 0 ou 1
-    // Après on le convertit en hexadécimal.
-    $_SESSION['csrf_token'] = bin2hex(random_bytes(32));
+        // --------------------------------------------------------
+        // 1️⃣ Vérification dans la table staff (admin/employé)
+        // --------------------------------------------------------
+        $stmt = $pdo->prepare("SELECT * FROM gestion_personnel WHERE email = ?");
+        $stmt->execute([$email]);
+        $user = $stmt->fetch();
+
+        if ($user) {
+            if (password_verify($password, $user['password'])) {
+                session_start();
+                $_SESSION['id'] = $user['id_personnel'];
+                $_SESSION['name'] = $user['firstname'] . ' ' . $user['lastname'];
+                $_SESSION['role'] = $user['fonction']; // admin ou employe
+
+                // Redirection selon le rôle
+                if ($_SESSION['role'] === 'admin') {
+                    header("Location: ../../index.php?status=success&message=Bienvenue Administrateur " . $_SESSION['name']);
+                } else {
+                    header("Location: ../../index.php?status=success&message=Bienvenue Employé " . $_SESSION['name']);
+                }
+                exit;
+            } else {
+                header("Location: ../../views/login.php?status=danger&message=Mot de passe incorrect.");
+                exit;
+            }
+        }
+
+        // --------------------------------------------------------
+        // 2️⃣ Vérification dans la table client
+        // --------------------------------------------------------
+        $stmt = $pdo->prepare("SELECT * FROM gestion_client WHERE email = ?");
+        $stmt->execute([$email]);
+        $client = $stmt->fetch();
+
+        if ($client && password_verify($password, $client['password'])) {
+            session_start();
+            $_SESSION['id'] = $client['id_client'];
+            $_SESSION['name'] = $client['firstname'] . ' ' . $client['lastname'];
+            $_SESSION['role'] = 'client';
+
+            header("Location: ../../index.php?status=success&message=Bienvenue, " . $_SESSION['name']);
+            exit;
+        }
+
+        // Aucun utilisateur trouvé
+        header("Location: ../../views/login.php?status=danger&message=Utilisateur inconnu.");
+        exit;
+
+    } catch (PDOException $e) {
+        $error = $e->getMessage();
+        header("Location: ../../views/login.php?status=danger&message=$error");
+        exit;
+    }
+} else {
     header("Location: ../../index.php");
     exit;
-
-} catch(PDOException $e) {
-    $message = $e->getMessage();
-    header("Location: ./login.php?status=danger&message=$message");
 }
