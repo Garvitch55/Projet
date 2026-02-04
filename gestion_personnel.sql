@@ -18,7 +18,6 @@ CREATE TABLE gestion_personnel (
    
     -- Contact --
     phone VARCHAR(12) NOT NULL,
-    email VARCHAR(150) NOT NULL UNIQUE,
 
     -- Adresse --
     rue VARCHAR(255) NOT NULL,

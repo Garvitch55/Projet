@@ -3,7 +3,7 @@ require_once __DIR__ . '/config.php';
 require_once __DIR__ . '/head.php'; // contient head_with_title()
 
 // On peut mettre un titre dynamique ou par défaut
-$title = $title ?? "Entreprise SARL ADRIEN GARNIER";
+$title = $title ?? "Bienvenue";
 
 // Appel de la fonction pour afficher le <head> et ouvrir <body>
 head_with_title($title);
@@ -104,7 +104,7 @@ head_with_title($title);
                             <a class="nav-link rounded text-white" href="#"
                                 onmouseover="this.style.background='#41403b';"
                                 onmouseout="this.style.background='';">
-                                <i class="bi bi-speedometer2 me-2"></i>Dashboard
+                                <i class="bi bi-speedometer2 me-2"></i>Tableau de bord
                             </a>
                         </li>
                         <li class="nav-item">
@@ -121,14 +121,14 @@ head_with_title($title);
                             <h6>ESPACE ADMINISTRATEUR</h6>
                         </div>
                         <li class="nav-item">
-                            <a class="nav-link rounded text-white" href="#"
+                            <a class="nav-link rounded text-white" href="views/administrateur/dashboard.php"
                                 onmouseover="this.style.background='#41403b';"
                                 onmouseout="this.style.background='';">
-                                <i class="bi bi-speedometer2 me-2"></i>Dashboard
+                                <i class="bi bi-speedometer2 me-2"></i>Tableau de bord
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link rounded text-white" href="#"
+                            <a class="nav-link rounded text-white" href="views/administrateur/parameter.php"
                                 onmouseover="this.style.background='#41403b';"
                                 onmouseout="this.style.background='';">
                                 <i class="bi bi-gear me-2"></i>Paramétrages

@@ -45,7 +45,7 @@ function start_page(string $title) {
 }
 
 function getPDO() {
-    $pdo = new PDO("mysql:host=localhost;dbname=gestion_entreprise;chartset=utf8", "root", "");
+    $pdo = new PDO("mysql:host=db;dbname=gestion_entreprise;chartset=utf8", "root", "1234");
     $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
     return $pdo;
 }

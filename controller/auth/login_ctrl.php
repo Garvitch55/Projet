@@ -23,7 +23,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
         if ($user) {
             if (password_verify($password, $user['password'])) {
-                session_start();
+
                 $_SESSION['id'] = $user['id_personnel'];
                 $_SESSION['name'] = $user['firstname'] . ' ' . $user['lastname'];
                 $_SESSION['role'] = $user['fonction']; // admin ou employe
