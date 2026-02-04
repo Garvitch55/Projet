@@ -29,10 +29,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 $_SESSION['role'] = $user['fonction']; // admin ou employe
 
                 // Redirection selon le rôle
-                if ($_SESSION['role'] === 'admin') {
-                    header("Location: ../../index.php?status=success&message=Bienvenue Administrateur " . $_SESSION['name']);
+                if ($_SESSION['role'] === 'administrateur') {
+                    header("Location: ../../views/homepage.php?status=success&message=Bienvenue Administrateur " . $_SESSION['name']);
                 } else {
-                    header("Location: ../../index.php?status=success&message=Bienvenue Employé " . $_SESSION['name']);
+                    header("Location: ../../views/homepage.php?status=success&message=Bienvenue Employé " . $_SESSION['name']);
                 }
                 exit;
             } else {
