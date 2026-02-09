@@ -49,7 +49,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $client = $stmt->fetch();
 
         if ($client && password_verify($password, $client['password'])) {
-            session_start();
             $_SESSION['id'] = $client['id_client'];
             $_SESSION['name'] = $client['firstname'] . ' ' . $client['lastname'];
             $_SESSION['role'] = 'client';

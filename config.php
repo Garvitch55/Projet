@@ -38,11 +38,7 @@ function load(?string $file) { //?string: string | null
     require ROOT . $file;
 }
 
-function start_page(string $title) {
-    load('head.php');
-    head_with_title($title);
-    load('nav.php');
-}
+
 
 function getPDO() {
     $pdo = new PDO("mysql:host=db;dbname=gestion_entreprise;chartset=utf8", "root", "1234");

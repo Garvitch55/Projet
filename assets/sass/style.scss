@@ -31,29 +31,58 @@ footer {
     }
 }
 
-.notification {
-    position: relative;
-    left: 75%;
-    width: auto;
-    padding: 0.5rem;
-    border-radius: 10px;
-    animation-name: notification-popup;
-    animation-duration: 1s;
-    //animation-iteration-count: 1;
-    animation-timing-function: cubic-bezier(.22,0,.68,1);
-    &-success {
-        border: 3px solid #198754;
-    }
-    &-danger {
-        border: 3px solid #Dc3545;
-    }
+
+$bg-orange-fonce:#e38f3c;
+$bg-gris-fonce:#41403b;
+
+
+.bg-orange-fonce {
+background-color: $bg-orange-fonce;
 }
 
-@keyframes notification-popup {
-    0% {
-        left: 100%;
+
+.bg-gris-fonce {
+  background-color: $bg-gris-fonce;
+}
+
+
+$text-orange-fonce: #e38f3c;
+$text-gris-fonce: #41403b;
+
+.text-orange-fonce {
+  color: $text-orange-fonce;
+}
+
+.text-gris-fonce {
+  color: $text-gris-fonce;
+}
+
+
+
+.card-parametres:hover {
+    transform: scale(1.05);
+    transition: transform 0.4s ease;
+}
+
+
+
+h6{
+    color: $text-gris-fonce;
+}
+
+
+.notification {
+    width: 100%;
+    padding: 1rem;
+    font-weight: bold;
+
+    &-success {
+        background-color: $bg-gris-fonce;
+        color: #ffffff;
     }
-    100% {
-        left: 75%;
+
+    &-danger {
+        border: 3px solid #dc3545;
+        color: #ffffff;
     }
 }

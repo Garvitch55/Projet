@@ -1,12 +1,12 @@
 <?php
 require_once __DIR__ . '/../config.php';
 require_once __DIR__ . '/../head.php';    // head_with_title
-$title = "Accueil";
+$title = "Nos réalisations";
 
 // ----------------- CONTENT -----------------
 $content = <<<HTML
 <div class="container mt-1 mb-4 border-bottom border-dark">
-   <h6>Accueil</h6>
+   <h6>Nos réalisations</h6>
 </div>
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>

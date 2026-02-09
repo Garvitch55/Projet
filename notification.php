@@ -15,7 +15,7 @@ if (isset($_GET['status']) && isset($_GET['message'])) {
     <!-- Le htmlentities "sanitize" la chaine de caractère 
      du script malveillant 
     et la transforme en texte inoffensif en un texte -->
-    <h3 class="notification notification-<?= htmlentities($status) ?> text-<?= htmlentities($status) ?>"><?= htmlentities($message) ?></h3>
+    <p class="notification notification-<?= htmlentities($status) ?> text-<?= htmlentities($status) ?>"><?= htmlentities($message) ?></p>
     
 <?php
 }

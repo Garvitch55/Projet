@@ -1,31 +1,26 @@
 <?php
-require_once __DIR__ . "/../../config.php";
+require_once __DIR__ . '/../../config.php';
 
+require_once __DIR__ . '/../../head.php';    // head_with_title
+$title = "Clients";
 
+ob_start();
+require ROOT . "notification.php";
+$notification = ob_get_clean();
 
-
-
-
-
-
-
-
-?>
-
+$content = <<<HTML
+{$notification}
 <h1 class="text-center mt-3">Inscription :</h1>
 <p class="text-center mt-3">Votre compte client vous servira d'avoir accès à la demande de devis en ligne.</p>
-
-<?php
-include_once "../../notification.php";
-?>
 
 <head>
     <script src="js/api_date.js"></script>
 </head>
 
 
+
 <!-- Action correspond à l'adresse du fichier ou les données du formulaire iront après validation -->
-<form class="w-50 mx-auto mb-3" style="margin-top: 150px;" action="controller/client/add_client_ctrl.php" method="POST">
+<form class="w-50 mx-auto mb-3" style="margin-top: 10px;" action="controller/auth/add_client_ctrl.php" method="POST">
 
     <div class="row">
         <!-- prénom -->
@@ -161,3 +156,9 @@ include_once "../../notification.php";
     </div>
 
 </form>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+HTML;
+
+// ----------------- INCLURE LAYOUT -----------------
+require __DIR__ . '/../../layout.php';

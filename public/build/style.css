@@ -23,49 +23,43 @@ footer ul {
   padding: 0;
 }
 
+.bg-orange-fonce {
+  background-color: #e38f3c;
+}
+
+.bg-gris-fonce {
+  background-color: #41403b;
+}
+
+.text-orange-fonce {
+  color: #e38f3c;
+}
+
+.text-gris-fonce {
+  color: #41403b;
+}
+
+.card-parametres:hover {
+  transform: scale(1.05);
+  transition: transform 0.4s ease;
+}
+
+h6 {
+  color: #41403b;
+}
+
 .notification {
-  position: absolute;
-  left: 25%;
-  width: 50%;
-  text-align: center;
-  padding: 0.5rem;
-  border-radius: 10px;
-  animation-name: notification-popup;
-  animation-duration: 1s;
-  animation-timing-function: cubic-bezier(0.22, 0, 0.68, 1);
+  width: 100%;
+  padding: 1rem;
+  font-weight: bold;
 }
 .notification-success {
-  border: 3px solid #198754;
+  background-color: #41403b;
+  color: #ffffff;
 }
 .notification-danger {
-  border: 3px solid #Dc3545;
+  border: 3px solid #dc3545;
+  color: #ffffff;
 }
 
-@keyframes notification-popup {
-  0% {
-    left: 100%;
-  }
-  100% {
-    left: 25%;
-  }
-}
-
-.suggestions {
-  border: 1px solid #ccc;
-  max-height: 150px;
-  overflow-y: auto;
-  position: absolute;
-  background-color: white;
-  width: 100%;
-  z-index: 1000;
-  cursor: pointer;
-}
-
-.suggestion {
-  padding: 8px 10px;
-  border-bottom: 1px solid #eee;
-}
-
-.suggestion:hover {
-  background-color: #f0f0f0;
-}
+/*# sourceMappingURL=style.css.map */

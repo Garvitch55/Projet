@@ -14,7 +14,7 @@ echo password_hash("Garvitch_55100", PASSWORD_DEFAULT);
 <div class="container mt-5">
     <div class="row justify-content-center">
         <div class="col-md-4">
-            <h1 class="h3 mb-3 text-center" style="color:#41403b;">
+            <h1 class="h3 mb-3 text-center text-gris-fonce">
 Se connecter
             </h1>
 
@@ -38,6 +38,18 @@ Se connecter
     onmouseout="this.style.background='#e38f3c';">
     Connexion
 </button>
+
+<a class="nav-link rounded text-white" href="views/auth/add_client_form.php"
+                    onmouseover="this.style.background='#41403b';"
+                    onmouseout="this.style.background='';">
+                    Inscription
+                </a>
+
+
+
+
+
+
                 </div>
             </form>
         </div>
