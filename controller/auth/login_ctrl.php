@@ -60,7 +60,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         // Aucun utilisateur trouvé
         header("Location: ../../views/login.php?status=danger&message=Utilisateur inconnu.");
         exit;
-
     } catch (PDOException $e) {
         $error = $e->getMessage();
         header("Location: ../../views/login.php?status=danger&message=$error");

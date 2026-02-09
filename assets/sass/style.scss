@@ -25,6 +25,7 @@ footer {
     padding: 2rem 0;
     background-color: black;
     width: 100%;
+
     ul {
         list-style: none;
         @include zero_box;
@@ -32,17 +33,17 @@ footer {
 }
 
 
-$bg-orange-fonce:#e38f3c;
-$bg-gris-fonce:#41403b;
+$bg-orange-fonce: #e38f3c;
+$bg-gris-fonce: #41403b;
 
 
 .bg-orange-fonce {
-background-color: $bg-orange-fonce;
+    background-color: $bg-orange-fonce;
 }
 
 
 .bg-gris-fonce {
-  background-color: $bg-gris-fonce;
+    background-color: $bg-gris-fonce;
 }
 
 
@@ -50,40 +51,76 @@ $text-orange-fonce: #e38f3c;
 $text-gris-fonce: #41403b;
 
 .text-orange-fonce {
-  color: $text-orange-fonce;
+    color: $text-orange-fonce;
 }
 
 .text-gris-fonce {
-  color: $text-gris-fonce;
-}
-
-
-.nav-link:hover {
-    text-decoration: underline;
+    color: $text-gris-fonce;
 }
 
 .card-parametres {
-  background-color: rgba($bg-orange-fonce, 0.8); // background semi-transparent
-  color: #fff; // texte blanc
-  box-shadow: 0 0.25rem 0.5rem rgba(0, 0, 0, 0.1); // ombre initiale
-  transition: transform 0.4s ease, box-shadow 0.4s ease, background-color 0.4s ease;
+    background-color: rgba($bg-orange-fonce, 0.8);
+    color: #fff; 
+    box-shadow: 0 0.25rem 0.5rem rgba(0, 0, 0, 0.1);
+    transition: transform 0.4s ease, box-shadow 0.4s ease, background-color 0.4s ease;
 
+    &:hover {
+        transform: scale(1.05);
+        box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
+        background-color: rgba($bg-orange-fonce, 1);
+    }
+}
 
-  &:hover {
-    transform: scale(1.05);
-    box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15); // ombre plus prononcée
-    background-color: rgba($bg-orange-fonce, 1); // background plein au hover
+.btn{
+    background-color: $bg-orange-fonce;
+    box-shadow: 0 0.25rem 0.5rem rgba(0, 0, 0, 0.1);
+        &:hover {
+        transform: scale(1.05);
+    background-color: $bg-gris-fonce;
+    box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
+    }
+}
+
+.btn1 {
+  text-decoration: none;
+  color: $text-gris-fonce;
+background-color: transparent;
+box-shadow: none;
+ transition: transform 0.4s ease;
+        &:hover {
+    padding-left: 20px;
+    padding-right:20px;
+    background-color: $bg-gris-fonce;
+        color: #fff; 
+                transform: scale(1.05);
+            border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    border-bottom-left-radius: 7px;
+    border-bottom-right-radius: 7px;
+    }
+
+  &:focus {
+    padding-left: 20px;
+    padding-right:20px;
+    background-color: $bg-gris-fonce;
+        color: #fff; 
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    border-bottom-left-radius: 7px;
+    border-bottom-right-radius: 7px;
   }
 }
 
+.nav-link{
+
+        &:hover {
+background-color: $bg-gris-fonce;
+        color: #ffffff;
+}
+}
 
 
-
-
-
-
-
-h6{
+h6 {
     color: $text-gris-fonce;
 }
 
@@ -92,7 +129,8 @@ h6{
     width: 100%;
     padding: 1rem;
     font-weight: bold;
- color: #ffffff;
+    color: #ffffff;
+
     &-success {
         background-color: $bg-gris-fonce;
         color: #ffffff;
@@ -105,15 +143,15 @@ h6{
 }
 
 .dropdown-menu-border {
-border-bottom-left-radius: 15px;
-border-bottom-right-radius: 15px;
-background-color: rgba(red($bg-orange-fonce), green($bg-orange-fonce), blue($bg-orange-fonce), 0.8);
+    border-bottom-left-radius: 15px;
+    border-bottom-right-radius: 15px;
+    background-color: rgba(red($bg-orange-fonce), green($bg-orange-fonce), blue($bg-orange-fonce), 0.8);
     color: #fff;
 }
 
-.dropdown-menu:hover{
-            background-color: $bg-gris-fonce;
-        color: #ffffff;
+.dropdown-menu:hover {
+    background-color: $bg-gris-fonce;
+    color: #ffffff;
 }
 
 #suggestions {

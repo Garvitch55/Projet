@@ -1,11 +1,11 @@
-<?php 
+<?php
 require_once __DIR__ . "/../../config.php";
 start_page("Ajouter un nouveau membre du personnel");
 ?>
 
 <h1 class="text-center mt-3">Ajouter un nouveau membre du personnel</h1>
 
-<?php 
+<?php
 include_once "../../notification.php";
 ?>
 
@@ -83,10 +83,11 @@ include_once "../../notification.php";
                 <div class="text-center">
                     <button type="submit" class="btn btn-primary w-50 py-2 mt-3">Ajouter le membre</button>
                 </div>
-            </form>    
+            </form>
         </div>
     </div>
 </div>
 
 </body>
+
 </html>

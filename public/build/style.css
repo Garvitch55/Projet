@@ -39,10 +39,6 @@ footer ul {
   color: #41403b;
 }
 
-.nav-link:hover {
-  text-decoration: underline;
-}
-
 .card-parametres {
   background-color: rgba(227, 143, 60, 0.8);
   color: #fff;
@@ -53,6 +49,50 @@ footer ul {
   transform: scale(1.05);
   box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
   background-color: #e38f3c;
+}
+
+.btn {
+  background-color: #e38f3c;
+  box-shadow: 0 0.25rem 0.5rem rgba(0, 0, 0, 0.1);
+}
+.btn:hover {
+  transform: scale(1.05);
+  background-color: #41403b;
+  box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
+}
+
+.btn1 {
+  text-decoration: none;
+  color: #41403b;
+  background-color: transparent;
+  box-shadow: none;
+  transition: transform 0.4s ease;
+}
+.btn1:hover {
+  padding-left: 20px;
+  padding-right: 20px;
+  background-color: #41403b;
+  color: #fff;
+  transform: scale(1.05);
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+  border-bottom-left-radius: 7px;
+  border-bottom-right-radius: 7px;
+}
+.btn1:focus {
+  padding-left: 20px;
+  padding-right: 20px;
+  background-color: #41403b;
+  color: #fff;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+  border-bottom-left-radius: 7px;
+  border-bottom-right-radius: 7px;
+}
+
+.nav-link:hover {
+  background-color: #41403b;
+  color: #ffffff;
 }
 
 h6 {

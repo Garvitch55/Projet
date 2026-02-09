@@ -1,6 +1,6 @@
 <?php
 
-if(session_status() === PHP_SESSION_NONE) {
+if (session_status() === PHP_SESSION_NONE) {
     session_start();
 }
 
@@ -8,15 +8,17 @@ if(session_status() === PHP_SESSION_NONE) {
  * Savoir si un utilisateur est connecté
  * @return bool
  */
-function isUserLoggedIn(): bool {
+function isUserLoggedIn(): bool
+{
     return isset($_SESSION['name']);
 }
 
 /**
  * Forcer la connexion pour une page : si non connecter -> redirection vers le login
  */
-function requireLogin(): void {
-    if(!isUserLoggedIn()) {
+function requireLogin(): void
+{
+    if (!isUserLoggedIn()) {
         header("Location: login.php?status=danger&message=Veillez vous connecter.");
     }
 }
@@ -25,21 +27,24 @@ function requireLogin(): void {
  * Permet de faciliter l'écriture du nom et prénom d'une personne, à partir d'un tableau associatif
  * @param $assocArray
  */
-function getFullName(array $assocArray): string {
+function getFullName(array $assocArray): string
+{
     return $assocArray['firstname'] . " " . $assocArray['lastname'];
 }
 
 // On va définir l'adresse de la racine comme une variable global constante
-define('ROOT', __DIR__. '/');
+define('ROOT', __DIR__ . '/');
 
 // Fonction qui charge le fichier
 
-function load(?string $file) { //?string: string | null
+function load(?string $file)
+{ //?string: string | null
     require ROOT . $file;
 }
 
-function getPDO() {
-        $pdo = new PDO(
+function getPDO()
+{
+    $pdo = new PDO(
         "mysql:host=localhost;dbname=gestion_entreprise;charset=utf8",
         "root",
         ""
@@ -60,7 +65,8 @@ function getPDO() {
  * 
  * @return string Retourne si $apo ou $noApo selon la première lettre du nom.
  */
-function firstLetterVowelDetector($name, $noApo, $apo) : string {
+function firstLetterVowelDetector($name, $noApo, $apo): string
+{
     $vowels = ["a", "e", "i", "o", "u", "é", "è"];
 
     //Ici, dans substr, on prend une string $name, on récupère à partir de l'index 0
@@ -69,12 +75,11 @@ function firstLetterVowelDetector($name, $noApo, $apo) : string {
     $firstLetter = mb_strtolower(mb_substr($name, 0, 1));
 
     //on vérifie si la première lettre est dans le tableau de voyelles
-    if(in_array($firstLetter, $vowels)) {
+    if (in_array($firstLetter, $vowels)) {
         return $apo;
     } else {
         return $noApo;
     }
-
 }
 
 
@@ -83,6 +88,7 @@ function firstLetterVowelDetector($name, $noApo, $apo) : string {
 //     return isset($_SESSION['user_id']);
 // }
 
-function getUserRole() {
+function getUserRole()
+{
     return $_SESSION['role'] ?? null; // "admin", "employe", "client"
 }

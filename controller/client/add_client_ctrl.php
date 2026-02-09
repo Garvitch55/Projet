@@ -23,16 +23,16 @@ include_once "../../config.php";
 // $_SERVER est une superglobale
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     // ici on continue le code car on a envoyé notre formulaire en post
-    
+
     // on récupère les données et on les nettoie
     // Nouvelle superglobale => $_POST
     // C'est un tableau associatif qui contient toutes les données
     // de vos inputs.
-    
+
     // echo '<pre>';
     // var_dump($_POST['birthdate']);
     // echo '</pre>';
-    
+
     // On enlève les potentiels espaces en trop 
     // mais pour éviter les null, on utilisera un operateur de coaléscence des nulls
     $firstname = trim($_POST['firstname'] ?? ''); // ?? => si c'est firstname est null alors '' 
@@ -52,7 +52,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     // Si au moins une est vide, on retourne au formulaire
     // avec un message d'erreur
     if (
-        empty($firstname) || 
+        empty($firstname) ||
         empty($lastname) ||
         empty($phone) ||
         empty($email) ||
@@ -107,7 +107,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         // DANS UN EXECUTE, ON MET TOUJOURS UN TABLEAU, MÊME S'IL Y A QU'UNE SEULE DONNÉE
         $stmt->execute([
             $firstname,
-            $lastname, 
+            $lastname,
             $birthdate,
             $phone,
             $email,
@@ -120,14 +120,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
         header("Location: ../../views/client/add_client_form.php?status=success&message=Inscription réussie. Vous pouvez maintenant vous connecter.");
         exit;
-
     } catch (PDOException $e) {
         // Ici on attrape l'erreur pour pouvoir l'envoyer dans le système de message qui se trouve dans le formulaire
         $error = $e->getMessage();
         header("Location: ../../views/client/add_client_form.php?status=danger&message=$error");
         exit;
     }
-
 } else {
     // On est éjecté du script si on accède directement par la page
     header("Location: ../../index.php");

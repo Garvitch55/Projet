@@ -14,9 +14,7 @@ echo password_hash("Garvitch_55100", PASSWORD_DEFAULT);
 <div class="container mt-5">
     <div class="row justify-content-center">
         <div class="col-md-4">
-            <h1 class="h3 mb-3 text-center text-gris-fonce">
-Se connecter
-            </h1>
+            <h1 class="h3 mb-3 text-center text-gris-fonce">Se connecter</h1>
 
             <form action="/projet/controller/auth/login_ctrl.php" method="POST">
                 <div class="mb-3">
@@ -31,26 +29,13 @@ Se connecter
                 <input type="hidden" name="type" value="<?= htmlspecialchars($type) ?>">
 
                 <div class="text-center">
-                    <button type="submit"
-    class="btn w-50 text-white"
-    style="background:#e38f3c;"
-    onmouseover="this.style.background='#41403b';"
-    onmouseout="this.style.background='#e38f3c';">
-    Connexion
-</button>
-
-<a class="nav-link rounded text-gris-fonce pt-2" href="views/auth/add_client_form.php"
->
-                    Inscription
-                </a>
-
-
-
-
-
-
+                    <button type="submit" class="btn w-50 text-white"> Connexion  </button>
+                </div>
+                <div class="text-center p-2">
+                    <a class="text-gris-fonce" href="views/auth/add_client_form.php">Inscription</a>
                 </div>
             </form>
+
         </div>
     </div>
 </div>

@@ -18,8 +18,6 @@ $content = <<<HTML
     <script src="js/api_adresse.js" defer></script>
 </head>
 
-
-
 <!-- Action correspond à l'adresse du fichier ou les données du formulaire iront après validation -->
 <form class="w-50 mx-auto mb-3" style="margin-top: 10px;" action="controller/auth/add_client_ctrl.php" method="POST">
 

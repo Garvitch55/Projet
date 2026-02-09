@@ -6,14 +6,14 @@ $type = $_GET['type'] ?? 'administrateur';
 
 // Pas connecté → dehors
 if (!isset($_SESSION['id'])) {
-    header("Location: login.php?status=danger&message=Veuillez vous connecter.");
-    exit;
+   header("Location: login.php?status=danger&message=Veuillez vous connecter.");
+   exit;
 }
 
 // Pas admin → dehors
 if ($_SESSION['role'] !== 'administrateur') {
-    header("Location: ../../index.php?status=danger&message=Accès refusé.");
-    exit;
+   header("Location: ../../index.php?status=danger&message=Accès refusé.");
+   exit;
 }
 
 require_once __DIR__ . '/../../head.php';    // head_with_title
