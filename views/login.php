@@ -39,9 +39,8 @@ Se connecter
     Connexion
 </button>
 
-<a class="nav-link rounded text-white" href="views/auth/add_client_form.php"
-                    onmouseover="this.style.background='#41403b';"
-                    onmouseout="this.style.background='';">
+<a class="nav-link rounded text-gris-fonce pt-2" href="views/auth/add_client_form.php"
+>
                     Inscription
                 </a>
 

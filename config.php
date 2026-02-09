@@ -38,10 +38,12 @@ function load(?string $file) { //?string: string | null
     require ROOT . $file;
 }
 
-
-
 function getPDO() {
-    $pdo = new PDO("mysql:host=db;dbname=gestion_entreprise;chartset=utf8", "root", "1234");
+        $pdo = new PDO(
+        "mysql:host=localhost;dbname=gestion_entreprise;charset=utf8",
+        "root",
+        ""
+    );
     $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
     return $pdo;
 }

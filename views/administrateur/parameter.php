@@ -21,7 +21,7 @@ $title = "Paramétrages";
 
 // ----------------- CONTENT -----------------
 $content = <<<HTML
-<div class="container mt-1 mb-4 border-bottom border-dark">
+<div class="mt-1 mb-4 border-bottom border-dark">
    <h6>Liste des paramétrages</h6>
 </div>
 
@@ -29,7 +29,7 @@ $content = <<<HTML
 
 <!-- Gestion des Devis & Factures -->
 <div class="col-md-4 col-sm-6 col-12">
-   <div class="card h-100 card-parametres" style="border:1px solid #e38f3c; background: rgba(227, 143, 60, 0.6);">
+   <div class="card h-100 card-parametres shadow" style="border:1px solid #e38f3c; background: rgba(227, 143, 60, 0.6);">
       <div class="card-header p-2 bg-gris-fonce text-white">
         <i class="bi bi-receipt-cutoff me-2"></i>Gestion des Devis & Factures
       </div>
@@ -98,7 +98,7 @@ $content = <<<HTML
             onmouseover="this.style.background='#e38f3c'; this.style.color='white';"
             onmouseout="this.style.background=''; this.style.color='';">lien 3 crud</a>
       </div>
-      <div class="card-footer bg-gris-fonce card-parametres"></div>
+      <div class="card-footer bg-gris-fonce"></div>
    </div>
 </div>
 

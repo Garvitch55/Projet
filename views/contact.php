@@ -5,7 +5,7 @@ $title = "Nous contacter";
 
 // ----------------- CONTENT -----------------
 $content = <<<HTML
-<div class="container mt-1 mb-4 border-bottom border-dark">
+<div class="mt-1 mb-4 border-bottom border-dark">
    <h6>Nous contacter</h6>
 </div>
 

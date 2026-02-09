@@ -58,11 +58,28 @@ $text-gris-fonce: #41403b;
 }
 
 
-
-.card-parametres:hover {
-    transform: scale(1.05);
-    transition: transform 0.4s ease;
+.nav-link:hover {
+    text-decoration: underline;
 }
+
+.card-parametres {
+  background-color: rgba($bg-orange-fonce, 0.8); // background semi-transparent
+  color: #fff; // texte blanc
+  box-shadow: 0 0.25rem 0.5rem rgba(0, 0, 0, 0.1); // ombre initiale
+  transition: transform 0.4s ease, box-shadow 0.4s ease, background-color 0.4s ease;
+
+
+  &:hover {
+    transform: scale(1.05);
+    box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15); // ombre plus prononcée
+    background-color: rgba($bg-orange-fonce, 1); // background plein au hover
+  }
+}
+
+
+
+
+
 
 
 
@@ -75,14 +92,55 @@ h6{
     width: 100%;
     padding: 1rem;
     font-weight: bold;
-
+ color: #ffffff;
     &-success {
         background-color: $bg-gris-fonce;
         color: #ffffff;
     }
 
     &-danger {
-        border: 3px solid #dc3545;
+        background-color: $bg-gris-fonce;
         color: #ffffff;
     }
+}
+
+.dropdown-menu-border {
+border-bottom-left-radius: 15px;
+border-bottom-right-radius: 15px;
+background-color: rgba(red($bg-orange-fonce), green($bg-orange-fonce), blue($bg-orange-fonce), 0.8);
+    color: #fff;
+}
+
+.dropdown-menu:hover{
+            background-color: $bg-gris-fonce;
+        color: #ffffff;
+}
+
+#suggestions {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 100%;
+    display: none;
+    flex-wrap: wrap;
+    gap: 5px;
+    padding: 5px;
+    background: #fff;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    z-index: 1000;
+}
+
+#suggestions .suggestion {
+    padding: 5px 10px;
+    background-color: #e38f3c;
+    color: #fff;
+    border-radius: 20px;
+    cursor: pointer;
+    transition: background-color 0.2s;
+    font-size: 0.9rem;
+}
+
+#suggestions .suggestion:hover {
+    background-color: #41403b;
 }

@@ -21,7 +21,7 @@ $title = "Devis";
 
 // ----------------- CONTENT -----------------
 $content = <<<HTML
-<div class="container mt-1 mb-4 border-bottom border-dark">
+<div class="mt-1 mb-4 border-bottom border-dark">
    <h6>Liste des devis</h6>
 </div>
 

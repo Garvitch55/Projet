@@ -9,12 +9,13 @@ require ROOT . "notification.php";
 $notification = ob_get_clean();
 
 $content = <<<HTML
-{$notification}
+
 <h1 class="text-center mt-3">Inscription :</h1>
 <p class="text-center mt-3">Votre compte client vous servira d'avoir accès à la demande de devis en ligne.</p>
 
 <head>
     <script src="js/api_date.js"></script>
+    <script src="js/api_adresse.js" defer></script>
 </head>
 
 
@@ -110,9 +111,6 @@ $content = <<<HTML
     </div>
 </div>
 
-
-
-
     <!-- votre date naissance -->
     <div class="mb-3">
         <label for="birthdate" class="form-label">Votre date de naissance : </label>
@@ -152,9 +150,10 @@ $content = <<<HTML
 
     <!-- Bouton de validation -->
     <div class="text-center">
-        <input type="submit" value="Vous inscrire" class="btn btn-primary">
+        <input type="submit" value="Vous inscrire" class="btn text-white" style="background:#e38f3c;"
+    onmouseover="this.style.background='#41403b';"
+    onmouseout="this.style.background='#e38f3c';">
     </div>
-
 </form>
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>

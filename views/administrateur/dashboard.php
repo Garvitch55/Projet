@@ -21,7 +21,7 @@ $title = "Tableau de bord";
 
 // ----------------- CONTENT -----------------
 $content = <<<HTML
-<div class="container mt-1 mb-4 border-bottom border-dark">
+<div class="mt-1 mb-4 border-bottom border-dark">
    <h6>Tableau de bord</h6>
 </div>
 

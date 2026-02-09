@@ -10,7 +10,7 @@ head_with_title($title);
 ?>
 
 <!-- ================= NAVBAR HORIZONTALE (TOP) ================= -->
-<nav class="navbar navbar-light bg-body-tertiary px-4">
+<nav class="navbar navbar-light bg-body-tertiary px-4 shadow">
     <!-- Logo -->
     <a class="navbar-brand" href="./">
         <img src="assets/statics/images/logo.png" alt="Logo de l'entreprise" style="height:80px; margin-right:10px;">
@@ -39,13 +39,15 @@ head_with_title($title);
                         <div><?= $roleLabel ?></div>
                     </div>
                 </a>
-                <ul class="dropdown-menu dropdown-menu-end">
-                    <li>
-                        <a class="dropdown-item text-gris-fonce" href="controller/auth/logout_ctrl.php">
-                            Déconnexion
-                        </a>
-                    </li>
-                </ul>
+<ul class="dropdown-menu dropdown-menu-end dropdown-menu-border">
+  <li class="p-2 me-2 text-end">
+    <a href="controller/auth/logout_ctrl.php" 
+       class="text-white text-decoration-none">
+      <i class="bi bi-box-arrow-right me-2"></i>
+      Déconnexion
+    </a>
+  </li>
+</ul>
             </div>
         <?php endif; ?>
     </div>
@@ -149,12 +151,20 @@ head_with_title($title);
 
     <!-- ================= CONTENU PRINCIPAL ================= -->
     <main class="flex-fill">
-        <?php
+       
+       <?php
         // Ici on affiche le contenu spécifique injecté depuis la page
+                if (isset($notification)) {
+            echo $notification;
+        }
+       ?>
+       <div class="p-3">
+       <?php 
         if (isset($content)) {
             echo $content;
         }
         ?>
+        </div>
     </main>
 
 </div>
