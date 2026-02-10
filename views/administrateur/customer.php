@@ -21,8 +21,8 @@ $title = "Clients";
 
 // ----------------- CONTENT -----------------
 $content = <<<HTML
-<div class="mt-1 mb-4 border-bottom border-dark">
-   <h6>Liste des clients</h6>
+<div class="mt-1 mb-4">
+           <h6 class="title">Liste des clients</h6>
 </div>
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>

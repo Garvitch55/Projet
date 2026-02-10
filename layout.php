@@ -12,7 +12,7 @@ head_with_title($title);
 <!-- ================= NAVBAR HORIZONTALE (TOP) ================= -->
 <nav class="navbar navbar-light bg-body-tertiary px-4 shadow">
     <!-- Logo -->
-    <a class="navbar-brand" href="./">
+    <a class="navbar-brand logo" href="./">
         <img src="assets/statics/images/logo.png" alt="Logo de l'entreprise" style="height:80px; margin-right:10px;">
     </a>
 
@@ -41,7 +41,7 @@ head_with_title($title);
                 </a>
                 <ul class="dropdown-menu dropdown-menu-end dropdown-menu-border">
                     <li class="p-2 me-2 text-end">
-                        <a href="controller/auth/logout_ctrl.php" class="text-white text-decoration-none"><i class="bi bi-box-arrow-right me-2"></i>Déconnexion</a>
+                        <a href="controller/auth/logout_ctrl.php" class="text-white text-decoration-none  shadow"><i class="bi bi-box-arrow-right me-2"></i>Déconnexion</a>
                     </li>
                 </ul>
             </div>

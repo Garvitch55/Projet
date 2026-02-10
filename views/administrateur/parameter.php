@@ -21,8 +21,8 @@ $title = "Paramétrages";
 
 // ----------------- CONTENT -----------------
 $content = <<<HTML
-<div class="mt-1 mb-4 border-bottom border-dark">
-   <h6>Liste des paramétrages</h6>
+<div class="mt-1 mb-4">
+   <h6 class="title">Liste des paramétrages</h6>
 </div>
 
 <div class="row g-3">

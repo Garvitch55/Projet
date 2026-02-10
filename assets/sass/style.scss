@@ -56,7 +56,9 @@ background-color: rgba(227, 143, 60, 0.7);
 width: 55%;
 }
 
-
+.w-45 {
+width: 45%;
+}
 
 $text-orange-fonce: #e38f3c;
 $text-gris-fonce: #41403b;
@@ -92,6 +94,11 @@ $text-gris-fonce: #41403b;
     }
 }
 
+.logo{
+        &:hover {
+        transform: scale(1.05);
+    }
+}
 .btn1 {
   text-decoration: none;
   color: $text-gris-fonce;
@@ -121,7 +128,35 @@ box-shadow: none;
     border-bottom-right-radius: 7px;
   }
 }
+.btn2 {
+  text-decoration: none;
+  color: #fff;
+background-color: $bg-orange-fonce;
+box-shadow: none;
+ transition: transform 0.4s ease;
+        &:hover {
+    padding-left: 20px;
+    padding-right:20px;
+    background-color: $bg-gris-fonce;
+        color: #fff; 
+                transform: scale(1.05);
+            border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    border-bottom-left-radius: 7px;
+    border-bottom-right-radius: 7px;
+    }
 
+  &:focus {
+    padding-left: 20px;
+    padding-right:20px;
+    background-color: $bg-gris-fonce;
+        color: #fff; 
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    border-bottom-left-radius: 7px;
+    border-bottom-right-radius: 7px;
+  }
+}
 .nav-link{
 
         &:hover {
@@ -203,3 +238,21 @@ h6 {
 #suggestions .suggestion:hover {
     background-color: #41403b;
 }
+
+
+#carouselExampleCaptions .carousel-item {
+  aspect-ratio: 16 / 9;   /* ajuste le ratio souhaité */
+  overflow: hidden;       /* cache les parties débordantes */
+}
+
+#carouselExampleCaptions .carousel-item img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;      /* recadre sans déformer */
+}
+
+.text-justify {
+  text-align: justify;
+}
+
+
