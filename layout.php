@@ -60,6 +60,7 @@ head_with_title($title);
             </div>
             <!-- Navigation générale -->
             <li class="nav-item"> <a class="nav-link rounded text-white" href="views/homepage.php">Accueil</a></li>
+            <li class="nav-item"> <a class="nav-link rounded text-white" href="views/service.php">Nos services</a></li>
             <li class="nav-item"> <a class="nav-link rounded text-white" href="views/reference.php">Nos réalisations</a></li>
             <li class="nav-item"> <a class="nav-link rounded text-white" href="views/contact.php">Nous contacter</a></li>
 

@@ -46,6 +46,17 @@ $bg-gris-fonce: #41403b;
     background-color: $bg-gris-fonce;
 }
 
+.carousel-caption-bg {
+
+background-color: rgba(227, 143, 60, 0.7);
+
+
+}
+.w-55 {
+width: 55%;
+}
+
+
 
 $text-orange-fonce: #e38f3c;
 $text-gris-fonce: #41403b;
@@ -123,6 +134,16 @@ background-color: $bg-gris-fonce;
 h6 {
     color: $text-gris-fonce;
 }
+
+
+.title{
+    width: 100%;
+    padding: 1rem;
+    font-weight: bold;
+    background-color: $bg-gris-fonce;
+    color: #ffffff;
+}
+
 
 
 .notification {

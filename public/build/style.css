@@ -31,6 +31,14 @@ footer ul {
   background-color: #41403b;
 }
 
+.carousel-caption-bg {
+  background-color: rgba(227, 143, 60, 0.7);
+}
+
+.w-55 {
+  width: 55%;
+}
+
 .text-orange-fonce {
   color: #e38f3c;
 }
@@ -97,6 +105,14 @@ footer ul {
 
 h6 {
   color: #41403b;
+}
+
+.title {
+  width: 100%;
+  padding: 1rem;
+  font-weight: bold;
+  background-color: #41403b;
+  color: #ffffff;
 }
 
 .notification {

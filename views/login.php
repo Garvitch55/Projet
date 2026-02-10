@@ -4,13 +4,10 @@ require_once __DIR__ . '/../head.php';    // head_with_title
 
 // On récupère le type d'utilisateur depuis l'URL
 $type = $_GET['type'] ?? 'client';
+$title = "Se connecter";
 
-// On capture le contenu spécifique pour le <main>
-ob_start();
-?>
-<?php
-echo password_hash("Garvitch_55100", PASSWORD_DEFAULT);
-?>
+
+$content = <<<HTML
 <div class="container mt-5">
     <div class="row justify-content-center">
         <div class="col-md-4">
@@ -39,9 +36,10 @@ echo password_hash("Garvitch_55100", PASSWORD_DEFAULT);
         </div>
     </div>
 </div>
-<?php
-// On stocke le contenu dans $content pour le layout
-$content = ob_get_clean();
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+HTML;
 
-// On inclut le layout qui affichera navbar/sidebar et injectera $content dans <main>
+echo password_hash("Garvitch_55100", PASSWORD_DEFAULT);
+
+// ----------------- INCLURE LAYOUT -----------------
 require __DIR__ . '/../layout.php';
