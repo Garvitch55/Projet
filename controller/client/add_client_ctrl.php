@@ -2,7 +2,7 @@
 
 // L'inport du PHP Data Object
 // PDO sécurise la plus grosse faille d'internet : L'injection SQL
-include_once "../../config.php";
+include_once '../../config.php';
 // Fichier qui ajoute les clients dans la base de données
 
 // echo '<pre>';
@@ -33,9 +33,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     // var_dump($_POST['birthdate']);
     // echo '</pre>';
 
-    // On enlève les potentiels espaces en trop 
+    // On enlève les potentiels espaces en trop
     // mais pour éviter les null, on utilisera un operateur de coaléscence des nulls
-    $firstname = trim($_POST['firstname'] ?? ''); // ?? => si c'est firstname est null alors '' 
+    $firstname = trim($_POST['firstname'] ?? ''); // ?? => si c'est firstname est null alors ''
     $lastname = trim($_POST['lastname'] ?? '');
     $birthdate = $_POST['birthdate'] ?? '';
     $phone = trim($_POST['phone'] ?? '');
@@ -52,39 +52,39 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     // Si au moins une est vide, on retourne au formulaire
     // avec un message d'erreur
     if (
-        empty($firstname) ||
-        empty($lastname) ||
-        empty($phone) ||
-        empty($email) ||
-        empty($email_confirm) ||
-        empty($password) ||
-        empty($password_confirm) ||
-        empty($rue) ||
-        empty($cp) ||
-        empty($ville) ||
-        empty($demande)
+        empty($firstname)
+        || empty($lastname)
+        || empty($phone)
+        || empty($email)
+        || empty($email_confirm)
+        || empty($password)
+        || empty($password_confirm)
+        || empty($rue)
+        || empty($cp)
+        || empty($ville)
+        || empty($demande)
     ) {
         // Je retourne dans le formulaire, car une donnée est "vide".
         // De plus, je vais rajouter une erreur en GET
-        header("Location: ../../views/client/add_client_form.php?status=danger&message=Tous les champs obligatoires doivent être remplis.");
+        header('Location: ../../views/client/add_client_form.php?status=danger&message=Tous les champs obligatoires doivent être remplis.');
         exit;
     }
 
     // Vérification email = confirmation
     if ($email !== $email_confirm) {
-        header("Location: ../../views/client/add_client_form.php?status=danger&message=Les adresses e-mail ne correspondent pas.");
+        header('Location: ../../views/client/add_client_form.php?status=danger&message=Les adresses e-mail ne correspondent pas.');
         exit;
     }
 
     // Vérification mot de passe = confirmation
     if ($password !== $password_confirm) {
-        header("Location: ../../views/client/add_client_form.php?status=danger&message=Les mots de passe ne correspondent pas.");
+        header('Location: ../../views/client/add_client_form.php?status=danger&message=Les mots de passe ne correspondent pas.');
         exit;
     }
 
     // Vérification taille du mot de passe
     if (strlen($password) < 6) {
-        header("Location: ../../views/client/add_client_form.php?status=danger&message=Le mot de passe doit contenir au moins 6 caractères.");
+        header('Location: ../../views/client/add_client_form.php?status=danger&message=Le mot de passe doit contenir au moins 6 caractères.');
         exit;
     }
 
@@ -96,10 +96,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     try {
         $pdo = getPDO();
         // on écrit la requête sql dans une variable
-        $sql = "INSERT INTO gestion_client (
+        $sql = 'INSERT INTO gestion_client (
                     firstname, lastname, birthdate, phone, email,
                     rue, cp, ville, demande, password
-                ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+                ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)';
         // On prépare la requête SQL
         $stmt = $pdo->prepare($sql);
         // On envoie les données dans la requête, qui remplace les points d'interrogations
@@ -115,10 +115,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $cp,
             $ville,
             $demande,
-            $passwordHash
+            $passwordHash,
         ]);
 
-        header("Location: ../../views/client/add_client_form.php?status=success&message=Inscription réussie. Vous pouvez maintenant vous connecter.");
+        header('Location: ../../views/client/add_client_form.php?status=success&message=Inscription réussie. Vous pouvez maintenant vous connecter.');
         exit;
     } catch (PDOException $e) {
         // Ici on attrape l'erreur pour pouvoir l'envoyer dans le système de message qui se trouve dans le formulaire
@@ -128,6 +128,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     }
 } else {
     // On est éjecté du script si on accède directement par la page
-    header("Location: ../../index.php");
+    header('Location: ../../index.php');
     exit;
 }

@@ -1,5 +1,6 @@
 <?php
-include_once "../../config.php";
+
+include_once '../../config.php';
 
 // Vérifie que la requête est en POST
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
@@ -7,7 +8,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $password = $_POST['psw'] ?? '';
 
     if (empty($email) || empty($password)) {
-        header("Location: ../../views/login.php?status=danger&message=Veuillez remplir tous les champs.");
+        header('Location: ../../views/login.php?status=danger&message=Veuillez remplir tous les champs.');
         exit;
     }
 
@@ -17,7 +18,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         // --------------------------------------------------------
         // 1️⃣ Vérification dans la table staff (admin/employé)
         // --------------------------------------------------------
-        $stmt = $pdo->prepare("SELECT * FROM gestion_personnel WHERE email = ?");
+        $stmt = $pdo->prepare('SELECT * FROM gestion_personnel WHERE email = ?');
         $stmt->execute([$email]);
         $user = $stmt->fetch();
 
@@ -30,13 +31,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
                 // Redirection selon le rôle
                 if ($_SESSION['role'] === 'administrateur') {
-                    header("Location: ../../views/homepage.php?status=success&message=Bienvenue Administrateur " . $_SESSION['name']);
+                    header('Location: ../../views/homepage.php?status=success&message=Bienvenue Administrateur ' . $_SESSION['name']);
                 } else {
-                    header("Location: ../../views/homepage.php?status=success&message=Bienvenue Employé " . $_SESSION['name']);
+                    header('Location: ../../views/homepage.php?status=success&message=Bienvenue Employé ' . $_SESSION['name']);
                 }
                 exit;
             } else {
-                header("Location: ../../views/login.php?status=danger&message=Mot de passe incorrect.");
+                header('Location: ../../views/login.php?status=danger&message=Mot de passe incorrect.');
                 exit;
             }
         }
@@ -44,7 +45,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         // --------------------------------------------------------
         // 2️⃣ Vérification dans la table client
         // --------------------------------------------------------
-        $stmt = $pdo->prepare("SELECT * FROM gestion_client WHERE email = ?");
+        $stmt = $pdo->prepare('SELECT * FROM gestion_client WHERE email = ?');
         $stmt->execute([$email]);
         $client = $stmt->fetch();
 
@@ -53,12 +54,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $_SESSION['name'] = $client['firstname'] . ' ' . $client['lastname'];
             $_SESSION['role'] = 'client';
 
-            header("Location: ../../index.php?status=success&message=Bienvenue, " . $_SESSION['name']);
+            header('Location: ../../index.php?status=success&message=Bienvenue, ' . $_SESSION['name']);
             exit;
         }
 
         // Aucun utilisateur trouvé
-        header("Location: ../../views/login.php?status=danger&message=Utilisateur inconnu.");
+        header('Location: ../../views/login.php?status=danger&message=Utilisateur inconnu.');
         exit;
     } catch (PDOException $e) {
         $error = $e->getMessage();
@@ -66,6 +67,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         exit;
     }
 } else {
-    header("Location: ../../index.php");
+    header('Location: ../../index.php');
     exit;
 }

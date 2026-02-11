@@ -1,7 +1,7 @@
 <?php
-function head_with_title($title = "Accueil")
+function head_with_title($title = 'Accueil')
 {
-?>
+    ?>
     <!DOCTYPE html>
     <html lang="fr">
 
@@ -28,4 +28,4 @@ function head_with_title($title = "Accueil")
     <body>
     <?php
 }
-    ?>
+?>

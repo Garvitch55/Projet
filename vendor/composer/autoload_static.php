@@ -7,48 +7,238 @@ namespace Composer\Autoload;
 class ComposerStaticInitf2cb7fd281b635840172fca511a396fc
 {
     public static $files = array (
-        '6124b4c8570aa390c21fafd04a26c69f' => __DIR__ . '/..' . '/myclabs/deep-copy/src/DeepCopy/deep_copy.php',
-        'ec07570ca5a812141189b1fa81503674' => __DIR__ . '/..' . '/phpunit/phpunit/src/Framework/Assert/Functions.php',
+        'ad155f8f1cf0d418fe49e248db8c661b' => __DIR__ . '/..' . '/react/promise/src/functions_include.php',
         '6e3fae29631ef280660b3cdad06f25a8' => __DIR__ . '/..' . '/symfony/deprecation-contracts/function.php',
+        '0e6d7bf4a5811bfa5cf40c5ccd6fae6a' => __DIR__ . '/..' . '/symfony/polyfill-mbstring/bootstrap.php',
+        '320cde22f66dd4f5d3fd621d3e88b98f' => __DIR__ . '/..' . '/symfony/polyfill-ctype/bootstrap.php',
+        '8825ede83f2f289127722d4e842cf7e8' => __DIR__ . '/..' . '/symfony/polyfill-intl-grapheme/bootstrap.php',
+        'e69f7f6ee287b969198c3c9d6777bd38' => __DIR__ . '/..' . '/symfony/polyfill-intl-normalizer/bootstrap.php',
+        'b6b991a57620e2fb6b2f66f03fe9ddc2' => __DIR__ . '/..' . '/symfony/string/Resources/functions.php',
+        '6124b4c8570aa390c21fafd04a26c69f' => __DIR__ . '/..' . '/myclabs/deep-copy/src/DeepCopy/deep_copy.php',
+        'a4a119a56e50fbb293281d9a48007e0e' => __DIR__ . '/..' . '/symfony/polyfill-php80/bootstrap.php',
+        '23c18046f52bef3eea034657bafda50f' => __DIR__ . '/..' . '/symfony/polyfill-php81/bootstrap.php',
+        '9d2b9fc6db0f153a0a149fefb182415e' => __DIR__ . '/..' . '/symfony/polyfill-php84/bootstrap.php',
+        'ec07570ca5a812141189b1fa81503674' => __DIR__ . '/..' . '/phpunit/phpunit/src/Framework/Assert/Functions.php',
     );
 
     public static $prefixLengthsPsr4 = array (
-        'P' => 
+        'S' =>
         array (
+            'Symfony\\Polyfill\\Php84\\' => 23,
+            'Symfony\\Polyfill\\Php81\\' => 23,
+            'Symfony\\Polyfill\\Php80\\' => 23,
+            'Symfony\\Polyfill\\Mbstring\\' => 26,
+            'Symfony\\Polyfill\\Intl\\Normalizer\\' => 33,
+            'Symfony\\Polyfill\\Intl\\Grapheme\\' => 31,
+            'Symfony\\Polyfill\\Ctype\\' => 23,
+            'Symfony\\Contracts\\Service\\' => 26,
+            'Symfony\\Contracts\\EventDispatcher\\' => 34,
+            'Symfony\\Component\\String\\' => 25,
+            'Symfony\\Component\\Stopwatch\\' => 28,
+            'Symfony\\Component\\Process\\' => 26,
+            'Symfony\\Component\\OptionsResolver\\' => 34,
+            'Symfony\\Component\\Finder\\' => 25,
+            'Symfony\\Component\\Filesystem\\' => 29,
+            'Symfony\\Component\\EventDispatcher\\' => 34,
+            'Symfony\\Component\\Console\\' => 26,
+        ),
+        'R' =>
+        array (
+            'React\\Stream\\' => 13,
+            'React\\Socket\\' => 13,
+            'React\\Promise\\' => 14,
+            'React\\EventLoop\\' => 16,
+            'React\\Dns\\' => 10,
+            'React\\ChildProcess\\' => 19,
+            'React\\Cache\\' => 12,
+        ),
+        'P' =>
+        array (
+            'Psr\\Log\\' => 8,
+            'Psr\\EventDispatcher\\' => 20,
             'Psr\\Container\\' => 14,
             'PhpParser\\' => 10,
+            'PhpCsFixer\\' => 11,
         ),
-        'F' => 
+        'F' =>
         array (
+            'Fidry\\CpuCoreCounter\\' => 21,
             'Faker\\' => 6,
         ),
-        'D' => 
+        'E' =>
+        array (
+            'Evenement\\' => 10,
+        ),
+        'D' =>
         array (
             'DeepCopy\\' => 9,
+        ),
+        'C' =>
+        array (
+            'Composer\\XdebugHandler\\' => 23,
+            'Composer\\Semver\\' => 16,
+            'Composer\\Pcre\\' => 14,
+            'Clue\\React\\NDJson\\' => 18,
         ),
     );
 
     public static $prefixDirsPsr4 = array (
-        'Psr\\Container\\' => 
+        'Symfony\\Polyfill\\Php84\\' =>
+        array (
+            0 => __DIR__ . '/..' . '/symfony/polyfill-php84',
+        ),
+        'Symfony\\Polyfill\\Php81\\' =>
+        array (
+            0 => __DIR__ . '/..' . '/symfony/polyfill-php81',
+        ),
+        'Symfony\\Polyfill\\Php80\\' =>
+        array (
+            0 => __DIR__ . '/..' . '/symfony/polyfill-php80',
+        ),
+        'Symfony\\Polyfill\\Mbstring\\' =>
+        array (
+            0 => __DIR__ . '/..' . '/symfony/polyfill-mbstring',
+        ),
+        'Symfony\\Polyfill\\Intl\\Normalizer\\' =>
+        array (
+            0 => __DIR__ . '/..' . '/symfony/polyfill-intl-normalizer',
+        ),
+        'Symfony\\Polyfill\\Intl\\Grapheme\\' =>
+        array (
+            0 => __DIR__ . '/..' . '/symfony/polyfill-intl-grapheme',
+        ),
+        'Symfony\\Polyfill\\Ctype\\' =>
+        array (
+            0 => __DIR__ . '/..' . '/symfony/polyfill-ctype',
+        ),
+        'Symfony\\Contracts\\Service\\' =>
+        array (
+            0 => __DIR__ . '/..' . '/symfony/service-contracts',
+        ),
+        'Symfony\\Contracts\\EventDispatcher\\' =>
+        array (
+            0 => __DIR__ . '/..' . '/symfony/event-dispatcher-contracts',
+        ),
+        'Symfony\\Component\\String\\' =>
+        array (
+            0 => __DIR__ . '/..' . '/symfony/string',
+        ),
+        'Symfony\\Component\\Stopwatch\\' =>
+        array (
+            0 => __DIR__ . '/..' . '/symfony/stopwatch',
+        ),
+        'Symfony\\Component\\Process\\' =>
+        array (
+            0 => __DIR__ . '/..' . '/symfony/process',
+        ),
+        'Symfony\\Component\\OptionsResolver\\' =>
+        array (
+            0 => __DIR__ . '/..' . '/symfony/options-resolver',
+        ),
+        'Symfony\\Component\\Finder\\' =>
+        array (
+            0 => __DIR__ . '/..' . '/symfony/finder',
+        ),
+        'Symfony\\Component\\Filesystem\\' =>
+        array (
+            0 => __DIR__ . '/..' . '/symfony/filesystem',
+        ),
+        'Symfony\\Component\\EventDispatcher\\' =>
+        array (
+            0 => __DIR__ . '/..' . '/symfony/event-dispatcher',
+        ),
+        'Symfony\\Component\\Console\\' =>
+        array (
+            0 => __DIR__ . '/..' . '/symfony/console',
+        ),
+        'React\\Stream\\' =>
+        array (
+            0 => __DIR__ . '/..' . '/react/stream/src',
+        ),
+        'React\\Socket\\' =>
+        array (
+            0 => __DIR__ . '/..' . '/react/socket/src',
+        ),
+        'React\\Promise\\' =>
+        array (
+            0 => __DIR__ . '/..' . '/react/promise/src',
+        ),
+        'React\\EventLoop\\' =>
+        array (
+            0 => __DIR__ . '/..' . '/react/event-loop/src',
+        ),
+        'React\\Dns\\' =>
+        array (
+            0 => __DIR__ . '/..' . '/react/dns/src',
+        ),
+        'React\\ChildProcess\\' =>
+        array (
+            0 => __DIR__ . '/..' . '/react/child-process/src',
+        ),
+        'React\\Cache\\' =>
+        array (
+            0 => __DIR__ . '/..' . '/react/cache/src',
+        ),
+        'Psr\\Log\\' =>
+        array (
+            0 => __DIR__ . '/..' . '/psr/log/src',
+        ),
+        'Psr\\EventDispatcher\\' =>
+        array (
+            0 => __DIR__ . '/..' . '/psr/event-dispatcher/src',
+        ),
+        'Psr\\Container\\' =>
         array (
             0 => __DIR__ . '/..' . '/psr/container/src',
         ),
-        'PhpParser\\' => 
+        'PhpParser\\' =>
         array (
             0 => __DIR__ . '/..' . '/nikic/php-parser/lib/PhpParser',
         ),
-        'Faker\\' => 
+        'PhpCsFixer\\' =>
+        array (
+            0 => __DIR__ . '/..' . '/friendsofphp/php-cs-fixer/src',
+        ),
+        'Fidry\\CpuCoreCounter\\' =>
+        array (
+            0 => __DIR__ . '/..' . '/fidry/cpu-core-counter/src',
+        ),
+        'Faker\\' =>
         array (
             0 => __DIR__ . '/..' . '/fakerphp/faker/src/Faker',
         ),
-        'DeepCopy\\' => 
+        'Evenement\\' =>
+        array (
+            0 => __DIR__ . '/..' . '/evenement/evenement/src',
+        ),
+        'DeepCopy\\' =>
         array (
             0 => __DIR__ . '/..' . '/myclabs/deep-copy/src/DeepCopy',
+        ),
+        'Composer\\XdebugHandler\\' =>
+        array (
+            0 => __DIR__ . '/..' . '/composer/xdebug-handler/src',
+        ),
+        'Composer\\Semver\\' =>
+        array (
+            0 => __DIR__ . '/..' . '/composer/semver/src',
+        ),
+        'Composer\\Pcre\\' =>
+        array (
+            0 => __DIR__ . '/..' . '/composer/pcre/src',
+        ),
+        'Clue\\React\\NDJson\\' =>
+        array (
+            0 => __DIR__ . '/..' . '/clue/ndjson-react/src',
         ),
     );
 
     public static $classMap = array (
+        'Attribute' => __DIR__ . '/..' . '/symfony/polyfill-php80/Resources/stubs/Attribute.php',
+        'CURLStringFile' => __DIR__ . '/..' . '/symfony/polyfill-php81/Resources/stubs/CURLStringFile.php',
         'Composer\\InstalledVersions' => __DIR__ . '/..' . '/composer/InstalledVersions.php',
+        'Deprecated' => __DIR__ . '/..' . '/symfony/polyfill-php84/Resources/stubs/Deprecated.php',
+        'Normalizer' => __DIR__ . '/..' . '/symfony/polyfill-intl-normalizer/Resources/stubs/Normalizer.php',
         'PHPUnit\\Event\\Application\\Finished' => __DIR__ . '/..' . '/phpunit/phpunit/src/Event/Events/Application/Finished.php',
         'PHPUnit\\Event\\Application\\FinishedSubscriber' => __DIR__ . '/..' . '/phpunit/phpunit/src/Event/Events/Application/FinishedSubscriber.php',
         'PHPUnit\\Event\\Application\\Started' => __DIR__ . '/..' . '/phpunit/phpunit/src/Event/Events/Application/Started.php',
@@ -686,6 +876,7 @@ class ComposerStaticInitf2cb7fd281b635840172fca511a396fc
         'PHPUnit\\Runner\\ClassDoesNotExtendTestCaseException' => __DIR__ . '/..' . '/phpunit/phpunit/src/Runner/Exception/ClassDoesNotExtendTestCaseException.php',
         'PHPUnit\\Runner\\ClassIsAbstractException' => __DIR__ . '/..' . '/phpunit/phpunit/src/Runner/Exception/ClassIsAbstractException.php',
         'PHPUnit\\Runner\\CodeCoverage' => __DIR__ . '/..' . '/phpunit/phpunit/src/Runner/CodeCoverage.php',
+        'PHPUnit\\Runner\\CodeCoverageFileExistsException' => __DIR__ . '/..' . '/phpunit/phpunit/src/Runner/Exception/CodeCoverageFileExistsException.php',
         'PHPUnit\\Runner\\DeprecationCollector\\Collector' => __DIR__ . '/..' . '/phpunit/phpunit/src/Runner/DeprecationCollector/Collector.php',
         'PHPUnit\\Runner\\DeprecationCollector\\Facade' => __DIR__ . '/..' . '/phpunit/phpunit/src/Runner/DeprecationCollector/Facade.php',
         'PHPUnit\\Runner\\DeprecationCollector\\InIsolationCollector' => __DIR__ . '/..' . '/phpunit/phpunit/src/Runner/DeprecationCollector/InIsolationCollector.php',
@@ -867,6 +1058,7 @@ class ComposerStaticInitf2cb7fd281b635840172fca511a396fc
         'PHPUnit\\TextUI\\Output\\Default\\ProgressPrinter\\TestPreparedSubscriber' => __DIR__ . '/..' . '/phpunit/phpunit/src/TextUI/Output/Default/ProgressPrinter/Subscriber/TestPreparedSubscriber.php',
         'PHPUnit\\TextUI\\Output\\Default\\ProgressPrinter\\TestRunnerExecutionStartedSubscriber' => __DIR__ . '/..' . '/phpunit/phpunit/src/TextUI/Output/Default/ProgressPrinter/Subscriber/TestRunnerExecutionStartedSubscriber.php',
         'PHPUnit\\TextUI\\Output\\Default\\ProgressPrinter\\TestSkippedSubscriber' => __DIR__ . '/..' . '/phpunit/phpunit/src/TextUI/Output/Default/ProgressPrinter/Subscriber/TestSkippedSubscriber.php',
+        'PHPUnit\\TextUI\\Output\\Default\\ProgressPrinter\\TestSuiteSkippedSubscriber' => __DIR__ . '/..' . '/phpunit/phpunit/src/TextUI/Output/Default/ProgressPrinter/Subscriber/TestSuiteSkippedSubscriber.php',
         'PHPUnit\\TextUI\\Output\\Default\\ProgressPrinter\\TestTriggeredDeprecationSubscriber' => __DIR__ . '/..' . '/phpunit/phpunit/src/TextUI/Output/Default/ProgressPrinter/Subscriber/TestTriggeredDeprecationSubscriber.php',
         'PHPUnit\\TextUI\\Output\\Default\\ProgressPrinter\\TestTriggeredErrorSubscriber' => __DIR__ . '/..' . '/phpunit/phpunit/src/TextUI/Output/Default/ProgressPrinter/Subscriber/TestTriggeredErrorSubscriber.php',
         'PHPUnit\\TextUI\\Output\\Default\\ProgressPrinter\\TestTriggeredNoticeSubscriber' => __DIR__ . '/..' . '/phpunit/phpunit/src/TextUI/Output/Default/ProgressPrinter/Subscriber/TestTriggeredNoticeSubscriber.php',
@@ -1060,6 +1252,9 @@ class ComposerStaticInitf2cb7fd281b635840172fca511a396fc
         'PharIo\\Version\\VersionConstraintParser' => __DIR__ . '/..' . '/phar-io/version/src/VersionConstraintParser.php',
         'PharIo\\Version\\VersionConstraintValue' => __DIR__ . '/..' . '/phar-io/version/src/VersionConstraintValue.php',
         'PharIo\\Version\\VersionNumber' => __DIR__ . '/..' . '/phar-io/version/src/VersionNumber.php',
+        'PhpToken' => __DIR__ . '/..' . '/symfony/polyfill-php80/Resources/stubs/PhpToken.php',
+        'ReflectionConstant' => __DIR__ . '/..' . '/symfony/polyfill-php84/Resources/stubs/ReflectionConstant.php',
+        'ReturnTypeWillChange' => __DIR__ . '/..' . '/symfony/polyfill-php81/Resources/stubs/ReturnTypeWillChange.php',
         'SebastianBergmann\\CliParser\\AmbiguousOptionException' => __DIR__ . '/..' . '/sebastian/cli-parser/src/exceptions/AmbiguousOptionException.php',
         'SebastianBergmann\\CliParser\\Exception' => __DIR__ . '/..' . '/sebastian/cli-parser/src/exceptions/Exception.php',
         'SebastianBergmann\\CliParser\\OptionDoesNotAllowArgumentException' => __DIR__ . '/..' . '/sebastian/cli-parser/src/exceptions/OptionDoesNotAllowArgumentException.php',
@@ -1145,6 +1340,7 @@ class ComposerStaticInitf2cb7fd281b635840172fca511a396fc
         'SebastianBergmann\\CodeCoverage\\Util\\DirectoryCouldNotBeCreatedException' => __DIR__ . '/..' . '/phpunit/php-code-coverage/src/Exception/DirectoryCouldNotBeCreatedException.php',
         'SebastianBergmann\\CodeCoverage\\Util\\Filesystem' => __DIR__ . '/..' . '/phpunit/php-code-coverage/src/Util/Filesystem.php',
         'SebastianBergmann\\CodeCoverage\\Util\\Percentage' => __DIR__ . '/..' . '/phpunit/php-code-coverage/src/Util/Percentage.php',
+        'SebastianBergmann\\CodeCoverage\\Util\\Xml' => __DIR__ . '/..' . '/phpunit/php-code-coverage/src/Util/Xml.php',
         'SebastianBergmann\\CodeCoverage\\Version' => __DIR__ . '/..' . '/phpunit/php-code-coverage/src/Version.php',
         'SebastianBergmann\\CodeCoverage\\XmlException' => __DIR__ . '/..' . '/phpunit/php-code-coverage/src/Exception/XmlException.php',
         'SebastianBergmann\\CodeUnitReverseLookup\\Wizard' => __DIR__ . '/..' . '/sebastian/code-unit-reverse-lookup/src/Wizard.php',
@@ -1265,6 +1461,7 @@ class ComposerStaticInitf2cb7fd281b635840172fca511a396fc
         'SebastianBergmann\\Type\\UnknownType' => __DIR__ . '/..' . '/sebastian/type/src/type/UnknownType.php',
         'SebastianBergmann\\Type\\VoidType' => __DIR__ . '/..' . '/sebastian/type/src/type/VoidType.php',
         'SebastianBergmann\\Version' => __DIR__ . '/..' . '/sebastian/version/src/Version.php',
+        'Stringable' => __DIR__ . '/..' . '/symfony/polyfill-php80/Resources/stubs/Stringable.php',
         'TheSeer\\Tokenizer\\Exception' => __DIR__ . '/..' . '/theseer/tokenizer/src/Exception.php',
         'TheSeer\\Tokenizer\\NamespaceUri' => __DIR__ . '/..' . '/theseer/tokenizer/src/NamespaceUri.php',
         'TheSeer\\Tokenizer\\NamespaceUriException' => __DIR__ . '/..' . '/theseer/tokenizer/src/NamespaceUriException.php',
@@ -1273,6 +1470,8 @@ class ComposerStaticInitf2cb7fd281b635840172fca511a396fc
         'TheSeer\\Tokenizer\\TokenCollectionException' => __DIR__ . '/..' . '/theseer/tokenizer/src/TokenCollectionException.php',
         'TheSeer\\Tokenizer\\Tokenizer' => __DIR__ . '/..' . '/theseer/tokenizer/src/Tokenizer.php',
         'TheSeer\\Tokenizer\\XMLSerializer' => __DIR__ . '/..' . '/theseer/tokenizer/src/XMLSerializer.php',
+        'UnhandledMatchError' => __DIR__ . '/..' . '/symfony/polyfill-php80/Resources/stubs/UnhandledMatchError.php',
+        'ValueError' => __DIR__ . '/..' . '/symfony/polyfill-php80/Resources/stubs/ValueError.php',
         'staabm\\SideEffectsDetector\\SideEffect' => __DIR__ . '/..' . '/staabm/side-effects-detector/lib/SideEffect.php',
         'staabm\\SideEffectsDetector\\SideEffectsDetector' => __DIR__ . '/..' . '/staabm/side-effects-detector/lib/SideEffectsDetector.php',
     );

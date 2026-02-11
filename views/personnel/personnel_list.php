@@ -1,6 +1,6 @@
-<?php 
+<?php
 
-if(!isset($_GET['page']) || $_GET['page'] <= 0){
+if (!isset($_GET['page']) || $_GET['page'] <= 0) {
     header("Location: ?page=1");
     exit;
 }
@@ -13,13 +13,13 @@ $href = "views/staffs/staffs_list.php";
 try {
     $pdo = getPDO();
 
-    // Le nombre d'élément par page 
+    // Le nombre d'élément par page
     $staffPerPage = 10;
 
     // Pour récupérer la page où on est, on la mettera dans l'URL
     // En plus si la page dans l'URL n'est pas mise on le forcera à 1
     // (int) est un casting, cela convertira par exemple "14" en 14;
-    $page = isset($_GET['page']) ? (int)$_GET['page'] : 1;
+    $page = isset($_GET['page']) ? (int) $_GET['page'] : 1;
 
     // if(!isset($_GET['page'])){
     //     header("Location:" . $_SERVER["REQUEST_URI"] . $staffs_list.php?page=1);
@@ -27,15 +27,15 @@ try {
 
     // On calcul le décalage(offset dans la requête SQL)
     $offset = ($page - 1) * $staffPerPage;
-    // par exemple l'offset de la page 14 = 14 - 1 = 13 * 10 = 130 
+    // par exemple l'offset de la page 14 = 14 - 1 = 13 * 10 = 130
 
     // On va récupérer le total d'enfant la base de données
     // ce qui nous permettra de connaitre le nombre de page en tout
     // à mettre dans le système de pagination
     $total = $pdo->query("SELECT COUNT(*) FROM staff")->fetchColumn();
 
-    // Imaginons que nous avons 200 enfants, donc cela ferait 20 pages 
-    // mais il resterait 5 enfants sans page, donc l'arrondissement 
+    // Imaginons que nous avons 200 enfants, donc cela ferait 20 pages
+    // mais il resterait 5 enfants sans page, donc l'arrondissement
     // à l'unité supérieur permet de les afficher, sur une 21e page
     $totalPages = ceil($total / $staffPerPage);
 
@@ -84,7 +84,7 @@ try {
     </thead>
     <tbody>
         <?php
-            foreach($staffs as $st):
+            foreach ($staffs as $st):
                 ?>
 
                 <tr>
@@ -108,7 +108,7 @@ try {
                 </tr>
         <?php
             endforeach;
-        ?>
+?>
     </tbody>
 </table>
 
@@ -143,11 +143,11 @@ try {
             
             <!-- Nous allons afficher les 2 pages précédentes et suivantes 
                 imaginons que l'on est à la page 6 on va afficher 5, 6, 7, 8  -->
-            <?php 
-                    
-                    $start = max(1, $page - 2); //marge des 2 précédents
-                    $end = min($totalPages, $page + 2);
-            ?>
+            <?php
+
+            $start = max(1, $page - 2); //marge des 2 précédents
+$end = min($totalPages, $page + 2);
+?>
 
             <!-- Les pages du début et ... -->
             <!-- écriture sans accolade -->

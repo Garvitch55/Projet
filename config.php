@@ -4,7 +4,7 @@ if (session_status() === PHP_SESSION_NONE) {
     session_start();
 }
 
-/** 
+/**
  * Savoir si un utilisateur est connecté
  * @return bool
  */
@@ -19,7 +19,7 @@ function isUserLoggedIn(): bool
 function requireLogin(): void
 {
     if (!isUserLoggedIn()) {
-        header("Location: login.php?status=danger&message=Veillez vous connecter.");
+        header('Location: login.php?status=danger&message=Veillez vous connecter.');
     }
 }
 
@@ -29,7 +29,7 @@ function requireLogin(): void
  */
 function getFullName(array $assocArray): string
 {
-    return $assocArray['firstname'] . " " . $assocArray['lastname'];
+    return $assocArray['firstname'] . ' ' . $assocArray['lastname'];
 }
 
 // On va définir l'adresse de la racine comme une variable global constante
@@ -45,9 +45,9 @@ function load(?string $file)
 function getPDO()
 {
     $pdo = new PDO(
-        "mysql:host=localhost;dbname=gestion_entreprise;charset=utf8",
-        "root",
-        ""
+        'mysql:host=localhost;dbname=gestion_entreprise;charset=utf8',
+        'root',
+        '',
     );
     $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
     return $pdo;
@@ -55,19 +55,19 @@ function getPDO()
 
 /**
  * Détermine si un nom ou un mot commance par une voyelle et renvoie une bonne chaine adaptée.
- * 
+ *
  * Cette fonction analyse la première lettre d'une chaine.
  * Véfirie si elle fait partie d'un ensemble de voyelles définies,
  * puis renvoie l'une des deux chaines passée en paramètres.
  * @param string $name Le mot ou le nom à analyser.
  * @param string $apo Chaine retourne si le nom commance par une consonne.
  * @param string $noApo Chaine retourne si le nom commance par une voyelle.
- * 
+ *
  * @return string Retourne si $apo ou $noApo selon la première lettre du nom.
  */
 function firstLetterVowelDetector($name, $noApo, $apo): string
 {
-    $vowels = ["a", "e", "i", "o", "u", "é", "è"];
+    $vowels = ['a', 'e', 'i', 'o', 'u', 'é', 'è'];
 
     //Ici, dans substr, on prend une string $name, on récupère à partir de l'index 0
     // et on prend 1 seule lettre.

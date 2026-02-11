@@ -1,6 +1,6 @@
 <?php
 
-include_once "../../config.php";
+include_once '../../config.php';
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $firstname = trim($_POST['firstname'] ?? '');
@@ -12,15 +12,15 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $id_child = $_POST['id_child'] ?? '';
 
     if (
-        empty($firstname) || 
-        empty($lastname) ||
-        empty($birthdate) ||
-        empty($biosex) ||
-        empty($origin) ||
-        empty($description) ||
-        empty($id_child)
+        empty($firstname)
+        || empty($lastname)
+        || empty($birthdate)
+        || empty($biosex)
+        || empty($origin)
+        || empty($description)
+        || empty($id_child)
     ) {
-        header("Location: ../../views/children/update_children_form.php?status=danger&message=Le formulaire est mal remplie.");
+        header('Location: ../../views/children/update_children_form.php?status=danger&message=Le formulaire est mal remplie.');
         exit;
     }
 
@@ -30,8 +30,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     $age = $today->diff($birthdateObj)->y;
 
-    if($age >= 18) {
-        header("Location: ../../views/children/update_children_form.php?status=danger&message=Pensionnaire trop agé(e).");
+    if ($age >= 18) {
+        header('Location: ../../views/children/update_children_form.php?status=danger&message=Pensionnaire trop agé(e).');
         exit;
     }
 
@@ -39,20 +39,20 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     // APPEL DE PDO
     try {
         $pdo = getPDO();
-        $sql = "UPDATE child SET firstname=?, lastname=?, birthdate=?, biosex=?, origin=?, description=? WHERE id_child=?";
+        $sql = 'UPDATE child SET firstname=?, lastname=?, birthdate=?, biosex=?, origin=?, description=? WHERE id_child=?';
         // Playsolder
         $stmt = $pdo->prepare($sql);
         $stmt->execute([
             $firstname,
-            $lastname, 
-            $birthdate, 
-            $biosex, 
-            $origin, 
+            $lastname,
+            $birthdate,
+            $biosex,
+            $origin,
             $description,
-            $id_child
+            $id_child,
         ]);
 
-        header("Location: ../../views/children/update_children_form.php?status=success&message=Pensionnaire modifié avec succès");
+        header('Location: ../../views/children/update_children_form.php?status=success&message=Pensionnaire modifié avec succès');
     } catch (PDOException $e) {
         // Ici on attrape l'erreur pour pouvoir l'envoyer dans le système de message qui se trouve dans le formulaire
         $error = $e->getMessage();
@@ -63,6 +63,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
 } else {
     // On est éjecté du script si on accède directement par la page
-    header("Location: ../../index.php");
+    header('Location: ../../index.php');
     exit;
 }

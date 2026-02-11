@@ -1,6 +1,6 @@
 <?php
 
-require __DIR__ . "/../vendor/autoload.php";
+require __DIR__ . '/../vendor/autoload.php';
 
 use PHPUnit\Framework\TestCase;
 
@@ -36,36 +36,42 @@ assertCount($nombre d'élément, le tableau à tester)
 
 */
 
-require_once __DIR__ . "/tools/tools.php";
+require_once __DIR__ . '/tools/tools.php';
 
-class MathTest extends TestCase {
-    
+class MathTest extends TestCase
+{
     // toujours commencer sa méthode par test
     // ensuite le nom de la fonction
     // et le nom de ce qu'on test
-    public function testAdditionAdd() {
-        $this->assertSame(4, add(2,2));
+    public function testAdditionAdd()
+    {
+        $this->assertSame(4, add(2, 2));
     }
 
-    public function testDiscountPrice() {
+    public function testDiscountPrice()
+    {
         $this->assertSame(400.0, computePrice(500.0, 0.2));
     }
 
-    public function testNoDiscountPrice() {
+    public function testNoDiscountPrice()
+    {
         $this->assertSame(100.0, computePrice(100.0, 0.0));
     }
 
-    public function testZeroPrice() {
+    public function testZeroPrice()
+    {
         $this->assertSame(0.0, computePrice(0.0, 0.5));
     }
 
-    public function testDiscountLargerThanOne() {
+    public function testDiscountLargerThanOne()
+    {
         $this->assertSame(-80.0, computePrice(400.0, 1.2));
     }
 
-    public function testNegativeEqualWithString() {
-        $e = "nerd";
-        $a = "Nerd";
+    public function testNegativeEqualWithString()
+    {
+        $e = 'nerd';
+        $a = 'Nerd';
         $this->assertEquals($e, $a, 'La valeur $a n\'est pas égale à la valeur attendue');
     }
 }

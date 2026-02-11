@@ -9,7 +9,7 @@ if (isset($_GET['status']) && isset($_GET['message'])) {
     } elseif ($status === 'success') {
         $icon = '<i class="bi bi-check-circle-fill text-success me-2"></i>';
     }
-?>
+    ?>
     <p class="notification notification-<?= htmlentities($status) ?>">
         <?= $icon ?>
         <?= htmlentities($message) ?>

@@ -3,7 +3,7 @@ require_once __DIR__ . '/config.php';
 require_once __DIR__ . '/head.php'; // contient head_with_title()
 
 // On peut mettre un titre dynamique ou par défaut
-$title = $title ?? "Bienvenue";
+$title = $title ?? 'Bienvenue';
 
 // Appel de la fonction pour afficher le <head> et ouvrir <body>
 head_with_title($title);
@@ -35,7 +35,7 @@ head_with_title($title);
             <div class="dropdown">
                 <a class="btn btn1 dropdown-toggle d-flex align-items-center" href="#" role="button" id="userDropdown" data-bs-toggle="dropdown" aria-expanded="false">
                     <div class="me-2 text-start">
-                        <div class="text-uppercase"><?= htmlentities($_SESSION["name"]) ?></div>
+                        <div class="text-uppercase"><?= htmlentities($_SESSION['name']) ?></div>
                         <div><?= $roleLabel ?></div>
                     </div>
                 </a>
@@ -68,7 +68,7 @@ head_with_title($title);
                 <?php $role = getUserRole(); ?>
 
                 <!-- CLIENT -->
-                <?php if ($role === "client"): ?>
+                <?php if ($role === 'client'): ?>
                     <div class="mt-3 text-decoration-underline">
                         <h6>ESPACE CLIENT</h6>
                     </div>
@@ -80,7 +80,7 @@ head_with_title($title);
                     </li>
 
                     <!-- ADMIN -->
-                <?php elseif ($role === "administrateur"): ?>
+                <?php elseif ($role === 'administrateur'): ?>
                     <div class="mt-3 text-decoration-underline">
                         <h6>ESPACE ADMINISTRATEUR</h6>
                     </div>
@@ -118,13 +118,13 @@ head_with_title($title);
         if (isset($notification)) {
             echo $notification;
         }
-        ?>
+?>
         <div class="p-3">
             <?php
-            if (isset($content)) {
-                echo $content;
-            }
-            ?>
+    if (isset($content)) {
+        echo $content;
+    }
+?>
         </div>
     </main>
 

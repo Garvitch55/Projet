@@ -255,4 +255,58 @@ h6 {
   text-align: justify;
 }
 
+.service-item {
+  position: relative; // parent relatif pour l'overlay
+  overflow: hidden;   // cacher le dépassement de l'ul
+  cursor: pointer;
 
+  img {
+    display: block;
+    width: 100%;
+    height: auto;
+    transition: transform 0.3s ease; // léger zoom si tu veux
+  }
+
+  .overlay-list {
+    position: absolute;
+    top: 20px;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.6); // fond semi-transparent
+    color: #fff;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 1rem;
+    margin: 0;
+    list-style: none;
+
+    opacity: 0;           // invisible par défaut
+    transform: translateY(-100%); // start en haut
+    transition: opacity 0.3s ease, transform 0.3s ease;
+  }
+
+  &:hover {
+    h6{
+                background-color: $bg-gris-fonce;
+                color: #fff;
+
+    }
+    img {
+      transform: scale(1.05); // zoom léger au hover
+
+    }
+
+    .overlay-list {
+      opacity: 0.8;              // apparition
+      transform: translateY(30px); // descend vers sa place
+    }
+  }
+
+  li {
+    margin: 0.3rem 0;
+    text-align: center;
+  }
+}

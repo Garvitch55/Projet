@@ -1,4 +1,5 @@
 <?php
+
 require_once __DIR__ . '/../../config.php';
 
 // On récupère le type d'utilisateur depuis l'URL

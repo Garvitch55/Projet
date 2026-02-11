@@ -1,6 +1,6 @@
-<?php 
+<?php
 
-if(!isset($_GET['page']) || $_GET['page'] <= 0){
+if (!isset($_GET['page']) || $_GET['page'] <= 0) {
     header("Location: ?page=1");
     exit;
 }
@@ -11,16 +11,16 @@ start_page("Liste des personnaires");
 $href = "views/children/children_list.php";
 
 try {
-    
+
     $pdo = getPDO();
 
-    // Le nombre d'élément par page 
+    // Le nombre d'élément par page
     $childPerPage = 10;
 
     // Pour récupérer la page où on est, on la mettera dans l'URL
     // En plus si la page dans l'URL n'est pas mise on le forcera à 1
     // (int) est un casting, cela convertira par exemple "14" en 14;
-    $page = isset($_GET['page']) ? (int)$_GET['page'] : 1;
+    $page = isset($_GET['page']) ? (int) $_GET['page'] : 1;
 
     // if(!isset($_GET['page'])){
     //     header("Location:" . $_SERVER["REQUEST_URI"] . $children_list.php?page=1);
@@ -28,15 +28,15 @@ try {
 
     // On calcul le décalage(offset dans la requête SQL)
     $offset = ($page - 1) * $childPerPage;
-    // par exemple l'offset de la page 14 = 14 - 1 = 13 * 10 = 130 
+    // par exemple l'offset de la page 14 = 14 - 1 = 13 * 10 = 130
 
     // On va récupérer le total d'enfant la base de données
     // ce qui nous permettra de connaitre le nombre de page en tout
     // à mettre dans le système de pagination
     $total = $pdo->query("SELECT COUNT(*) FROM child")->fetchColumn();
 
-    // Imaginons que nous avons 200 enfants, donc cela ferait 20 pages 
-    // mais il resterait 5 enfants sans page, donc l'arrondissement 
+    // Imaginons que nous avons 200 enfants, donc cela ferait 20 pages
+    // mais il resterait 5 enfants sans page, donc l'arrondissement
     // à l'unité supérieur permet de les afficher, sur une 21e page
     $totalPages = ceil($total / $childPerPage);
 
@@ -73,7 +73,7 @@ try {
 
 <h1 class="text-center mt-3">Liste des persionnaires</h1>
 
-<?php 
+<?php
     include_once "../../notification.php";
 ?>
 
@@ -90,16 +90,16 @@ try {
     </thead>
     <tbody>
         <?php
-            foreach($children as $child) {
-                $dob = new DateTime($child['birthdate']); 
+            foreach ($children as $child) {
+                $dob = new DateTime($child['birthdate']);
                 $formatter = new IntlDateFormatter(
                     'fr_FR',
                     IntlDateFormatter::FULL,
                     IntlDateFormatter::NONE,
-                    'Europe/Paris'
+                    'Europe/Paris',
                 );
 
-                $date = $formatter->format($dob); 
+                $date = $formatter->format($dob);
                 ?>
 
                 <tr>
@@ -118,8 +118,8 @@ try {
                     </td>
                 </tr>
         <?php
-            } 
-        ?>
+            }
+?>
     </tbody>
 </table>
 
@@ -159,11 +159,11 @@ try {
             
             <!-- Nous allons afficher les 2 pages précédentes et suivantes 
                 imaginons que l'on est à la page 6 on va afficher 5, 6, 7, 8  -->
-            <?php 
-                    
-                    $start = max(1, $page - 2); //marge des 2 précédents
-                    $end = min($totalPages, $page + 2);
-            ?>
+            <?php
+
+            $start = max(1, $page - 2); //marge des 2 précédents
+$end = min($totalPages, $page + 2);
+?>
 
             <!-- Les pages du début et ... -->
             <!-- écriture sans accolade -->

@@ -1,34 +1,34 @@
-<?php 
+<?php
 
-if(!isset($_GET['id'])) {
+if (!isset($_GET['id'])) {
     header('Location: children_list.php?page=1');
     exit;
 }
 
-    $id = (int)$_GET['id'];
-    require_once __DIR__ . "/../../config.php";
-    requireLogin();
-    start_page("Modifier un pensionnaire");
+$id = (int) $_GET['id'];
+require_once __DIR__ . "/../../config.php";
+requireLogin();
+start_page("Modifier un pensionnaire");
 
-    $pdo = getPDO();
-    $sql = "SELECT * FROM child WHERE id_child = ?";
-    $stmt = $pdo->prepare($sql);
-    $stmt->execute([$id]);
+$pdo = getPDO();
+$sql = "SELECT * FROM child WHERE id_child = ?";
+$stmt = $pdo->prepare($sql);
+$stmt->execute([$id]);
 
-    $child = $stmt->fetch(PDO::FETCH_ASSOC);
+$child = $stmt->fetch(PDO::FETCH_ASSOC);
 
-    // Si l'id n'existe plus, la rechercer d'un enfant dans la base de donnée retourne false
-    // alors
+// Si l'id n'existe plus, la rechercer d'un enfant dans la base de donnée retourne false
+// alors
 
-    if(!$child) {
-        header('Location: children_list.php?page=1');
-        exit;
-    }
+if (!$child) {
+    header('Location: children_list.php?page=1');
+    exit;
+}
 ?>
 
 <h1 class="text-center mt-3">Modifier <?=htmlentities($child["firstname"] . " " . $child["lastname"]) ?></h1>
 
-<?php 
+<?php
     include_once "../../notification.php";
 ?>
 
@@ -63,16 +63,16 @@ if(!isset($_GET['id'])) {
     <!-- Provenance -->
     
     <?php
-    
+
     $origins = [
         'groland' => 'Groland',
         'chnord' => 'Le Chnord',
         'gotham' => 'Gotham City',
         'boukistan' => 'Boukistan',
-        'neverland' => 'Pays imaginaire'
+        'neverland' => 'Pays imaginaire',
     ];
 
-    ?>
+?>
 
     <div class="mb-3">
         <label for="origin" class="form-label">Provenence</label>

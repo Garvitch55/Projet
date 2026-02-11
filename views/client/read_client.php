@@ -1,11 +1,11 @@
 <?php
 
-if(!isset($_GET['id'])) {
+if (!isset($_GET['id'])) {
     header('Location: children_list.php?page=1');
     exit;
 }
 
-$id = (int)$_GET['id'];
+$id = (int) $_GET['id'];
 require_once __DIR__ . "/../../config.php";
 requireLogin();
 
@@ -16,7 +16,7 @@ $stmt->execute([$id]);
 
 $child = $stmt->fetch(PDO::FETCH_ASSOC);
 
-if(!$child) {
+if (!$child) {
     header('Location: children_list.php?page=1');
     exit;
 }
