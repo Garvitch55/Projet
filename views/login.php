@@ -16,8 +16,8 @@ $content = <<<HTML
 
             <form action="/projet/controller/auth/login_ctrl.php" method="POST">
                 <div class="mb-3">
-                    <label for="mail" class="form-label" style="color:#e38f3c;">Login (e-mail) :</label>
-                    <input type="email" name="mail" id="mail" class="form-control" required>
+                    <label for="mail" class="form-label" style="color:#e38f3c;">Identifiant (e-mail) :</label>
+                    <input type="email" name="mail" id="mail" class="form-control" placeholder="Votre e-mail" required>
                 </div>
                 <div class="mb-3">
                     <label for="psw" class="form-label" style="color:#e38f3c;">Mot de passe :</label>

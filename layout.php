@@ -53,7 +53,7 @@ head_with_title($title);
 <div class="d-flex">
 
     <!-- ================= SIDEBAR VERTICALE ================= -->
-    <nav class="vh-100 p-3 bg-orange-fonce w-25">
+    <nav class="vh-200 p-3 bg-orange-fonce w-20">
         <ul class="nav flex-column gap-2">
             <div class="mt-3 text-decoration-underline">
                 <h6>NOTRE ENTREPRISE</h6>
@@ -111,7 +111,7 @@ head_with_title($title);
     </nav>
 
     <!-- ================= CONTENU PRINCIPAL ================= -->
-    <main class="flex-fill">
+    <main class="flex-fill w-80">
 
         <?php
         // Ici on affiche le contenu spécifique injecté depuis la page

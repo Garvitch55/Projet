@@ -5,8 +5,9 @@ $title = "Accueil";
 
 // ----------------- CONTENT -----------------
 $content = <<<HTML
+<div class="d-flex flex-column gap-2">
 <header class="mt-1">
-   <h6 class="title border-bottom">Accueil</h6>
+   <h6 class="title mb-3">Accueil</h6>
 
    <div class="d-flex flex-row gap-4">
       <div id="carouselExampleCaptions" class="carousel slide w-55 flex">
@@ -71,54 +72,101 @@ $content = <<<HTML
 </header>
 
 <section class="mt-1">
-   <h6 class="title">Nos services : Gros Oeuvre</h6>
-   <div class="container-fluid"> <!-- plein écran -->
-      <div class="row g-3">
+   <h6 class="title m-0">Nos services : Gros Oeuvre</h6>
+   <div class="container p-0">
+      <div class="row g-3 w-100 m-0">
          <div class="col-md-4 p-0">
-            <h6 class="carousel-caption-bg p-2">Construction neuve</h6>
-            <ul>
+            <div class="service-item position-relative">
+               <a href="views/service.php" class="text-decoration-none">
+            <h6 class="carousel-caption-bg2 p-2 mb-0">Construction neuve</h6>
+            <img src="assets/statics/images/service-construction-neuve.png" alt="" class="w-100">
+                  <ul class="overlay-list position-absolute top-0 start-0 d-flex flex-column justify-content-start align-items-center text-white">
                <li>Terrassement et fondations</li>
                <li>Dalles et planchers béton</li>
-               <li>Élévation de murs porteurs (parpaings, briques, béton armé)</li>
+               <li>Élévation de murs porteurs</li>
                <li>Poteaux, poutres et voiles béton</li>
-               <li>Murs de soutènement</li> 
             </ul>
+            </div>
+            </a>
          </div>
-
          <div class="col-md-4 p-0">
-            <h6 class="carousel-caption-bg p-2">Rénovation & structure</h6>
-            <ul>
+            <div class="service-item position-relative">
+            <a href="views/service.php" class="text-decoration-none">
+            <h6 class="carousel-caption-bg p-2 mb-0">Rénovation & structure</h6>
+            <img src="assets/statics/images/service-renovation.png" alt="" class="w-100">
+                  <ul class="overlay-list position-absolute top-0 start-0 d-flex flex-column justify-content-start align-items-center text-white">
                <li>Reprise en sous-œuvre</li>
                <li>Ouvertures de murs porteurs</li>
                <li>Renforcement de structures existantes</li>
                <li>Démolition partielle liée au gros œuvre</li>
             </ul>
+            </div>
+         </a>
          </div>
-
-<div class="col-md-4 p-0">   <div class="service-item position-relative">
-   <h6 class="carousel-caption-bg p-2 mb-0">Études & suivi de chantier</h6>
-
-      <img src="assets/statics/images/etude-suivi.webp" alt="" class="w-100">
-      <ul class="overlay-list position-absolute top-0 start-0 w-100 h-100 d-flex flex-column justify-content-center align-items-center text-white p-3 m-0">
-         <li>Lecture de plans et études techniques</li>
-         <li>Implantation et préparation de chantier</li>
-         <li>Coordination du gros œuvre</li>
-         <li>Respect des normes (DTU, sécurité)</li>
-      </ul>
-   </div>
-</div>
+         <div class="col-md-4 p-0">   
+            <div class="service-item position-relative">
+               <a href="views/service.php" class="text-decoration-none">
+            <h6 class="carousel-caption-bg2 p-2 mb-0">Études & suivi de chantier</h6>
+            <img src="assets/statics/images/etude-suivi.webp" alt="" class="w-100">
+               <ul class="overlay-list position-absolute top-0 start-0 d-flex flex-column justify-content-start align-items-center text-white">
+                  <li>Lecture de plans et études techniques</li>
+                  <li>Implantation et préparation de chantier</li>
+                  <li>Coordination du gros œuvre</li>
+                  <li>Respect des normes (DTU, sécurité)</li>
+               </ul>
+               </div>
+               </a>
+         </div>
       </div>
    </div>
 </section>
 
 <section class="mt-1">
    <h6 class="title border-bottom">Nos réalisations</h6>
+<div class="d-flex flex-row">
+   <div class="w-50 reference-item position-relative">
+      <a href="" class="text-decoration-none" >
+         <h6 class="carousel-caption-bg2 p-2 m-0">Secteur privé</h6>
+         <div class="d-flex bg-gris-opacity">
+            <ul class="w-50 text-white p-3 m-0">
+               <li>Maisons indivduelles</li>
+               <li>Piscines</li>
+               <li>Renforcements de structures</li>
+               <li>Démolitions</li>
+            </ul>
+            <div class="w-50">
+               <img src="assets/statics/images/etude-suivi.webp" alt="" class="w-100">
+            </div>
+         </div>
+      </a>
+   </div>
+  
+   <div class="w-50 reference-item position-relative">
+      <a href="" class="text-decoration-none" >
+      <h6 class="carousel-caption-bg p-2 m-0">Secteur public</h6>
+     <div class="d-flex bg-gris-opacity">
+       <ul class="w-50 text-white p-3 m-0">
+              <li>Ecoles primaire</li>
+               <li>Maisons de santé</li>
+               <li>Magasins</li>
+               <li>Démolitions</li>
+            </ul>
+       <div class="w-50">
+   <img src="assets/statics/images/etude-suivi.webp" alt="" class="w-100">
+   </div>
+
+</div>
+</a>
+
+
+   </div>
+</div>
 </section>
 
 <section class="mt-1">
    <h6 class="title border-bottom">Nous contacter</h6>
 </section>
-
+</div>
 <script>
 var myCarousel = document.querySelector('#carouselExampleCaptions');
 var carousel = new bootstrap.Carousel(myCarousel, {
