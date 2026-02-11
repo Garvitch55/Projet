@@ -135,7 +135,7 @@ $content = <<<HTML
                <li>Démolitions</li>
             </ul>
             <div class="w-50">
-               <img src="assets/statics/images/etude-suivi.webp" alt="" class="w-100">
+               <img src="assets/statics/images/reference-secteur-prive.png" alt="">
             </div>
          </div>
       </a>
@@ -152,7 +152,7 @@ $content = <<<HTML
                <li>Démolitions</li>
             </ul>
        <div class="w-50">
-   <img src="assets/statics/images/etude-suivi.webp" alt="" class="w-100">
+   <img src="assets/statics/images/reference-secteur-public.png" alt="" class="w-100">
    </div>
 
 </div>

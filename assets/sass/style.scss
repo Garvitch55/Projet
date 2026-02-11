@@ -359,14 +359,15 @@ img {
   position: relative; // parent relatif pour l'overlay
   overflow: hidden;   // cacher le dépassement de l'ul
   cursor: pointer;
-    height: 165px;
+  height: 165px;
   
 ul{
     height: 130px;
-        list-style: none;
-        transition: transform 0.3s ease;
+    list-style: none;
+    transition: transform 0.3s ease;
 }
-      li {
+
+li {
     padding: 0;
     text-align: center;
 }
@@ -378,7 +379,7 @@ img {
   }
 
 
-  &:hover {
+&:hover {
 
     h6{
                 background-color: $bg-gris-fonce;
