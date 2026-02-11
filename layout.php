@@ -53,7 +53,7 @@ head_with_title($title);
 <div class="d-flex">
 
     <!-- ================= SIDEBAR VERTICALE ================= -->
-    <nav class="vh-100 p-3 bg-orange-fonce" style="width: 280px;">
+    <nav class="vh-100 p-3 bg-orange-fonce w-25">
         <ul class="nav flex-column gap-2">
             <div class="mt-3 text-decoration-underline">
                 <h6>NOTRE ENTREPRISE</h6>
