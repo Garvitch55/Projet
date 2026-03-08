@@ -183,6 +183,16 @@ body {
   border-bottom-right-radius: 7px;
 }
 
+.btn3 {
+  color: #fff;
+  background-color: rgba(227, 143, 60, 0.8);
+  transition: transform 0.4s ease;
+}
+.btn3:hover {
+  background-color: rgba(65, 64, 59, 0.8);
+  transform: scale(1.2);
+}
+
 .nav-link:hover {
   background-color: #41403b;
   color: #ffffff;

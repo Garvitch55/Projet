@@ -220,6 +220,16 @@ $text-gris-fonce: #41403b;
     }
 }
 
+.btn3 {
+            color: #fff;
+    background-color: rgba($bg-orange-fonce, 0.8);
+    transition: transform 0.4s ease;
+
+    &:hover {
+        background-color: rgba($bg-gris-fonce,0.8);
+        transform: scale(1.20);
+    }
+}
 .nav-link {
 
     &:hover {
