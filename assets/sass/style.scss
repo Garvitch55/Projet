@@ -23,16 +23,7 @@ body {
     min-height: 100vh;
 }
 
-footer {
-    padding: 2rem 0;
-    background-color: black;
-    width: 100%;
 
-    ul {
-        list-style: none;
-        @include zero_box;
-    }
-}
 
 
 $bg-orange-fonce: #e38f3c;
@@ -436,12 +427,7 @@ h6 {
 
 .sidebar-vertical {
   min-height: 100vh; /* prend toute la hauteur de la fenêtre */
-  background: linear-gradient(
-    to right,                  /* de gauche vers droite */
-   rgba(227, 143, 60, 1),       /* gauche : plus foncé */
-    rgba(227, 143, 60, 0.8),   /* milieu */
-    rgba(227, 143, 60, 0.6)      /* droite : plus clair */
-  );
+  background: linear-gradient( to right, rgba(227, 143, 60, 1), rgba(227, 143, 60, 0.8), rgba(227, 143, 60, 0.6));
 color: $bg-gris-fonce;
   padding: 1rem;
 
@@ -452,7 +438,7 @@ color: $bg-gris-fonce;
   li.nav-item {
     margin: 0; /* supprime tout espace entre les items */
   }
-  
+
   a.nav-link {
     color: #fff;
     transition: background-color 0.3s ease, color 0.3s ease;
@@ -467,4 +453,21 @@ color: $bg-gris-fonce;
   h6 {
     color: $bg-gris-fonce;
   }
+}
+
+footer {
+    padding: 2rem 0;
+    background-color: $bg-gris-fonce;
+    color: #fff;
+    width: 100%;
+
+
+  a {
+        text-decoration: none;
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+
+
 }

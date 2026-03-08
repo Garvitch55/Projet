@@ -13,18 +13,6 @@ body {
   min-height: 100vh;
 }
 
-footer {
-  padding: 2rem 0;
-  background-color: black;
-  width: 100%;
-}
-footer ul {
-  list-style: none;
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
-
 .bg-orange-fonce {
   background-color: #e38f3c;
 }
@@ -386,6 +374,19 @@ h6 {
 }
 .sidebar-vertical h6 {
   color: #41403b;
+}
+
+footer {
+  padding: 2rem 0;
+  background-color: #41403b;
+  color: #fff;
+  width: 100%;
+}
+footer a {
+  text-decoration: none;
+}
+footer a:hover {
+  text-decoration: underline;
 }
 
 /*# sourceMappingURL=style.css.map */

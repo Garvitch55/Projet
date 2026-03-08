@@ -130,6 +130,22 @@ head_with_title($title);
 
 </div>
 
+<footer class="text-white mt-auto py-3">
+  <div class="container d-flex flex-column flex-md-row justify-content-between align-items-center">
+
+    <div>
+      &copy; <?= date('Y') ?> A.GARNIER CONSTRUCTION. Tous droits réservés.
+    </div>
+
+    <div class="mt-2 mt-md-0">
+      <a href="#" class="text-white me-3">Contact</a>
+      <a href="#" class="text-white me-3">Mentions légales</a>
+      <a href="#" class="text-white">Politique de confidentialité</a>
+    </div>
+  </div>
+</footer>
+
+
 <!-- Bootstrap JS -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
 
