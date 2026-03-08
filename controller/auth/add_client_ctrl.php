@@ -1,41 +1,11 @@
 <?php
 
-// L'inport du PHP Data Object
-// PDO sécurise la plus grosse faille d'internet : L'injection SQL
+
 include_once '../../config.php';
-// Fichier qui ajoute les clients dans la base de données
 
-// echo '<pre>';
-// var_dump($_SERVER);
-// echo '</pre>';
-
-// FORMULAIRE EN GET
-// Les données vont dans l'URL (Uniform Resource Locator)
-// Le problème pour un formulaire get est limité par 2000 caractères
-// Cas d'usage => recherche ou filtres
-
-// FORMULAIRE EN POST
-// Les données vont dans le corps de la requête
-// Données illimité
-// Cas d'utilisation => connexion, formulaire, envoi de fichier
-
-// On vérifie que c'est bien une requête en POST
-// $_SERVER est une superglobale
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    // ici on continue le code car on a envoyé notre formulaire en post
 
-    // on récupère les données et on les nettoie
-    // Nouvelle superglobale => $_POST
-    // C'est un tableau associatif qui contient toutes les données
-    // de vos inputs.
-
-    // echo '<pre>';
-    // var_dump($_POST['birthdate']);
-    // echo '</pre>';
-
-    // On enlève les potentiels espaces en trop
-    // mais pour éviter les null, on utilisera un operateur de coaléscence des nulls
-    $firstname = trim($_POST['firstname'] ?? ''); // ?? => si c'est firstname est null alors ''
+    $firstname = trim($_POST['firstname'] ?? '');
     $lastname = trim($_POST['lastname'] ?? '');
     $birthdate = $_POST['birthdate'] ?? '';
     $phone = trim($_POST['phone'] ?? '');
@@ -48,9 +18,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $ville = trim($_POST['ville'] ?? '');
     $demande = trim($_POST['demande'] ?? '');
 
-    // On vérifie si les valeurs sont vides
-    // Si au moins une est vide, on retourne au formulaire
-    // avec un message d'erreur
+
     if (
         empty($firstname)
         || empty($lastname)
@@ -64,8 +32,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         || empty($ville)
         || empty($demande)
     ) {
-        // Je retourne dans le formulaire, car une donnée est "vide".
-        // De plus, je vais rajouter une erreur en GET
+
         header('Location: ../../views/auth/add_client_form.php?status=danger&message=Tous les champs obligatoires doivent être remplis.');
         exit;
     }

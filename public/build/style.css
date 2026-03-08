@@ -21,6 +21,7 @@ footer ul {
   list-style: none;
   margin: 0;
   padding: 0;
+  box-sizing: border-box;
 }
 
 .bg-orange-fonce {
@@ -44,7 +45,7 @@ footer ul {
 }
 
 .bg-gris-opacity {
-  background-color: rgb(65, 64, 59);
+  background-color: rgba(65, 64, 59, 0.75);
 }
 
 #mail::placeholder {

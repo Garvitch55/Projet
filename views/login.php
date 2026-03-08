@@ -3,7 +3,7 @@
 require_once __DIR__ . '/../config.php';
 require_once __DIR__ . '/../head.php';    // head_with_title
 
-// On récupère le type d'utilisateur depuis l'URL
+// récupération du type d'utilisateur depuis l'URL
 $type = $_GET['type'] ?? 'client';
 $title = "Se connecter";
 
@@ -16,11 +16,11 @@ $content = <<<HTML
 
             <form action="/projet/controller/auth/login_ctrl.php" method="POST">
                 <div class="mb-3">
-                    <label for="mail" class="form-label" style="color:#e38f3c;">Identifiant (e-mail) :</label>
+                    <label for="mail" class="form-label text-orange-fonce">Identifiant (e-mail) : <span class="text-danger">*</span></label>
                     <input type="email" name="mail" id="mail" class="form-control" placeholder="Votre e-mail" required>
                 </div>
                 <div class="mb-3">
-                    <label for="psw" class="form-label" style="color:#e38f3c;">Mot de passe :</label>
+                    <label for="psw" class="form-label text-orange-fonce">Mot de passe : <span class="text-danger">*</span></label>
                     <input type="password" name="psw" id="psw" class="form-control" required>
                 </div>
 

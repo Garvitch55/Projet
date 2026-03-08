@@ -1,5 +1,9 @@
 <?php
 
+if (session_status() === PHP_SESSION_NONE) {
+    session_start();
+}
+
 include_once '../../config.php';
 
 // Vérifie que la requête est en POST

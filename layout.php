@@ -86,25 +86,25 @@ head_with_title($title);
                     </div>
 
                     <li class="nav-item">
-                        <a class="nav-link rounded text-white" href="views/administrateur/dashboard.php"><i class="bi bi-speedometer2 me-2"></i> Tableau de bord</a>
+                        <a class="nav-link rounded text-white" href="views/administrator/dashboard.php"><i class="bi bi-speedometer2 me-2"></i> Tableau de bord</a>
                     </li>
 
                     <li class="nav-item">
-                        <a class="nav-link rounded text-white" href="views/administrateur/customer.php"><i class="bi bi-people-fill me-2"></i> Clients</a>
+                        <a class="nav-link rounded text-white" href="views/administrator/customer.php"><i class="bi bi-people-fill me-2"></i> Clients</a>
                     </li>
 
                     <li class="nav-item">
-                        <a class="nav-link rounded text-white" href="views/administrateur/project.php"><i class="bi bi-building me-2"></i> Chantiers</a>
+                        <a class="nav-link rounded text-white" href="views/administrator/project.php"><i class="bi bi-building me-2"></i> Chantiers</a>
                     </li>
 
                     <li class="nav-item">
-                        <a class="nav-link rounded text-white" href="views/administrateur/quotation.php"><i class="bi bi-receipt me-2"></i> Devis</a>
+                        <a class="nav-link rounded text-white" href="views/administrator/quotation.php"><i class="bi bi-receipt me-2"></i> Devis</a>
                     </li>
 
                     <li class="nav-item">
-                        <a class="nav-link rounded text-white" href="views/administrateur/feature.php"><i class="bi bi-file-earmark-text me-2"></i> Factures</a>
+                        <a class="nav-link rounded text-white" href="views/administrator/feature.php"><i class="bi bi-file-earmark-text me-2"></i> Factures</a>
                     </li>
-                    <a class="nav-link rounded text-white" href="views/administrateur/parameter.php"> <i class="bi bi-gear me-2"></i>Paramétrages </a>
+                    <a class="nav-link rounded text-white" href="views/administrator/parameter.php"> <i class="bi bi-gear me-2"></i>Paramétrages </a>
                 <?php endif; ?>
             <?php endif; ?>
         </ul>

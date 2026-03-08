@@ -72,7 +72,7 @@ $content = <<<HTML
 </header>
 
 <section class="mt-1">
-   <h6 class="title m-0">Nos services : Gros Oeuvre</h6>
+   <h6 class="title m-0">Nos services</h6>
    <div class="container-fluid w-100 p-0">
       <div class="row g-3 w-100 m-0">
          <div class="col-md-4 p-0">
