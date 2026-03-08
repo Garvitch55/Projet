@@ -5,7 +5,7 @@ require_once __DIR__ . '/../head.php';
 
 $title = "Nos réalisations";
 
-$pdo = getPDO(); // ⚠️ important
+$pdo = getPDO();
 
 $stmt = $pdo->query("SELECT * FROM reference_management ORDER BY created_at DESC");
 $references = $stmt->fetchAll(PDO::FETCH_ASSOC);
@@ -14,8 +14,8 @@ $cards = '';
 
 foreach ($references as $ref) {
 $cards .= '
-<div class="col-md-4 mb-4 ps-0">
-    <div class="card h-100 shadow-sm text-white rounded-0" style="border:1px solid #e38f3c; background: rgba(227, 143, 60, 0.6);">
+<div class="col-md-4 mb-4">
+    <div class="card h-100 card-references">
         
         <img src="/projet/images/'.($ref['image']).'" class="card-img-top rounded-0" alt="'.($ref['name']).'">
         
@@ -46,7 +46,7 @@ $content = <<<HTML
 </div>
 
 <div class="container-fluid">
-    <div class="row g-5 ps-3">
+    <div class="row">
         $cards
     </div>
 </div>

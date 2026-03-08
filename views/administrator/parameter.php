@@ -30,17 +30,13 @@ $content = <<<HTML
 
 <!-- Gestion des Devis & Factures -->
 <div class="col-md-4 col-sm-6 col-12">
-   <div class="card h-100 card-parametres shadow" style="border:1px solid #e38f3c; background: rgba(227, 143, 60, 0.6);">
+   <div class="card h-100 card-parametres shadow">
       <div class="card-header p-2 bg-gris-fonce text-white">
         <i class="bi bi-receipt-cutoff me-2"></i>Gestion des Devis & Factures
       </div>
       <div class="card-body p-0">
-         <a class="nav-link w-100 p-2" style="border-bottom:1px solid #e38f3c;" href="views/administrator/dashboard.php"
-            onmouseover="this.style.background='#e38f3c'; this.style.color='white';"
-            onmouseout="this.style.background=''; this.style.color='';">- liste des moyens de paiements</a>
-         <a class="nav-link w-100 p-2" style="border-bottom:1px solid #e38f3c;" href="views/administrator/dashboard.php"
-            onmouseover="this.style.background='#e38f3c'; this.style.color='white';"
-            onmouseout="this.style.background=''; this.style.color='';">- liste des TVA</a>
+         <a class="nav-link w-100 p-2 menu-link" href="views/administrator/dashboard.php">- liste des moyens de paiements</a>
+         <a class="nav-link w-100 p-2 menu-link" href="views/administrator/dashboard.php">- liste des TVA</a>
       </div>
       <div class="card-footer bg-gris-fonce"></div>
    </div>
@@ -48,20 +44,14 @@ $content = <<<HTML
 
 <!-- Gestion des Clients -->
 <div class="col-md-4 col-sm-6 col-12">
-   <div class="card h-100 card-parametres" style="border:1px solid #e38f3c; background: rgba(227, 143, 60, 0.6);">
+   <div class="card h-100 card-parametres">
       <div class="card-header p-2 bg-gris-fonce text-white">
         <i class="bi bi-people-fill me-2"></i>Gestion des Clients
       </div>
       <div class="card-body p-0">
-         <a class="nav-link w-100 p-2" style="border-bottom:1px solid #e38f3c;" href="views/administrator/dashboard.php"
-            onmouseover="this.style.background='#e38f3c'; this.style.color='white';"
-            onmouseout="this.style.background=''; this.style.color='';">lien 1 crud</a>
-         <a class="nav-link w-100 p-2" style="border-bottom:1px solid #e38f3c;" href="views/administrator/dashboard.php"
-            onmouseover="this.style.background='#e38f3c'; this.style.color='white';"
-            onmouseout="this.style.background=''; this.style.color='';">lien 2 crud</a>
-         <a class="nav-link w-100 p-2" style="border-bottom:1px solid #e38f3c;" href="views/administrator/dashboard.php"
-            onmouseover="this.style.background='#e38f3c'; this.style.color='white';"
-            onmouseout="this.style.background=''; this.style.color='';">lien 3 crud</a>
+         <a class="nav-link w-100 p-2 menu-link" href="views/administrator/dashboard.php">lien 1 crud</a>
+         <a class="nav-link w-100 p-2 menu-link" href="views/administrator/dashboard.php">lien 2 crud</a>
+         <a class="nav-link w-100 p-2 menu-link" href="views/administrator/dashboard.php">lien 3 crud</a>
       </div>
       <div class="card-footer bg-gris-fonce"></div>
    </div>
@@ -69,14 +59,12 @@ $content = <<<HTML
 
 <!-- Gestion des Chantiers -->
 <div class="col-md-4 col-sm-6 col-12">
-   <div class="card h-100 card-parametres" style="border:1px solid #e38f3c; background: rgba(227, 143, 60, 0.6);">
+   <div class="card h-100 card-parametres">
       <div class="card-header p-2 bg-gris-fonce text-white">
          <i class="bi bi-building me-2"></i>Gestion des Chantiers
       </div>
       <div class="card-body p-0">
-         <a class="nav-link w-100 p-2" style="border-bottom:1px solid #e38f3c;" href="views/administrator/dashboard.php"
-            onmouseover="this.style.background='#e38f3c'; this.style.color='white';"
-            onmouseout="this.style.background=''; this.style.color='';">- liste des chantiers</a>
+         <a class="nav-link w-100 p-2 menu-link" href="views/administrator/dashboard.php">- liste des chantiers</a>
       </div>
       <div class="card-footer bg-gris-fonce"></div>
    </div>
@@ -84,20 +72,14 @@ $content = <<<HTML
 
 <!-- Gestion des Communications -->
 <div class="col-md-4 col-sm-6 col-12">
-   <div class="card h-100 card-parametres" style="border:1px solid #e38f3c; background: rgba(227, 143, 60, 0.6);">
+   <div class="card h-100 card-parametres">
       <div class="card-header p-2 bg-gris-fonce text-white">
          <i class="bi bi-chat-dots-fill me-2"></i>Gestion des Communications
       </div>
       <div class="card-body p-0">
-         <a class="nav-link w-100 p-2" style="border-bottom:1px solid #e38f3c;" href="views/administrator/dashboard.php"
-            onmouseover="this.style.background='#e38f3c'; this.style.color='white';"
-            onmouseout="this.style.background=''; this.style.color='';">lien 1 crud</a>
-         <a class="nav-link w-100 p-2" style="border-bottom:1px solid #e38f3c;" href="views/administrator/dashboard.php"
-            onmouseover="this.style.background='#e38f3c'; this.style.color='white';"
-            onmouseout="this.style.background=''; this.style.color='';">lien 2 crud</a>
-         <a class="nav-link w-100 p-2" style="border-bottom:1px solid #e38f3c;" href="views/administrator/dashboard.php"
-            onmouseover="this.style.background='#e38f3c'; this.style.color='white';"
-            onmouseout="this.style.background=''; this.style.color='';">lien 3 crud</a>
+         <a class="nav-link w-100 p-2 menu-link" href="views/administrator/dashboard.php">lien 1 crud</a>
+         <a class="nav-link w-100 p-2 menu-link" href="views/administrator/dashboard.php">lien 2 crud</a>
+         <a class="nav-link w-100 p-2 menu-link" href="views/administrator/dashboard.php">lien 3 crud</a>
       </div>
       <div class="card-footer bg-gris-fonce"></div>
    </div>
@@ -105,17 +87,13 @@ $content = <<<HTML
 
 <!-- Gestion des Utilisateurs -->
 <div class="col-md-4 col-sm-6 col-12">
-   <div class="card h-100 card-parametres" style="border:1px solid #e38f3c; background: rgba(227, 143, 60, 0.6);">
+   <div class="card h-100 card-parametres">
       <div class="card-header p-2 bg-gris-fonce text-white">
          <i class="bi bi-person-gear me-2"></i>Gestion des Utilisateurs
       </div>
       <div class="card-body p-0">
-         <a class="nav-link w-100 p-2" style="border-bottom:1px solid #e38f3c;" href="views/administrator/dashboard.php"
-            onmouseover="this.style.background='#e38f3c'; this.style.color='white';"
-            onmouseout="this.style.background=''; this.style.color='';">- utilisateurs internes</a>
-         <a class="nav-link w-100 p-2" style="border-bottom:1px solid #e38f3c;" href="views/administrator/dashboard.php"
-            onmouseover="this.style.background='#e38f3c'; this.style.color='white';"
-            onmouseout="this.style.background=''; this.style.color='';">- utilisateurs clients</a>
+         <a class="nav-link w-100 p-2 menu-link" href="views/administrator/dashboard.php">- utilisateurs internes</a>
+         <a class="nav-link w-100 p-2 menu-link" href="views/administrator/dashboard.php">- utilisateurs clients</a>
       </div>
       <div class="card-footer bg-gris-fonce"></div>
    </div>
@@ -123,17 +101,13 @@ $content = <<<HTML
 
 <!-- Gestion des Paramètres -->
 <div class="col-md-4 col-sm-6 col-12">
-   <div class="card h-100 card-parametres" style="border:1px solid #e38f3c; background: rgba(227, 143, 60, 0.6);">
+   <div class="card h-100 card-parametres">
       <div class="card-header p-2 bg-gris-fonce text-white">
          <i class="bi bi-gear-fill me-2"></i>Gestion des références
       </div>
       <div class="card-body p-0">
-         <a class="nav-link w-100 p-2 menu-link" style="border-bottom:1px solid #e38f3c;" href="views/administrator/settings/add_reference.php"
-            onmouseover="this.style.background='#e38f3c'; this.style.color='white';"
-            onmouseout="this.style.background=''; this.style.color='';">- Ajouter des références</a>
-         <a class="nav-link w-100 p-2 menu-link" style="border-bottom:1px solid #e38f3c;" href="views/administrator/settings/list_reference.php"
-            onmouseover="this.style.background='#e38f3c'; this.style.color='white';"
-            onmouseout="this.style.background=''; this.style.color='';">- Modifier une référence</a>
+         <a class="nav-link w-100 p-2 menu-link" href="views/administrator/settings/add_reference.php">- Ajouter des références</a>
+         <a class="nav-link w-100 p-2 menu-link" href="views/administrator/settings/list_reference.php">- Modifier une référence</a>
       </div>
       <div class="card-footer bg-gris-fonce"></div>
    </div>

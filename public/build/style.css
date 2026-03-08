@@ -10,6 +10,7 @@
 */
 body {
   background-color: #ebdfd6;
+  min-height: 100vh;
 }
 
 footer {
@@ -78,15 +79,47 @@ footer ul {
 }
 
 .card-parametres {
-  background-color: rgba(227, 143, 60, 0.8);
+  background-color: rgba(227, 143, 60, 0.6);
   color: #fff;
-  box-shadow: 0 0.25rem 0.5rem rgba(0, 0, 0, 0.1);
+  box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.5);
   transition: transform 0.4s ease, box-shadow 0.4s ease, background-color 0.4s ease;
 }
 .card-parametres:hover {
   transform: scale(1.05);
-  box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
-  background-color: #e38f3c;
+  box-shadow: 0 0.75rem 1.5rem rgba(0, 0, 0, 0.6);
+}
+.card-parametres {
+  /* Style des liens à l’intérieur */
+}
+.card-parametres a.menu-link {
+  display: block;
+  width: 100%;
+  padding: 0.5rem 0.75rem;
+  color: #fff;
+  border-bottom: 1px solid #e38f3c;
+  /* bordure orange */
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+.card-parametres a.menu-link:hover {
+  background-color: rgba(65, 64, 59, 0.8);
+  color: #fff;
+  /* texte blanc */
+  text-decoration: none;
+}
+
+.card-references {
+  background-color: rgba(227, 143, 60, 0.6);
+  color: #fff;
+  box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.5);
+  transition: transform 0.4s ease, box-shadow 0.4s ease, background-color 0.4s ease;
+}
+.card-references h5 {
+  text-decoration: underline;
+}
+.card-references:hover {
+  transform: scale(1.05);
+  box-shadow: 0 0.75rem 1.5rem rgba(0, 0, 0, 0.6);
+  background-color: rgba(65, 64, 59, 0.8);
 }
 
 .btn {
@@ -236,14 +269,14 @@ h6 {
 }
 
 #carouselExampleCaptions .carousel-item {
-  aspect-ratio: 16/9; /* ajuste le ratio souhaité */
-  overflow: hidden; /* cache les parties débordantes */
+  aspect-ratio: 16/9;
+  overflow: hidden;
 }
 
 #carouselExampleCaptions .carousel-item img {
   width: 100%;
   height: 100%;
-  object-fit: cover; /* recadre sans déformer */
+  object-fit: cover;
 }
 
 .text-justify {
@@ -328,6 +361,31 @@ h6 {
 }
 .reference-item:hover img {
   transform: scale(1.05);
+}
+
+.sidebar-vertical {
+  min-height: 100vh; /* prend toute la hauteur de la fenêtre */
+  background: linear-gradient(to right, rgb(227, 143, 60), rgba(227, 143, 60, 0.8), rgba(227, 143, 60, 0.6));
+  color: #41403b;
+  padding: 1rem;
+}
+.sidebar-vertical ul.nav {
+  min-height: 100%; /* force la nav à remplir toute la hauteur */
+}
+.sidebar-vertical li.nav-item {
+  margin: 0; /* supprime tout espace entre les items */
+}
+.sidebar-vertical a.nav-link {
+  color: #fff;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+.sidebar-vertical a.nav-link:hover {
+  background-color: rgb(65, 64, 59); /* fond foncé au hover */
+  color: #fff;
+  box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
+}
+.sidebar-vertical h6 {
+  color: #41403b;
 }
 
 /*# sourceMappingURL=style.css.map */

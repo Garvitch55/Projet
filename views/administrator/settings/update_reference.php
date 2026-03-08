@@ -1,5 +1,4 @@
 <?php
-// settings/update_reference.php
 
 session_start();
 

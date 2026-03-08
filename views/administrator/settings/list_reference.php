@@ -33,11 +33,8 @@ $notification = ob_get_clean();
 
 // ----------------- Construction du contenu -----------------
 $content = <<<HTML
-<div class="container mt-5">
-    <h1 class="text-center mb-4">Liste des références</h1>
-
-    <!-- Notification -->
-    {$notification}
+<div class="container-fluid mt-5">
+    <h1 class="text-center mb-4">Liste des références pour modification(s)</h1>
 
     <div class="row">
 HTML;
@@ -54,7 +51,7 @@ foreach ($references as $ref) {
 
     $content .= "
         <div class='col-md-4 mb-4'>
-            <div class='card h-100 shadow-sm text-white' style='border:1px solid #e38f3c; background: rgba(227, 143, 60, 0.6);'>
+               <div class='card h-100 card-references'>
                 
                 <!-- Image -->
                 <img src='/projet/images/{$image}' class='card-img-top' alt='{$cards}'>
