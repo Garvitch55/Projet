@@ -34,8 +34,13 @@ $notification = ob_get_clean();
 // ----------------- Construction du contenu -----------------
 $content = <<<HTML
 <div class="container-fluid mt-5">
-    <h1 class="text-center mb-4">Liste des références pour modification(s)</h1>
+    <div class="d-flex justify-content-between align-items-center mt-3">
+        <h1 class="text-orange-fonce mb-4">Liste des références pour modification(s)</h1>
 
+        <a href="/projet/views/administrator/parameter.php" class="btn text-white">
+            <i class="bi bi-arrow-left me-2"></i> Retour
+        </a>
+    </div>
     <div class="row">
 HTML;
 

@@ -53,48 +53,62 @@ $content = <<<HTML
 <div class="container mt-5">
     <div class="row justify-content-center">
         <div class="col-md-6">
-            <h1 class="h3 mb-3 text-center">Modifier la référence</h1>
 
+            <div class="d-flex justify-content-between align-items-center mb-3">
+                <h1 class="text-orange-fonce m-0">Modifier la référence</h1>
+
+                <a href="/projet/views/administrator/settings/list_reference.php" class="btn text-white">
+                    <i class="bi bi-arrow-left me-2"></i> Retour
+                </a>
+            </div>
             <!-- Formulaire -->
             <form method="POST" enctype="multipart/form-data" action="controller/reference/update_reference_ctrl.php">
                 <input type="hidden" name="reference_id" value="{$reference['id']}">
 
                 <div class="mb-3">
-                    <label for="reference_name" class="form-label text-orange-fonce">Nom de la référence : <span class="text-danger">*</span></label>
+                    <label for="reference_name" class="form-label text-gris-fonce">Nom de la référence : <span class="text-danger">*</span></label>
                     <input type="text" name="reference_name" id="reference_name" class="form-control" value="{$reference['name']}" required>
                 </div>
 
                 <div class="mb-3">
-                    <label for="reference_description" class="form-label text-orange-fonce">Description : <span class="text-danger">*</span></label>
+                    <label for="reference_description" class="form-label text-gris-fonce">Description : <span class="text-danger">*</span></label>
                     <textarea name="reference_description" id="reference_description" class="form-control">{$reference['description']}</textarea>
                 </div>
 
                 <div class="mb-3">
-                    <label for="completion_date" class="form-label text-orange-fonce">Date de réalisation : <span class="text-danger">*</span></label>
+                    <label for="completion_date" class="form-label text-gris-fonce">Date de réalisation : <span class="text-danger">*</span></label>
                     <input type="date" name="completion_date" id="completion_date" class="form-control" value="{$value_date}" required>
                 </div>
 
                 <div class="mb-3">
-                    <label for="site" class="form-label text-orange-fonce">Lieu : <span class="text-danger">*</span></label>
+                    <label for="site" class="form-label text-gris-fonce">Lieu : <span class="text-danger">*</span></label>
                     <input type="text" name="site" id="site" class="form-control" value="{$reference['site']}">
                 </div>
 
                 <div class="mb-3">
-                    <label for="reference_image" class="form-label text-orange-fonce">Image :</label>
+                    <label for="reference_image" class="form-label text-gris-fonce">Image :</label>
                     <input type="file" name="reference_image" id="reference_image" class="form-control" accept=".jpg,.jpeg,.png,.gif">
 HTML;
 
 // J'affiche l'image actuelle si elle existe
 if (!empty($reference['image']) && file_exists(__DIR__ . '/../../../images/' . $reference['image'])) {
-    $content .= "<p class='mt-2 text-orange-fonce'>Image actuelle : <img src='/projet/images/{$reference['image']}' alt='Image référence' style='max-width:200px;'></p>";
+    $content .= "
+    <div class='mt-2 text-center text-gris-fonce'>
+        <p>Image actuelle :</p>
+        <img src='/projet/images/{$reference['image']}' alt='Image référence' class='img-fluid d-block mx-auto rounded border-orange-fonce' style='max-width:200px;'>
+    </div>";
 }
 
 $content .= <<<HTML
                 </div>
+<div class="d-flex justify-content-center gap-2 mt-3">
+    <button type="submit" class="btn text-white">
+        Modifier la référence
+    </button>
 
-                <div class="text-center">
-                    <button type="submit" class="btn text-white">Modifier la référence</button>
-                </div>
+
+</div>
+
             </form>
         </div>
     </div>

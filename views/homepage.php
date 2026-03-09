@@ -6,7 +6,7 @@ $title = "Accueil";
 // ----------------- CONTENT -----------------
 $content = <<<HTML
 <div class="d-flex flex-column gap-2">
-<header class="mt-1">
+<header class="mt-1 mb-4">
    <h6 class="title mb-3">Accueil</h6>
 
    <div class="d-flex flex-row gap-4">
@@ -71,8 +71,14 @@ $content = <<<HTML
    </div>
 </header>
 
-<section class="mt-1">
-   <h6 class="title m-0">Nos services</h6>
+<section class="mt-1 mb-4">
+   <div class="d-flex justify-content-between align-items-stretch">
+      <h6 class="title m-0">Nos services</h6>
+
+      <a href="views/service.php" class="btn4 d-flex align-items-center px-3">
+         Voir nos services
+      </a>
+   </div>
    <div class="container-fluid w-100 p-0">
       <div class="row g-3 w-100 m-0">
          <div class="col-md-4 p-0">
@@ -121,11 +127,18 @@ $content = <<<HTML
    </div>
 </section>
 
-<section class="mt-1">
-   <h6 class="title border-bottom">Nos réalisations</h6>
+<section class="mt-1 mb-4">
+      <div class="d-flex justify-content-between align-items-stretch mb-3">
+      <h6 class="title m-0">Nos réalisations</h6>
+
+      <a href="views/reference.php" class="btn4 d-flex align-items-center px-3">
+         Voir nos réalisations
+      </a>
+   </div>
+
 <div class="d-flex flex-row">
    <div class="w-50 reference-item position-relative">
-      <a href="" class="text-decoration-none" >
+      <a href="views/reference.php" class="text-decoration-none" >
          <h6 class="carousel-caption-bg2 p-2 m-0">Secteur privé</h6>
          <div class="d-flex bg-gris-opacity">
             <ul class="w-50 text-white p-3 m-0">
@@ -142,7 +155,7 @@ $content = <<<HTML
    </div>
   
    <div class="w-50 reference-item position-relative">
-      <a href="" class="text-decoration-none" >
+      <a href="views/reference.php" class="text-decoration-none" >
       <h6 class="carousel-caption-bg p-2 m-0">Secteur public</h6>
      <div class="d-flex bg-gris-opacity">
        <ul class="w-50 text-white p-3 m-0">
@@ -157,14 +170,18 @@ $content = <<<HTML
 
 </div>
 </a>
-
-
    </div>
 </div>
 </section>
 
-<section class="mt-1">
-   <h6 class="title border-bottom">Nous contacter</h6>
+<section class="mt-1 mb-4">
+      <div class="d-flex justify-content-between align-items-stretch mb-3">
+      <h6 class="title m-0">Nous contacter</h6>
+
+      <a href="views/reference.php" class="btn4 d-flex align-items-center px-3">
+         Voir nos coordonnées
+      </a>
+   </div>
 </section>
 </div>
 <script>

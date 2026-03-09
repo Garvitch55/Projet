@@ -12,15 +12,15 @@ $content = <<<HTML
 <div class="container mt-5">
     <div class="row justify-content-center">
         <div class="col-md-4">
-            <h1 class="h3 mb-3 text-center text-gris-fonce">Se connecter</h1>
+            <h1 class="mb-3 text-center text-orange-fonce">Se connecter</h1>
 
             <form action="/projet/controller/auth/login_ctrl.php" method="POST">
                 <div class="mb-3">
-                    <label for="mail" class="form-label text-orange-fonce">Identifiant (e-mail) : <span class="text-danger">*</span></label>
+                    <label for="mail" class="form-label text-gris-fonce">Identifiant (e-mail) : <span class="text-danger">*</span></label>
                     <input type="email" name="mail" id="mail" class="form-control" placeholder="Votre e-mail" required>
                 </div>
                 <div class="mb-3">
-                    <label for="psw" class="form-label text-orange-fonce">Mot de passe : <span class="text-danger">*</span></label>
+                    <label for="psw" class="form-label text-gris-fonce">Mot de passe : <span class="text-danger">*</span></label>
                     <input type="password" name="psw" id="psw" class="form-control" required>
                 </div>
 

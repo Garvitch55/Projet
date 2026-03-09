@@ -10,8 +10,13 @@ require ROOT . "notification.php";
 $notification = ob_get_clean();
 
 $content = <<<HTML
+    <div class="w-50 mx-auto d-flex justify-content-between align-items-center mt-3">
+        <h1 class="text-orange-fonce mb-4">Inscription :</h1>
+        <a href="/projet/views/login.php" class="btn text-white">
+           <i class="bi bi-arrow-left me-2"></i> Retour
+        </a>
+    </div>
 
-<h1 class="text-center mt-3">Inscription :</h1>
 <p class="text-center mt-3">Votre compte client vous servira d'avoir accès à la demande de devis en ligne.</p>
 
 <head>

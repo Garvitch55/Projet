@@ -66,6 +66,10 @@ body {
   color: #41403b;
 }
 
+.border-orange-fonce {
+  border: 1px solid #e38f3c;
+}
+
 .card-parametres {
   background-color: rgba(227, 143, 60, 0.6);
   color: #fff;
@@ -191,6 +195,20 @@ body {
 .btn3:hover {
   background-color: rgba(65, 64, 59, 0.8);
   transform: scale(1.2);
+}
+
+.btn4 {
+  width: 160px;
+  text-decoration: none;
+  font-weight: bold;
+  text-align: center;
+  color: #fff;
+  background-color: rgba(227, 143, 60, 0.8);
+  transition: transform 0.4s ease;
+}
+.btn4:hover {
+  border-style: none;
+  background-color: rgba(65, 64, 59, 0.8);
 }
 
 .nav-link:hover {

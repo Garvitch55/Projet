@@ -30,35 +30,42 @@ $notification = ob_get_clean();
 // ----------------- Construction du contenu -----------------
 $content = <<<HTML
 <div class="container mt-5">
+
+
     <div class="row justify-content-center">
         <div class="col-md-6">
-            <h1 class="h3 mb-3 text-center">Ajouter une référence</h1>
-
+            <h1 class="mb-3 text-center"></h1>
+    <div class="d-flex justify-content-between align-items-center mt-3">
+        <h1 class="text-orange-fonce mb-4">Ajouter une référence</h1>
+        <a href="/projet/views/administrator/parameter.php" class="btn text-white">
+           <i class="bi bi-arrow-left me-2"></i> Retour
+        </a>
+    </div>
             <!-- ----------------- Formulaire ----------------- -->
            <form method="POST" enctype="multipart/form-data" action="controller/reference/add_reference_ctrl.php">
 
                 <div class="mb-3">
-                    <label for="reference_name" class="form-label text-orange-fonce">Nom de la référence : <span class="text-danger">*</span></label>
+                    <label for="reference_name" class="form-label text-gris-fonce">Nom de la référence : <span class="text-danger">*</span></label>
                     <input type="text" name="reference_name" id="reference_name" class="form-control" required>
                 </div>
 
                 <div class="mb-3">
-                    <label for="reference_description" class="form-label text-orange-fonce">Description : <span class="text-danger">*</span></label>
+                    <label for="reference_description" class="form-label text-gris-fonce">Description : <span class="text-danger">*</span></label>
                     <textarea name="reference_description" id="reference_description" class="form-control"></textarea>
                 </div>
 
                 <div class="mb-3">
-                    <label for="completion_date" class="form-label text-orange-fonce">Date de réalisation : <span class="text-danger">*</span></label>
+                    <label for="completion_date" class="form-label text-gris-fonce">Date de réalisation : <span class="text-danger">*</span></label>
                     <input type="date" name="completion_date" id="completion_date" class="form-control" required>
                 </div>
 
 <div class="mb-3">
-    <label for="reference_site" class="form-label text-orange-fonce">Lieu : <span class="text-danger">*</span></label>
+    <label for="reference_site" class="form-label text-gris-fonce">Lieu : <span class="text-danger">*</span></label>
     <input type="text" name="reference_site" id="site" class="form-control" class="form-control" required>
 </div>
 
                 <div class="mb-3">
-                    <label for="reference_image" class="form-label text-orange-fonce">Image : <span class="text-danger">*</span></label>
+                    <label for="reference_image" class="form-label text-gris-fonce">Image : <span class="text-danger">*</span></label>
                     <input type="file" name="reference_image" id="reference_image" class="form-control" accept=".jpg,.jpeg,.png,.gif">
                 </div>
 

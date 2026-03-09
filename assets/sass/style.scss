@@ -93,6 +93,10 @@ $text-gris-fonce: #41403b;
     color: $text-gris-fonce;
 }
 
+.border-orange-fonce {
+    border: 1px solid $text-orange-fonce;
+}
+
 .card-parametres {
     background-color: rgba($bg-orange-fonce, 0.6);
     color: #fff;
@@ -230,6 +234,21 @@ $text-gris-fonce: #41403b;
         transform: scale(1.20);
     }
 }
+.btn4 {
+    width: 160px;
+    text-decoration: none;
+    font-weight: bold;
+    text-align: center;
+            color: #fff;
+    background-color: rgba($bg-orange-fonce, 0.8);
+    transition: transform 0.4s ease;
+
+    &:hover {
+        border-style: none;
+        background-color: rgba($bg-gris-fonce,0.8);
+    }
+}
+
 .nav-link {
 
     &:hover {
@@ -251,8 +270,6 @@ h6 {
     background-color: $bg-gris-fonce;
     color: #ffffff;
 }
-
-
 
 .notification {
     width: 100%;
