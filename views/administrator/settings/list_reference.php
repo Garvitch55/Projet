@@ -71,7 +71,7 @@ foreach ($references as $ref) {
 
                 <div class='card-body'>
                     <!-- Nom -->
-                    <h5 class='card-title'>{$cards}</h5>
+                    <h5 class='card-title text-gris-fonce'>{$cards}</h5>
 
                     <!-- Site et Description -->
                     <p class='card-text'>

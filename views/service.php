@@ -30,7 +30,7 @@ $content = <<<HTML
       <img src="assets/statics/images/istockphoto-1070686006-2048x2048.webp" class="service-bg w-100" alt="">
 
       <div class="service-content text-white position-absolute p-4 top-0">
-         <h5>Études et conception</h5>
+         <h5 class="text-gris-fonce">Études et conception</h5>
 
          <p>
             Nous réalisons des études techniques complètes afin d'assurer
@@ -53,7 +53,7 @@ $content = <<<HTML
    <div class="service-card rounded-1 position-relative overflow-hidden">
                <img src="assets/statics/images/istockphoto-1130573924-2048x2048.webp" class="service-bg w-100" alt="">
 <div class="service-content text-white position-absolute p-4 top-0">
-               <h5>Travaux de construction</h5>
+               <h5 class="text-gris-fonce">Travaux de construction</h5>
 
                <p>
                   Nous réalisons différents travaux de construction et
@@ -74,7 +74,7 @@ $content = <<<HTML
    <div class="service-card rounded-1 position-relative overflow-hidden">
                <img src="assets/statics/images/renforcement-de-structure1.jpg" class="service-bg w-100" alt="">
 <div class="service-content text-white position-absolute p-4 top-0">
-               <h5>Renforcement de structures</h5>
+               <h5 class="text-gris-fonce">Renforcement de structures</h5>
 
                <p>
                   Nous intervenons pour renforcer et sécuriser des structures
@@ -96,7 +96,7 @@ $content = <<<HTML
                <img src="assets/statics/images/demolition-maison-individuelle-ancienne.jpg" class="service-bg w-100" alt="">
 <div class="service-content text-white position-absolute p-4 top-0">
 
-               <h5>Démolition</h5>
+               <h5 class="text-gris-fonce">Démolition</h5>
 
                <p>
                   Nous réalisons des travaux de démolition dans le respect

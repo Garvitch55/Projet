@@ -51,7 +51,6 @@ $bg-gris-fonce: #41403b;
 }
 
 .bg-orange-opacity {
-
     background-color: rgba(227, 143, 60, 0.7);
 }
 
@@ -141,8 +140,15 @@ $text-gris-fonce: #41403b;
         transform: scale(1.05);
         box-shadow: 0 0.75rem 1.5rem rgba(0, 0, 0, 0.6);
         background-color: rgba($bg-gris-fonce, 0.8);
+
+   
+            h5 {
+                color: $bg-orange-fonce;
+    
+            }
+        }
     }
-}
+
 
 .logo {
     &:hover {
@@ -251,7 +257,7 @@ $text-gris-fonce: #41403b;
 
 .nav-link {
     color: #ffffff;
-    border-radius: 0.25rem; // si tu veux garder arrondi comme dans ton HTML
+    border-radius: 0.25rem;
     transition: background-color 0.3s ease, color 0.3s ease;
 
     &:hover {
@@ -260,11 +266,11 @@ $text-gris-fonce: #41403b;
     }
 
     &.active {
-        background-color: $bg-gris-fonce; // couleur du lien actif
+        background-color: $bg-gris-fonce;
         color: #ffffff;
 
         &:hover {
-            background-color: #41403b; // même couleur au hover quand actif
+            background-color: #41403b;
             color: #ffffff;
         }
     }
@@ -465,13 +471,13 @@ h6 {
 
 
 .sidebar-vertical {
-  min-height: 100vh; /* prend toute la hauteur de la fenêtre */
+  min-height: 100vh;
   background: linear-gradient( to right, rgba(227, 143, 60, 1), rgba(227, 143, 60, 0.8), rgba(227, 143, 60, 0.6));
 
   padding: 1rem;
 
   ul.nav {
-    min-height: 100%; /* force la nav à remplir toute la hauteur */
+    min-height: 100%;
   }
 
   li.nav-item {
@@ -480,7 +486,7 @@ h6 {
 
     a.nav-link {
     color: #fff;
-    transition: background-color 0.3s ease, color 0.3s ease;
+
 
     &:hover {
       background-color: rgba($bg-gris-fonce, 0.50);
@@ -524,7 +530,45 @@ footer {
 /********PAGE NOS SERVICES***************/
 .service-card{
     position: relative;
-    min-height: 300px;
+        min-height: 300px;
+        overflow: hidden;
+        border-radius: 8px;
+        color: #fff;
+    
+        box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.5);
+        transition: transform 0.4s ease, box-shadow 0.4s ease;
+    
+        h5 {
+            text-decoration: underline;
+        }
+    
+        &:hover {
+            transform: scale(1.05);
+            box-shadow: 0 0.75rem 1.5rem rgba(0, 0, 0, 0.6);
+    
+            h5 {
+                color: $bg-orange-fonce;
+    
+            }
+        }
+    
+        /* overlay couleur */
+        &::before {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background-color: rgba($bg-orange-fonce, 0.5);
+            z-index: 2;
+            transition: background-color 0.4s ease;
+        }
+    
+        &:hover::before {
+            background-color: rgba($bg-gris-fonce, 0.8);
+        }
+    }
+
+.contact-card{
+    position: relative;
     overflow: hidden;
     border-radius: 8px;
     color: #fff;
@@ -537,23 +581,12 @@ footer {
     }
 
     &:hover{
-        transform: scale(1.05);
+        transform: scale(1.02);
+        background-color: rgba($bg-gris-fonce,1);
         box-shadow: 0 0.75rem 1.5rem rgba(0,0,0,0.6);
     }
 
-    /* overlay couleur */
-    &::before{
-        content:"";
-        position:absolute;
-        inset:0;
-        background-color: rgba($bg-orange-fonce,0.5);
-        z-index:2;
-        transition: background-color 0.4s ease;
-    }
 
-    &:hover::before{
-        background-color: rgba($bg-gris-fonce,0.8);
-    }
 }
 
 /* image de fond */

@@ -113,6 +113,9 @@ body {
   box-shadow: 0 0.75rem 1.5rem rgba(0, 0, 0, 0.6);
   background-color: rgba(65, 64, 59, 0.8);
 }
+.card-references:hover h5 {
+  color: #e38f3c;
+}
 
 .logo:hover {
   transform: scale(1.05);
@@ -393,19 +396,18 @@ h6 {
 }
 
 .sidebar-vertical {
-  min-height: 100vh; /* prend toute la hauteur de la fenêtre */
+  min-height: 100vh;
   background: linear-gradient(to right, rgb(227, 143, 60), rgba(227, 143, 60, 0.8), rgba(227, 143, 60, 0.6));
   padding: 1rem;
 }
 .sidebar-vertical ul.nav {
-  min-height: 100%; /* force la nav à remplir toute la hauteur */
+  min-height: 100%;
 }
 .sidebar-vertical li.nav-item {
   margin: 0; /* supprime tout espace entre les items */
 }
 .sidebar-vertical a.nav-link {
   color: #fff;
-  transition: background-color 0.3s ease, color 0.3s ease;
 }
 .sidebar-vertical a.nav-link:hover {
   background-color: rgba(65, 64, 59, 0.5);
@@ -454,6 +456,9 @@ footer a:hover {
   transform: scale(1.05);
   box-shadow: 0 0.75rem 1.5rem rgba(0, 0, 0, 0.6);
 }
+.service-card:hover h5 {
+  color: #e38f3c;
+}
 .service-card {
   /* overlay couleur */
 }
@@ -467,6 +472,23 @@ footer a:hover {
 }
 .service-card:hover::before {
   background-color: rgba(65, 64, 59, 0.8);
+}
+
+.contact-card {
+  position: relative;
+  overflow: hidden;
+  border-radius: 8px;
+  color: #fff;
+  box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.5);
+  transition: transform 0.4s ease, box-shadow 0.4s ease;
+}
+.contact-card h5 {
+  text-decoration: underline;
+}
+.contact-card:hover {
+  transform: scale(1.02);
+  background-color: #41403b;
+  box-shadow: 0 0.75rem 1.5rem rgba(0, 0, 0, 0.6);
 }
 
 /* image de fond */

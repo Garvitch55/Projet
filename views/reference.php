@@ -20,7 +20,7 @@ $cards .= '
         <img src="/projet/images/'.($ref['image']).'" class="card-img-top rounded-0" alt="'.($ref['name']).'">
         
         <div class="card-body">
-            <h5 class="card-title">'.($ref['name']).'</h5>
+            <h5 class="card-title text-gris-fonce">'.($ref['name']).'</h5>
             
             <p class="card-text">
                 Lieu: '.($ref['site']).'<br>
