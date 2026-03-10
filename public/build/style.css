@@ -93,7 +93,7 @@ body {
   transition: background-color 0.3s ease, color 0.3s ease;
 }
 .card-parametres a.menu-link:hover {
-  background-color: rgba(65, 64, 59, 0.8);
+  background-color: rgba(65, 64, 59, 0.5);
   color: #fff;
   /* texte blanc */
   text-decoration: none;
@@ -395,7 +395,6 @@ h6 {
 .sidebar-vertical {
   min-height: 100vh; /* prend toute la hauteur de la fenêtre */
   background: linear-gradient(to right, rgb(227, 143, 60), rgba(227, 143, 60, 0.8), rgba(227, 143, 60, 0.6));
-  color: #41403b;
   padding: 1rem;
 }
 .sidebar-vertical ul.nav {
@@ -409,9 +408,17 @@ h6 {
   transition: background-color 0.3s ease, color 0.3s ease;
 }
 .sidebar-vertical a.nav-link:hover {
-  background-color: rgb(65, 64, 59); /* fond foncé au hover */
+  background-color: rgba(65, 64, 59, 0.5);
   color: #fff;
   box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
+}
+.sidebar-vertical a.nav-link.active {
+  background-color: #41403b;
+  color: #fff;
+}
+.sidebar-vertical a.nav-link.active:hover {
+  background-color: #41403b;
+  color: #fff;
 }
 .sidebar-vertical h6 {
   color: #41403b;
@@ -433,7 +440,7 @@ footer a:hover {
 /********PAGE NOS SERVICES***************/
 .service-card {
   position: relative;
-  height: 300px;
+  min-height: 300px;
   overflow: hidden;
   border-radius: 8px;
   color: #fff;
