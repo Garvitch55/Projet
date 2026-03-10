@@ -1,15 +1,5 @@
 <?php
 require_once __DIR__ . "/../../config.php";
-
-
-
-
-
-
-
-
-
-
 ?>
 
 <h1 class="text-center mt-3">Inscription :</h1>
@@ -25,7 +15,7 @@ include_once "../../notification.php";
 
 
 <!-- Action correspond à l'adresse du fichier ou les données du formulaire iront après validation -->
-<form class="w-50 mx-auto mb-3" style="margin-top: 150px;" action="controller/client/add_client_ctrl.php" method="POST">
+<form class="w-50 mx-auto mb-3" action="controller/client/add_client_ctrl.php" method="POST">
 
     <div class="row">
         <!-- prénom -->

@@ -7,6 +7,20 @@ $title = $title ?? 'Bienvenue';
 
 // Appel de la fonction pour afficher le <head> et ouvrir <body>
 head_with_title($title);
+
+// -------------------------
+// Détection de la page courante pour le menu actif
+$current_page = basename($_SERVER['PHP_SELF']);
+$current_path = $_SERVER['REQUEST_URI'];
+
+// Définir les pages et dossiers qui font partie du menu Paramétrages
+$is_param_active = false;
+if (
+    strpos($current_path, '/administrator/parameter.php') !== false ||
+    strpos($current_path, '/administrator/settings/') !== false
+) {
+    $is_param_active = true;
+}
 ?>
 
 <!-- ================= NAVBAR HORIZONTALE (TOP) ================= -->
@@ -20,18 +34,17 @@ head_with_title($title);
     <div class="ms-auto">
         <?php if (!isUserLoggedIn()): ?>
             <a href="views/login.php"
-                class="btn"
-                style="background:#e38f3c; color:#fff;"
-                onmouseover="this.style.background='#41403b'"
-                onmouseout="this.style.background='#e38f3c'">
-                Connexion
+               class="btn"
+               style="background:#e38f3c; color:#fff;"
+               onmouseover="this.style.background='#41403b'"
+               onmouseout="this.style.background='#e38f3c'">
+               Connexion
             </a>
         <?php else: ?>
             <?php
             $role = getUserRole(); // "administrateur" ou "client"
             $roleLabel = ($role === 'administrateur') ? 'Administrateur' : 'Client';
             ?>
-            <!-- Dropdown correctement structuré -->
             <div class="dropdown">
                 <a class="btn btn1 dropdown-toggle d-flex align-items-center" href="#" role="button" id="userDropdown" data-bs-toggle="dropdown" aria-expanded="false">
                     <div class="me-2 text-start">
@@ -41,7 +54,9 @@ head_with_title($title);
                 </a>
                 <ul class="dropdown-menu dropdown-menu-end dropdown-menu-border">
                     <li class="p-2 me-2 text-end">
-                        <a href="controller/auth/logout_ctrl.php" class="text-white text-decoration-none  shadow"><i class="bi bi-box-arrow-right me-2"></i>Déconnexion</a>
+                        <a href="controller/auth/logout_ctrl.php" class="text-white text-decoration-none shadow">
+                            <i class="bi bi-box-arrow-right me-2"></i>Déconnexion
+                        </a>
                     </li>
                 </ul>
             </div>
@@ -58,11 +73,20 @@ head_with_title($title);
             <div class="mt-3 text-decoration-underline">
                 <h6>NOTRE ENTREPRISE</h6>
             </div>
+
             <!-- Navigation générale -->
-            <li class="nav-item"> <a class="nav-link rounded text-white" href="views/homepage.php">Accueil</a></li>
-            <li class="nav-item"> <a class="nav-link rounded text-white" href="views/service.php">Nos services</a></li>
-            <li class="nav-item"> <a class="nav-link rounded text-white" href="views/reference.php">Nos réalisations</a></li>
-            <li class="nav-item"> <a class="nav-link rounded text-white" href="views/contact.php">Nous contacter</a></li>
+            <li class="nav-item">
+                <a class="nav-link rounded text-white <?= ($current_page=='homepage.php') ? 'active' : '' ?>" href="views/homepage.php">Accueil</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link rounded text-white <?= ($current_page=='service.php') ? 'active' : '' ?>" href="views/service.php">Nos services</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link rounded text-white <?= ($current_page=='reference.php') ? 'active' : '' ?>" href="views/reference.php">Nos réalisations</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link rounded text-white <?= ($current_page=='contact.php') ? 'active' : '' ?>" href="views/contact.php">Nous contacter</a>
+            </li>
 
             <?php if (isUserLoggedIn()): ?>
                 <?php $role = getUserRole(); ?>
@@ -73,38 +97,41 @@ head_with_title($title);
                         <h6>ESPACE CLIENT</h6>
                     </div>
                     <li class="nav-item">
-                        <a class="nav-link rounded text-white" href="#"><i class="bi bi-speedometer2 me-2"></i>Tableau de bord</a>
+                        <a class="nav-link rounded text-white <?= ($current_page=='client_dashboard.php') ? 'active' : '' ?>" href="#"><i class="bi bi-speedometer2 me-2"></i>Tableau de bord</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link rounded text-white" href="#"><i class="bi bi-gear me-2"></i>Paramétrages</a>
+                        <a class="nav-link rounded text-white <?= ($current_page=='client_settings.php') ? 'active' : '' ?>" href="#"><i class="bi bi-gear me-2"></i>Paramétrages</a>
                     </li>
 
-                    <!-- ADMIN -->
+                <!-- ADMIN -->
                 <?php elseif ($role === 'administrateur'): ?>
                     <div class="mt-3 text-decoration-underline">
                         <h6>ESPACE ADMINISTRATEUR</h6>
                     </div>
 
                     <li class="nav-item">
-                        <a class="nav-link rounded text-white" href="views/administrator/dashboard.php"><i class="bi bi-speedometer2 me-2"></i> Tableau de bord</a>
+                        <a class="nav-link rounded text-white <?= ($current_page=='dashboard.php') ? 'active' : '' ?>" href="views/administrator/dashboard.php"><i class="bi bi-speedometer2 me-2"></i> Tableau de bord</a>
                     </li>
 
                     <li class="nav-item">
-                        <a class="nav-link rounded text-white" href="views/administrator/customer.php"><i class="bi bi-people-fill me-2"></i> Clients</a>
+                        <a class="nav-link rounded text-white <?= ($current_page=='customer.php') ? 'active' : '' ?>" href="views/administrator/customer.php"><i class="bi bi-people-fill me-2"></i> Clients</a>
                     </li>
 
                     <li class="nav-item">
-                        <a class="nav-link rounded text-white" href="views/administrator/project.php"><i class="bi bi-building me-2"></i> Chantiers</a>
+                        <a class="nav-link rounded text-white <?= ($current_page=='project.php') ? 'active' : '' ?>" href="views/administrator/project.php"><i class="bi bi-building me-2"></i> Chantiers</a>
                     </li>
 
                     <li class="nav-item">
-                        <a class="nav-link rounded text-white" href="views/administrator/quotation.php"><i class="bi bi-receipt me-2"></i> Devis</a>
+                        <a class="nav-link rounded text-white <?= ($current_page=='quotation.php') ? 'active' : '' ?>" href="views/administrator/quotation.php"><i class="bi bi-receipt me-2"></i> Devis</a>
                     </li>
 
                     <li class="nav-item">
-                        <a class="nav-link rounded text-white" href="views/administrator/feature.php"><i class="bi bi-file-earmark-text me-2"></i> Factures</a>
+                        <a class="nav-link rounded text-white <?= ($current_page=='feature.php') ? 'active' : '' ?>" href="views/administrator/feature.php"><i class="bi bi-file-earmark-text me-2"></i> Factures</a>
                     </li>
-                    <a class="nav-link rounded text-white" href="views/administrator/parameter.php"> <i class="bi bi-gear me-2"></i>Paramétrages </a>
+
+                    <li class="nav-item">
+                        <a class="nav-link rounded text-white <?= $is_param_active ? 'active' : '' ?>" href="views/administrator/parameter.php"><i class="bi bi-gear me-2"></i> Paramétrages</a>
+                    </li>
                 <?php endif; ?>
             <?php endif; ?>
         </ul>
@@ -112,19 +139,9 @@ head_with_title($title);
 
     <!-- ================= CONTENU PRINCIPAL ================= -->
     <main class="flex-fill w-80">
-
-        <?php
-        // Ici on affiche le contenu spécifique injecté depuis la page
-        if (isset($notification)) {
-            echo $notification;
-        }
-?>
+        <?php if (isset($notification)) echo $notification; ?>
         <div class="p-3">
-            <?php
-    if (isset($content)) {
-        echo $content;
-    }
-?>
+            <?php if (isset($content)) echo $content; ?>
         </div>
     </main>
 
@@ -145,10 +162,8 @@ head_with_title($title);
   </div>
 </footer>
 
-
 <!-- Bootstrap JS -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
 
 </body>
-
 </html>

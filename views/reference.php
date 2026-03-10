@@ -42,7 +42,7 @@ $cards .= '
 $content = <<<HTML
 
 <div class="mt-1 mb-3">
-      <h6 class="title">Nos réalisations</h6>
+      <h2 class="title">Nos réalisations</h2>
 </div>
 
 <div class="container-fluid">

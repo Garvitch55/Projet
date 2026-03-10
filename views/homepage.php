@@ -7,7 +7,7 @@ $title = "Accueil";
 $content = <<<HTML
 <div class="d-flex flex-column gap-2">
 <header class="mt-1 mb-4">
-   <h6 class="title mb-3">Accueil</h6>
+   <h2 class="title mb-3">Accueil</h2>
 
    <div class="d-flex flex-row gap-4">
       <div id="carouselExampleCaptions" class="carousel slide w-55 flex">
@@ -15,7 +15,7 @@ $content = <<<HTML
             <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
             <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="1" aria-label="Slide 2"></button>
             <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="2" aria-label="Slide 3"></button>
-         </div>  
+         </div> 
          <div class="ratio ratio-16x9">
             <div class="carousel-inner">
                <div class="carousel-item active">
@@ -73,7 +73,7 @@ $content = <<<HTML
 
 <section class="mt-1 mb-4">
    <div class="d-flex justify-content-between align-items-stretch">
-      <h6 class="title m-0">Nos services</h6>
+      <h2 class="title m-0">Nos services</h2>
 
       <a href="views/service.php" class="btn4 d-flex align-items-center px-3">
          Voir nos services
@@ -129,7 +129,7 @@ $content = <<<HTML
 
 <section class="mt-1 mb-4">
       <div class="d-flex justify-content-between align-items-stretch mb-3">
-      <h6 class="title m-0">Nos réalisations</h6>
+      <h2 class="title m-0">Nos réalisations</h2>
 
       <a href="views/reference.php" class="btn4 d-flex align-items-center px-3">
          Voir nos réalisations
@@ -175,13 +175,53 @@ $content = <<<HTML
 </section>
 
 <section class="mt-1 mb-4">
-      <div class="d-flex justify-content-between align-items-stretch mb-3">
-      <h6 class="title m-0">Nous contacter</h6>
+    <div class="d-flex justify-content-between align-items-stretch mb-3">
+        <h2 class="title m-0">Nous contacter</h2>
+        <a href="views/reference.php" class="btn4 d-flex align-items-center px-3">
+            Voir nos coordonnées
+        </a>
+    </div>
 
-      <a href="views/reference.php" class="btn4 d-flex align-items-center px-3">
-         Voir nos coordonnées
-      </a>
-   </div>
+    <div class="d-flex flex-column flex-md-row gap-4">
+        <div class="flex-md-2" style="flex: 2;">
+            <h6 class="fw-bold text-orange-fonce text-decoration-underline mb-2">Adresse</h6>
+            <p class="pb-2">15 Allée du Pré l'évêque<br>55100 VERDUN, France</p>
+
+            <h6 class="fw-bold text-orange-fonce text-decoration-underline mb-2">Téléphone</h6>
+            <p class="pb-2">+33 3 29 45 67 89</p>
+
+            <h6 class="fw-bold text-orange-fonce text-decoration-underline mb-2">Email :</h6>
+            <p class="pb-2">contact@agarnierconstruction.com</p>
+        </div>
+
+        <div class="flex-md-2" style="flex: 2;">
+            <h6 class="fw-bold text-orange-fonce text-decoration-underline mb-2">Horaires :</h6>
+            <ul class="list-unstyled  pb-4">
+                <li>Lundi - Vendredi : 8h00 - 12h et 14h - 18h00</li>
+                <li>Samedi : Fermé</li>
+                <li>Dimanche : Fermé</li>
+                <li>Jours fériés : Fermé</li>
+            </ul>
+
+            <h6 class="fw-bold text-orange-fonce text-decoration-underline mb-2">Réseaux sociaux :</h6>
+            <p>
+                <a href="#" class="text-decoration-none text-gris-fonce me-2"><i class="bi bi-facebook"></i> Facebook</a>
+                <a href="#" class="text-decoration-none text-gris-fonce me-2"><i class="bi bi-instagram"></i> Instagram</a>
+                <a href="#" class="text-decoration-none text-gris-fonce "><i class="bi bi-linkedin"></i> LinkedIn</a>
+            </p>
+        </div>
+                <!-- Carte Google Maps à droite -->
+        <div class="flex-md-2" style="flex: 2;">
+            <h6 class="fw-bold text-orange-fonce text-decoration-underline mb-2">Notre localisation :</h6>
+            <div class="ratio ratio-16x9 rounded shadow">
+                <iframe 
+                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2621.2345678901234!2d5.3856789!3d49.1578901!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47f4456789012345%3A0xabcdef1234567890!2s15%20All%C3%A9e%20du%20Pr%C3%A9%20l'%C3%A9v%C3%AAque%2C%2055100%20Verdun%2C%20France!5e0!3m2!1sfr!2sfr!4v1699999999999!5m2!1sfr!2sfr" 
+                    class="border-orange-fonce rounded-2" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade">
+                </iframe>
+            </div>
+        </div>
+    </div>
+
 </section>
 </div>
 <script>
