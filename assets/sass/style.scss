@@ -149,7 +149,6 @@ $text-gris-fonce: #41403b;
         }
     }
 
-
 .logo {
     &:hover {
         transform: scale(1.05);
@@ -167,23 +166,20 @@ $text-gris-fonce: #41403b;
     }
 }
 
-.btn1 {
+.btn-user {
     text-decoration: none;
     color: $text-gris-fonce;
     background-color: transparent;
     box-shadow: none;
-    transition: transform 0.4s ease;
-
-    &:hover {
-        padding-left: 20px;
-        padding-right: 20px;
-        background-color: $bg-gris-fonce;
-        color: #fff;
-        transform: scale(1.05);
+    padding : 10px 20px;
         border-top-left-radius: 10px;
         border-top-right-radius: 10px;
         border-bottom-left-radius: 7px;
         border-bottom-right-radius: 7px;
+    &:hover {
+        background-color: $bg-gris-fonce;
+        color: #fff;
+
     }
 
     &:focus {
@@ -191,10 +187,26 @@ $text-gris-fonce: #41403b;
         padding-right: 20px;
         background-color: $bg-gris-fonce;
         color: #fff;
-        border-top-left-radius: 10px;
-        border-top-right-radius: 10px;
-        border-bottom-left-radius: 7px;
-        border-bottom-right-radius: 7px;
+    }
+}
+
+.btn-cloche {
+    text-decoration: none;
+    background-color: $bg-orange-fonce;
+    color: $text-gris-fonce;
+    box-shadow: none;
+    padding : 10px 20px;
+        border-radius: 10px;
+    &:hover {
+        background-color: $bg-gris-fonce;
+        color: #fff;
+    }
+
+    &:focus {
+        padding-left: 20px;
+        padding-right: 20px;
+        background-color: $bg-gris-fonce;
+        color: #fff;
     }
 }
 
@@ -255,6 +267,8 @@ $text-gris-fonce: #41403b;
     }
 }
 
+
+
 .nav-link {
     color: #ffffff;
     border-radius: 0.25rem;
@@ -306,17 +320,64 @@ h6 {
     }
 }
 
-.dropdown-menu-border {
+.dropdown-menu-user {
     border-bottom-left-radius: 15px;
     border-bottom-right-radius: 15px;
     background-color: rgba(227, 143, 60, 0.7);
     color: #fff;
+        &:hover {    background-color: $bg-gris-fonce;
+    color: #ffffff;
+       
+    }
 }
 
-.dropdown-menu:hover {
-    background-color: $bg-gris-fonce;
-    color: #ffffff;
+.dropdown-menu-bell {
+    border-bottom-left-radius: 15px;
+    border-bottom-right-radius: 15px;
+    background-color: rgba(227, 143, 60, 0.7);
+    color: #fff;
+
+    li {
+        background-color: transparent; // laisse le li transparent pour le hover du ul
+        color: #fff;
+        display: flex;
+        flex-direction: column;
+        justify-content: center; // centre horizontalement le bouton
+        align-items: center;     // centre verticalement
+
+        .btn5 {
+            width: 75%; // largeur du bouton
+            padding: 0.5rem;
+            color: #fff;
+            text-decoration: none;
+            text-align: center;
+            border-radius: 8px; // pour arrondir un peu
+            transition: background-color 0.3s, color 0.3s;
+background-color: $bg-gris-fonce;
+            &:hover {
+                background-color: #41403b; // couleur au hover
+                color: #fff;
+            }
+        }
+    }
+
+    &:hover {
+        background-color: $bg-gris-fonce;
+        color: #ffffff;
+
+        li .btn5 {
+            background-color: $bg-orange-fonce;
+        }
+
+        li {
+            background-color: $bg-gris-fonce;
+            color: #fff;
+        }
+    }
 }
+
+
+
 
 #suggestions {
     position: absolute;

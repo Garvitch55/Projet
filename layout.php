@@ -2,7 +2,7 @@
 require_once __DIR__ . '/config.php';
 require_once __DIR__ . '/head.php'; // contient head_with_title()
 
-// On peut mettre un titre dynamique ou par défaut
+// Titre dynamique par défaut
 $title = $title ?? 'Bienvenue';
 
 // Appel de la fonction pour afficher le <head> et ouvrir <body>
@@ -21,6 +21,20 @@ if (
 ) {
     $is_param_active = true;
 }
+
+// -------------------------
+// Récupérer le nombre de messages non lus si admin
+$unread_count = 0;
+$latest_messages = [];
+if (isUserLoggedIn() && getUserRole() === 'administrateur') {
+    $pdo = getPDO(); // suppose que getPDO() est défini dans config.php
+    $stmt = $pdo->query("SELECT COUNT(*) as unread FROM contact WHERE is_read = 0");
+    $unread_count = (int)$stmt->fetch()['unread'];
+
+    // Récupérer les 5 derniers messages
+    $stmt2 = $pdo->query("SELECT first_name, last_name, subject, created_at FROM contact ORDER BY created_at DESC LIMIT 5");
+    $latest_messages = $stmt2->fetchAll(PDO::FETCH_ASSOC);
+}
 ?>
 
 <!-- ================= NAVBAR HORIZONTALE (TOP) ================= -->
@@ -31,7 +45,8 @@ if (
     </a>
 
     <!-- Connexion / User -->
-    <div class="ms-auto">
+    <div class="ms-auto d-flex align-items-center">
+
         <?php if (!isUserLoggedIn()): ?>
             <a href="views/login.php"
                class="btn"
@@ -45,14 +60,48 @@ if (
             $role = getUserRole(); // "administrateur" ou "client"
             $roleLabel = ($role === 'administrateur') ? 'Administrateur' : 'Client';
             ?>
+
+            <?php if ($role === 'administrateur'): ?>
+                <!-- Cloche notifications -->
+                <div class="dropdown me-3">
+                    <a class="btn-cloche position-relative text-white" href="#" role="button" id="notificationDropdown" data-bs-toggle="dropdown" aria-expanded="false">
+                        <i class="bi bi-bell"></i>
+                        <?php if ($unread_count > 0): ?>
+                            <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
+                                <?= $unread_count ?>
+                                <span class="visually-hidden">messages non lus</span>
+                            </span>
+                        <?php endif; ?>
+                    </a>
+                    <div>
+                    <ul class="mt-3 dropdown-menu dropdown-menu-end dropdown-menu-bell" aria-labelledby="notificationDropdown" style="min-width:300px;">
+                        <?php if (!empty($latest_messages)): ?>
+                            <?php foreach ($latest_messages as $msg): ?>
+                                <li class="dropdown-item text-white">
+                                    <p class="m-0"><strong><?= htmlentities($msg['first_name'].' '.$msg['last_name']) ?></strong></p>
+                                    <p class="m-0"><?= htmlentities($msg['subject']) ?></p>
+                                    <small class="text-white"><?= htmlentities($msg['created_at']) ?></small>
+                                </li>
+                                <li><hr class="dropdown-divider text-white"></li>
+                            <?php endforeach; ?>
+                        <?php else: ?>
+                            <li class="dropdown-item text-center text-white">Aucun message</li>
+                        <?php endif; ?>
+                        <li><a class="btn5 text-center" href="views/administrator/messages.php">Voir tous les messages</a></li>
+                    </ul>
+                </div>
+                </div>
+            <?php endif; ?>
+
+            <!-- Menu utilisateur -->
             <div class="dropdown">
-                <a class="btn btn1 dropdown-toggle d-flex align-items-center" href="#" role="button" id="userDropdown" data-bs-toggle="dropdown" aria-expanded="false">
+                <a class="btn-user dropdown-toggle d-flex align-items-center" href="#" role="button" id="userDropdown" data-bs-toggle="dropdown" aria-expanded="false">
                     <div class="me-2 text-start">
                         <div class="text-uppercase"><?= htmlentities($_SESSION['name']) ?></div>
                         <div><?= $roleLabel ?></div>
                     </div>
                 </a>
-                <ul class="dropdown-menu dropdown-menu-end dropdown-menu-border">
+                <ul class="dropdown-menu dropdown-menu-end dropdown-menu-user">
                     <li class="p-2 me-2 text-end">
                         <a href="controller/auth/logout_ctrl.php" class="text-white text-decoration-none shadow">
                             <i class="bi bi-box-arrow-right me-2"></i>Déconnexion
