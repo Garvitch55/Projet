@@ -22,8 +22,9 @@ $title = "Paramétrages";
 
 // ----------------- CONTENT -----------------
 $content = <<<HTML
+<section class="m-4">
 <div class="mt-1 mb-4">
-   <h6 class="title">Liste des paramétrages</h6>
+   <h1 class="title">Liste des paramétrages</h1>
 </div>
 
 <div class="row g-3">
@@ -49,7 +50,7 @@ $content = <<<HTML
         <i class="bi bi-people-fill me-2"></i>Gestion des Clients
       </div>
       <div class="card-body p-0">
-         <a class="nav-link w-100 p-2 menu-link" href="views/administrator/dashboard.php">lien 1 crud</a>
+         <a class="nav-link w-100 p-2 menu-link" href="views/administrator/settings/list_clients.php">- liste des clients</a>
          <a class="nav-link w-100 p-2 menu-link" href="views/administrator/dashboard.php">lien 2 crud</a>
          <a class="nav-link w-100 p-2 menu-link" href="views/administrator/dashboard.php">lien 3 crud</a>
       </div>
@@ -77,7 +78,7 @@ $content = <<<HTML
          <i class="bi bi-chat-dots-fill me-2"></i>Gestion des Communications
       </div>
       <div class="card-body p-0">
-         <a class="nav-link w-100 p-2 menu-link" href="views/administrator/dashboard.php">lien 1 crud</a>
+         <a class="nav-link w-100 p-2 menu-link" href="views/administrator/settings/messages.php">- liste des messages</a>
          <a class="nav-link w-100 p-2 menu-link" href="views/administrator/dashboard.php">lien 2 crud</a>
          <a class="nav-link w-100 p-2 menu-link" href="views/administrator/dashboard.php">lien 3 crud</a>
       </div>
@@ -113,7 +114,9 @@ $content = <<<HTML
    </div>
 </div>
 
-</div><script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+</div>
+</section>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
 HTML;
 
 // ----------------- INCLURE LAYOUT -----------------

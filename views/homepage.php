@@ -177,7 +177,7 @@ $content = <<<HTML
 <section class="mt-1 mb-4">
     <div class="d-flex justify-content-between align-items-stretch mb-3">
         <h2 class="title m-0">Nous contacter</h2>
-        <a href="views/reference.php" class="btn4 d-flex align-items-center px-3">
+        <a href="views/contact.php" class="btn4 d-flex align-items-center px-3">
             Voir nos coordonnées
         </a>
     </div>

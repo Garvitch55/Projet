@@ -47,8 +47,9 @@ try {
 }
 
 // ----------------- INSERTION EN BDD -----------------
-$sql = "INSERT INTO contact (first_name, last_name, email, phone, subject, message) 
-        VALUES (?, ?, ?, ?, ?, ?)";
+// on initialise is_read = 0 pour marquer le message comme non lu
+$sql = "INSERT INTO contact (first_name, last_name, email, phone, subject, message, is_read) 
+        VALUES (?, ?, ?, ?, ?, ?, 0)";
 $stmt = $pdo->prepare($sql);
 
 if ($stmt->execute([
@@ -65,3 +66,10 @@ if ($stmt->execute([
     header("Location: ../views/contact.php?status=danger&message=" . urlencode("Erreur lors de l'envoi du message."));
     exit;
 }
+
+// ----------------- Récupération des derniers messages (pour layout) -----------------
+// pour éviter le warning Undefined array key "is_read"
+$sql2 = "SELECT id_contact, first_name, last_name, subject, created_at, is_read 
+         FROM contact ORDER BY created_at DESC LIMIT 5";
+$stmt2 = $pdo->query("SELECT first_name, last_name, subject, created_at, is_read FROM contact ORDER BY created_at DESC LIMIT 5");
+$latest_messages = $stmt2->fetchAll(PDO::FETCH_ASSOC);

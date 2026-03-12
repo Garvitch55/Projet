@@ -27,12 +27,12 @@ if (
 $unread_count = 0;
 $latest_messages = [];
 if (isUserLoggedIn() && getUserRole() === 'administrateur') {
-    $pdo = getPDO(); // suppose que getPDO() est défini dans config.php
+    $pdo = getPDO();
     $stmt = $pdo->query("SELECT COUNT(*) as unread FROM contact WHERE is_read = 0");
     $unread_count = (int)$stmt->fetch()['unread'];
 
-    // Récupérer les 5 derniers messages
-    $stmt2 = $pdo->query("SELECT first_name, last_name, subject, created_at FROM contact ORDER BY created_at DESC LIMIT 5");
+    // Récupérer les derniers messages avec id_contact
+    $stmt2 = $pdo->query("SELECT id_contact, first_name, last_name, subject, created_at, is_read FROM contact ORDER BY created_at DESC LIMIT 3");
     $latest_messages = $stmt2->fetchAll(PDO::FETCH_ASSOC);
 }
 ?>
@@ -62,35 +62,60 @@ if (isUserLoggedIn() && getUserRole() === 'administrateur') {
             ?>
 
             <?php if ($role === 'administrateur'): ?>
-                <!-- Cloche notifications -->
-                <div class="dropdown me-3">
-                    <a class="btn-cloche position-relative text-white" href="#" role="button" id="notificationDropdown" data-bs-toggle="dropdown" aria-expanded="false">
-                        <i class="bi bi-bell"></i>
-                        <?php if ($unread_count > 0): ?>
-                            <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
-                                <?= $unread_count ?>
-                                <span class="visually-hidden">messages non lus</span>
-                            </span>
-                        <?php endif; ?>
-                    </a>
-                    <div>
-                    <ul class="mt-3 dropdown-menu dropdown-menu-end dropdown-menu-bell" aria-labelledby="notificationDropdown" style="min-width:300px;">
-                        <?php if (!empty($latest_messages)): ?>
+            <!-- Cloche notifications -->
+            <div class="dropdown me-3">
+                <a class="btn-cloche position-relative text-white" href="#" role="button" id="notificationDropdown" data-bs-toggle="dropdown" aria-expanded="false">
+                    <i class="bi bi-bell"></i>
+                    <?php if ($unread_count > 0): ?>
+                        <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
+                            <?= $unread_count ?>
+                            <span class="visually-hidden">messages non lus</span>
+                        </span>
+                    <?php endif; ?>
+                </a>
+                <ul class="mt-3 dropdown-menu dropdown-menu-end dropdown-menu-bell" aria-labelledby="notificationDropdown">
+                    <?php if (!empty($latest_messages)): ?>
+                        <div class="d-flex flex-column px-3">
                             <?php foreach ($latest_messages as $msg): ?>
-                                <li class="dropdown-item text-white">
-                                    <p class="m-0"><strong><?= htmlentities($msg['first_name'].' '.$msg['last_name']) ?></strong></p>
-                                    <p class="m-0"><?= htmlentities($msg['subject']) ?></p>
-                                    <small class="text-white"><?= htmlentities($msg['created_at']) ?></small>
-                                </li>
+                                <?php $msg_id = $msg['id_contact']; ?>
+                                <a href="views/administrator/settings/view_message.php?id=<?= $msg['id_contact'] ?>&action=read" class="text-decoration-none">
+                                    <li class="dropdown-item text-white d-flex align-items-start gap-2 bell-message rounded-1">
+
+                                        <!-- Contenu du message -->
+                                        <div class="flex-grow-1">
+                                            <p class="m-0 fw-bold"><?= htmlentities($msg['first_name'].' '.$msg['last_name']) ?></p>
+                                            <p class="m-0"><?= htmlentities($msg['subject']) ?></p>
+                                            <small class="text-white"><?= htmlentities($msg['created_at']) ?></small>
+                                        </div>
+
+                                        <!-- Badge à droite -->
+                                        <div class="ms-auto">
+                                            <?php if(isset($msg['is_read']) && $msg['is_read'] == 1): ?>
+                                                <span class="badge bg-success">Lu</span>
+                                            <?php else: ?>
+                                                <span class="badge bg-danger">Non lu</span>
+                                            <?php endif; ?>
+                                        </div>
+
+                                    </li>
+                                </a>
                                 <li><hr class="dropdown-divider text-white"></li>
                             <?php endforeach; ?>
-                        <?php else: ?>
-                            <li class="dropdown-item text-center text-white">Aucun message</li>
-                        <?php endif; ?>
-                        <li><a class="btn5 text-center" href="views/administrator/messages.php">Voir tous les messages</a></li>
-                    </ul>
-                </div>
-                </div>
+                        </div>
+                    <?php else: ?>
+                        <li class="dropdown-item text-center text-white">Aucun message</li>
+                    <?php endif; ?>
+
+                    <!-- Bouton centré -->
+                    <div class="text-center pb-2">
+                        <li>
+                            <a class="btn5" href="views/administrator/settings/messages.php">
+                                Voir tous les messages
+                            </a>
+                        </li>
+                    </div>
+                </ul>
+            </div>
             <?php endif; ?>
 
             <!-- Menu utilisateur -->

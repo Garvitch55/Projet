@@ -267,7 +267,29 @@ $text-gris-fonce: #41403b;
     }
 }
 
+.btn-alpha {
+    background-color: $bg-gris-fonce;
+    box-shadow: 0 0.25rem 0.5rem rgba(0, 0, 0, 0.1);
+    padding: 6px 12px ;
+    border-right: 1px solid #fff;
+    text-decoration: none;
 
+    &:hover {
+        transform: scale(1.05);
+        background-color: $bg-orange-fonce;
+        box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
+    }
+
+        &.active {
+        background-color: $bg-orange-fonce;
+        color: #ffffff;
+
+        &:hover {
+            background-color: $bg-orange-fonce;
+            color: #ffffff;
+        }
+    }
+}
 
 .nav-link {
     color: #ffffff;
@@ -332,34 +354,50 @@ h6 {
 }
 
 .dropdown-menu-bell {
+    min-width: 400px;
     border-bottom-left-radius: 15px;
     border-bottom-right-radius: 15px;
     background-color: rgba(227, 143, 60, 0.7);
     color: #fff;
+   
+       .bell-message {
 
-    li {
-        background-color: transparent; // laisse le li transparent pour le hover du ul
-        color: #fff;
-        display: flex;
-        flex-direction: column;
-        justify-content: center; // centre horizontalement le bouton
-        align-items: center;     // centre verticalement
-
-        .btn5 {
-            width: 75%; // largeur du bouton
-            padding: 0.5rem;
+        &:hover {
+            background-color: $bg-orange-fonce;
             color: #fff;
-            text-decoration: none;
-            text-align: center;
-            border-radius: 8px; // pour arrondir un peu
-            transition: background-color 0.3s, color 0.3s;
-background-color: $bg-gris-fonce;
-            &:hover {
-                background-color: #41403b; // couleur au hover
-                color: #fff;
-            }
         }
     }
+   
+    li {
+        background-color: transparent;
+        color: #fff;
+
+    }
+
+    li:has(.btn5) {
+        border-top: 1px solid #ffffff;
+        margin-top: 0.5rem;
+        padding-top: 0.5rem;
+    }
+
+    .btn5 {
+        display: block;
+        width: 95%;
+        margin: 0 auto;   // centre le bouton
+        padding: 0.5rem;
+        color: #fff;
+        text-decoration: none;
+        text-align: center;
+        border-radius: 8px;
+        transition: background-color 0.3s, color 0.3s;
+        background-color: $bg-gris-fonce;
+
+        &:hover {
+            background-color: $bg-orange-fonce;
+            color: #fff;
+        }
+    }
+
 
     &:hover {
         background-color: $bg-gris-fonce;
@@ -671,3 +709,50 @@ footer {
         width: 100px;
         aspect-ratio: 1 / 1;
     }}
+
+
+
+/*************PAGE TOUS LES MESSAGES*******************/
+
+
+.list-group-item {
+    position: relative;
+    background-color: rgba($bg-orange-fonce, 0.6);
+    transition: transform 0.2s ease, background-color 0.2s ease, box-shadow 0.2s ease;
+    // Appliquer la couleur au texte et aux liens à l'intérieur
+
+padding:0;
+margin:0;
+    a {
+        padding:15px;
+        color: $text-gris-fonce;           // Texte du lien par défaut
+        text-decoration: none;             // Supprime le soulignement
+        display: block;                     // Rend toute la zone cliquable
+        transition: transform 0.2s ease, background-color 0.2s ease, box-shadow 0.2s ease, color 0.2s ease;
+
+        &:hover {
+            color: $text-orange-fonce;     // Texte sur hover
+        }
+        .btn5{
+        &:hover {
+            color: $text-orange-fonce;     // Texte sur hover
+        }
+
+        }
+    }    
+    
+    &:hover {
+        transform: scale(1.02);
+        background-color: rgba($bg-gris-fonce, 0.8);
+        box-shadow: 0 0.75rem 1.5rem rgba(0, 0, 0, 0.6);
+        border-radius: 0.25rem;
+        color: $text-orange-fonce;     // Texte sur hover
+    }
+}
+
+/*************PAGE LISTE CLIENT*******************/
+.pagination .page-link:hover {
+  color: #fff !important; /* texte blanc au hover */
+  background-color: inherit !important; /* garde la couleur du bouton parent */
+  text-decoration: none;
+}

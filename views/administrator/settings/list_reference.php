@@ -33,7 +33,7 @@ $notification = ob_get_clean();
 
 // ----------------- Construction du contenu -----------------
 $content = <<<HTML
-<div class="container-fluid mt-5">
+<section class="m-4">
     <div class="d-flex justify-content-between align-items-center mt-3">
         <h1 class="text-orange-fonce mb-4">Liste des références pour modification(s)</h1>
 
@@ -56,15 +56,14 @@ foreach ($references as $ref) {
 
     $content .= "
         <div class='col-md-4 mb-4'>
-               <div class='card h-100 card-references position-relative'>
-<a href='#' 
-   class='btn3 btn-sm position-absolute top-0 end-0 m-2 rounded-circle d-flex align-items-center justify-content-center'
-   style='width:35px;height:35px;'
-   data-bs-toggle='modal'
-   data-bs-target='#deleteModal{$id}'>
-
-   <i class='bi bi-x-lg'></i>
-</a>
+            <div class='card h-100 card-references position-relative'>
+                <a href='#' 
+                   class='btn3 btn-sm position-absolute top-0 end-0 m-2 rounded-circle d-flex align-items-center justify-content-center'
+                   style='width:35px;height:35px;'
+                   data-bs-toggle='modal'
+                   data-bs-target='#deleteModal{$id}'>
+                   <i class='bi bi-x-lg'></i>
+                </a>
 
                 <!-- Image -->
                 <img src='/projet/images/{$image}' class='card-img-top' alt='{$cards}'>
@@ -88,36 +87,34 @@ foreach ($references as $ref) {
             </div>
         </div>
 
-    <div class='modal fade' id='deleteModal{$id}' tabindex='-1'>
-  <div class='modal-dialog modal-dialog-centered'>
-    <div class='modal-content'>
-      
-      <div class='modal-header bg-gris-fonce text-white rounded-1'>
-        <h5 class='modal-title'>Confirmation</h5>
-        <button type='button' class='btn-close' data-bs-dismiss='modal'></button>
-      </div>
+        <!-- Modal de suppression -->
+        <div class='modal fade' id='deleteModal{$id}' tabindex='-1'>
+            <div class='modal-dialog modal-dialog-centered'>
+                <div class='modal-content'>
+                    <div class='modal-header bg-gris-fonce text-white rounded-1'>
+                        <h5 class='modal-title'>Confirmation</h5>
+                        <button type='button' class='btn-close' data-bs-dismiss='modal'></button>
+                    </div>
 
-      <div class='modal-body'>
-        Êtes-vous sûr de vouloir supprimer cette référence ?
-      </div>
+                    <div class='modal-body'>
+                        Êtes-vous sûr de vouloir supprimer cette référence ?
+                    </div>
 
-      <div class='modal-footer'>
-        <button type='button' class='btn text-white' data-bs-dismiss='modal'>Annuler</button>
-
-        <a href='controller/reference/delete_reference_ctrl.php?id={$id}' class='btn text-white'>
-            Supprimer
-        </a>
-      </div>
-
-    </div>
-  </div>
-</div>
+                    <div class='modal-footer'>
+                        <button type='button' class='btn text-white' data-bs-dismiss='modal'>Annuler</button>
+                        <a href='controller/reference/delete_reference_ctrl.php?id={$id}' class='btn text-white'>
+                            Supprimer
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
     ";
 }
 
 $content .= <<<HTML
     </div> <!-- row -->
-</div> <!-- container -->
+</section> <!-- fermeture de la section -->
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
 HTML;
