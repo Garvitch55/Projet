@@ -84,7 +84,7 @@ $notification = ob_get_clean();
 <div class="d-flex justify-content-between align-items-center mt-3">
     <h1 class="text-orange-fonce mb-4">Liste des clients</h1>
     <div>
-        <a href="/projet/views/administrator/settings/create_client.php" class="btn me-2 text-white">+</a>
+        <a href="/projet/views/administrator/settings/create_client.php" class="btn me-2 text-white"><i class="fa-solid fa-plus fa-beat"></i></a>
         <a href="/projet/views/administrator/parameter.php" class="btn text-white">
             <i class="bi bi-arrow-left me-2"></i> Retour
         </a>

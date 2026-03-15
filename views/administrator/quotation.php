@@ -60,7 +60,7 @@ $notification = ob_get_clean();
 <section class="m-4">
     <div class="d-flex justify-content-between align-items-center mt-3">
         <h1 class="text-orange-fonce mb-4">Liste des devis</h1>
-        <a href="/projet/views/administrator/settings/create_client.php" class="btn me-2 text-white">+</a>
+        <a href="/projet/views/administrator/create_quotation.php" class="btn me-2 text-white"><i class="fa-solid fa-plus fa-beat"></i></a>
     </div>
 
     <?php if (!empty($all_quotes)): ?>
@@ -74,28 +74,44 @@ $notification = ob_get_clean();
             default => 'bg-secondary'
         };
     ?>
-    <li class="list-group-item d-flex justify-content-between align-items-start position-relative">
-        <div class="flex-grow-1">
-            <a href="view_quotation.php?id=<?= $id ?>" class="text-decoration-none d-block">
-                <p class="fw-bold m-0"><?= htmlentities($quote['firstname'].' '.$quote['lastname']) ?></p>
-                <p class="m-0">Devis #: <?= htmlentities($quote['quote_number']) ?></p>
-                <p class="m-0">Date: <?= htmlentities($quote['quote_date']) ?></p>
-                <p class="m-0">Total TTC: <?= number_format($quote['total_ttc'],2,',',' ') ?> €</p>
+<li class="list-group-item position-relative">
+    <div class="flex-grow-1">
+        <a href="view_quotation.php?id=<?= $id ?>" class="text-decoration-none d-block">
+            <p class="fw-bold m-0"><?= htmlentities($quote['firstname'].' '.$quote['lastname']) ?></p>
+            <p class="m-0">Devis #: <?= htmlentities($quote['quote_number']) ?></p>
+            <p class="m-0">Date: <?= htmlentities($quote['quote_date']) ?></p>
+            <p class="m-0">Total TTC: <?= number_format($quote['total_ttc'],2,',',' ') ?> €</p>
+        </a>
+    </div>
+
+    <!-- Conteneur boutons + badge aligné à droite -->
+    <div class="position-absolute top-0 end-0 text-end m-2">
+        <!-- Boutons côte à côte -->
+        <div class="d-flex gap-2 justify-content-end mb-2">
+            <!-- Bouton modifier -->
+            <a href="views/administrator/update_quotation.php?id=<?= $id ?>"
+               class="btn btn-sm d-flex justify-content-center align-items-center"
+               style="width:40px; height:40px;"
+               title="Modifier le devis">
+                <i class="fa-solid fa-pen-to-square fa-beat"></i>
+            </a>
+
+            <!-- Bouton supprimer avec modal -->
+            <a href="#"
+               class="btn4 btn-sm rounded-circle d-flex justify-content-center align-items-center"
+               style="width:40px;height:40px;"
+               data-bs-toggle="modal"
+               data-bs-target="#deleteModal<?= $id ?>">
+                <i class="bi bi-x-lg"></i>
             </a>
         </div>
 
-        <!-- Badge statut -->
-        <span class="badge <?= $status_class ?> rounded-pill align-self-center"><?= ucfirst($quote['status']) ?></span>
-
-        <!-- Bouton supprimer avec modal -->
-        <a href="#" 
-           class="btn4 btn-sm rounded-circle d-flex justify-content-center align-items-center m-2 position-absolute top-0 end-0"
-           style="width:40px;height:40px;"
-           data-bs-toggle="modal"
-           data-bs-target="#deleteModal<?= $id ?>">
-            <i class="bi bi-x-lg"></i>
-        </a>
-    </li>
+        <!-- Badge statut sous les boutons -->
+        <div>
+            <span class="badge <?= $status_class ?> rounded-pill"><?= ucfirst($quote['status']) ?></span>
+        </div>
+    </div>
+</li>
 
     <!-- Modal suppression -->
     <div class="modal fade" id="deleteModal<?= $id ?>" tabindex="-1">
