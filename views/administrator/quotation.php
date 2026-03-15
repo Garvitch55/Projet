@@ -52,39 +52,77 @@ $currentUrl = basename($_SERVER['PHP_SELF']);
 
 ob_start();
 ?>
-
+<?php
+ob_start();
+require ROOT . "notification.php";
+$notification = ob_get_clean();
+?>
 <section class="m-4">
     <div class="d-flex justify-content-between align-items-center mt-3">
         <h1 class="text-orange-fonce mb-4">Liste des devis</h1>
-        <a href="/projet/views/administrator/parameter.php" class="btn text-white">
-            <i class="bi bi-arrow-left me-2"></i> Retour
-        </a>
+        <a href="/projet/views/administrator/settings/create_client.php" class="btn me-2 text-white">+</a>
     </div>
 
     <?php if (!empty($all_quotes)): ?>
         <ul class="list-group mb-3">
-            <?php foreach ($all_quotes as $quote):
-                $id = $quote['id_quote'];
-                $status_class = match($quote['status']) {
-                    'pending' => 'bg-warning',
-                    'signed' => 'bg-success',
-                    'cancelled' => 'bg-danger',
-                    default => 'bg-secondary'
-                };
-            ?>
-            <li class="list-group-item d-flex justify-content-between align-items-start">
-                <div class="flex-grow-1">
-                    <a href="view_quotation.php?id=<?= $id ?>" class="text-decoration-none d-block">
-                        <p class="fw-bold m-0"><?= htmlentities($quote['firstname'].' '.$quote['lastname']) ?></p>
-                        <p class="m-0">Devis #: <?= htmlentities($quote['quote_number']) ?></p>
-                        <p class="m-0">Date: <?= htmlentities($quote['quote_date']) ?></p>
-                        <p class="m-0">Total TTC: <?= number_format($quote['total_ttc'],2,',',' ') ?> €</p>
-                    </a>
+    <?php foreach ($all_quotes as $quote):
+        $id = $quote['id_quote'];
+        $status_class = match($quote['status']) {
+    'en attente' => 'bg-warning',
+    'signé' => 'bg-success',
+    'annulé' => 'bg-danger',
+            default => 'bg-secondary'
+        };
+    ?>
+    <li class="list-group-item d-flex justify-content-between align-items-start position-relative">
+        <div class="flex-grow-1">
+            <a href="view_quotation.php?id=<?= $id ?>" class="text-decoration-none d-block">
+                <p class="fw-bold m-0"><?= htmlentities($quote['firstname'].' '.$quote['lastname']) ?></p>
+                <p class="m-0">Devis #: <?= htmlentities($quote['quote_number']) ?></p>
+                <p class="m-0">Date: <?= htmlentities($quote['quote_date']) ?></p>
+                <p class="m-0">Total TTC: <?= number_format($quote['total_ttc'],2,',',' ') ?> €</p>
+            </a>
+        </div>
+
+        <!-- Badge statut -->
+        <span class="badge <?= $status_class ?> rounded-pill align-self-center"><?= ucfirst($quote['status']) ?></span>
+
+        <!-- Bouton supprimer avec modal -->
+        <a href="#" 
+           class="btn4 btn-sm rounded-circle d-flex justify-content-center align-items-center m-2 position-absolute top-0 end-0"
+           style="width:40px;height:40px;"
+           data-bs-toggle="modal"
+           data-bs-target="#deleteModal<?= $id ?>">
+            <i class="bi bi-x-lg"></i>
+        </a>
+    </li>
+
+    <!-- Modal suppression -->
+    <div class="modal fade" id="deleteModal<?= $id ?>" tabindex="-1">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header bg-gris-fonce text-white rounded-1">
+                    <h5 class="modal-title">Confirmation</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
                 </div>
-                <span class="badge <?= $status_class ?> rounded-pill align-self-center"><?= ucfirst($quote['status']) ?></span>
-            </li>
-            <?php endforeach; ?>
-        </ul>
+                <div class="modal-body">
+                    Êtes-vous sûr de vouloir supprimer le devis
+                    <strong><?= htmlentities($quote['quote_number']) ?></strong> du client
+                    <strong><?= htmlentities($quote['firstname'].' '.$quote['lastname']) ?></strong> ?
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn text-white" data-bs-dismiss="modal">Annuler</button>
+                    <form method="POST" action="/projet/controller/administrator/delete_quotation_ctrl.php">
+                        <input type="hidden" name="id_quote" value="<?= $id ?>">
+                        <button type="submit" class="btn btn-danger text-white">Supprimer</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <?php endforeach; ?>
+</ul>
 
         <!-- Pagination -->
         <?php if ($totalPages > 1): ?>

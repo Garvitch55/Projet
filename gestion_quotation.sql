@@ -1,3 +1,12 @@
+
+-- CREATION DE LA BASE DE DONNÉES --
+
+CREATE DATABASE IF NOT EXISTS gestion_entreprise
+    CHARACTER SET utf8mb4
+    COLLATE utf8mb4_general_ci;
+
+USE gestion_entreprise;
+
 -- ------------------------------------------------
 -- Table clients
 -- ------------------------------------------------
@@ -47,7 +56,7 @@ CREATE TABLE IF NOT EXISTS quotes (
     client_id INT NOT NULL,
     quote_number VARCHAR(50) NOT NULL,
     quote_date DATE NOT NULL,
-    status ENUM('pending','signed','cancelled') NOT NULL DEFAULT 'pending',
+    status ENUM('en attente','signé','annulé') NOT NULL DEFAULT 'en attente',
     total_ht DECIMAL(10,2) DEFAULT 0,
     total_vat DECIMAL(10,2) DEFAULT 0,
     total_ttc DECIMAL(10,2) DEFAULT 0,
