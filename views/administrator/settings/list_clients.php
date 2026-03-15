@@ -143,7 +143,6 @@ $notification = ob_get_clean();
                 <i class="bi bi-x-lg text-white"></i>
             </a>
         </div>
-
     </li>
 
     <!-- Modal suppression -->

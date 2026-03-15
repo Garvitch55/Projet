@@ -22,7 +22,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         // --------------------------------------------------------
         // 1️⃣ Vérification dans la table staff (admin/employé)
         // --------------------------------------------------------
-        $stmt = $pdo->prepare('SELECT * FROM gestion_personnel WHERE email = ?');
+        $stmt = $pdo->prepare('SELECT * FROM gestion_personnel WHERE mail = ?');
         $stmt->execute([$email]);
         $user = $stmt->fetch();
 

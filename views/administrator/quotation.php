@@ -87,24 +87,32 @@ $notification = ob_get_clean();
     <!-- Conteneur boutons + badge aligné à droite -->
     <div class="position-absolute top-0 end-0 text-end m-2">
         <!-- Boutons côte à côte -->
-        <div class="d-flex gap-2 justify-content-end mb-2">
-            <!-- Bouton modifier -->
-            <a href="views/administrator/update_quotation.php?id=<?= $id ?>"
-               class="btn3 btn-sm d-flex justify-content-center align-items-center rounded-1 text-white"
-               style="width:40px; height:40px;"
-               title="Modifier le devis">
-                <i class="fa-solid fa-pen-to-square fa-beat"></i>
-            </a>
+       <div class="d-flex gap-2 justify-content-end mb-2">
+    <!-- Bouton Télécharger le devis -->
+    <a href="views/administrator/download_quotation.php?id=<?= $id ?>"
+       class="btn3 btn-sm d-flex justify-content-center align-items-center rounded-1 text-white"
+       style="width:40px; height:40px;"
+       title="Télécharger le devis">
+        <i class="fa-solid fa-file-pdf fa-beat"></i>
+    </a>
 
-            <!-- Bouton supprimer avec modal -->
-            <a href="#"
-               class="btn3 btn-sm rounded-circle d-flex justify-content-center align-items-center text-white"
-               style="width:40px;height:40px;"
-               data-bs-toggle="modal"
-               data-bs-target="#deleteModal<?= $id ?>">
-                <i class="bi bi-x-lg"></i>
-            </a>
-        </div>
+    <!-- Bouton modifier -->
+    <a href="views/administrator/update_quotation.php?id=<?= $id ?>"
+       class="btn3 btn-sm d-flex justify-content-center align-items-center rounded-1 text-white"
+       style="width:40px; height:40px;"
+       title="Modifier le devis">
+        <i class="fa-solid fa-pen-to-square fa-beat"></i>
+    </a>
+
+    <!-- Bouton supprimer avec modal -->
+    <a href="#"
+       class="btn3 btn-sm rounded-circle d-flex justify-content-center align-items-center text-white"
+       style="width:40px;height:40px;"
+       data-bs-toggle="modal"
+       data-bs-target="#deleteModal<?= $id ?>">
+        <i class="bi bi-x-lg"></i>
+    </a>
+</div>
 
         <!-- Badge statut sous les boutons -->
         <div>
