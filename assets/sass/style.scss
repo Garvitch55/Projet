@@ -756,3 +756,16 @@ margin:0;
   background-color: inherit !important; /* garde la couleur du bouton parent */
   text-decoration: none;
 }
+
+
+.nav-link {
+  color: white;
+  border-radius: 0.25rem;
+
+  i {
+    margin-right: 0.5rem; // correspond à me-2
+    transition: transform 0.3s ease; // pour un effet plus fluide
+  }
+
+ 
+}

@@ -45,7 +45,26 @@ switch ($action) {
 }
 
 // ----------------- RÉCUPÉRATION DE TOUS LES MESSAGES -----------------
-$stmt = $pdo->query("SELECT * FROM contact ORDER BY created_at DESC");
+// ---------------- PAGINATION ----------------
+$currentPage = max(1, (int)($_GET['page'] ?? 1));
+$perPage = 10;
+$offset = ($currentPage - 1) * $perPage;
+
+// Compter le nombre total de messages
+$totalMessages = (int)$pdo->query("SELECT COUNT(*) FROM contact")->fetchColumn();
+$totalPages = ceil($totalMessages / $perPage);
+
+// Récupérer les messages pour la page
+$stmt = $pdo->prepare("
+    SELECT * FROM contact
+    ORDER BY created_at DESC
+    LIMIT :limit OFFSET :offset
+");
+
+$stmt->bindValue(':limit', $perPage, PDO::PARAM_INT);
+$stmt->bindValue(':offset', $offset, PDO::PARAM_INT);
+$stmt->execute();
+
 $all_messages = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
 // ----------------- RÉCUPÉRATION D'UN MESSAGE UNIQUE (pour view_message.php) -----------------

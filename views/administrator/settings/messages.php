@@ -100,7 +100,81 @@ ob_start();
     <?php else: ?>
         <p>Aucun message trouvé.</p>
     <?php endif; ?>
+<!-- Pagination -->
+<?php if ($totalPages > 1): ?>
+<nav class="mt-3">
+    <ul class="pagination justify-content-center">
 
+        <!-- Début -->
+        <li class="page-item">
+            <?php if($currentPage == 1): ?>
+                <span class="page-link bg-gris-fonce text-white">&laquo;&laquo;</span>
+            <?php else: ?>
+                <a class="page-link bg-orange-fonce text-white" href="/projet/views/administrator/settings/messages.php?page=1">&laquo;&laquo;</a>
+            <?php endif; ?>
+        </li>
+
+        <!-- Précédent -->
+        <li class="page-item">
+            <?php if($currentPage == 1): ?>
+                <span class="page-link bg-gris-fonce text-white">&laquo;</span>
+            <?php else: ?>
+                <a class="page-link bg-orange-fonce text-white" href="/projet/views/administrator/settings/messages.php?page=<?= max(1, $currentPage - 1) ?>">&laquo;</a>
+            <?php endif; ?>
+        </li>
+
+        <?php
+        $window = 5;
+        $start = max(1, $currentPage - 2);
+        $end = min($totalPages, $start + $window - 1);
+        if ($end - $start < $window - 1) {
+            $start = max(1, $end - $window + 1);
+        }
+        ?>
+
+        <?php if ($start > 1): ?>
+            <li class="page-item disabled">
+                <span class="page-link bg-light text-dark">...</span>
+            </li>
+        <?php endif; ?>
+
+        <?php for ($page = $start; $page <= $end; $page++): ?>
+            <li class="page-item">
+                <?php if($page == $currentPage): ?>
+                    <span class="page-link bg-orange-fonce text-white"><?= $page ?></span>
+                <?php else: ?>
+                    <a class="page-link bg-gris-fonce text-white" href="/projet/views/administrator/settings/messages.php?page=<?= $page ?>"><?= $page ?></a>
+                <?php endif; ?>
+            </li>
+        <?php endfor; ?>
+
+        <?php if ($end < $totalPages): ?>
+            <li class="page-item disabled">
+                <span class="page-link bg-light text-dark">...</span>
+            </li>
+        <?php endif; ?>
+
+        <!-- Suivant -->
+        <li class="page-item">
+            <?php if($currentPage == $totalPages): ?>
+                <span class="page-link bg-gris-fonce text-white">&raquo;</span>
+            <?php else: ?>
+                <a class="page-link bg-orange-fonce text-white" href="/projet/views/administrator/settings/messages.php?page=<?= min($totalPages, $currentPage + 1) ?>">&raquo;</a>
+            <?php endif; ?>
+        </li>
+
+        <!-- Fin -->
+        <li class="page-item">
+            <?php if($currentPage == $totalPages): ?>
+                <span class="page-link bg-gris-fonce text-white">&raquo;&raquo;</span>
+            <?php else: ?>
+                <a class="page-link bg-orange-fonce text-white" href="/projet/views/administrator/settings/messages.php?page=<?= $totalPages ?>">&raquo;&raquo;</a>
+            <?php endif; ?>
+        </li>
+
+    </ul>
+</nav>
+<?php endif; ?>
 </section>
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>

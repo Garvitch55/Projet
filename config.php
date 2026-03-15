@@ -1,6 +1,11 @@
 <?php
 
-if (session_status() === PHP_SESSION_NONE) {
+// --------------------------
+// SESSION
+// --------------------------
+// On ne démarre la session que si elle n'existe pas encore
+// ET que l'on n'est pas en ligne de commande (CLI)
+if (php_sapi_name() !== 'cli' && session_status() === PHP_SESSION_NONE) {
     session_start();
 }
 
@@ -14,81 +19,58 @@ function isUserLoggedIn(): bool
 }
 
 /**
- * Forcer la connexion pour une page : si non connecter -> redirection vers le login
+ * Forcer la connexion pour une page : si non connecté -> redirection vers le login
  */
 function requireLogin(): void
 {
     if (!isUserLoggedIn()) {
         header('Location: login.php?status=danger&message=Veillez vous connecter.');
+        exit;
     }
 }
 
 /**
  * Permet de faciliter l'écriture du nom et prénom d'une personne, à partir d'un tableau associatif
- * @param $assocArray
+ * @param array $assocArray
+ * @return string
  */
 function getFullName(array $assocArray): string
 {
     return $assocArray['firstname'] . ' ' . $assocArray['lastname'];
 }
 
-// On va définir l'adresse de la racine comme une variable global constante
+// On va définir l'adresse de la racine comme une variable globale constante
 define('ROOT', __DIR__ . '/');
 
-// Fonction qui charge le fichier
-
+/**
+ * Fonction qui charge un fichier relatif à la racine
+ * @param string|null $file
+ */
 function load(?string $file)
-{ //?string: string | null
+{ 
     require ROOT . $file;
 }
 
-function getPDO()
+/**
+ * Retourne un objet PDO connecté à la base de données
+ * @return PDO
+ */
+function getPDO(): PDO
 {
     $pdo = new PDO(
-        'mysql:host=localhost;dbname=gestion_entreprise;charset=utf8',
+        'mysql:host=localhost;dbname=gestion_entreprise;charset=utf8mb4',
         'root',
-        '',
+        ''
     );
     $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
     return $pdo;
 }
 
 /**
- * Détermine si un nom ou un mot commance par une voyelle et renvoie une bonne chaine adaptée.
- *
- * Cette fonction analyse la première lettre d'une chaine.
- * Véfirie si elle fait partie d'un ensemble de voyelles définies,
- * puis renvoie l'une des deux chaines passée en paramètres.
- * @param string $name Le mot ou le nom à analyser.
- * @param string $apo Chaine retourne si le nom commance par une consonne.
- * @param string $noApo Chaine retourne si le nom commance par une voyelle.
- *
- * @return string Retourne si $apo ou $noApo selon la première lettre du nom.
+ * Récupère le rôle de l'utilisateur connecté
+ * @return string|null
  */
-function firstLetterVowelDetector($name, $noApo, $apo): string
+function getUserRole(): ?string
 {
-    $vowels = ['a', 'e', 'i', 'o', 'u', 'é', 'è'];
-
-    //Ici, dans substr, on prend une string $name, on récupère à partir de l'index 0
-    // et on prend 1 seule lettre.
-    // et ensuite je le met en minuscule
-    $firstLetter = mb_strtolower(mb_substr($name, 0, 1));
-
-    //on vérifie si la première lettre est dans le tableau de voyelles
-    if (in_array($firstLetter, $vowels)) {
-        return $apo;
-    } else {
-        return $noApo;
-    }
-}
-
-
-
-// function isUserLoggedIn() {
-//     return isset($_SESSION['user_id']);
-// }
-
-function getUserRole()
-{
-    return $_SESSION['role'] ?? null; // "admin", "employe", "client"
+    return $_SESSION['role'] ?? null; // "administrateur", "employe", "client"
 }

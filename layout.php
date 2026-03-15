@@ -65,7 +65,7 @@ if (isUserLoggedIn() && getUserRole() === 'administrateur') {
             <!-- Cloche notifications -->
             <div class="dropdown me-3">
                 <a class="btn-cloche position-relative text-white" href="#" role="button" id="notificationDropdown" data-bs-toggle="dropdown" aria-expanded="false">
-                    <i class="bi bi-bell"></i>
+                    <i class="fa-solid fa-bell fa-shake"></i>
                     <?php if ($unread_count > 0): ?>
                         <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
                             <?= $unread_count ?>
@@ -184,27 +184,27 @@ if (isUserLoggedIn() && getUserRole() === 'administrateur') {
                     </div>
 
                     <li class="nav-item">
-                        <a class="nav-link rounded text-white <?= ($current_page=='dashboard.php') ? 'active' : '' ?>" href="views/administrator/dashboard.php"><i class="bi bi-speedometer2 me-2"></i> Tableau de bord</a>
+                        <a class="nav-link rounded text-white <?= ($current_page=='dashboard.php') ? 'active' : '' ?>" href="views/administrator/dashboard.php"><i class="fa-solid fa-chart-line fa-beat me-2"></i> Tableau de bord</a>
                     </li>
 
                     <li class="nav-item">
-                        <a class="nav-link rounded text-white <?= ($current_page=='customer.php') ? 'active' : '' ?>" href="views/administrator/customer.php"><i class="bi bi-people-fill me-2"></i> Clients</a>
+                        <a class="nav-link rounded text-white <?= ($current_page=='customer.php') ? 'active' : '' ?>" href="views/administrator/customer.php"><i class="fa-solid fa-users fa-beat  me-2"></i> Clients</a>
                     </li>
 
                     <li class="nav-item">
-                        <a class="nav-link rounded text-white <?= ($current_page=='project.php') ? 'active' : '' ?>" href="views/administrator/project.php"><i class="bi bi-building me-2"></i> Chantiers</a>
+                        <a class="nav-link rounded text-white <?= ($current_page=='project.php') ? 'active' : '' ?>" href="views/administrator/project.php"><i class="fa-solid fa-helmet-safety fa-beat  me-2"></i> Chantiers</a>
                     </li>
 
                     <li class="nav-item">
-                        <a class="nav-link rounded text-white <?= ($current_page=='quotation.php') ? 'active' : '' ?>" href="views/administrator/quotation.php"><i class="bi bi-receipt me-2"></i> Devis</a>
+                        <a class="nav-link rounded text-white <?= ($current_page=='quotation.php') ? 'active' : '' ?>" href="views/administrator/quotation.php"><i class="fa-solid fa-file-signature fa-beat me-2"></i> Devis</a>
                     </li>
 
                     <li class="nav-item">
-                        <a class="nav-link rounded text-white <?= ($current_page=='feature.php') ? 'active' : '' ?>" href="views/administrator/feature.php"><i class="bi bi-file-earmark-text me-2"></i> Factures</a>
+                        <a class="nav-link rounded text-white <?= ($current_page=='invoice.php') ? 'active' : '' ?>" href="views/administrator/invoice.php"><i class="fa-solid fa-file-invoice fa-bounce me-3"></i> Factures</a>
                     </li>
 
                     <li class="nav-item">
-                        <a class="nav-link rounded text-white <?= $is_param_active ? 'active' : '' ?>" href="views/administrator/parameter.php"><i class="bi bi-gear me-2"></i> Paramétrages</a>
+                        <a class="nav-link rounded text-white <?= $is_param_active ? 'active' : '' ?>" href="views/administrator/parameter.php"><i class="fa-solid fa-gear fa-spin-pulse me-2"></i> Paramétrages</a>
                     </li>
                 <?php endif; ?>
             <?php endif; ?>

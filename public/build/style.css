@@ -628,4 +628,13 @@ footer a:hover {
   text-decoration: none;
 }
 
+.nav-link {
+  color: white;
+  border-radius: 0.25rem;
+}
+.nav-link i {
+  margin-right: 0.5rem;
+  transition: transform 0.3s ease;
+}
+
 /*# sourceMappingURL=style.css.map */
