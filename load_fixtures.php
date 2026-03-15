@@ -4,6 +4,7 @@ $fixturesDir = __DIR__ . '/fixtures';
 
 // Liste des fichiers à exécuter dans l'ordre correct
 $fixtures = [
+    'tva_fixture.php',
     'contact_fixture.php',
     'client_fixture.php',
     'works_fixture.php',       // 50 ouvrages gros œuvre
@@ -19,7 +20,7 @@ foreach ($fixtures as $file) {
         continue;
     }
 
-    echo "1/ Chargement de $file...\n";
+    echo "0/ Chargement de $file...\n";
     require $path;
     echo "2/ $file terminé.\n\n";
 }

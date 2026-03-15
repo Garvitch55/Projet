@@ -136,11 +136,11 @@ $notification = ob_get_clean();
         <div class="d-flex gap-2 align-items-center">
             <!-- Bouton supprimer avec modal -->
             <a href="#" 
-               class="btn4 btn-sm rounded-circle d-flex justify-content-center align-items-center m-2 position-absolute top-0 end-0"
+               class="btn3 btn-sm rounded-circle d-flex justify-content-center align-items-center m-2 position-absolute top-0 end-0"
                style="width:40px;height:40px;"
                data-bs-toggle="modal"
                data-bs-target="#deleteModal<?= $id ?>">
-                <i class="bi bi-x-lg"></i>
+                <i class="bi bi-x-lg text-white"></i>
             </a>
         </div>
 

@@ -45,10 +45,11 @@ try {
     // ---------------------------
     // Préparer l'insertion dans quote_items
     // ---------------------------
-    $stmtItem = $pdo->prepare("
-        INSERT INTO quote_items (quote_id, description, quantity, unit_price, total_price, created_at)
-        VALUES (:quote_id, :description, :quantity, :unit_price, :total_price, :created_at)
-    ");
+   $stmtItem = $pdo->prepare("
+    INSERT INTO quote_items 
+    (quote_id, work_id, description, quantity, unit_price, total_price, created_at)
+    VALUES (:quote_id, :work_id, :description, :quantity, :unit_price, :total_price, :created_at)
+");
 
     // ---------------------------
     // Préparer la mise à jour des totaux dans quotes
@@ -73,14 +74,15 @@ try {
             $unitPrice = $work['unit_price'];
             $totalPrice = $quantity * $unitPrice;
 
-            $stmtItem->execute([
-                'quote_id' => $quote['id_quote'],
-                'description' => $work['name'],
-                'quantity' => $quantity,
-                'unit_price' => $unitPrice,
-                'total_price' => $totalPrice,
-                'created_at' => date('Y-m-d H:i:s')
-            ]);
+           $stmtItem->execute([
+    'quote_id' => $quote['id_quote'],
+    'work_id' => $work['id_work'],
+    'description' => $work['name'],
+    'quantity' => $quantity,
+    'unit_price' => $unitPrice,
+    'total_price' => $totalPrice,
+    'created_at' => date('Y-m-d H:i:s')
+]);
 
             $totalHT += $totalPrice;
         }

@@ -90,7 +90,7 @@ $notification = ob_get_clean();
         <div class="d-flex gap-2 justify-content-end mb-2">
             <!-- Bouton modifier -->
             <a href="views/administrator/update_quotation.php?id=<?= $id ?>"
-               class="btn btn-sm d-flex justify-content-center align-items-center"
+               class="btn3 btn-sm d-flex justify-content-center align-items-center rounded-1 text-white"
                style="width:40px; height:40px;"
                title="Modifier le devis">
                 <i class="fa-solid fa-pen-to-square fa-beat"></i>
@@ -98,7 +98,7 @@ $notification = ob_get_clean();
 
             <!-- Bouton supprimer avec modal -->
             <a href="#"
-               class="btn4 btn-sm rounded-circle d-flex justify-content-center align-items-center"
+               class="btn3 btn-sm rounded-circle d-flex justify-content-center align-items-center text-white"
                style="width:40px;height:40px;"
                data-bs-toggle="modal"
                data-bs-target="#deleteModal<?= $id ?>">
