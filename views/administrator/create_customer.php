@@ -1,12 +1,12 @@
 <?php
-require_once __DIR__ . '/../../../config.php';
-require_once __DIR__ . '/../../../head.php';
+require_once __DIR__ . '/../../config.php';
+require_once __DIR__ . '/../../head.php';
 // Inclure le controller pour traiter le formulaire
-require __DIR__ . '/../../../controller/administrator/create_client_ctrl.php';
+require __DIR__ . '/../../controller/administrator/create_customer_ctrl.php';
 
 // Vérifie si admin
 if (!isset($_SESSION['id']) || $_SESSION['role'] !== 'administrateur') {
-    header("Location: ../../../../index.php?status=danger&message=Accès refusé.");
+    header("Location: ../../../index.php?status=danger&message=Accès refusé.");
     exit;
 }
 
@@ -27,7 +27,7 @@ $notification = ob_get_clean();
     <div class="d-flex justify-content-between align-items-center mt-3">
         <h1 class="text-orange-fonce mb-4">Créer un nouveau client</h1>
 
-        <a href="/projet/views/administrator/settings/list_clients.php" class="btn text-white">
+        <a href="/projet/views/administrator/customer.php" class="btn text-white">
             <i class="bi bi-arrow-left me-2"></i> Retour
         </a>
     </div>
@@ -104,4 +104,4 @@ $notification = ob_get_clean();
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
 <?php
 $content = ob_get_clean();
-require __DIR__ . '/../../../layout.php';
+require __DIR__ . '/../../layout.php';

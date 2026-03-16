@@ -29,25 +29,25 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     // Vérification des champs obligatoires
       if (!$firstname || !$lastname || !$phone || !$email || !$email_confirm || !$password || !$password_confirm || !$rue || !$cp || !$ville || !$demande) {
         $message = urlencode("Tous les champs obligatoires doivent être remplis");
-        header("Location: ../../administrator/settings/create_client.php?status=danger&message=$message");
+        header("Location: ../../views/administrator/create_customer.php?status=danger&message=$message");
         exit;
     }
 
     if ($email !== $email_confirm) {
         $message = urlencode("Les emails ne correspondent pas");
-        header("Location: ../../administrator/settings/create_client.php?status=danger&message=$message");
+        header("Location: ../../views/administrator/create_customer.php?status=danger&message=$message");
         exit;
     }
 
     if ($password !== $password_confirm) {
         $message = urlencode("Les mots de passe ne correspondent pas");
-        header("Location: ../../administrator/settings/create_client.php?status=danger&message=$message");
+        header("Location: ../../views/administrator/create_customer.php?status=danger&message=$message");
         exit;
     }
 
     if (strlen($password) < 6) {
         $message = urlencode("Le mot de passe doit contenir au moins 6 caractères");
-        header("Location: ../../administrator/settings/create_client.php?status=danger&message=$message");
+        header("Location: ../../views/administrator/create_customer.php?status=danger&message=$message");
         exit;
     }
 
@@ -77,14 +77,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
           $message = urlencode("Le client a bien été créé avec succès");
 
-        header("Location: ../../administrator/settings/create_client.php?status=success&message=$message");
+        header("Location: ../../views/administrator/create_customer.php?status=success&message=$message");
         exit;
 
     } catch (PDOException $e) {
 
         $message = urlencode("Erreur : " . $e->getMessage());
 
-        header("Location: ../../administrator/settings/create_client.php?status=danger&message=$message");
+        header("Location: ../../views/administrator/create_customer.php?status=danger&message=$message");
         exit;
     }
 }
