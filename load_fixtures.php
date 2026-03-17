@@ -4,6 +4,7 @@ $fixturesDir = __DIR__ . '/fixtures';
 
 // Liste des fichiers à exécuter dans l'ordre correct
 $fixtures = [
+    'personnel_fixture.php',
     'tva_fixture.php',
     'contact_fixture.php',
     'client_fixture.php',

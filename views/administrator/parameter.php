@@ -78,9 +78,8 @@ $content = <<<HTML
          <i class="bi bi-chat-dots-fill me-2"></i>Gestion des Communications
       </div>
       <div class="card-body p-0">
-         <a class="nav-link w-100 p-2 menu-link" href="views/administrator/settings/messages.php">- liste des messages</a>
-         <a class="nav-link w-100 p-2 menu-link" href="views/administrator/dashboard.php">lien 2 crud</a>
-         <a class="nav-link w-100 p-2 menu-link" href="views/administrator/dashboard.php">lien 3 crud</a>
+         <a class="nav-link w-100 p-2 menu-link" href="views/administrator/settings/messages.php">- liste des messages des contacts</a>
+         <a class="nav-link w-100 p-2 menu-link" href="views/administrator/dashboard.php">- liste des messgaes clients</a>
       </div>
       <div class="card-footer bg-gris-fonce"></div>
    </div>
@@ -93,8 +92,10 @@ $content = <<<HTML
          <i class="bi bi-person-gear me-2"></i>Gestion des Utilisateurs
       </div>
       <div class="card-body p-0">
-         <a class="nav-link w-100 p-2 menu-link" href="views/administrator/dashboard.php">- utilisateurs internes</a>
+         <a class="nav-link w-100 p-2 menu-link" href="views/administrator/settings/list_staff.php">- utilisateurs internes</a>
          <a class="nav-link w-100 p-2 menu-link" href="views/administrator/dashboard.php">- utilisateurs clients</a>
+          <a class="nav-link w-100 p-3 menu-link" href="views/administrator/dashboard.php"> 
+          </a>
       </div>
       <div class="card-footer bg-gris-fonce"></div>
    </div>

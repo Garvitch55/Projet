@@ -58,7 +58,7 @@ $statuses = ['brouillon', 'envoyée', 'payée', 'annulée'];
 $invoiceCounter = 1;
 
 // ---------------------------
-// 1️⃣ Générer au moins 3 factures par client
+// Générer au moins 3 factures par client
 // ---------------------------
 foreach ($clients as $client) {
     for ($i = 0; $i < 3; $i++) {
@@ -123,7 +123,7 @@ foreach ($clients as $client) {
 }
 
 // ---------------------------
-// 2️⃣ Générer des factures aléatoires supplémentaires pour atteindre 90
+// Générer des factures aléatoires supplémentaires pour atteindre 90
 // ---------------------------
 $remaining = 90 - $invoiceCounter + 1;
 for ($i = 0; $i < $remaining; $i++) {

@@ -184,10 +184,10 @@ $content = <<<HTML
 
     <div class="d-flex flex-column flex-md-row gap-4">
         <div class="flex-md-2" style="flex: 2;">
-            <h6 class="fw-bold text-orange-fonce text-decoration-underline mb-2">Adresse</h6>
+            <h6 class="fw-bold text-orange-fonce text-decoration-underline mb-2">Adresse :</h6>
             <p class="pb-2">15 Allée du Pré l'évêque<br>55100 VERDUN, France</p>
 
-            <h6 class="fw-bold text-orange-fonce text-decoration-underline mb-2">Téléphone</h6>
+            <h6 class="fw-bold text-orange-fonce text-decoration-underline mb-2">Téléphone :</h6>
             <p class="pb-2">+33 3 29 45 67 89</p>
 
             <h6 class="fw-bold text-orange-fonce text-decoration-underline mb-2">Email :</h6>
