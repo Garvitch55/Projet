@@ -38,6 +38,7 @@ $content = <<<HTML
       <div class="card-body p-0">
          <a class="nav-link w-100 p-2 menu-link" href="views/administrator/dashboard.php">- liste des moyens de paiements</a>
          <a class="nav-link w-100 p-2 menu-link" href="views/administrator/dashboard.php">- liste des TVA</a>
+         <a class="nav-link w-100 p-2 menu-link" href="views/administrator/dashboard.php">- liste des terms</a>
       </div>
       <div class="card-footer bg-gris-fonce"></div>
    </div>

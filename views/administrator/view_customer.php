@@ -83,31 +83,44 @@ ob_start();
         <h3 class="text-gris-fonce text-decoration-underline">Devis du client:</h3>
         <?php if (!empty($quotes)): ?>
             <ul class="list-group text-white">
-                <?php foreach ($quotes as $quote): ?>
-                <li class="list-group-item position-relative">
-                    <div class="flex-grow-1 p-3">
-                        <p class="fw-bold m-0">Devis: <?= htmlentities($quote['quote_number']) ?></p>
-                        <p class="m-0"><b>Date:</b> <?= htmlentities($quote['quote_date']) ?></p>
-                        <p class="m-0"><b>Total TTC:</b> <?= number_format($quote['total_ttc'],2,',',' ') ?> €</p>
-                    </div>
+               <?php foreach ($quotes as $quote): ?>
+<li class="list-group-item position-relative">
+    <div class="flex-grow-1 p-3">
+        <p class="fw-bold m-0">Devis: <?= htmlentities($quote['quote_number']) ?></p>
+        <p class="m-0"><b>Date:</b> <?= htmlentities($quote['quote_date']) ?></p>
+        <p class="m-0"><b>Total TTC:</b> <?= number_format($quote['total_ttc'],2,',',' ') ?> €</p>
+    </div>
 
-                    <!-- Boutons à droite -->
-                    <div class="position-absolute top-0 end-0 text-end m-2 d-flex gap-2">
-                        <a href="download_quotation.php?id=<?= $quote['id_quote'] ?>"
-                           class="btn3 btn-sm d-flex justify-content-center align-items-center rounded-1 text-white"
-                           style="width:40px;height:40px;"
-                           title="Télécharger le devis">
-                            <i class="fa-solid fa-file-pdf fa-beat"></i>
-                        </a>
-                        <a href="update_quote.php?id=<?= $quote['id_quote'] ?>"
-                           class="btn3 btn-sm d-flex justify-content-center align-items-center rounded-1 text-white"
-                           style="width:40px;height:40px;"
-                           title="Modifier le devis">
-                            <i class="fa-solid fa-pen-to-square fa-beat"></i>
-                        </a>
-                    </div>
-                </li>
-                <?php endforeach; ?>
+    <!-- Boutons + badge -->
+    <div class="position-absolute top-0 end-0 text-end m-2">
+        <div class="d-flex gap-2 justify-content-end mb-2">
+            <a href="views/administrator/download_quotation.php?id=<?= $quote['id_quote'] ?>"
+               class="btn3 btn-sm d-flex justify-content-center align-items-center rounded-1 text-white"
+               style="width:40px;height:40px;" title="Télécharger le devis">
+                <i class="fa-solid fa-file-pdf fa-beat"></i>
+            </a>
+            <a href="views/administrator/update_quotation.php?id=<?= $quote['id_quote'] ?>"
+               class="btn3 btn-sm d-flex justify-content-center align-items-center rounded-1 text-white"
+               style="width:40px;height:40px;" title="Modifier le devis">
+                <i class="fa-solid fa-pen-to-square fa-beat"></i>
+            </a>
+        </div>
+
+        <?php
+        // Couleur du badge selon le statut
+        switch ($quote['status']) {
+            case 'signé': $status_class = 'bg-success'; break;
+            case 'annulé': $status_class = 'bg-danger'; break;
+            case 'en attente':
+            default: $status_class = 'bg-warning'; break;
+        }
+        ?>
+        <div>
+            <span class="badge <?= $status_class ?> rounded-pill"><?= ucfirst($quote['status']) ?></span>
+        </div>
+    </div>
+</li>
+<?php endforeach; ?>
             </ul>
         <?php else: ?>
             <p>Aucun devis trouvé pour ce client.</p>
@@ -120,31 +133,45 @@ ob_start();
         <?php if (!empty($invoices)): ?>
             <ul class="list-group text-white">
                 <?php foreach ($invoices as $invoice): ?>
-                <li class="list-group-item position-relative">
-                    <div class="flex-grow-1  p-3">
-                        <p class="fw-bold m-0">Facture: <?= htmlentities($invoice['invoice_number']) ?></p>
-                        <p class="m-0"><b>Date:</b> <?= htmlentities($invoice['invoice_date']) ?></p>
-                        <p class="m-0"><b>Échéance:</b> <?= htmlentities($invoice['due_date']) ?></p>
-                        <p class="m-0"><b>Total TTC:</b> <?= number_format($invoice['total_ttc'],2,',',' ') ?> €</p>
-                    </div>
+<li class="list-group-item position-relative">
+    <div class="flex-grow-1 p-3">
+        <p class="fw-bold m-0">Facture: <?= htmlentities($invoice['invoice_number']) ?></p>
+        <p class="m-0"><b>Date:</b> <?= htmlentities($invoice['invoice_date']) ?></p>
+        <p class="m-0"><b>Échéance:</b> <?= htmlentities($invoice['due_date']) ?></p>
+        <p class="m-0"><b>Total TTC:</b> <?= number_format($invoice['total_ttc'],2,',',' ') ?> €</p>
+    </div>
 
-                    <!-- Boutons à droite -->
-                    <div class="position-absolute top-0 end-0 text-end m-2 d-flex gap-2">
-                        <a href="download_invoice.php?id=<?= $invoice['id_invoice'] ?>"
-                           class="btn3 btn-sm d-flex justify-content-center align-items-center rounded-1 text-white"
-                           style="width:40px;height:40px;"
-                           title="Télécharger la facture">
-                            <i class="fa-solid fa-file-pdf fa-beat"></i>
-                        </a>
-                        <a href="update_invoice.php?id=<?= $invoice['id_invoice'] ?>"
-                           class="btn3 btn-sm d-flex justify-content-center align-items-center rounded-1 text-white"
-                           style="width:40px;height:40px;"
-                           title="Modifier la facture">
-                            <i class="fa-solid fa-pen-to-square fa-beat"></i>
-                        </a>
-                    </div>
-                </li>
-                <?php endforeach; ?>
+    <!-- Boutons + badge -->
+    <div class="position-absolute top-0 end-0 text-end m-2">
+        <div class="d-flex gap-2 justify-content-end mb-2">
+            <a href="views/administrator/download_invoice.php?id=<?= $invoice['id_invoice'] ?>"
+               class="btn3 btn-sm d-flex justify-content-center align-items-center rounded-1 text-white"
+               style="width:40px;height:40px;" title="Télécharger la facture">
+                <i class="fa-solid fa-file-pdf fa-beat"></i>
+            </a>
+            <a href="views/administrator/update_invoice.php?id=<?= $invoice['id_invoice'] ?>"
+               class="btn3 btn-sm d-flex justify-content-center align-items-center rounded-1 text-white"
+               style="width:40px;height:40px;" title="Modifier la facture">
+                <i class="fa-solid fa-pen-to-square fa-beat"></i>
+            </a>
+        </div>
+
+        <?php
+        // Couleur du badge selon le statut
+        switch ($invoice['status']) {
+            case 'payée': $status_class = 'bg-success'; break;
+            case 'annulée': $status_class = 'bg-danger'; break;
+            case 'brouillon': $status_class = 'bg-warning'; break;
+            case 'envoyée': $status_class = 'bg-primary'; break;
+            default: $status_class = 'bg-secondary'; break;
+        }
+        ?>
+        <div>
+            <span class="badge <?= $status_class ?> rounded-pill"><?= ucfirst($invoice['status']) ?></span>
+        </div>
+    </div>
+</li>
+<?php endforeach; ?>
             </ul>
         <?php else: ?>
             <p>Aucune facture trouvée pour ce client.</p>
