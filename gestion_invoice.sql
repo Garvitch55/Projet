@@ -21,7 +21,7 @@ CREATE TABLE IF NOT EXISTS invoices (
     invoice_date DATE NOT NULL,
     due_date DATE NOT NULL,
 
-    status ENUM('brouillon','envoyée','payée','annulée') 
+    status ENUM('brouillon','en attente de paiement','payée','annulée') 
     DEFAULT 'brouillon',
 
     total_ht DECIMAL(10,2) DEFAULT 0,

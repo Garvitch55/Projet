@@ -7,12 +7,13 @@ $fixtures = [
     'personnel_fixture.php',
     'tva_fixture.php',
     'contact_fixture.php',
-    'client_fixture.php',
+    'customer_fixture.php',
     'works_fixture.php',        // 50 ouvrages gros œuvre
     'quotes_fixture.php',       // devis liés aux clients existants
     'quote_items_fixture.php',  // lignes de devis et calculs totaux
     'invoices_fixture.php',     // factures liées aux clients et devis signés
-    'invoice_items_fixture.php' // lignes de factures et calculs totaux
+    'invoice_items_fixture.php', // lignes de factures et calculs totaux
+    'adrien_jury_fixtures.php'
 ];
 
 foreach ($fixtures as $file) {

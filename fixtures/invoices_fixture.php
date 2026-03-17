@@ -54,7 +54,7 @@ $stmtItem = $pdo->prepare("
 // ---------------------------
 // Statuts en français pour les factures
 // ---------------------------
-$statuses = ['brouillon', 'envoyée', 'payée', 'annulée'];
+$statuses = ['brouillon', 'en attente de paiement', 'payée', 'annulée'];
 $invoiceCounter = 1;
 
 // ---------------------------

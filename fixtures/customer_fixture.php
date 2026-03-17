@@ -48,6 +48,44 @@ try {
     // ---------------------------
     $pdo->beginTransaction();
 
+// ---------------------------
+// INSERT ADMIN PAR DEFAUT
+// ---------------------------
+
+$stmt->execute([
+    'Adrien',
+    'Garnier',
+    null, // birthdate
+    '062424584184',
+    'adrien-garnier1@orange.fr',
+    '15 allée du pré l\'évêque',
+    '55100',
+    'Verdun',
+    'Compte client administrateur',
+    password_hash('Garvitch_55100', PASSWORD_DEFAULT)
+]);
+
+$stmt->execute([
+    'Jury',
+    'Web Dev',
+    null,
+    '0600000000',
+    'jury-web1@dev.fr',
+    'rue de l\'ALAJI',
+    '55100',
+    'Verdun',
+    'Compte client administrateur',
+    password_hash('Jury_web', PASSWORD_DEFAULT)
+]);
+
+
+
+
+
+
+
+
+
     for ($i = 0; $i < 200; $i++) {
         $firstname = $faker->firstName();
         $lastname = $faker->lastName();

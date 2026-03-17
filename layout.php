@@ -171,10 +171,14 @@ if (isUserLoggedIn() && getUserRole() === 'administrateur') {
                         <h6>ESPACE CLIENT</h6>
                     </div>
                     <li class="nav-item">
-                        <a class="nav-link rounded text-white <?= ($current_page=='client_dashboard.php') ? 'active' : '' ?>" href="#"><i class="bi bi-speedometer2 me-2"></i>Tableau de bord</a>
+                        <a class="nav-link rounded text-white <?= ($current_page=='dashboard.php') ? 'active' : '' ?>" href="views/customer/dashboard.php"><i class="fa-solid fa-chart-line fa-beat me-2"></i>Tableau de bord</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link rounded text-white <?= ($current_page=='client_settings.php') ? 'active' : '' ?>" href="#"><i class="bi bi-gear me-2"></i>Paramétrages</a>
+                        <a class="nav-link rounded text-white <?= ($current_page=='quotation.php') ? 'active' : '' ?>" href="views/customer/quotation.php"><i class="fa-solid fa-file-signature fa-beat me-2"></i> Devis</a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link rounded text-white <?= ($current_page=='invoice.php') ? 'active' : '' ?>" href="views/customer/invoice.php"><i class="fa-solid fa-file-invoice fa-bounce me-3"></i> Factures</a>
                     </li>
 
                 <!-- ADMIN -->

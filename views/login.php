@@ -30,7 +30,7 @@ $content = <<<HTML
                     <button type="submit" class="btn w-50 text-white"> Connexion  </button>
                 </div>
                 <div class="text-center p-2">
-                    <a class="text-gris-fonce" href="views/auth/add_client_form.php">Inscription</a>
+                    <a class="text-gris-fonce" href="views/auth/add_customer.php">Inscription</a>
                 </div>
             </form>
 
