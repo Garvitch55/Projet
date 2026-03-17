@@ -79,7 +79,7 @@ $notification = ob_get_clean();
         ?>
         <li class="list-group-item position-relative">
             <div class="flex-grow-1">
-                <a href="view_invoice.php?id=<?= $id ?>" class="text-decoration-none d-block">
+                <a href="views/administrator/download_invoice.php?id=<?= $id ?>" class="text-decoration-none d-block">
                     <p class="fw-bold m-0"><?= htmlentities($invoice['firstname'].' '.$invoice['lastname']) ?></p>
                     <p class="m-0">Facture #: <?= htmlentities($invoice['invoice_number']) ?></p>
                     <p class="m-0">Date: <?= htmlentities($invoice['invoice_date']) ?></p>

@@ -76,7 +76,7 @@ $notification = ob_get_clean();
     ?>
 <li class="list-group-item position-relative">
     <div class="flex-grow-1">
-        <a href="view_quotation.php?id=<?= $id ?>" class="text-decoration-none d-block">
+        <a href="views/administrator/download_quotation.php?id=<?= $id ?>" class="text-decoration-none d-block">
             <p class="fw-bold m-0"><?= htmlentities($quote['firstname'].' '.$quote['lastname']) ?></p>
             <p class="m-0">Devis #: <?= htmlentities($quote['quote_number']) ?></p>
             <p class="m-0">Date: <?= htmlentities($quote['quote_date']) ?></p>
