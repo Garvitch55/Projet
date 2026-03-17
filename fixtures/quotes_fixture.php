@@ -13,7 +13,8 @@ $pdo->exec("DELETE FROM quote_items");
 $pdo->exec("DELETE FROM quotes");
 
 echo "Chargement de quotes_fixture.php avec taux TVA aléatoire...\n";
-
+$clients = $pdo->query("SELECT id_client FROM gestion_client")->fetchAll(PDO::FETCH_ASSOC);
+echo "Nombre de clients trouvés : " . count($clients) . "\n";
 // Clients
 $clients = $pdo->query("SELECT id_client FROM gestion_client")->fetchAll(PDO::FETCH_ASSOC);
 if (empty($clients)) die("Aucun client trouvé.\n");
@@ -41,52 +42,57 @@ $stmtItem = $pdo->prepare("
 ");
 
 $statuses = ['en attente', 'signé', 'annulé'];
+$quoteCounter = 1;
 
-for ($i = 0; $i < 30; $i++) {
-    $client = $faker->randomElement($clients);
-    $status = $faker->randomElement($statuses);
+// ✅ Boucle sur chaque client
+foreach ($clients as $client) {
+    // Minimum 3 devis par client
+    for ($i = 0; $i < 3; $i++) {
+        $status = $faker->randomElement($statuses);
+        $tva = $faker->randomElement($tvas);
+        $tvaRate = $tva['rate'];
 
-    // Choisir aléatoirement un taux de TVA (juste le rate)
-    $tva = $faker->randomElement($tvas);
-    $tvaRate = $tva['rate'];
-
-    // Insérer le devis avec HT = 0 pour l'instant et total_vat = taux
-    $stmtQuote->execute([
-        'client_id'    => $client['id_client'],
-        'quote_number' => 'Q-' . str_pad($i + 1, 4, '0', STR_PAD_LEFT),
-        'quote_date'   => $faker->dateTimeBetween('-1 year', 'now')->format('Y-m-d'),
-        'status'       => $status,
-        'total_ht'     => 0,
-        'total_vat'    => $tvaRate,  // juste pour pré-remplir le select
-        'total_ttc'    => 0,
-        'created_at'   => date('Y-m-d H:i:s')
-    ]);
-
-    $quoteId = $pdo->lastInsertId();
-    $totalHT = 0;
-
-    $nbLines = $faker->numberBetween(1, 5);
-    for ($j = 0; $j < $nbLines; $j++) {
-        $work = $faker->randomElement($works);
-        $quantity = $faker->numberBetween(1, 10);
-        $lineTotal = $work['unit_price'] * $quantity;
-        $totalHT += $lineTotal;
-
-        $stmtItem->execute([
-            'quote_id'    => $quoteId,
-            'work_id'     => $work['id_work'],
-            'description' => $work['name'],
-            'quantity'    => $quantity,
-            'unit_price'  => $work['unit_price'],
-            'total_price' => $lineTotal, // juste HT
-            'created_at'  => date('Y-m-d H:i:s')
+        // Insérer le devis
+        $stmtQuote->execute([
+            'client_id'    => $client['id_client'],
+            'quote_number' => 'Q-' . str_pad($quoteCounter, 4, '0', STR_PAD_LEFT),
+            'quote_date'   => $faker->dateTimeBetween('-1 year', 'now')->format('Y-m-d'),
+            'status'       => $status,
+            'total_ht'     => 0,
+            'total_vat'    => $tvaRate,  // juste pour pré-remplir
+            'total_ttc'    => 0,
+            'created_at'   => date('Y-m-d H:i:s')
         ]);
-    }
 
-    // Mettre à jour le HT dans le devis
-    $pdo->prepare("UPDATE quotes SET total_ht = ? WHERE id_quote = ?")
-        ->execute([$totalHT, $quoteId]);
+        $quoteId = $pdo->lastInsertId();
+        $totalHT = 0;
+
+        $nbLines = $faker->numberBetween(1, 5);
+        for ($j = 0; $j < $nbLines; $j++) {
+            $work = $faker->randomElement($works);
+            $quantity = $faker->numberBetween(1, 10);
+            $lineTotal = $work['unit_price'] * $quantity;
+            $totalHT += $lineTotal;
+
+            $stmtItem->execute([
+                'quote_id'    => $quoteId,
+                'work_id'     => $work['id_work'],
+                'description' => $work['name'],
+                'quantity'    => $quantity,
+                'unit_price'  => $work['unit_price'],
+                'total_price' => $lineTotal,
+                'created_at'  => date('Y-m-d H:i:s')
+            ]);
+        }
+
+        // Mettre à jour le HT et TTC
+        $totalVAT = $totalHT * ($tvaRate / 100);
+        $totalTTC = $totalHT + $totalVAT;
+        $pdo->prepare("UPDATE quotes SET total_ht = ?, total_vat = ?, total_ttc = ? WHERE id_quote = ?")
+            ->execute([$totalHT, $totalVAT, $totalTTC, $quoteId]);
+
+        $quoteCounter++;
+    }
 }
 
-echo "30 devis générés avec succès avec taux TVA aléatoire (5.5, 10, 20, 0) pour affichage.\n";
-echo "quotes_fixture.php terminé.\n";
+echo count($clients) * 3 . " devis générés avec succès (minimum 3 par client).\n";

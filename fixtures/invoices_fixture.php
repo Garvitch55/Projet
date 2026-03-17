@@ -55,12 +55,78 @@ $stmtItem = $pdo->prepare("
 // Statuts en français pour les factures
 // ---------------------------
 $statuses = ['brouillon', 'envoyée', 'payée', 'annulée'];
+$invoiceCounter = 1;
 
 // ---------------------------
-// Générer 30 factures
+// 1️⃣ Générer au moins 3 factures par client
 // ---------------------------
-for ($i = 0; $i < 30; $i++) {
+foreach ($clients as $client) {
+    for ($i = 0; $i < 3; $i++) {
 
+        // Choisir un devis signé pour ce client à 70% ou null sinon
+        $clientQuotes = array_filter($quotes, fn($q) => $q['client_id'] == $client['id_client']);
+        if (!empty($clientQuotes) && $faker->boolean(70)) {
+            $quote = $faker->randomElement($clientQuotes);
+            $quoteId = $quote['id_quote'];
+        } else {
+            $quoteId = null;
+        }
+
+        $status = $faker->randomElement($statuses);
+        $invoiceDate = $faker->dateTimeBetween('-1 year', 'now')->format('Y-m-d');
+        $dueDate = date('Y-m-d', strtotime($invoiceDate . ' +30 days'));
+
+        // Insérer la facture
+        $stmtInvoice->execute([
+            'quote_id'       => $quoteId,
+            'client_id'      => $client['id_client'],
+            'invoice_number' => 'FAC-2025-' . str_pad($invoiceCounter, 4, '0', STR_PAD_LEFT),
+            'invoice_date'   => $invoiceDate,
+            'due_date'       => $dueDate,
+            'status'         => $status,
+            'total_ht'       => 0,
+            'total_vat'      => 0,
+            'total_ttc'      => 0,
+            'created_at'     => date('Y-m-d H:i:s')
+        ]);
+
+        $invoiceId = $pdo->lastInsertId();
+        $totalHT = 0;
+
+        // 1 à 5 lignes de facture
+        $nbLines = $faker->numberBetween(1, 5);
+        for ($j = 0; $j < $nbLines; $j++) {
+            $work = $faker->randomElement($works);
+            $quantity = $faker->numberBetween(1, 10);
+            $lineTotal = $work['unit_price'] * $quantity;
+            $totalHT += $lineTotal;
+
+            $stmtItem->execute([
+                'invoice_id'  => $invoiceId,
+                'work_id'     => $work['id_work'],
+                'description' => $work['name'],
+                'quantity'    => $quantity,
+                'unit_price'  => $work['unit_price'],
+                'total_price' => $lineTotal,
+                'created_at'  => date('Y-m-d H:i:s')
+            ]);
+        }
+
+        // Totaux
+        $totalVAT = 0;
+        $totalTTC = $totalHT;
+        $pdo->prepare("UPDATE invoices SET total_ht = ?, total_vat = ?, total_ttc = ? WHERE id_invoice = ?")
+            ->execute([$totalHT, $totalVAT, $totalTTC, $invoiceId]);
+
+        $invoiceCounter++;
+    }
+}
+
+// ---------------------------
+// 2️⃣ Générer des factures aléatoires supplémentaires pour atteindre 90
+// ---------------------------
+$remaining = 90 - $invoiceCounter + 1;
+for ($i = 0; $i < $remaining; $i++) {
     // Choisir un devis signé à 70% ou un client aléatoire sinon
     if (!empty($quotes) && $faker->boolean(70)) {
         $quote = $faker->randomElement($quotes);
@@ -76,24 +142,22 @@ for ($i = 0; $i < 30; $i++) {
     $invoiceDate = $faker->dateTimeBetween('-1 year', 'now')->format('Y-m-d');
     $dueDate = date('Y-m-d', strtotime($invoiceDate . ' +30 days'));
 
-    // Insérer la facture avec totaux initiaux à 0
     $stmtInvoice->execute([
-        'quote_id'      => $quoteId,
-        'client_id'     => $clientId,
-        'invoice_number'=> 'FAC-2025-' . str_pad($i + 1, 4, '0', STR_PAD_LEFT),
-        'invoice_date'  => $invoiceDate,
-        'due_date'      => $dueDate,
-        'status'        => $status,
-        'total_ht'      => 0,
-        'total_vat'     => 0,
-        'total_ttc'     => 0,
-        'created_at'    => date('Y-m-d H:i:s')
+        'quote_id'       => $quoteId,
+        'client_id'      => $clientId,
+        'invoice_number' => 'FAC-2025-' . str_pad($invoiceCounter, 4, '0', STR_PAD_LEFT),
+        'invoice_date'   => $invoiceDate,
+        'due_date'       => $dueDate,
+        'status'         => $status,
+        'total_ht'       => 0,
+        'total_vat'      => 0,
+        'total_ttc'      => 0,
+        'created_at'     => date('Y-m-d H:i:s')
     ]);
 
     $invoiceId = $pdo->lastInsertId();
     $totalHT = 0;
 
-    // Générer 1 à 5 lignes de facture
     $nbLines = $faker->numberBetween(1, 5);
     for ($j = 0; $j < $nbLines; $j++) {
         $work = $faker->randomElement($works);
@@ -101,7 +165,6 @@ for ($i = 0; $i < 30; $i++) {
         $lineTotal = $work['unit_price'] * $quantity;
         $totalHT += $lineTotal;
 
-        // Insérer la ligne
         $stmtItem->execute([
             'invoice_id'  => $invoiceId,
             'work_id'     => $work['id_work'],
@@ -113,14 +176,13 @@ for ($i = 0; $i < 30; $i++) {
         ]);
     }
 
-    // Total TTC = HT pour l'instant, TVA = 0
     $totalVAT = 0;
     $totalTTC = $totalHT;
-
-    // Mettre à jour la facture avec les totaux calculés
     $pdo->prepare("UPDATE invoices SET total_ht = ?, total_vat = ?, total_ttc = ? WHERE id_invoice = ?")
         ->execute([$totalHT, $totalVAT, $totalTTC, $invoiceId]);
+
+    $invoiceCounter++;
 }
 
-echo "30 factures générées avec succès, liées aux clients et aux devis signés.\n";
+echo count($clients)*3 . " factures minimum générées pour chaque client + factures supplémentaires pour atteindre 90.\n";
 echo "invoices_fixture.php terminé.\n";

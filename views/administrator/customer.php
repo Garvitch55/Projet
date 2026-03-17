@@ -89,9 +89,6 @@ $notification = ob_get_clean();
     <h1 class="text-orange-fonce mb-4">Liste des clients</h1>
     <div>
         <a href="/projet/views/administrator/create_customer.php" class="btn me-2 text-white"><i class="fa-solid fa-plus fa-beat"></i></a>
-        <a href="/projet/views/administrator/parameter.php" class="btn text-white">
-            <i class="bi bi-arrow-left me-2"></i> Retour
-        </a>
     </div>
 </div>
 
@@ -127,27 +124,54 @@ $notification = ob_get_clean();
     <?php foreach ($all_clients as $client):
         $id = $client['id_client'];
     ?>
-    <li class="list-group-item d-flex justify-content-between align-items-start">
+<li class="list-group-item position-relative">
 
-        <div class="flex-grow-1">
-            <a href="/projet/views/administrator/settings/view_client.php?id=<?= $id ?>" class="text-decoration-none d-block">
-                <p class="fw-bold m-0"><?= htmlentities($client['firstname'].' '.$client['lastname']) ?></p>
-                <p class="m-0"><?= htmlentities($client['email']) ?></p>
-                <p class="m-0"><?= htmlentities($client['phone']) ?></p>
+    <!-- Infos principales du client -->
+    <div class="flex-grow-1">
+        <a href="/projet/views/administrator/view_customer.php?id=<?= $id ?>" class="text-decoration-none d-block">
+            <p class="fw-bold m-0"><?= htmlentities($client['firstname'].' '.$client['lastname']) ?></p>
+            <p class="m-0"><?= htmlentities($client['email']) ?></p>
+            <p class="m-0"><?= htmlentities($client['phone']) ?></p>
+        </a>
+    </div>
+
+    <!-- Conteneur boutons aligné à droite -->
+    <div class="position-absolute top-0 end-0 text-end m-2">
+        <div class="d-flex gap-2 justify-content-end mb-2">
+
+            <!-- Bouton View -->
+            <a href="/projet/views/administrator/view_customer.php?id=<?= $id ?>"
+               class="btn3 btn-sm d-flex justify-content-center align-items-center rounded-1 text-white"
+               style="width:40px; height:40px;"
+               title="Voir le client">
+                <i class="fa-solid fa-eye fa-beat"></i>
             </a>
-        </div>
 
-        <div class="d-flex gap-2 align-items-center">
-            <!-- Bouton supprimer avec modal -->
-            <a href="#" 
-               class="btn3 btn-sm rounded-circle d-flex justify-content-center align-items-center m-2 position-absolute top-0 end-0"
+            <!-- Bouton Modifier -->
+            <a href="/projet/views/administrator/update_customer.php?id=<?= $id ?>"
+               class="btn3 btn-sm d-flex justify-content-center align-items-center rounded-1 text-white"
+               style="width:40px; height:40px;"
+               title="Modifier le client">
+                <i class="fa-solid fa-pen-to-square fa-beat"></i>
+            </a>
+
+            <!-- Bouton Supprimer -->
+            <a href="#"
+               class="btn3 btn-sm rounded-circle d-flex justify-content-center align-items-center text-white"
                style="width:40px;height:40px;"
                data-bs-toggle="modal"
-               data-bs-target="#deleteModal<?= $id ?>">
-                <i class="bi bi-x-lg text-white"></i>
+               data-bs-target="#deleteModal<?= $id ?>"
+               title="Supprimer le client">
+                <i class="bi bi-x-lg"></i>
             </a>
         </div>
-    </li>
+
+        <!-- Badge rôle ou statut -->
+        <div>
+            <span class="badge bg-success rounded-pill"><?= ucfirst($client['role'] ?? 'client') ?></span>
+        </div>
+    </div>
+</li>
 
     <!-- Modal suppression -->
     <div class="modal fade" id="deleteModal<?= $id ?>" tabindex="-1">
@@ -163,7 +187,7 @@ $notification = ob_get_clean();
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn text-white" data-bs-dismiss="modal">Annuler</button>
-                    <form method="POST" action="/projet/controller/administrator/delete_client_ctrl.php">
+                    <form method="POST" action="/projet/controller/administrator/delete_customer_ctrl.php">
                         <input type="hidden" name="id_client" value="<?= $id ?>">
                         <button type="submit" class="btn text-white">Supprimer</button>
                     </form>

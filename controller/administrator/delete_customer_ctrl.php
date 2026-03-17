@@ -15,7 +15,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $id_client = $_POST['id_client'] ?? null;
 
     if (!$id_client) {
-        header("Location: ../../views/administrator/settings/list_clients.php?status=danger&message=Client introuvable");
+        header("Location: ../../views/administrator/customer.php?status=danger&message=Client introuvable");
         exit;
     }
 
@@ -29,7 +29,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
         $stmt->execute([$id_client]);
 
-        header("Location: ../../views/administrator/settings/list_clients.php?status=success&message=Le client a bien été supprimé avec succès");
+        header("Location: ../../views/administrator/customer.php?status=success&message=Le client a bien été supprimé avec succès");
 
         exit;
 
@@ -37,7 +37,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
         $error = $e->getMessage();
 
-        header("Location: ../../views/administrator/settings/list_clients.php?status=danger&message=$error");
+        header("Location: ../../views/administrator/customer.php?status=danger&message=$error");
 
         exit;
 
