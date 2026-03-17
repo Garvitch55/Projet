@@ -29,7 +29,7 @@ ob_start();
 <section class="m-4">
 
     <div class="d-flex justify-content-between align-items-center mt-3">
-        <h1 class="text-orange-fonce mb-4">Liste des messages</h1>
+        <h1 class="text-orange-fonce mb-4">Liste des messages des contacts</h1>
         <a href="/projet/views/administrator/parameter.php" class="btn text-white">
             <i class="bi bi-arrow-left me-2"></i> Retour
         </a>
