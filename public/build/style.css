@@ -226,6 +226,20 @@ body {
   background-color: rgba(65, 64, 59, 0.8);
 }
 
+.btn6 {
+  padding: 8px;
+  border-radius: 4px;
+  text-align: center;
+  text-decoration: none;
+  background-color: #e38f3c;
+  box-shadow: 0 0.25rem 0.5rem rgba(0, 0, 0, 0.1);
+}
+.btn6:hover {
+  transform: scale(1.012);
+  background-color: #41403b;
+  box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
+}
+
 .btn-alpha {
   background-color: #41403b;
   box-shadow: 0 0.25rem 0.5rem rgba(0, 0, 0, 0.1);

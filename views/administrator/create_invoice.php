@@ -87,7 +87,7 @@ ob_start();
         <div class="mb-3">
             <label for="status" class="form-label">Statut:  <span class="text-danger">*</span></label>
             <select name="status" id="status" class="form-select" required>
-                <?php $statuses = ['brouillon', 'envoyée', 'payée', 'annulée'];
+                <?php $statuses = ['brouillon', 'en attente de paiement', 'payée', 'annulée'];
                 foreach ($statuses as $s): ?>
                     <option value="<?= $s ?>"><?= ucfirst($s) ?></option>
                 <?php endforeach; ?>

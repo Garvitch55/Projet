@@ -143,21 +143,29 @@ $notification = ob_get_clean();
         default      => 'bg-secondary'
     };
 ?>
-    <li class="list-group-item d-flex justify-content-between align-items-center p-3">
-        <div>
-            <strong><?= htmlentities($q['quote_number']) ?></strong><br>
-            <small><?= htmlentities($q['quote_date']) ?></small>
-        </div>
+<li class="list-group-item d-flex justify-content-between align-items-center p-3">
+    <div>
+        <strong><?= htmlentities($q['quote_number']) ?></strong><br>
+        <small><?= htmlentities($q['quote_date']) ?></small>
+    </div>
 
-        <span class="badge <?= $status_class ?>"><?= ucfirst($q['status']) ?></span>
-    </li>
+    <div class="d-flex align-items-center gap-2">
+        <span class="badge <?= $status_class ?> py-1 px-2"><?= ucfirst($q['status']) ?></span>
+        <a href="/projet/views/customer/download_quotation.php?id=<?= $q['id_quote'] ?>"
+           class="btn3 btn-sm d-flex justify-content-center align-items-center text-white"
+           style="width:40px; height:40px;"
+           title="Télécharger le devis">
+            <i class="fa-solid fa-file-pdf fa-beat"></i>
+        </a>
+    </div>
+</li>
 <?php endforeach; ?>
                     </ul>
                 <?php else: ?>
                     <p>Aucun devis</p>
                 <?php endif; ?>
 
-                <a href="/projet/views/customer/quotation.php" class="btn text-white">
+                <a href="/projet/views/customer/quotation.php" class="btn6 text-white">
                     Voir tous les devis
                 </a>
             </div>
@@ -182,21 +190,29 @@ $notification = ob_get_clean();
         default     => 'bg-secondary'
     };
 ?>
-    <li class="list-group-item d-flex justify-content-between align-items-center p-3">
-        <div>
-            <strong><?= htmlentities($inv['invoice_number']) ?></strong><br>
-            <small><?= htmlentities($inv['invoice_date']) ?></small>
-        </div>
+<li class="list-group-item d-flex justify-content-between align-items-center p-3">
+    <div>
+        <strong><?= htmlentities($inv['invoice_number']) ?></strong><br>
+        <small><?= htmlentities($inv['invoice_date']) ?></small>
+    </div>
 
-        <span class="badge <?= $status_class ?>"><?= ucfirst($inv['status']) ?></span>
-    </li>
+    <div class="d-flex align-items-center gap-2">
+        <span class="badge <?= $status_class ?> py-1 px-2"><?= ucfirst($inv['status']) ?></span>
+        <a href="/projet/views/customer/download_invoice.php?id=<?= $inv['id_invoice'] ?>"
+           class="btn3 btn-sm d-flex justify-content-center align-items-center text-white"
+           style="width:40px; height:40px;"
+           title="Télécharger la facture">
+            <i class="fa-solid fa-file-pdf fa-beat"></i>
+        </a>
+    </div>
+</li>
 <?php endforeach; ?>
                     </ul>
                 <?php else: ?>
                     <p>Aucune facture</p>
                 <?php endif; ?>
 
-                <a href="/projet/views/customer/invoice.php" class="btn text-white">
+                <a href="/projet/views/customer/invoice.php" class="btn6 text-white">
                     Voir toutes les factures
                 </a>
             </div>
@@ -215,21 +231,29 @@ $notification = ob_get_clean();
                         <?php foreach ($pendingInvoices as $p): 
     $status_class = 'bg-danger';
 ?>
-    <li class="list-group-item d-flex justify-content-between align-items-center p-3">
-        <div>
-            <strong><?= htmlentities($p['invoice_number']) ?></strong><br>
-            <small>Échéance : <?= htmlentities($p['due_date']) ?></small>
-        </div>
+<li class="list-group-item d-flex justify-content-between align-items-center p-3">
+    <div>
+        <strong><?= htmlentities($p['invoice_number']) ?></strong><br>
+        <small>Échéance : <?= htmlentities($p['due_date']) ?></small>
+    </div>
 
-        <span class="badge <?= $status_class ?>"><?= ucfirst($p['status']) ?></span>
-    </li>
+    <div class="d-flex align-items-center gap-2">
+        <span class="badge <?= $status_class ?> py-1 px-2"><?= ucfirst($p['status']) ?></span>
+        <a href="/projet/views/customer/download_invoice.php?id=<?= $p['id_invoice'] ?>"
+           class="btn3 btn-sm d-flex justify-content-center align-items-center text-white"
+           style="width:40px; height:40px;"
+           title="Télécharger la facture">
+            <i class="fa-solid fa-file-pdf fa-beat"></i>
+        </a>
+    </div>
+</li>
 <?php endforeach; ?>
                     </ul>
                 <?php else: ?>
                     <p>Aucune facture en attente</p>
                 <?php endif; ?>
 
-                <a href="/projet/views/customer/invoice.php" class="btn text-white">
+                <a href="/projet/views/customer/invoice.php" class="btn6 text-white">
                     Voir toutes les factures
                 </a>
             </div>
