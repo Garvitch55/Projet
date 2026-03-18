@@ -8,6 +8,7 @@ $fixtures = [
     'tva_fixture.php',
     'contact_fixture.php',
     'customer_fixture.php',
+    'customer_replies_fixture.php',
     'works_fixture.php',        // 50 ouvrages gros œuvre
     'quotes_fixture.php',       // devis liés aux clients existants
     'quote_items_fixture.php',  // lignes de devis et calculs totaux

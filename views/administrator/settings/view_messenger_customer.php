@@ -20,11 +20,12 @@ $title = "Voir le message";
 // ----------------- Récupération de l'id -----------------
 $id = $_GET['id'] ?? null;
 $message = null;
+$replies = [];
 
 if ($id) {
     $pdo = getPDO();
 
-    // On récupère le message depuis la table gestion_client
+    // Récupérer le message depuis gestion_client
     $stmt = $pdo->prepare("SELECT * FROM gestion_client WHERE id_client = ?");
     $stmt->execute([$id]);
     $message = $stmt->fetch(PDO::FETCH_ASSOC);
@@ -33,6 +34,21 @@ if ($id) {
     if ($message && $message['is_read'] == 0) {
         $update = $pdo->prepare("UPDATE gestion_client SET is_read = 1 WHERE id_client = ?");
         $update->execute([$id]);
+    }
+
+    // Récupérer les réponses pour ce client (plus récentes en premier)
+    if ($message) {
+        $stmtReplies = $pdo->prepare("
+            SELECT r.*, 
+                   COALESCE(p.firstname, ?) AS personnel_firstname, 
+                   COALESCE(p.lastname, ?) AS personnel_lastname
+            FROM client_replies r
+            LEFT JOIN gestion_personnel p ON r.personnel_id = p.id_personnel
+            WHERE r.client_id = ?
+            ORDER BY r.created_at DESC
+        ");
+        $stmtReplies->execute([$_SESSION['name'], '', $message['id_client']]); // fallback sur $_SESSION['name']
+        $replies = $stmtReplies->fetchAll(PDO::FETCH_ASSOC);
     }
 }
 
@@ -48,6 +64,8 @@ ob_start();
                 <i class="bi bi-arrow-left me-2"></i> Retour
             </a>
         </div>
+
+        <!-- Message du client -->
         <div class="card shadow-sm mb-4">
             <div class="card-header bg-gris-fonce text-white">
                 <h4 class="pt-2"><b>Demande :</b> <?= htmlentities($message['demande']) ?></h4>
@@ -61,9 +79,49 @@ ob_start();
                     <p><b>Téléphone: </b> <?= htmlentities($message['phone']) ?></p>
                 <?php endif; ?>
                 <p><b>Message: </b><?= nl2br(htmlentities($message['demande'])) ?></p>
-                <p><b>Reçu le </b><?= htmlentities($message['created_at']) ?></small></p>
+                <p><b>Reçu le :</b> <?= date('d/m/Y H:i', strtotime($message['created_at'])) ?></p>
             </div>
         </div>
+
+        <!-- Toutes les réponses -->
+        <div class="card shadow-sm mb-4">
+            <div class="card-header bg-light">
+                <h5 class="mb-0">Réponses précédentes</h5>
+            </div>
+            <div id="repliesContainer" class="card-body" style="max-height: 300px; overflow-y:auto;">
+                <?php foreach ($replies as $reply): ?>
+                    <div class="mb-3 p-2 border rounded">
+                        <small class="text-muted">
+                            <?= date('d/m/Y H:i', strtotime($reply['created_at'])) ?>
+                            <?php if (!empty($reply['personnel_firstname'])): ?>
+                                - Répondu par <?= htmlentities($reply['personnel_firstname'] . ' ' . $reply['personnel_lastname']) ?>
+                            <?php endif; ?>
+                        </small>
+                        <p class="mb-0"><?= nl2br(htmlentities($reply['message'])) ?></p>
+                    </div>
+                <?php endforeach; ?>
+            </div>
+        </div>
+
+        <!-- Formulaire de réponse AJAX -->
+        <div class="card shadow-sm mb-5">
+            <div class="card-header bg-orange-fonce text-white">
+                <h5 class="mb-0">Répondre au client</h5>
+            </div>
+            <div class="card-body">
+                <form id="replyForm" method="post">
+                    <input type="hidden" name="id_client" value="<?= (int)$message['id_client'] ?>">
+                    <div class="mb-3">
+                        <label for="reply" class="form-label">Votre réponse :</label>
+                        <textarea name="reply" id="reply" rows="5" class="form-control" required></textarea>
+                    </div>
+                    <button type="submit" class="btn text-white">
+                        Envoyer la réponse
+                    </button>
+                </form>
+            </div>
+        </div>
+
     <?php else: ?>
         <p>Aucun message trouvé.</p>
         <a href="messenger_customer.php" class="btn text-white mt-3">Retour aux messages</a>
@@ -72,9 +130,47 @@ ob_start();
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
 
+<script>
+document.getElementById('replyForm').addEventListener('submit', function(e) {
+    e.preventDefault();
+
+    const form = e.target;
+    const formData = new FormData(form);
+
+    fetch('controller/administrator/send_reply_ctrl.php', {
+        method: 'POST',
+        body: formData,
+    })
+    .then(response => response.json())
+    .then(data => {
+        if(data.success) {
+            const replyDiv = document.createElement('div');
+            replyDiv.classList.add('mb-3', 'p-2', 'border', 'rounded');
+
+            // UTILISER $_SESSION['name'] directement pour le personnel
+            replyDiv.innerHTML = `
+                <small class="text-muted">
+                    ${data.created_at} - Répondu par <?= addslashes($_SESSION['name']) ?>
+                </small>
+                <p class="mb-0">${data.message}</p>
+            `;
+
+            const container = document.getElementById('repliesContainer');
+            container.insertBefore(replyDiv, container.firstChild);
+
+            form.reset();
+        } else {
+            alert(data.error || 'Erreur lors de l\'envoi de la réponse.');
+        }
+    })
+    .catch(err => {
+        console.error(err);
+        alert('Erreur lors de l\'envoi de la réponse.');
+    });
+});
+</script>
+
 <?php
 $content = ob_get_clean();
-
-// ----------------- Inclusion du layout -----------------
 require __DIR__ . '/../../../layout.php';
 ?>

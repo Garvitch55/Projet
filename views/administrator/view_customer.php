@@ -37,6 +37,13 @@ try {
     }
 
     // -------------------------
+    // Récupérer les messages du client
+    // -------------------------
+    $stmtMessages = $pdo->prepare("SELECT * FROM gestion_client WHERE id_client = ? ORDER BY created_at DESC");
+    $stmtMessages->execute([$id_client]);
+    $messages = $stmtMessages->fetchAll(PDO::FETCH_ASSOC);
+
+    // -------------------------
     // Récupérer les devis du client
     // -------------------------
     $stmtQuotes = $pdo->prepare("SELECT * FROM quotes WHERE client_id = ? ORDER BY quote_date DESC");
@@ -67,6 +74,7 @@ ob_start();
             <i class="bi bi-arrow-left me-2"></i> Retour
         </a>
     </div>
+
     <!-- Détails du client -->
     <div class="mb-4">
         <h3 class="text-gris-fonce text-decoration-underline">Coordonées: </h3>
@@ -76,6 +84,40 @@ ob_start();
             <p><b>Téléphone :</b> <?= htmlentities($client['phone']) ?></p>
             <p><b>Adresse :</b> <?= htmlentities($client['rue'].' '.$client['cp'].' '.$client['ville']) ?></p>
         </div>
+    </div>
+
+    <!-- Liste des messages -->
+    <div class="mb-4">
+        <h3 class="text-gris-fonce text-decoration-underline">Messages du client :</h3>
+        <?php if (!empty($messages)): ?>
+            <ul class="list-group text-white">
+                <?php foreach ($messages as $msg): ?>
+<li class="list-group-item position-relative py-3 d-flex justify-content-between align-items-start">
+    <div class="flex-grow-1 p-3">
+        <p class="m-0"><b>Message :</b> <?= nl2br(htmlentities($msg['demande'])) ?></p>
+        <p class="m-0"><b>Reçu le :</b> <?= date('d/m/Y H:i', strtotime($msg['created_at'])) ?></p>
+    </div>
+
+    <div class="d-flex flex-column align-items-end gap-2 me-2">
+        <!-- Boutons Voir / Répondre -->
+        <div class="d-flex gap-1">
+            <a href="views/administrator/settings/view_messenger_customer.php?id=<?= $msg['id_client'] ?>"
+               class="btn btn-sm text-white">
+                <i class="fa-solid fa-eye fa-beat"></i> / <i class="fa-solid fa-reply fa-beat"></i>
+            </a>
+        </div>
+
+        <!-- Badge -->
+        <span class="badge <?= $msg['is_read'] ? 'bg-success' : 'bg-danger' ?> rounded-pill">
+            <?= $msg['is_read'] ? 'Lu' : 'Non lu' ?>
+        </span>
+    </div>
+</li>
+                <?php endforeach; ?>
+            </ul>
+        <?php else: ?>
+            <p>Aucun message trouvé pour ce client.</p>
+        <?php endif; ?>
     </div>
 
     <!-- Liste des devis -->
@@ -107,12 +149,11 @@ ob_start();
         </div>
 
         <?php
-        // Couleur du badge selon le statut
         switch ($quote['status']) {
             case 'signé': $status_class = 'bg-success'; break;
-            case 'annulé': $status_class = 'bg-danger'; break;
+            case 'annulé': $status_class = 'bg-dark'; break;
             case 'en attente':
-            default: $status_class = 'bg-warning'; break;
+            default: $status_class = 'bg-danger'; break;
         }
         ?>
         <div>
@@ -157,12 +198,11 @@ ob_start();
         </div>
 
         <?php
-        // Couleur du badge selon le statut
         switch ($invoice['status']) {
             case 'payée': $status_class = 'bg-success'; break;
-            case 'annulée': $status_class = 'bg-danger'; break;
-            case 'brouillon': $status_class = 'bg-warning'; break;
-            case 'envoyée': $status_class = 'bg-primary'; break;
+            case 'annulée': $status_class = 'bg-dark'; break;
+            case 'brouillon': $status_class = 'bg-secondary'; break;
+            case 'en attente de paiement': $status_class = 'bg-danger'; break;
             default: $status_class = 'bg-secondary'; break;
         }
         ?>
