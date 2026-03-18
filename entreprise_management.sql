@@ -48,12 +48,14 @@ CREATE TABLE IF NOT EXISTS gestion_personnel (
 -- =========================================
 CREATE TABLE IF NOT EXISTS client_replies (
     id_reply INT AUTO_INCREMENT PRIMARY KEY,
-    client_id INT NOT NULL,
-    message TEXT NOT NULL,
-    personnel_id INT NULL,
-    is_read TINYINT(1) NOT NULL DEFAULT 0,
-    created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
-    response_date DATETIME DEFAULT CURRENT_TIMESTAMP,
+    client_id INT NOT NULL,                         -- Lien vers le client
+    message TEXT NOT NULL,                          -- Message initial / demande
+    reply_client TEXT NULL,                         -- Réponse du client
+    reply_personnel TEXT NULL,                      -- Réponse du personnel / admin
+    personnel_id INT NULL,                          -- Personnel ayant répondu
+    is_read TINYINT(1) NOT NULL DEFAULT 0,         -- Marque si la réponse est lue
+    created_at DATETIME DEFAULT CURRENT_TIMESTAMP,  -- Date création message
+    response_date DATETIME DEFAULT CURRENT_TIMESTAMP, -- Date réponse
     CONSTRAINT fk_client_replies_client FOREIGN KEY (client_id)
         REFERENCES gestion_client(id_client)
         ON DELETE CASCADE,

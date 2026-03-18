@@ -89,17 +89,27 @@ ob_start();
                 <h5 class="mb-0">Réponses précédentes</h5>
             </div>
             <div id="repliesContainer" class="card-body" style="max-height: 300px; overflow-y:auto;">
-                <?php foreach ($replies as $reply): ?>
-                    <div class="mb-3 p-2 border rounded">
-                        <small class="text-muted">
-                            <?= date('d/m/Y H:i', strtotime($reply['created_at'])) ?>
-                            <?php if (!empty($reply['personnel_firstname'])): ?>
-                                - Répondu par <?= htmlentities($reply['personnel_firstname'] . ' ' . $reply['personnel_lastname']) ?>
-                            <?php endif; ?>
-                        </small>
-                        <p class="mb-0"><?= nl2br(htmlentities($reply['message'])) ?></p>
-                    </div>
-                <?php endforeach; ?>
+               <?php foreach ($replies as $reply): ?>
+        <?php if (!empty($reply['reply_personnel'])): ?>
+            <!-- Réponse du personnel à droite -->
+            <div class="d-flex justify-content-end">
+                <div class="p-2 border rounded bg-orange-fonce text-white" style="max-width:70%;">
+                    <div><?= date('d/m/Y H:i', strtotime($reply['created_at'])) ?> - Répondu par <?= htmlentities($reply['personnel_firstname'] . ' ' . $reply['personnel_lastname']) ?></div>
+                    <div class="mb-0"><?= nl2br(htmlentities($reply['reply_personnel'])) ?></div>
+                </div>
+            </div>
+        <?php endif; ?>
+
+        <?php if (!empty($reply['reply_client'])): ?>
+            <!-- Réponse du client à gauche -->
+            <div class="d-flex justify-content-start">
+                <div class="p-2 border rounded text-white bg-gris-fonce " style="max-width:70%;">
+                    <div><?= date('d/m/Y H:i', strtotime($reply['created_at'])) ?> - <?= htmlentities($message['firstname'] . ' ' . $message['lastname']) ?></div>
+                    <div class="mb-0"><?= nl2br(htmlentities($reply['reply_client'])) ?></div>
+                </div>
+            </div>
+        <?php endif; ?>
+    <?php endforeach; ?>
             </div>
         </div>
 
@@ -124,7 +134,7 @@ ob_start();
 
     <?php else: ?>
         <p>Aucun message trouvé.</p>
-        <a href="messenger_customer.php" class="btn text-white mt-3">Retour aux messages</a>
+        <a href="views/administrator/settings/messenger_customer.php" class="btn text-white mt-3">Retour aux messages</a>
     <?php endif; ?>
 </section>
 
@@ -144,20 +154,26 @@ document.getElementById('replyForm').addEventListener('submit', function(e) {
     .then(response => response.json())
     .then(data => {
         if(data.success) {
+            // div pour la réponse du personnel à droite
             const replyDiv = document.createElement('div');
-            replyDiv.classList.add('mb-3', 'p-2', 'border', 'rounded');
+            replyDiv.classList.add('d-flex', 'justify-content-end');
 
-            // UTILISER $_SESSION['name'] directement pour le personnel
-            replyDiv.innerHTML = `
-                <small class="text-muted">
-                    ${data.created_at} - Répondu par <?= addslashes($_SESSION['name']) ?>
-                </small>
-                <p class="mb-0">${data.message}</p>
+            const innerDiv = document.createElement('div');
+            innerDiv.classList.add('p-2', 'border', 'rounded', 'bg-orange-fonce', 'text-white');
+            innerDiv.style.maxWidth = '70%';
+
+            innerDiv.innerHTML = `
+                <div class="text-white p-0">${data.created_at} - Répondu par ${data.personnel_name}</div>
+                <div class="mb-0 text-white">${data.message}</div>
             `;
 
+            replyDiv.appendChild(innerDiv);
+
+            // Ajouter la réponse en haut du container
             const container = document.getElementById('repliesContainer');
             container.insertBefore(replyDiv, container.firstChild);
 
+            // Réinitialiser le formulaire
             form.reset();
         } else {
             alert(data.error || 'Erreur lors de l\'envoi de la réponse.');

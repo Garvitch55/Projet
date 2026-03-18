@@ -23,13 +23,13 @@ if (!$client_id || !$message) {
 
 try {
     // Insérer la réponse
-    $stmt = $pdo->prepare("
-        INSERT INTO client_replies (client_id, message, personnel_id, created_at, response_date)
-        VALUES (?, ?, ?, NOW(), NOW())
-    ");
-    $stmt->execute([$client_id, $message, $_SESSION['id']]);
+$stmt = $pdo->prepare("
+    INSERT INTO client_replies (client_id, reply_personnel, personnel_id, created_at, response_date)
+    VALUES (?, ?, ?, NOW(), NOW())
+");
+$stmt->execute([$client_id, $message, $_SESSION['id']]);
 
-    $personnel_name = $_SESSION['firstname'] . ' ' . $_SESSION['lastname'];
+    $personnel_name = $_SESSION['name'];
     $created_at = date('d/m/Y H:i');
 
     echo json_encode([

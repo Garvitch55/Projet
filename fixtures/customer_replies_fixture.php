@@ -1,6 +1,6 @@
 <?php
 // ---------------------------
-// Fixture réponses clients
+// Fixture réponses clients (client + personnel)
 // ---------------------------
 
 require_once __DIR__ . '/../config.php';
@@ -27,7 +27,7 @@ try {
     echo "2/ Table client_replies vidée.\n";
 
     // ---------------------------
-    // Récupérer tous les clients existants
+    // Récupérer tous les clients et personnels
     // ---------------------------
     $clients = $pdo->query("SELECT id_client, created_at FROM gestion_client")->fetchAll(PDO::FETCH_ASSOC);
     $personnels = $pdo->query("SELECT id_personnel, firstname, lastname FROM gestion_personnel")->fetchAll(PDO::FETCH_ASSOC);
@@ -41,31 +41,36 @@ try {
     // ---------------------------
     $stmt = $pdo->prepare("
         INSERT INTO client_replies 
-        (client_id, message, personnel_id, is_read, created_at, response_date) 
-        VALUES (?, ?, ?, ?, ?, ?)
+        (client_id, message, reply_client, reply_personnel, personnel_id, is_read, created_at, response_date) 
+        VALUES (?, ?, ?, ?, ?, ?, ?, ?)
     ");
 
     $pdo->beginTransaction();
 
     // ---------------------------
-    // Contenus de réponses réalistes gros œuvre
+    // Contenus de réponses réalistes
     // ---------------------------
-    $reponses = [
+    $reponses_personnel = [
         "Bonjour, nous avons bien reçu votre demande et reviendrons vers vous rapidement.",
         "Merci pour votre message. Nous pouvons commencer les travaux dès la semaine prochaine.",
         "Votre devis est en cours de préparation. Vous recevrez la confirmation sous peu.",
         "Nous avons pris en compte votre demande et vous contacterons pour préciser les détails.",
-        "Votre chantier peut être planifié pour le mois prochain. Merci pour votre patience.",
-        "Nous avons vérifié les fondations et tout est conforme. Nous attendons votre confirmation.",
-        "Votre demande de dalle béton a été transmise à notre équipe technique.",
-        "Les travaux de maçonnerie peuvent débuter dès que le matériel est livré."
+        "Votre chantier peut être planifié pour le mois prochain. Merci pour votre patience."
+    ];
+
+    $reponses_client = [
+        "Merci pour votre retour, je reste disponible.",
+        "Parfait, j'attends votre devis.",
+        "Je confirme la réception de votre message.",
+        "D'accord, merci pour les informations.",
+        "Merci beaucoup, je vous tiens informé."
     ];
 
     // ---------------------------
     // Générer des réponses aléatoires entre 2 et 5 par client
     // ---------------------------
     foreach ($clients as $client) {
-        $nbReplies = rand(2, 5); // <-- entre 2 et 5 réponses
+        $nbReplies = rand(2, 5); // entre 2 et 5 réponses
 
         for ($i = 0; $i < $nbReplies; $i++) {
             $personnel = $personnels ? $faker->randomElement($personnels) : null;
@@ -73,15 +78,22 @@ try {
 
             $is_read = (int)$faker->boolean(50);
 
-            // La réponse doit être après la date de création du client
+            // La date doit être après la création du client
             $created_at = $faker->dateTimeBetween($client['created_at'], 'now');
             $response_date = $created_at;
 
-            $message = $faker->randomElement($reponses);
+            // Choisir aléatoirement si c'est une réponse du personnel ou du client
+            $reply_personnel = $faker->randomElement($reponses_personnel);
+            $reply_client = $faker->randomElement($reponses_client);
+
+            // Le message initial sera le même que la réponse personnel pour le test
+            $message = $reply_personnel;
 
             $stmt->execute([
                 $client['id_client'],
                 $message,
+                $reply_client,
+                $reply_personnel,
                 $personnel_id,
                 $is_read,
                 $created_at->format('Y-m-d H:i:s'),
@@ -91,7 +103,7 @@ try {
     }
 
     $pdo->commit();
-    echo "3/ Réponses générées pour les clients avec 2 à 5 réponses par message.\n";
+    echo "3/ Réponses générées pour les clients avec réponses client et personnel.\n";
 
 } catch (PDOException | Exception $e) {
     if ($pdo->inTransaction()) {
