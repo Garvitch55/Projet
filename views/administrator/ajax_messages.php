@@ -24,7 +24,7 @@ if ($messages) {
     echo '<ul class="list-group list-group-flush rounded-1 border-0" style="max-height:400px; overflow-y:auto;">';
     foreach ($messages as $msg) {
         echo '<li class="list-group-item d-flex justify-content-between align-items-center rounded-1 border border-white"
-                    style="width: 98%; margin: auto; transition: transform 0.2s; padding: 0.75rem 1rem; border-radius: 0;">
+                    style="width: 97%; margin: auto; transition: transform 0.2s; padding: 0.75rem 1rem; border-radius: 0;">
                 <div>
                     <strong>'.htmlentities($msg['firstname'].' '.$msg['lastname']).'</strong><br>
                     '.htmlentities($msg['demande']).'

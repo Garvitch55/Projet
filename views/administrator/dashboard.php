@@ -146,48 +146,7 @@ ob_start();
 
     <div class="row">
 
-        <!-- FACTURES EN ATTENTE -->
-        <div class="col-md-6">
-            <div class="card shadow-sm p-4 mb-4">
-                <h5 class="text-orange-fonce">Factures en attente</h5>
-
-                <?php if ($pendingInvoices): ?>
-                    <ul class="list-group list-group-flush rounded-1 border-0" style="max-height: 400px; overflow-y: auto;">
-                        <?php foreach ($pendingInvoices as $inv): 
-                            $status_class = match($inv['status']) {
-                                'en attente de paiement' => 'bg-danger',
-                                'payée' => 'bg-success',
-                                'annulée' => 'bg-warning',
-                                default => 'bg-secondary'
-                            };
-                        ?>
-                        <li class="list-group-item d-flex justify-content-between align-items-center rounded-1 border border-white"
-                            style="width: 98%; margin: auto; transition: transform 0.2s; padding: 0.75rem 1rem; border-radius: 0;">
-                            <div>
-                                <strong><?= htmlentities($inv['invoice_number']) ?></strong><br>
-                                <small>Échéance : <?= htmlentities($inv['due_date']) ?></small><br>
-                                <?= htmlentities($inv['firstname'].' '.$inv['lastname']) ?>
-                            </div>
-                            <div class="d-flex align-items-center gap-2">
-                                <span class="badge <?= $status_class ?> py-1 px-2"><?= ucfirst($inv['status']) ?></span>
-                                <a href="/projet/views/administrator/download_invoice.php?id=<?= $inv['id_invoice'] ?>"
-                                   class="btn3 btn-sm d-flex justify-content-center align-items-center text-white rounded-1"
-                                   style="width:40px; height:40px;"
-                                   title="Télécharger la facture">
-                                    <i class="fa-solid fa-file-pdf fa-beat"></i>
-                                </a>
-                            </div>
-                        </li>
-                        <?php endforeach; ?>
-                    </ul>
-                <?php else: ?>
-                    <p>Aucune facture en attente</p>
-                <?php endif; ?>
-                                <a href="/projet/views/administrator/invoice.php" class="btn6 text-white mt-3">
-                    Voir toutes les factures
-                </a>
-            </div>
-        </div>
+       
 
         <!-- MESSAGES NON LUS AJAX -->
         <div class="col-md-6">
@@ -203,8 +162,6 @@ ob_start();
             </div>
         </div>
 
-    </div>
- <div class="row">
 <div class="col-md-6">
     <div class="card shadow-sm p-4 mb-4">
         <h5 class="text-orange-fonce">Messages non lus contact</h5>
@@ -217,7 +174,7 @@ ob_start();
     </div>
 </div>
 
-                </div>
+
 
 
 
@@ -315,6 +272,63 @@ ob_start();
 
     </div>
 
+<div class="row">
+
+    <!-- FACTURES EN ATTENTE -->
+    <div class="col-md-6">
+        <div class="card shadow-sm p-4 mb-4">
+            <h5 class="text-orange-fonce">Factures en attente</h5>
+
+            <?php if ($pendingInvoices): ?>
+                <ul class="list-group list-group-flush rounded-1 border-0" style="max-height: 400px; overflow-y: auto;">
+                    
+                    <?php foreach ($pendingInvoices as $inv): 
+                        $status_class = match($inv['status']) {
+                            'en attente de paiement' => 'bg-danger',
+                            'payée' => 'bg-success',
+                            'annulée' => 'bg-warning',
+                            default => 'bg-secondary'
+                        };
+                    ?>
+
+                    <li class="list-group-item d-flex justify-content-between align-items-center rounded-1 border border-white"
+                        style="width: 98%; margin: auto; transition: transform 0.2s; padding: 0.75rem 1rem;">
+                        
+                        <div>
+                            <strong><?= htmlentities($inv['invoice_number']) ?></strong><br>
+                            <small>Échéance : <?= htmlentities($inv['due_date']) ?></small><br>
+                            <?= htmlentities($inv['firstname'].' '.$inv['lastname']) ?>
+                        </div>
+
+                        <div class="d-flex align-items-center gap-2">
+                            <span class="badge <?= $status_class ?> py-1 px-2">
+                                <?= ucfirst($inv['status']) ?>
+                            </span>
+
+                            <a href="/projet/views/administrator/download_invoice.php?id=<?= $inv['id_invoice'] ?>"
+                               class="btn3 btn-sm d-flex justify-content-center align-items-center text-white rounded-1"
+                               style="width:40px; height:40px;"
+                               title="Télécharger la facture">
+                                <i class="fa-solid fa-file-pdf fa-beat"></i>
+                            </a>
+                        </div>
+
+                    </li>
+
+                    <?php endforeach; ?>
+                </ul>
+
+            <?php else: ?>
+                <p>Aucune facture en attente</p>
+            <?php endif; ?>
+
+            <a href="/projet/views/administrator/invoice.php" class="btn6 text-white mt-3">
+                Voir toutes les factures
+            </a>
+        </div>
+    </div>
+
+</div>
 </section>
 
 <!-- ================== JS ================== -->
