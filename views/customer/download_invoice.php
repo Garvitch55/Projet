@@ -1,5 +1,5 @@
 <?php
-// download_quotation.php
+// download_invoice.php
 require_once '../../config.php';
 require_once '../../head.php';
 require_once '../../vendor/autoload.php';
@@ -13,41 +13,42 @@ if (session_status() == PHP_SESSION_NONE) {
 }
 
 // Vérification administrateur
-if (!isset($_SESSION['role']) || $_SESSION['role'] !== 'administrateur') {
+if (!isset($_SESSION['role']) || $_SESSION['role'] !== 'client') {
     header("Location: ../../index.php");
     exit;
 }
 
-// Récupération ID du devis
-$id_quote = $_GET['id'] ?? null;
-if (!$id_quote) die("Devis introuvable");
+// Récupération ID de la facture
+$id_invoice = $_GET['id'] ?? null;
+if (!$id_invoice) die("Facture introuvable");
 
 // Connexion PDO
 $pdo = getPDO();
 $pdo->exec("SET NAMES 'utf8mb4'");
 
-// Récupération devis + client (avec adresse)
+// Récupération facture + client (avec adresse)
 $stmt = $pdo->prepare("
-    SELECT q.*, c.firstname, c.lastname, c.rue, c.cp, c.ville
-    FROM quotes q
-    JOIN gestion_client c ON q.client_id = c.id_client
-    WHERE q.id_quote = ?
+    SELECT i.*, c.firstname, c.lastname, c.rue, c.cp, c.ville
+    FROM invoices i
+    JOIN gestion_client c ON i.client_id = c.id_client
+    WHERE i.id_invoice = ?
 ");
-$stmt->execute([$id_quote]);
-$quote = $stmt->fetch(PDO::FETCH_ASSOC);
-if (!$quote) die("Devis introuvable");
+$stmt->execute([$id_invoice]);
+$invoice = $stmt->fetch(PDO::FETCH_ASSOC);
+if (!$invoice) die("Facture introuvable");
 
-// Récupération lignes du devis
-$itemsStmt = $pdo->prepare("SELECT * FROM quote_items WHERE quote_id = ?");
-$itemsStmt->execute([$id_quote]);
+// Récupération lignes de facture
+$itemsStmt = $pdo->prepare("SELECT * FROM invoice_items WHERE invoice_id = ?");
+$itemsStmt->execute([$id_invoice]);
 $items = $itemsStmt->fetchAll(PDO::FETCH_ASSOC) ?? [];
 
 // Sécurisation variables
-$quote_number   = htmlentities($quote['quote_number'] ?? 'N/A', ENT_QUOTES | ENT_SUBSTITUTE, 'UTF-8');
-$client_name    = htmlentities(($quote['firstname'] ?? '') . ' ' . ($quote['lastname'] ?? ''), ENT_QUOTES | ENT_SUBSTITUTE, 'UTF-8');
-$quote_date     = htmlentities($quote['quote_date'] ?? '', ENT_QUOTES | ENT_SUBSTITUTE, 'UTF-8');
-$client_rue     = htmlentities($quote['rue'] ?? '', ENT_QUOTES | ENT_SUBSTITUTE, 'UTF-8');
-$client_cpville = htmlentities(($quote['cp'] ?? '') . ' ' . ($quote['ville'] ?? ''), ENT_QUOTES | ENT_SUBSTITUTE, 'UTF-8');
+$invoice_number   = htmlentities($invoice['invoice_number'] ?? 'N/A', ENT_QUOTES | ENT_SUBSTITUTE, 'UTF-8');
+$client_name      = htmlentities(($invoice['firstname'] ?? '') . ' ' . ($invoice['lastname'] ?? ''), ENT_QUOTES | ENT_SUBSTITUTE, 'UTF-8');
+$invoice_date     = htmlentities($invoice['invoice_date'] ?? '', ENT_QUOTES | ENT_SUBSTITUTE, 'UTF-8');
+$due_date         = htmlentities($invoice['due_date'] ?? '', ENT_QUOTES | ENT_SUBSTITUTE, 'UTF-8');
+$client_rue       = htmlentities($invoice['rue'] ?? '', ENT_QUOTES | ENT_SUBSTITUTE, 'UTF-8');
+$client_cpville   = htmlentities(($invoice['cp'] ?? '') . ' ' . ($invoice['ville'] ?? ''), ENT_QUOTES | ENT_SUBSTITUTE, 'UTF-8');
 
 // Sécurisation des items
 foreach ($items as &$item) {
@@ -59,7 +60,7 @@ foreach ($items as &$item) {
 unset($item);
 
 // Préparer logo en Base64
-$logoPath = __DIR__ . '/../../assets/statics/images/logo.png'; 
+$logoPath = __DIR__ . '/../../assets/statics/images/logo.png';
 $logoData = '';
 if (file_exists($logoPath)) {
     $type = pathinfo($logoPath, PATHINFO_EXTENSION);
@@ -74,7 +75,7 @@ ob_start();
 <html lang="fr">
 <head>
 <meta charset="UTF-8">
-<title>Devis <?= $quote_number ?></title>
+<title>Facture <?= $invoice_number ?></title>
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
 <style>
 body { font-size: 12px; }
@@ -102,12 +103,12 @@ body { font-size: 12px; }
         <p class="mb-0"><b>Client:</b></p>
         <p class="mb-0"><?= $client_name ?></p>
         <p class="mb-0"><?= $client_rue ?><br><?= $client_cpville ?></p>
-        <p class="mb-0"><?= htmlentities($quote['phone'] ?? '') ?></p>
-        <p class="mb-0"><b>Date:</b> <?= $quote_date ?></p>
+        <p class="mb-0"><b>Date facture:</b> <?= $invoice_date ?></p>
+        <p class="mb-0"><b>Date échéance:</b> <?= $due_date ?></p>
     </div>
 </div>
 
-<h2 class="text-center mb-3">Devis: <?= $quote_number ?></h2>
+<h2 class="text-center mb-3">Facture: <?= $invoice_number ?></h2>
 
 <table class="table table-bordered">
     <thead>
@@ -133,15 +134,15 @@ body { font-size: 12px; }
 <table class="totals mt-3">
     <tr>
         <td><b>Total HT:</b></td>
-        <td><?= number_format(floatval($quote['total_ht'] ?? 0), 2, '.', '') ?> €</td>
+        <td><?= number_format(floatval($invoice['total_ht'] ?? 0), 2, '.', '') ?> €</td>
     </tr>
     <tr>
         <td><b>TVA:</b></td>
-        <td><?= number_format(floatval($quote['total_vat'] ?? 0), 2, '.', '') ?> €</td>
+        <td><?= number_format(floatval($invoice['total_vat'] ?? 0), 2, '.', '') ?> €</td>
     </tr>
     <tr>
         <td><b>Total TTC:</b></td>
-        <td><?= number_format(floatval($quote['total_ttc'] ?? 0), 2, '.', '') ?> €</td>
+        <td><?= number_format(floatval($invoice['total_ttc'] ?? 0), 2, '.', '') ?> €</td>
     </tr>
 </table>
 
@@ -167,7 +168,7 @@ try {
 }
 
 // Envoi PDF au navigateur
-$filename = 'Devis_' . $quote_number . '.pdf';
+$filename = 'Facture_' . $invoice_number . '.pdf';
 $dompdf->stream($filename, ['Attachment' => false]);
 exit;
 ?>

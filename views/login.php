@@ -30,7 +30,7 @@ $content = <<<HTML
                     <button type="submit" class="btn w-50 text-white"> Connexion  </button>
                 </div>
                 <div class="text-center p-2">
-                    <a class="text-gris-fonce" href="views/auth/add_client_form.php">Inscription</a>
+                    <a class="text-gris-fonce" href="views/auth/add_customer.php">Inscription</a>
                 </div>
             </form>
 
@@ -40,7 +40,7 @@ $content = <<<HTML
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
 HTML;
 
-echo password_hash("Garvitch_55100", PASSWORD_DEFAULT);
+
 
 // ----------------- INCLURE LAYOUT -----------------
 require __DIR__ . '/../layout.php';

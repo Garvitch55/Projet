@@ -1,21 +1,31 @@
 <?php
-require_once __DIR__ . "/../../config.php";
-?>
 
-<h1 class="text-center mt-3">Inscription :</h1>
+require_once __DIR__ . '/../../config.php';
+
+require_once __DIR__ . '/../../head.php';    // head_with_title
+$title = "Clients";
+
+ob_start();
+require ROOT . "notification.php";
+$notification = ob_get_clean();
+
+$content = <<<HTML
+    <div class="w-50 mx-auto d-flex justify-content-between align-items-center mt-3">
+        <h1 class="text-orange-fonce mb-4">Inscription :</h1>
+        <a href="/projet/views/login.php" class="btn text-white">
+           <i class="bi bi-arrow-left me-2"></i> Retour
+        </a>
+    </div>
+
 <p class="text-center mt-3">Votre compte client vous servira d'avoir accès à la demande de devis en ligne.</p>
-
-<?php
-include_once "../../notification.php";
-?>
 
 <head>
     <script src="js/api_date.js"></script>
+    <script src="js/api_adresse.js" defer></script>
 </head>
 
-
 <!-- Action correspond à l'adresse du fichier ou les données du formulaire iront après validation -->
-<form class="w-50 mx-auto mb-3" action="controller/client/add_client_ctrl.php" method="POST">
+<form class="w-50 mx-auto mb-3" style="margin-top: 10px;" action="controller/auth/add_customer_ctrl.php" method="POST">
 
     <div class="row">
         <!-- prénom -->
@@ -105,9 +115,6 @@ include_once "../../notification.php";
     </div>
 </div>
 
-
-
-
     <!-- votre date naissance -->
     <div class="mb-3">
         <label for="birthdate" class="form-label">Votre date de naissance : </label>
@@ -147,7 +154,14 @@ include_once "../../notification.php";
 
     <!-- Bouton de validation -->
     <div class="text-center">
-        <input type="submit" value="Vous inscrire" class="btn btn-primary">
+        <input type="submit" value="Vous inscrire" class="btn text-white" style="background:#e38f3c;"
+    onmouseover="this.style.background='#41403b';"
+    onmouseout="this.style.background='#e38f3c';">
     </div>
-
 </form>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+HTML;
+
+// ----------------- INCLURE LAYOUT -----------------
+require __DIR__ . '/../../layout.php';

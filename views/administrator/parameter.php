@@ -29,6 +29,7 @@ $content = <<<HTML
 
 <div class="row g-3">
 
+
 <!-- Gestion des Devis & Factures -->
 <div class="col-md-4 col-sm-6 col-12">
    <div class="card h-100 card-parametres shadow">
@@ -78,9 +79,8 @@ $content = <<<HTML
          <i class="bi bi-chat-dots-fill me-2"></i>Gestion des Communications
       </div>
       <div class="card-body p-0">
-         <a class="nav-link w-100 p-2 menu-link" href="views/administrator/settings/messages.php">- liste des messages</a>
-         <a class="nav-link w-100 p-2 menu-link" href="views/administrator/dashboard.php">lien 2 crud</a>
-         <a class="nav-link w-100 p-2 menu-link" href="views/administrator/dashboard.php">lien 3 crud</a>
+         <a class="nav-link w-100 p-2 menu-link" href="views/administrator/settings/messages.php">- liste des messages des contacts</a>
+         <a class="nav-link w-100 p-2 menu-link" href="views/administrator/dashboard.php">- liste des messgaes clients</a>
       </div>
       <div class="card-footer bg-gris-fonce"></div>
    </div>
@@ -93,14 +93,16 @@ $content = <<<HTML
          <i class="bi bi-person-gear me-2"></i>Gestion des Utilisateurs
       </div>
       <div class="card-body p-0">
-         <a class="nav-link w-100 p-2 menu-link" href="views/administrator/dashboard.php">- utilisateurs internes</a>
-         <a class="nav-link w-100 p-2 menu-link" href="views/administrator/dashboard.php">- utilisateurs clients</a>
+         <a class="nav-link w-100 p-2 menu-link" href="views/administrator/settings/list_staff.php">- utilisateurs internes</a>
+         <a class="nav-link w-100 p-2 menu-link" href="views/administrator/parameter.php">- utilisateurs clients: page en construction</a>
+          <a class="nav-link w-100 p-3 menu-link" href="views/administrator/dashboard.php"> 
+          </a>
       </div>
       <div class="card-footer bg-gris-fonce"></div>
    </div>
 </div>
 
-<!-- Gestion des Paramètres -->
+<!-- Gestion des Références -->
 <div class="col-md-4 col-sm-6 col-12">
    <div class="card h-100 card-parametres">
       <div class="card-header p-2 bg-gris-fonce text-white">
@@ -109,6 +111,48 @@ $content = <<<HTML
       <div class="card-body p-0">
          <a class="nav-link w-100 p-2 menu-link" href="views/administrator/settings/add_reference.php">- Ajouter des références</a>
          <a class="nav-link w-100 p-2 menu-link" href="views/administrator/settings/list_reference.php">- Modifier une référence</a>
+      </div>
+      <div class="card-footer bg-gris-fonce"></div>
+   </div>
+</div>
+
+<!-- Gestion des Devis & Factures -->
+<div class="col-md-4 col-sm-6 col-12">
+   <div class="card h-100 card-parametres shadow">
+      <div class="card-header p-2 bg-gris-fonce text-white">
+        <i class="bi bi-receipt-cutoff me-2"></i>Gestion des Devis & Factures
+      </div>
+      <div class="card-body p-0">
+         <a class="nav-link w-100 p-2 menu-link" href="views/administrator/parameter.php">- liste des moyens de paiements: page en construction</a>
+         <a class="nav-link w-100 p-2 menu-link" href="views/administrator/dashboard.php">- liste des TVA</a>
+         <a class="nav-link w-100 p-2 menu-link" href="views/administrator/parameter.php">- liste des terms: page en construction</a>
+      </div>
+      <div class="card-footer bg-gris-fonce"></div>
+   </div>
+</div>
+
+<!-- Gestion des bibliothèques des ouvrages -->
+<div class="col-md-4 col-sm-6 col-12">
+   <div class="card h-100 card-parametres">
+      <div class="card-header p-2 bg-gris-fonce text-white">
+         <i class="bi bi-building me-2"></i>Gestion des bibliothèques des ouvrages
+      </div>
+      <div class="card-body p-0">
+         <a class="nav-link w-100 p-2 menu-link" href="views/administrator/dashboard.php">- liste des ouvrages</a>
+      </div>
+      <div class="card-footer bg-gris-fonce"></div>
+   </div>
+</div>
+
+<!-- Gestion pour chantier -->
+<div class="col-md-4 col-sm-6 col-12">
+   <div class="card h-100 card-parametres">
+      <div class="card-header p-2 bg-gris-fonce text-white">
+         <i class="bi bi-building me-2"></i>Gestion pour chantier
+      </div>
+      <div class="card-body p-0">
+         <a class="nav-link w-100 p-2 menu-link" href="views/administrator/dashboard.php">- liste du métariel</a>
+         <a class="nav-link w-100 p-2 menu-link" href="views/administrator/dashboard.php">- liste de la main d'oeuvre</a>
       </div>
       <div class="card-footer bg-gris-fonce"></div>
    </div>

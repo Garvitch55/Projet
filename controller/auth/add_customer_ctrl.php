@@ -1,5 +1,6 @@
 <?php
 
+
 include_once '../../config.php';
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
@@ -31,27 +32,26 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         || empty($ville)
         || empty($demande)
     ) {
-        // Je retourne dans le formulaire, car une donnée est "vide".
-        // De plus, je vais rajouter une erreur en GET
-        header('Location: ../../views/client/add_client_form.php?status=danger&message=Tous les champs obligatoires doivent être remplis.');
+
+        header('Location: ../../views/auth/add_customer.php?status=danger&message=Tous les champs obligatoires doivent être remplis.');
         exit;
     }
 
     // Vérification email = confirmation
     if ($email !== $email_confirm) {
-        header('Location: ../../views/client/add_client_form.php?status=danger&message=Les adresses e-mail ne correspondent pas.');
+        header('Location: ../../views/auth/add_customer.php?status=danger&message=Les adresses e-mail ne correspondent pas.');
         exit;
     }
 
     // Vérification mot de passe = confirmation
     if ($password !== $password_confirm) {
-        header('Location: ../../views/client/add_client_form.php?status=danger&message=Les mots de passe ne correspondent pas.');
+        header('Location: ../../views/auth/add_customer.php?status=danger&message=Les mots de passe ne correspondent pas.');
         exit;
     }
 
     // Vérification taille du mot de passe
     if (strlen($password) < 6) {
-        header('Location: ../../views/client/add_client_form.php?status=danger&message=Le mot de passe doit contenir au moins 6 caractères.');
+        header('Location: ../../views/auth/add_customer.php?status=danger&message=Le mot de passe doit contenir au moins 6 caractères.');
         exit;
     }
 
@@ -85,14 +85,16 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $passwordHash,
         ]);
 
-        header('Location: ../../views/client/add_client_form.php?status=success&message=Inscription réussie. Vous pouvez maintenant vous connecter.');
+        header('Location: ../../views/auth/add_customer.php?status=success&message=Inscription réussie. Vous pouvez maintenant vous connecter.');
         exit;
+
     } catch (PDOException $e) {
         // Ici on attrape l'erreur pour pouvoir l'envoyer dans le système de message qui se trouve dans le formulaire
         $error = $e->getMessage();
-        header("Location: ../../views/client/add_client_form.php?status=danger&message=$error");
+        header("Location: ../../views/auth/add_customer.php?status=danger&message=$error");
         exit;
     }
+
 } else {
     // On est éjecté du script si on accède directement par la page
     header('Location: ../../index.php');

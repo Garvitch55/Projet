@@ -20,7 +20,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $pdo = getPDO();
 
         // --------------------------------------------------------
-        // 1️⃣ Vérification dans la table staff (admin/employé)
+        // Vérification dans la table staff (admin/employé)
         // --------------------------------------------------------
         $stmt = $pdo->prepare('SELECT * FROM gestion_personnel WHERE mail = ?');
         $stmt->execute([$email]);
@@ -47,7 +47,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         }
 
         // --------------------------------------------------------
-        // 2️⃣ Vérification dans la table client
+        // Vérification dans la table client
         // --------------------------------------------------------
         $stmt = $pdo->prepare('SELECT * FROM gestion_client WHERE email = ?');
         $stmt->execute([$email]);
@@ -58,7 +58,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $_SESSION['name'] = $client['firstname'] . ' ' . $client['lastname'];
             $_SESSION['role'] = 'client';
 
-            header('Location: ../../index.php?status=success&message=Bienvenue, ' . $_SESSION['name']);
+            header('Location: ../../views/homepage.php?status=success&message=Bienvenue Client, ' . $_SESSION['name']);
             exit;
         }
 

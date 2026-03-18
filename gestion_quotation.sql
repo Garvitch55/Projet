@@ -8,35 +8,6 @@ CREATE DATABASE IF NOT EXISTS gestion_entreprise
 USE gestion_entreprise;
 
 -- ------------------------------------------------
--- Table clients
--- ------------------------------------------------
-CREATE TABLE IF NOT EXISTS gestion_client (
-    id_client INT AUTO_INCREMENT PRIMARY KEY,
-
-    -- Identité
-    firstname VARCHAR(100) NOT NULL,
-    lastname VARCHAR(100) NOT NULL,
-    birthdate DATE NULL,
-
-    -- Contact
-    phone VARCHAR(20) NOT NULL,
-    email VARCHAR(150) NOT NULL UNIQUE,
-
-    -- Adresse
-    rue VARCHAR(255) NOT NULL,
-    cp VARCHAR(20) NOT NULL,
-    ville VARCHAR(150) NOT NULL,
-
-    -- Demande client
-    demande TEXT NOT NULL,
-
-    -- Mot de passe (hashé)
-    password VARCHAR(255) NOT NULL,
-
-    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
-);
-
--- ------------------------------------------------
 -- Table des ouvrages (works)
 -- ------------------------------------------------
 CREATE TABLE IF NOT EXISTS works (

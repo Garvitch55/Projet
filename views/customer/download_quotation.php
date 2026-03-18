@@ -13,7 +13,7 @@ if (session_status() == PHP_SESSION_NONE) {
 }
 
 // Vérification administrateur
-if (!isset($_SESSION['role']) || $_SESSION['role'] !== 'administrateur') {
+if (!isset($_SESSION['role']) || $_SESSION['role'] !== 'client') {
     header("Location: ../../index.php");
     exit;
 }
