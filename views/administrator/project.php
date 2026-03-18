@@ -22,9 +22,15 @@ $title = "Chantiers";
 
 // ----------------- CONTENT -----------------
 $content = <<<HTML
+
 <div class="mt-1 mb-4">
-            <h6 class="title">Liste des chantiers</h6>
+   <h1 class="title">Liste des chantiers</h1>
 </div>
+<div class=" mt-3">
+    <h1 class="text-center text-danger"><i class="fa-solid fa-triangle-exclamation me-2 text-danger fa-beat"></i>Page en travaux</h1>
+</div>
+
+
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
 HTML;

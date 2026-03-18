@@ -58,10 +58,13 @@ require ROOT . "notification.php";
 $notification = ob_get_clean();
 ?>
 <section class="m-4">
-    <div class="d-flex justify-content-between align-items-center mt-3">
-        <h1 class="text-orange-fonce mb-4">Liste des devis</h1>
-        <a href="/projet/views/administrator/create_quotation.php" class="btn me-2 text-white"><i class="fa-solid fa-plus fa-beat"></i></a>
-    </div>
+<div class="d-flex justify-content-between align-items-center mt-3 position-relative">
+    <h1 class="title text-orange-fonce mb-4">Liste des devis</h1>
+    <a href="/projet/views/administrator/create_quotation.php" 
+       class="btn me-3 text-white position-absolute top-20 mt-4 end-0 translate-middle-y">
+        <i class="fa-solid fa-plus fa-beat"></i>
+    </a>
+</div>
 
     <?php if (!empty($all_quotes)): ?>
         <ul class="list-group mb-3">

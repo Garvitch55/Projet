@@ -201,7 +201,7 @@ document.addEventListener('DOMContentLoaded', function() {
     addBtn.click();
 });
 </script>
-
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
 <?php
 $content = ob_get_clean();
 require __DIR__ . '/../../layout.php';

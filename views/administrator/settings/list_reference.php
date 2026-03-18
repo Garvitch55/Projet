@@ -66,7 +66,7 @@ foreach ($references as $ref) {
                 </a>
 
                 <!-- Image -->
-                <img src='/projet/images/{$image}' class='card-img-top' alt='{$cards}'>
+                <img src='/projet/assets/statics/images/{$image}' class='card-img-top' alt='{$cards}'>
 
                 <div class='card-body'>
                     <!-- Nom -->

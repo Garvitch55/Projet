@@ -17,7 +17,7 @@ $cards .= '
 <div class="col-md-4 mb-4">
     <div class="card h-100 card-references">
         
-        <img src="/projet/images/'.($ref['image']).'" class="card-img-top rounded-0" alt="'.($ref['name']).'">
+        <img src="/projet/assets/statics/images/'.($ref['image']).'" class="card-img-top rounded-1" alt="'.($ref['name']).'">
         
         <div class="card-body">
             <h5 class="card-title text-gris-fonce">'.($ref['name']).'</h5>
@@ -28,7 +28,7 @@ $cards .= '
                 Date de réalisation : '.($ref['Completion_date']).'<br>
             </p>
             
-            <a href="reference_detail.php?id='.($ref['id']).'" class="btn text-white">
+            <a href="views/reference_detail.php?id='.($ref['id']).'" class="btn text-white">
                 Voir plus
             </a>
         </div>

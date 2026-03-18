@@ -9,7 +9,8 @@ $fixtures = [
     'client_fixture.php',
     'works_fixture.php',       // 50 ouvrages gros œuvre
     'quotes_fixture.php',      // 30 devis liés aux clients existants
-    'quote_items_fixture.php'  // lignes de devis et calculs totaux
+    'quote_items_fixture.php',  // lignes de devis et calculs totaux
+    'reference_management_fixture.php'
 ];
 
 foreach ($fixtures as $file) {

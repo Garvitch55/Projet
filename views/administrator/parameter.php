@@ -36,8 +36,8 @@ $content = <<<HTML
         <i class="bi bi-receipt-cutoff me-2"></i>Gestion des Devis & Factures
       </div>
       <div class="card-body p-0">
-         <a class="nav-link w-100 p-2 menu-link" href="views/administrator/dashboard.php">- liste des moyens de paiements</a>
-         <a class="nav-link w-100 p-2 menu-link" href="views/administrator/dashboard.php">- liste des TVA</a>
+         <a class="nav-link w-100 p-2 menu-link" href="views/administrator/settings/payement.php">- liste des moyens de paiements</a>
+         <a class="nav-link w-100 p-2 menu-link" href="views/administrator/settings/list_tva.php">- liste des TVA</a>
       </div>
       <div class="card-footer bg-gris-fonce"></div>
    </div>
