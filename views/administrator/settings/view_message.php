@@ -19,19 +19,22 @@ if ($_SESSION['role'] !== 'administrateur') {
 // ----------------- Titre -----------------
 $title = "Voir le message";
 
-// ----------------- Inclure le controller -----------------
-require __DIR__ . '/../../../controller/administrator/message_ctrl.php';
-
 // ----------------- Récupération de l'id -----------------
 $id = $_GET['id'] ?? null;
 $message = null;
 
 if ($id) {
-    foreach ($all_messages as $msg) {
-        if ($msg['id_contact'] == $id) {
-            $message = $msg;
-            break;
-        }
+    $pdo = getPDO();
+
+    // On récupère le message directement depuis la base
+    $stmt = $pdo->prepare("SELECT * FROM contact WHERE id_contact = ?");
+    $stmt->execute([$id]);
+    $message = $stmt->fetch(PDO::FETCH_ASSOC);
+
+    // Optionnel : marquer le message comme lu
+    if ($message && $message['is_read'] == 0) {
+        $update = $pdo->prepare("UPDATE contact SET is_read = 1 WHERE id_contact = ?");
+        $update->execute([$id]);
     }
 }
 
@@ -41,14 +44,14 @@ ob_start();
 
 <section class="mt-5 mb-5">
 
-    <div class="d-flex justify-content-between align-items-center mb-4">
-        <h1 class="text-orange-fonce">Message de <?= htmlentities($message['first_name'] . ' ' . $message['last_name'] ?? '') ?></h1>
-        <a href="views/administrator/settings/messages.php" class="btn text-white">
-            <i class="bi bi-arrow-left me-2"></i> Retour
-        </a>
-    </div>
-
     <?php if ($message): ?>
+        <div class="d-flex justify-content-between align-items-center mb-4">
+            <h1 class="text-orange-fonce">Message de <?= htmlentities($message['first_name'] . ' ' . $message['last_name']) ?></h1>
+            <a href="views/administrator/settings/messages.php" class="btn text-white">
+                <i class="bi bi-arrow-left me-2"></i> Retour
+            </a>
+        </div>
+
         <div class="card shadow-sm mb-4">
             <div class="card-header bg-gris-fonce text-white">
                 <strong>Sujet :</strong> <?= htmlentities($message['subject']) ?>
@@ -63,6 +66,7 @@ ob_start();
         </div>
     <?php else: ?>
         <p>Aucun message trouvé.</p>
+        <a href="views/administrator/settings/messages.php" class="btn text-white mt-3">Retour aux messages</a>
     <?php endif; ?>
 
 </section>
@@ -74,3 +78,4 @@ $content = ob_get_clean();
 
 // ----------------- Inclusion du layout -----------------
 require ROOT . 'layout.php';
+?>

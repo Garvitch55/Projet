@@ -47,11 +47,6 @@ $stmt = $pdo->prepare("SELECT SUM(total_ttc) FROM quotes WHERE status = ?");
 $stmt->execute(['en attente']);
 $totalPendingQuotesAmount = $stmt->fetchColumn() ?? 0;
 
-// Messages non lus
-$stmt = $pdo->prepare("SELECT COUNT(*) FROM contact WHERE is_read = ?");
-$stmt->execute([0]);
-$totalMessages = $stmt->fetchColumn();
-
 // -------------------------
 // FACTURES EN ATTENTE (5 dernières)
 // -------------------------
@@ -65,18 +60,6 @@ $stmt = $pdo->prepare("
 ");
 $stmt->execute(['en attente de paiement']);
 $pendingInvoices = $stmt->fetchAll(PDO::FETCH_ASSOC);
-
-// -------------------------
-// MESSAGES (5 derniers non lus)
-// -------------------------
-$stmt = $pdo->prepare("
-    SELECT first_name, last_name, subject, created_at
-    FROM contact
-    WHERE is_read = ?
-    ORDER BY created_at DESC
-");
-$stmt->execute([0]);
-$messages = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
 // -------------------------
 // 3 DERNIERS DEVIS
@@ -163,69 +146,62 @@ ob_start();
 
     <div class="row">
 
-       <!-- FACTURES EN ATTENTE -->
-<div class="col-md-6">
-    <div class="card shadow-sm p-4 mb-4">
-        <h5 class="text-orange-fonce">Factures en attente</h5>
+        <!-- FACTURES EN ATTENTE -->
+        <div class="col-md-6">
+            <div class="card shadow-sm p-4 mb-4">
+                <h5 class="text-orange-fonce">Factures en attente</h5>
 
-        <?php if ($pendingInvoices): ?>
-            <ul class="list-group list-group-flush rounded-1 border-0" style="max-height: 400px; overflow-y: auto;">
-    <?php foreach ($pendingInvoices as $inv): 
-        $status_class = match($inv['status']) {
-            'en attente de paiement' => 'bg-danger',
-            'payée' => 'bg-success',
-            'annulée' => 'bg-warning',
-            default => 'bg-secondary'
-        };
-    ?>
-    <li class="list-group-item d-flex justify-content-between align-items-center rounded-1"
-        style="width: 98%; margin: auto; transition: transform 0.2s; padding: 0.75rem 1rem; border: none; border-radius: 0;">
-        <div>
-            <strong><?= htmlentities($inv['invoice_number']) ?></strong><br>
-            <small>Échéance : <?= htmlentities($inv['due_date']) ?></small><br>
-            <?= htmlentities($inv['firstname'].' '.$inv['lastname']) ?>
+                <?php if ($pendingInvoices): ?>
+                    <ul class="list-group list-group-flush rounded-1 border-0" style="max-height: 400px; overflow-y: auto;">
+                        <?php foreach ($pendingInvoices as $inv): 
+                            $status_class = match($inv['status']) {
+                                'en attente de paiement' => 'bg-danger',
+                                'payée' => 'bg-success',
+                                'annulée' => 'bg-warning',
+                                default => 'bg-secondary'
+                            };
+                        ?>
+                        <li class="list-group-item d-flex justify-content-between align-items-center rounded-1 border border-white"
+                            style="width: 98%; margin: auto; transition: transform 0.2s; padding: 0.75rem 1rem; border-radius: 0;">
+                            <div>
+                                <strong><?= htmlentities($inv['invoice_number']) ?></strong><br>
+                                <small>Échéance : <?= htmlentities($inv['due_date']) ?></small><br>
+                                <?= htmlentities($inv['firstname'].' '.$inv['lastname']) ?>
+                            </div>
+                            <div class="d-flex align-items-center gap-2">
+                                <span class="badge <?= $status_class ?> py-1 px-2"><?= ucfirst($inv['status']) ?></span>
+                                <a href="/projet/views/administrator/download_invoice.php?id=<?= $inv['id_invoice'] ?>"
+                                   class="btn3 btn-sm d-flex justify-content-center align-items-center text-white rounded-1"
+                                   style="width:40px; height:40px;"
+                                   title="Télécharger la facture">
+                                    <i class="fa-solid fa-file-pdf fa-beat"></i>
+                                </a>
+                            </div>
+                        </li>
+                        <?php endforeach; ?>
+                    </ul>
+                <?php else: ?>
+                    <p>Aucune facture en attente</p>
+                <?php endif; ?>
+                                <a href="/projet/views/administrator/invoice.php" class="btn6 text-white mt-3">
+                    Voir toutes les factures
+                </a>
+            </div>
         </div>
-        <div class="d-flex align-items-center gap-2">
-            <span class="badge <?= $status_class ?> py-1 px-2"><?= ucfirst($inv['status']) ?></span>
-            <a href="/projet/views/administrator/download_invoice.php?id=<?= $inv['id_invoice'] ?>"
-               class="btn3 btn-sm d-flex justify-content-center align-items-center text-white rounded-1"
-               style="width:40px; height:40px;"
-               title="Télécharger la facture">
-                <i class="fa-solid fa-file-pdf fa-beat"></i>
-            </a>
+
+        <!-- MESSAGES NON LUS AJAX -->
+        <div class="col-md-6">
+            <div class="card shadow-sm p-4 mb-4">
+                <h5 class="text-orange-fonce">Messages non lus</h5>
+                <div id="messagesContainer">
+                    <!-- Messages chargés via AJAX -->
+                    <p>Chargement...</p>
+                </div>
+                                                <a href="/projet/views/administrator/settings/messages.php" class="btn6 text-white mt-3">
+                    Voir toutes les messages
+                </a>
+            </div>
         </div>
-    </li>
-    <?php endforeach; ?>
-</ul>
-        <?php else: ?>
-            <p>Aucune facture en attente</p>
-        <?php endif; ?>
-    </div>
-</div>
-
-      <!-- MESSAGES -->
-<div class="col-md-6">
-    <div class="card shadow-sm p-4 mb-4">
-        <h5 class="text-orange-fonce">Messages non lus</h5>
-
-        <?php if ($messages): ?>
-            <ul class="list-group list-group-flush rounded-1 border-0" style="max-height: 400px; overflow-y: auto;">
-                <?php foreach ($messages as $msg): ?>
-                <li class="list-group-item d-flex justify-content-between align-items-center rounded-1"
-                    style="width: 98%; margin: auto; transition: transform 0.2s; padding: 0.75rem 1rem; border-radius: 0;">
-                    <div>
-                        <strong><?= htmlentities($msg['first_name'].' '.$msg['last_name']) ?></strong><br>
-                        <?= htmlentities($msg['subject']) ?><br>
-                        <small><?= htmlentities($msg['created_at']) ?></small>
-                    </div>
-                </li>
-                <?php endforeach; ?>
-            </ul>
-        <?php else: ?>
-            <p>Aucun message non lu</p>
-        <?php endif; ?>
-    </div>
-</div>
 
     </div>
 
@@ -237,7 +213,7 @@ ob_start();
                 <h5 class="text-orange-fonce">Derniers devis</h5>
 
                 <?php if ($quotes): ?>
-                    <ul class="list-group">
+                    <ul class="list-group border-0">
                         <?php foreach ($quotes as $q):
                             $status_class = match($q['status']) {
                                 'en attente' => 'bg-info',
@@ -246,7 +222,7 @@ ob_start();
                                 default => 'bg-secondary'
                             };
                         ?>
-                        <li class="list-group-item d-flex justify-content-between align-items-center p-3">
+                        <li class="list-group-item d-flex justify-content-between align-items-center p-3 border border-white">
                             <div>
                                 <strong><?= htmlentities($q['quote_number']) ?></strong><br>
                                 <small><?= htmlentities($q['quote_date']) ?></small>
@@ -266,6 +242,9 @@ ob_start();
                 <?php else: ?>
                     <p>Aucun devis</p>
                 <?php endif; ?>
+<a href="/projet/views/administrator/quotation.php" class="btn6 text-white mt-3">
+                    Voir tous les devis
+                </a>
             </div>
         </div>
 
@@ -275,7 +254,7 @@ ob_start();
                 <h5 class="text-orange-fonce">Dernières factures</h5>
 
                 <?php if ($invoices): ?>
-                    <ul class="list-group">
+                    <ul class="list-group  border-0">
                         <?php foreach ($invoices as $inv):
                             $status_class = match($inv['status']) {
                                 'en attente de paiement' => 'bg-danger',
@@ -284,7 +263,7 @@ ob_start();
                                 default => 'bg-secondary'
                             };
                         ?>
-                        <li class="list-group-item d-flex justify-content-between align-items-center p-3 ">
+                        <li class="list-group-item d-flex justify-content-between align-items-center p-3 border border-white">
                             <div>
                                 <strong><?= htmlentities($inv['invoice_number']) ?></strong><br>
                                 <small><?= htmlentities($inv['invoice_date']) ?></small>
@@ -304,6 +283,9 @@ ob_start();
                 <?php else: ?>
                     <p>Aucune facture</p>
                 <?php endif; ?>
+                <a href="/projet/views/administrator/invoice.php" class="btn6 text-white mt-3">
+                    Voir toutes les factures
+                </a>
             </div>
         </div>
 
@@ -311,7 +293,33 @@ ob_start();
 
 </section>
 
+<!-- ================== JS ================== -->
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+
+<script>
+function loadMessages() {
+    $.get('/projet/views/administrator/ajax_messages.php', function(data) {
+        $('#messagesContainer').html(data);
+    });
+}
+
+$(document).ready(function() {
+    // Chargement initial
+    loadMessages();
+
+    // Auto-refresh toutes les 30 secondes
+    setInterval(loadMessages, 30000);
+
+    // Délégation : si un message est ouvert, reload la liste
+    $(document).on('click', '.view-message', function(e){
+        e.preventDefault();
+        let url = $(this).attr('href');
+        // Ouvre le message dans la même page
+        window.location.href = url;
+    });
+});
+</script>
 
 <?php
 $content = ob_get_clean();

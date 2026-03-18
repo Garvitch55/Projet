@@ -111,14 +111,14 @@ $notification = ob_get_clean();
         </div>
 
         <div class="col-md-3">
-            <div class="card text-center shadow-sm p-3 bg-gris-fonce text-white">
+            <div class="card text-center shadow-sm p-3 bg-orange-fonce text-white">
                 <h5>Total payé</h5>
                 <h2><?= number_format($totalAmount, 2, ',', ' ') ?> €</h2>
             </div>
         </div>
 
         <div class="col-md-3">
-            <div class="card text-center shadow-sm p-3 bg-gris-fonce text-white">
+            <div class="card text-center shadow-sm p-3 bg-danger text-white">
                 <h5>Factures en attente</h5>
                 <h2><?= count($pendingInvoices) ?></h2>
             </div>
