@@ -141,7 +141,7 @@ $notification = ob_get_clean();
                         <button type="button" class="btn text-white" data-bs-dismiss="modal">Annuler</button>
                         <form method="POST" action="/projet/controller/administrator/delete_invoice_ctrl.php">
                             <input type="hidden" name="id_invoice" value="<?= $id ?>">
-                            <button type="submit" class="btn btn-danger text-white">Supprimer</button>
+                            <button type="submit" class="btn text-white">Supprimer</button>
                         </form>
                     </div>
                 </div>

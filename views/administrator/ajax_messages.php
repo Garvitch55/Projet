@@ -8,28 +8,29 @@ if (!isset($_SESSION['id']) || $_SESSION['role'] !== 'administrateur') {
 
 $pdo = getPDO();
 
+// On sélectionne les clients dont le message n'a pas été lu (is_read = 0)
+// Tri par id_client décroissant pour afficher les plus récents
 $stmt = $pdo->prepare("
-    SELECT id_contact, first_name, last_name, subject, created_at
-    FROM contact
+    SELECT id_client, firstname, lastname, demande
+    FROM gestion_client
     WHERE is_read = 0
-    ORDER BY created_at DESC
+    ORDER BY id_client DESC
     LIMIT 5
 ");
 $stmt->execute();
 $messages = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
 if ($messages) {
-    echo '<ul class="list-group list-group-flush rounded-1 border-0" style="max-height: 400px; overflow-y:auto;">';
+    echo '<ul class="list-group list-group-flush rounded-1 border-0" style="max-height:400px; overflow-y:auto;">';
     foreach ($messages as $msg) {
         echo '<li class="list-group-item d-flex justify-content-between align-items-center rounded-1 border border-white"
                     style="width: 98%; margin: auto; transition: transform 0.2s; padding: 0.75rem 1rem; border-radius: 0;">
                 <div>
-                    <strong>'.htmlentities($msg['first_name'].' '.$msg['last_name']).'</strong><br>
-                    '.htmlentities($msg['subject']).'<br>
-                    <small>'.htmlentities($msg['created_at']).'</small>
+                    <strong>'.htmlentities($msg['firstname'].' '.$msg['lastname']).'</strong><br>
+                    '.htmlentities($msg['demande']).'
                 </div>
                 <div class="d-flex align-items-center gap-2">
-                    <a href="views/administrator/settings/view_messenger_contact.php?id='.$msg['id_contact'].'&action=read"
+                    <a href="views/administrator/settings/view_messenger_customer.php?id='.$msg['id_client'].'&action=read"
                        class="btn3 btn-sm d-flex justify-content-center align-items-center text-white rounded-1 view-message"
                        style="width:40px; height:40px;"
                        title="Lire le message">

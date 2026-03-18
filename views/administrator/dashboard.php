@@ -192,18 +192,42 @@ ob_start();
         <!-- MESSAGES NON LUS AJAX -->
         <div class="col-md-6">
             <div class="card shadow-sm p-4 mb-4">
-                <h5 class="text-orange-fonce">Messages non lus</h5>
+                <h5 class="text-orange-fonce">Messages non lus clients</h5>
                 <div id="messagesContainer">
                     <!-- Messages chargés via AJAX -->
                     <p>Chargement...</p>
                 </div>
-                                                <a href="/projet/views/administrator/settings/messenger_contact.php" class="btn6 text-white mt-3">
+                                                <a href="/projet/views/administrator/settings/messenger_customer.php" class="btn6 text-white mt-3">
                     Voir toutes les messages
                 </a>
             </div>
         </div>
 
     </div>
+ <div class="row">
+<div class="col-md-6">
+    <div class="card shadow-sm p-4 mb-4">
+        <h5 class="text-orange-fonce">Messages non lus contact</h5>
+        <div id="messagesContactContainer">
+            <p>Chargement...</p>
+        </div>
+        <a href="/projet/views/administrator/settings/messenger_contact.php" class="btn6 text-white mt-3">
+            Voir tous les messages contact
+        </a>
+    </div>
+</div>
+
+                </div>
+
+
+
+
+
+
+
+
+
+
 
     <div class="row">
 
@@ -319,6 +343,37 @@ $(document).ready(function() {
         window.location.href = url;
     });
 });
+
+
+function loadContactMessages() {
+    $.get('/projet/views/administrator/ajax_messages_contact.php', function(data) {
+        $('#messagesContactContainer').html(data);
+    });
+}
+
+$(document).ready(function() {
+    loadMessages();        // pour clients
+    loadContactMessages(); // pour contacts
+
+    setInterval(loadClientMessages, 30000);
+    setInterval(loadContactMessages, 30000);
+
+    $(document).on('click', '.view-message', function(e){
+        e.preventDefault();
+        let url = $(this).attr('href');
+        window.location.href = url;
+    });
+});
+
+
+
+
+
+
+
+
+
+
 </script>
 
 <?php

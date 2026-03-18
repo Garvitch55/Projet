@@ -38,7 +38,7 @@ $content = <<<HTML
       </div>
       <div class="card-body p-0">
          <a class="nav-link w-100 p-2 menu-link" href="views/administrator/settings/messenger_contact.php">- liste des messages des contacts</a>
-         <a class="nav-link w-100 p-2 menu-link" href="views/administrator/dashboard.php">- liste des messgaes clients</a>
+         <a class="nav-link w-100 p-2 menu-link" href="views/administrator/settings/messenger_customer.php">- liste des messgaes clients</a>
       </div>
       <div class="card-footer bg-gris-fonce"></div>
    </div>

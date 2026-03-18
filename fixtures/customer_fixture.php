@@ -39,8 +39,8 @@ try {
     // ---------------------------
     $stmt = $pdo->prepare("
         INSERT INTO gestion_client 
-        (firstname, lastname, birthdate, phone, email, rue, cp, ville, demande, password) 
-        VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+        (firstname, lastname, birthdate, phone, email, rue, cp, ville, demande, password, is_read) 
+        VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
     ");
 
     // ---------------------------
@@ -48,44 +48,40 @@ try {
     // ---------------------------
     $pdo->beginTransaction();
 
-// ---------------------------
-// INSERT ADMIN PAR DEFAUT
-// ---------------------------
+    // ---------------------------
+    // INSERT ADMIN PAR DEFAUT
+    // ---------------------------
+    $stmt->execute([
+        'Adrien',
+        'Garnier',
+        null, // birthdate
+        '062424584184',
+        'adrien-garnier1@orange.fr',
+        '15 allée du pré l\'évêque',
+        '55100',
+        'Verdun',
+        'Compte client administrateur',
+        password_hash('Garvitch_55100', PASSWORD_DEFAULT),
+        1 // Administrateur marqué lu
+    ]);
 
-$stmt->execute([
-    'Adrien',
-    'Garnier',
-    null, // birthdate
-    '062424584184',
-    'adrien-garnier1@orange.fr',
-    '15 allée du pré l\'évêque',
-    '55100',
-    'Verdun',
-    'Compte client administrateur',
-    password_hash('Garvitch_55100', PASSWORD_DEFAULT)
-]);
+    $stmt->execute([
+        'Jury',
+        'Web Dev',
+        null,
+        '0600000000',
+        'jury-web1@dev.fr',
+        'rue de l\'ALAJI',
+        '55100',
+        'Verdun',
+        'Compte client administrateur',
+        password_hash('Jury_web', PASSWORD_DEFAULT),
+        1 // Administrateur marqué lu
+    ]);
 
-$stmt->execute([
-    'Jury',
-    'Web Dev',
-    null,
-    '0600000000',
-    'jury-web1@dev.fr',
-    'rue de l\'ALAJI',
-    '55100',
-    'Verdun',
-    'Compte client administrateur',
-    password_hash('Jury_web', PASSWORD_DEFAULT)
-]);
-
-
-
-
-
-
-
-
-
+    // ---------------------------
+    // Générer 200 clients aléatoires
+    // ---------------------------
     for ($i = 0; $i < 200; $i++) {
         $firstname = $faker->firstName();
         $lastname = $faker->lastName();
@@ -97,6 +93,7 @@ $stmt->execute([
         $ville = $faker->city();
         $demande = $faker->sentence(10);
         $password = password_hash('Password123', PASSWORD_DEFAULT); // mot de passe par défaut
+        $is_read = (int) $faker->boolean(50); // 50% chance d’être lu ou non
 
         $stmt->execute([
             $firstname,
@@ -108,13 +105,14 @@ $stmt->execute([
             $cp,
             $ville,
             $demande,
-            $password
+            $password,
+            $is_read
         ]);
     }
 
     $pdo->commit();
 
-    echo "3/ 200 clients ont été insérés avec succès !\n";
+    echo "3/ 200 clients ont été insérés avec succès avec is_read aléatoire !\n";
     echo "4/ client_fixture.php terminé.\n";
 
 } catch (PDOException $e) {

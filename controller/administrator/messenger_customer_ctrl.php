@@ -20,13 +20,13 @@ switch ($action) {
             $id = (int) $_GET['id'];
 
             // Vérifier que le message existe
-            $stmtCheck = $pdo->prepare("SELECT * FROM contact WHERE id_contact = ?");
+            $stmtCheck = $pdo->prepare("SELECT * FROM gestion_client WHERE id_client = ?");
             $stmtCheck->execute([$id]);
             $msg = $stmtCheck->fetch(PDO::FETCH_ASSOC);
 
             if ($msg && $msg['is_read'] == 0) {
                 // Marquer comme lu
-                $stmt = $pdo->prepare("UPDATE contact SET is_read = 1 WHERE id_contact = ?");
+                $stmt = $pdo->prepare("UPDATE gestion_client SET is_read = 1 WHERE id_client = ?");
                 $stmt->execute([$id]);
             }
             // NE PAS rediriger ici pour que view_messenger.php s'affiche correctement
@@ -35,12 +35,12 @@ switch ($action) {
 
     // Supprimer un message
     case 'delete':
-        if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['id_contact'])) {
-            $id = (int) $_POST['id_contact'];
-            $stmt = $pdo->prepare("DELETE FROM contact WHERE id_contact = ?");
+        if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['id_client'])) {
+            $id = (int) $_POST['id_client'];
+            $stmt = $pdo->prepare("DELETE FROM gestion_client WHERE id_client = ?");
             $stmt->execute([$id]);
         }
-        header("Location: ../../views/administrator/settings/messenger_contact.php?status=success&message=Le message a bien été supprimé avec succès");
+        header("Location: ../../views/administrator/settings/messenger_customer.php?status=success&message=Le message a bien été supprimé avec succès");
         exit;
 }
 
@@ -51,13 +51,13 @@ $perPage = 10;
 $offset = ($currentPage - 1) * $perPage;
 
 // Compter le nombre total de messages
-$totalMessages = (int)$pdo->query("SELECT COUNT(*) FROM contact")->fetchColumn();
+$totalMessages = (int)$pdo->query("SELECT COUNT(*) FROM gestion_client")->fetchColumn();
 $totalPages = ceil($totalMessages / $perPage);
 
 // Récupérer les messages pour la page
 $stmt = $pdo->prepare("
-    SELECT * FROM contact
-    ORDER BY created_at DESC
+    SELECT * FROM gestion_client
+    ORDER BY id_client DESC
     LIMIT :limit OFFSET :offset
 ");
 
@@ -72,7 +72,7 @@ $message = null;
 if (isset($_GET['id'])) {
     $id = (int) $_GET['id'];
 
-    $stmt = $pdo->prepare("SELECT * FROM contact WHERE id_contact = ?");
+    $stmt = $pdo->prepare("SELECT * FROM gestion_client WHERE id_client = ?");
     $stmt->execute([$id]);
     $message = $stmt->fetch(PDO::FETCH_ASSOC);
 }

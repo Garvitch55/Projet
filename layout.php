@@ -110,7 +110,7 @@ if (isUserLoggedIn() && getUserRole() === 'administrateur') {
                     <div class="text-center pb-2">
                         <li>
                             <a class="btn5" href="views/administrator/settings/messenger_contact.php">
-                                Voir tous les messages
+                                Voir tous les messages des contacts
                             </a>
                         </li>
                     </div>

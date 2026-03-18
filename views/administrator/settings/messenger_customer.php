@@ -15,11 +15,11 @@ if ($_SESSION['role'] !== 'administrateur') {
     exit;
 }
 
-$title = "Tous les messages";
+$title = "Messages clients";
 
 // -------------------------
 // Inclure le controller pour récupérer $all_messages et pagination
-require __DIR__ . '/../../../controller/administrator/messenger_contact_ctrl.php';
+require __DIR__ . '/../../../controller/administrator/messenger_customer_ctrl.php';
 
 // Sécurité : s'assurer que $all_messages est un tableau
 if (!isset($all_messages) || !is_array($all_messages)) {
@@ -39,7 +39,7 @@ $notification = ob_get_clean();
 <section class="m-4">
 
     <div class="d-flex justify-content-between align-items-center mt-3">
-        <h1 class="text-orange-fonce mb-4">Liste des messages des contacts</h1>
+        <h1 class="text-orange-fonce mb-4">Liste des messages des clients</h1>
         <a href="/projet/views/administrator/parameter.php" class="btn text-white">
             <i class="bi bi-arrow-left me-2"></i> Retour
         </a>
@@ -50,15 +50,14 @@ $notification = ob_get_clean();
             <?php foreach ($all_messages as $msg): 
                 $badge_class = !empty($msg['is_read']) ? 'bg-success' : 'bg-danger';
                 $badge_text = !empty($msg['is_read']) ? 'Lu' : 'Non lu';
-                $id = $msg['id_contact'] ?? 0;
+                $id = $msg['id_client'];
             ?>
-            <li class="list-group-item d-flex justify-content-between align-items-start position-relative">
+            <li class="list-group-item d-flex justify-content-between align-items-start position-relative p-3">
                 <div class="flex-grow-1">
-                    <a href="views/administrator/settings/view_messenger_contact.php?id=<?= $id ?>&action=read" 
+                    <a href="views/administrator/settings/view_messenger_customer.php?id=<?= $id ?>&action=read" 
                        class="text-decoration-none d-block">
-                        <p class="fw-bold m-0"><?= htmlentities($msg['first_name'].' '.$msg['last_name'] ?? '') ?></p>
-                        <p class="m-0"><?= htmlentities($msg['subject'] ?? '') ?></p>
-                        <p class="m-0"><?= htmlentities($msg['created_at'] ?? '') ?></p>
+                        <p class="fw-bold m-0"><?= htmlentities($msg['firstname'].' '.$msg['lastname']) ?></p>
+                        <p class="m-0"><?= htmlentities($msg['demande']) ?></p>
                     </a>
                 </div>
 
@@ -68,31 +67,30 @@ $notification = ob_get_clean();
                         <?= ($badge_text === 'Non lu') ? "Non<br>lu" : $badge_text ?>
                     </span>
 
-                    <a href="#" 
-                       class="btn3 btn-sm rounded-circle d-flex justify-content-center align-items-center text-white"
-                       style="width: 40px; height: 40px;"
-                       data-bs-toggle="modal"
-                       data-bs-target="#deleteModal<?= $id ?>">
-                       <i class="bi bi-x-lg d-flex"></i>
-                    </a>
+                    <!-- Bouton déclencheur du modal -->
+                    <button type="button" class="btn btn3 rounded-circle d-flex justify-content-center align-items-center text-white"
+                            style="width: 40px; height: 40px;"
+                            data-bs-toggle="modal" data-bs-target="#deleteModal<?= $id ?>">
+                        <i class="bi bi-x-lg d-flex"></i>
+                    </button>
                 </div>
             </li>
 
-            <!-- Modal de confirmation pour supprimer le message -->
+            <!-- Modal de confirmation pour suppression -->
             <div class="modal fade" id="deleteModal<?= $id ?>" tabindex="-1">
                 <div class="modal-dialog modal-dialog-centered">
                     <div class="modal-content">
                         <div class="modal-header bg-gris-fonce text-white rounded-1">
                             <h5 class="modal-title">Confirmation</h5>
-                            <button type="button" class="btn-close text-white" data-bs-dismiss="modal"></button>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
                         </div>
                         <div class="modal-body">
-                            Êtes-vous sûr de vouloir supprimer ce message de <strong><?= htmlentities($msg['first_name'].' '.$msg['last_name'] ?? '') ?></strong> ?
+                            Êtes-vous sûr de vouloir supprimer ce message de <strong><?= htmlentities($msg['firstname'].' '.$msg['lastname']) ?></strong> ?
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn text-white" data-bs-dismiss="modal">Annuler</button>
-                            <form method="POST" action="controller/administrator/messenger_customer_ctrl.php?action=delete">
-                                <input type="hidden" name="id_contact" value="<?= $id ?>">
+                            <form method="POST" action="../../../projet/controller/administrator/messenger_customer_ctrl.php?action=delete">
+                                <input type="hidden" name="id_client" value="<?= $id ?>">
                                 <button type="submit" class="btn text-white">Supprimer</button>
                             </form>
                         </div>
@@ -115,7 +113,7 @@ $notification = ob_get_clean();
                 <?php if($currentPage == 1): ?>
                     <span class="page-link bg-gris-fonce text-white">&laquo;&laquo;</span>
                 <?php else: ?>
-                    <a class="page-link bg-orange-fonce text-white" href="/projet/views/administrator/settings/messenger_contact.php?page=1">&laquo;&laquo;</a>
+                    <a class="page-link bg-orange-fonce text-white" href="/projet/views/administrator/settings/messenger_customer.php?page=1">&laquo;&laquo;</a>
                 <?php endif; ?>
             </li>
 
@@ -124,7 +122,7 @@ $notification = ob_get_clean();
                 <?php if($currentPage == 1): ?>
                     <span class="page-link bg-gris-fonce text-white">&laquo;</span>
                 <?php else: ?>
-                    <a class="page-link bg-orange-fonce text-white" href="/projet/views/administrator/settings/messenger_contact.php?page=<?= max(1, $currentPage - 1) ?>">&laquo;</a>
+                    <a class="page-link bg-orange-fonce text-white" href="/projet/views/administrator/settings/messenger_customer.php?page=<?= max(1, $currentPage - 1) ?>">&laquo;</a>
                 <?php endif; ?>
             </li>
 
@@ -146,7 +144,7 @@ $notification = ob_get_clean();
                     <?php if($page == $currentPage): ?>
                         <span class="page-link bg-orange-fonce text-white"><?= $page ?></span>
                     <?php else: ?>
-                        <a class="page-link bg-gris-fonce text-white" href="/projet/views/administrator/settings/messenger_contact.php?page=<?= $page ?>"><?= $page ?></a>
+                        <a class="page-link bg-gris-fonce text-white" href="/projet/views/administrator/settings/messenger_customer.php?page=<?= $page ?>"><?= $page ?></a>
                     <?php endif; ?>
                 </li>
             <?php endfor; ?>
@@ -160,7 +158,7 @@ $notification = ob_get_clean();
                 <?php if($currentPage == $totalPages): ?>
                     <span class="page-link bg-gris-fonce text-white">&raquo;</span>
                 <?php else: ?>
-                    <a class="page-link bg-orange-fonce text-white" href="/projet/views/administrator/settings/messenger_contact.php?page=<?= min($totalPages, $currentPage + 1) ?>">&raquo;</a>
+                    <a class="page-link bg-orange-fonce text-white" href="/projet/views/administrator/settings/messenger_customer.php?page=<?= min($totalPages, $currentPage + 1) ?>">&raquo;</a>
                 <?php endif; ?>
             </li>
 
@@ -169,7 +167,7 @@ $notification = ob_get_clean();
                 <?php if($currentPage == $totalPages): ?>
                     <span class="page-link bg-gris-fonce text-white">&raquo;&raquo;</span>
                 <?php else: ?>
-                    <a class="page-link bg-orange-fonce text-white" href="/projet/views/administrator/settings/messenger_contact.php?page=<?= $totalPages ?>">&raquo;&raquo;</a>
+                    <a class="page-link bg-orange-fonce text-white" href="/projet/views/administrator/settings/messenger_customer.php?page=<?= $totalPages ?>">&raquo;&raquo;</a>
                 <?php endif; ?>
             </li>
         </ul>
