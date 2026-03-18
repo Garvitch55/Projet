@@ -1,5 +1,4 @@
 <?php
-// views/administrator/settings/view_message.php
 
 require_once __DIR__ . '/../../../config.php';
 require_once __DIR__ . '/../../../head.php';
@@ -47,7 +46,7 @@ ob_start();
     <?php if ($message): ?>
         <div class="d-flex justify-content-between align-items-center mb-4">
             <h1 class="text-orange-fonce">Message de <?= htmlentities($message['first_name'] . ' ' . $message['last_name']) ?></h1>
-            <a href="views/administrator/settings/messages.php" class="btn text-white">
+            <a href="views/administrator/settings/messenger_contact.php" class="btn text-white">
                 <i class="bi bi-arrow-left me-2"></i> Retour
             </a>
         </div>
@@ -66,7 +65,7 @@ ob_start();
         </div>
     <?php else: ?>
         <p>Aucun message trouvé.</p>
-        <a href="views/administrator/settings/messages.php" class="btn text-white mt-3">Retour aux messages</a>
+        <a href="views/administrator/settings/messenger_contact.php" class="btn text-white mt-3">Retour aux messages</a>
     <?php endif; ?>
 
 </section>

@@ -29,7 +29,7 @@ switch ($action) {
                 $stmt = $pdo->prepare("UPDATE contact SET is_read = 1 WHERE id_contact = ?");
                 $stmt->execute([$id]);
             }
-            // NE PAS rediriger ici pour que view_message.php s'affiche correctement
+            // NE PAS rediriger ici pour que view_messenger.php s'affiche correctement
         }
         break;
 
@@ -40,7 +40,7 @@ switch ($action) {
             $stmt = $pdo->prepare("DELETE FROM contact WHERE id_contact = ?");
             $stmt->execute([$id]);
         }
-        header("Location: ../../views/administrator/settings/messages.php");
+        header("Location: ../../views/administrator/settings/messenger_contact.php");
         exit;
 }
 
@@ -67,7 +67,7 @@ $stmt->execute();
 
 $all_messages = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
-// ----------------- RÉCUPÉRATION D'UN MESSAGE UNIQUE (pour view_message.php) -----------------
+// ----------------- RÉCUPÉRATION D'UN MESSAGE UNIQUE (pour view_messenger.php) -----------------
 $message = null;
 if (isset($_GET['id'])) {
     $id = (int) $_GET['id'];

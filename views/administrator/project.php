@@ -20,20 +20,27 @@ if ($_SESSION['role'] !== 'administrateur') {
 require_once __DIR__ . '/../../head.php';    // head_with_title
 $title = "Chantiers";
 
-// ----------------- CONTENT -----------------
-$content = <<<HTML
+ob_start();
+?>
+<?php
+ob_start();
+require ROOT . "notification.php";
+$notification = ob_get_clean();
+?>
 
-<div class="mt-1 mb-4">
-   <h1 class="title">Liste des chantiers</h1>
-</div>
+<section class="m-4">
+    <div class="d-flex justify-content-between align-items-center mt-3">
+        <h1 class="text-orange-fonce mb-4">Liste des chantiers</h1>
+    </div>
 <div class=" mt-3">
-    <h1 class="text-center text-danger"><i class="fa-solid fa-triangle-exclamation me-2 text-danger fa-beat"></i>Page en travaux</h1>
+    <h1 class="text-center text-danger"><i class="fa-solid fa-triangle-exclamation me-2 text-danger fa-beat"></i>Page en construction</h1>
 </div>
-
+</section>
 
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
-HTML;
 
-// ----------------- INCLURE LAYOUT -----------------
+
+<?php
+$content = ob_get_clean();
 require __DIR__ . '/../../layout.php';

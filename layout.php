@@ -78,7 +78,7 @@ if (isUserLoggedIn() && getUserRole() === 'administrateur') {
                         <div class="d-flex flex-column px-3">
                             <?php foreach ($latest_messages as $msg): ?>
                                 <?php $msg_id = $msg['id_contact']; ?>
-                                <a href="views/administrator/settings/view_message.php?id=<?= $msg['id_contact'] ?>&action=read" class="text-decoration-none">
+                                <a href="views/administrator/settings/view_messenger_contact.php?id=<?= $msg['id_contact'] ?>&action=read" class="text-decoration-none">
                                     <li class="dropdown-item text-white d-flex align-items-start gap-2 bell-message rounded-1">
 
                                         <!-- Contenu du message -->
@@ -109,7 +109,7 @@ if (isUserLoggedIn() && getUserRole() === 'administrateur') {
                     <!-- Bouton centré -->
                     <div class="text-center pb-2">
                         <li>
-                            <a class="btn5" href="views/administrator/settings/messages.php">
+                            <a class="btn5" href="views/administrator/settings/messenger_contact.php">
                                 Voir tous les messages
                             </a>
                         </li>

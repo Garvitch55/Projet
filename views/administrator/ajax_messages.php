@@ -29,7 +29,7 @@ if ($messages) {
                     <small>'.htmlentities($msg['created_at']).'</small>
                 </div>
                 <div class="d-flex align-items-center gap-2">
-                    <a href="views/administrator/settings/view_message.php?id='.$msg['id_contact'].'&action=read"
+                    <a href="views/administrator/settings/view_messenger_contact.php?id='.$msg['id_contact'].'&action=read"
                        class="btn3 btn-sm d-flex justify-content-center align-items-center text-white rounded-1 view-message"
                        style="width:40px; height:40px;"
                        title="Lire le message">

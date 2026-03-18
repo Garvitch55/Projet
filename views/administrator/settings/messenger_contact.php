@@ -19,7 +19,7 @@ $title = "Tous les messages";
 
 // -------------------------
 // Inclure le controller pour récupérer $all_messages et pagination
-require __DIR__ . '/../../../controller/administrator/message_ctrl.php';
+require __DIR__ . '/../../../controller/administrator/messenger_contact_ctrl.php';
 
 // Sécurité : s'assurer que $all_messages est un tableau
 if (!isset($all_messages) || !is_array($all_messages)) {
@@ -49,7 +49,7 @@ ob_start();
             ?>
             <li class="list-group-item d-flex justify-content-between align-items-start position-relative">
                 <div class="flex-grow-1">
-                    <a href="views/administrator/settings/view_message.php?id=<?= $id ?>&action=read" 
+                    <a href="views/administrator/settings/view_messenger_contact.php?id=<?= $id ?>&action=read" 
                        class="text-decoration-none d-block">
                         <p class="fw-bold m-0"><?= htmlentities($msg['first_name'].' '.$msg['last_name'] ?? '') ?></p>
                         <p class="m-0"><?= htmlentities($msg['subject'] ?? '') ?></p>
@@ -86,7 +86,7 @@ ob_start();
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn text-white" data-bs-dismiss="modal">Annuler</button>
-                            <form method="POST" action="controller/administrator/message_ctrl.php?action=delete">
+                            <form method="POST" action="controller/administrator/messenger_contact_ctrl.php?action=delete">
                                 <input type="hidden" name="id_contact" value="<?= $id ?>">
                                 <button type="submit" class="btn btn-danger text-white">Supprimer</button>
                             </form>

@@ -197,7 +197,7 @@ ob_start();
                     <!-- Messages chargés via AJAX -->
                     <p>Chargement...</p>
                 </div>
-                                                <a href="/projet/views/administrator/settings/messages.php" class="btn6 text-white mt-3">
+                                                <a href="/projet/views/administrator/settings/messenger_contact.php" class="btn6 text-white mt-3">
                     Voir toutes les messages
                 </a>
             </div>

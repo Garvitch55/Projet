@@ -17,7 +17,7 @@ CREATE TABLE gestion_personnel (
     birthdate DATE NULL,
    
     -- Contact --
-    phone VARCHAR(12) NOT NULL,
+    phone VARCHAR(20) NOT NULL,
 
     -- Adresse --
     rue VARCHAR(255) NOT NULL,

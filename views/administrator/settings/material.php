@@ -29,7 +29,7 @@ $notification = ob_get_clean();
     <div class="d-flex justify-content-between align-items-center mt-3">
 
         <h1 class="text-orange-fonce mb-4">
-            Liste des moyens de paiements
+            Liste du matériel
         </h1>
 
         <div>

@@ -30,48 +30,6 @@ $content = <<<HTML
 <div class="row g-3">
 
 
-<!-- Gestion des Devis & Factures -->
-<div class="col-md-4 col-sm-6 col-12">
-   <div class="card h-100 card-parametres shadow">
-      <div class="card-header p-2 bg-gris-fonce text-white">
-        <i class="bi bi-receipt-cutoff me-2"></i>Gestion des Devis & Factures
-      </div>
-      <div class="card-body p-0">
-         <a class="nav-link w-100 p-2 menu-link" href="views/administrator/settings/payement.php">- liste des moyens de paiements</a>
-         <a class="nav-link w-100 p-2 menu-link" href="views/administrator/settings/list_tva.php">- liste des TVA</a>
-      </div>
-      <div class="card-footer bg-gris-fonce"></div>
-   </div>
-</div>
-
-<!-- Gestion des Clients -->
-<div class="col-md-4 col-sm-6 col-12">
-   <div class="card h-100 card-parametres">
-      <div class="card-header p-2 bg-gris-fonce text-white">
-        <i class="bi bi-people-fill me-2"></i>Gestion des Clients
-      </div>
-      <div class="card-body p-0">
-         <a class="nav-link w-100 p-2 menu-link" href="views/administrator/settings/list_clients.php">- liste des clients</a>
-         <a class="nav-link w-100 p-2 menu-link" href="views/administrator/dashboard.php">lien 2 crud</a>
-         <a class="nav-link w-100 p-2 menu-link" href="views/administrator/dashboard.php">lien 3 crud</a>
-      </div>
-      <div class="card-footer bg-gris-fonce"></div>
-   </div>
-</div>
-
-<!-- Gestion des Chantiers -->
-<div class="col-md-4 col-sm-6 col-12">
-   <div class="card h-100 card-parametres">
-      <div class="card-header p-2 bg-gris-fonce text-white">
-         <i class="bi bi-building me-2"></i>Gestion des Chantiers
-      </div>
-      <div class="card-body p-0">
-         <a class="nav-link w-100 p-2 menu-link" href="views/administrator/dashboard.php">- liste des chantiers</a>
-      </div>
-      <div class="card-footer bg-gris-fonce"></div>
-   </div>
-</div>
-
 <!-- Gestion des Communications -->
 <div class="col-md-4 col-sm-6 col-12">
    <div class="card h-100 card-parametres">
@@ -79,7 +37,7 @@ $content = <<<HTML
          <i class="bi bi-chat-dots-fill me-2"></i>Gestion des Communications
       </div>
       <div class="card-body p-0">
-         <a class="nav-link w-100 p-2 menu-link" href="views/administrator/settings/messages.php">- liste des messages des contacts</a>
+         <a class="nav-link w-100 p-2 menu-link" href="views/administrator/settings/messenger_contact.php">- liste des messages des contacts</a>
          <a class="nav-link w-100 p-2 menu-link" href="views/administrator/dashboard.php">- liste des messgaes clients</a>
       </div>
       <div class="card-footer bg-gris-fonce"></div>
@@ -123,9 +81,9 @@ $content = <<<HTML
         <i class="bi bi-receipt-cutoff me-2"></i>Gestion des Devis & Factures
       </div>
       <div class="card-body p-0">
-         <a class="nav-link w-100 p-2 menu-link" href="views/administrator/parameter.php">- liste des moyens de paiements: page en construction</a>
-         <a class="nav-link w-100 p-2 menu-link" href="views/administrator/dashboard.php">- liste des TVA</a>
-         <a class="nav-link w-100 p-2 menu-link" href="views/administrator/parameter.php">- liste des terms: page en construction</a>
+         <a class="nav-link w-100 p-2 menu-link" href="views/administrator/settings/payement.php">- liste des moyens de paiements</a>
+         <a class="nav-link w-100 p-2 menu-link" href="views/administrator/settings/list_tva.php">- liste des TVA</a>
+         <a class="nav-link w-100 p-2 menu-link" href="views/administrator/settings/term.php">- liste des terms</a>
       </div>
       <div class="card-footer bg-gris-fonce"></div>
    </div>
@@ -138,7 +96,7 @@ $content = <<<HTML
          <i class="bi bi-building me-2"></i>Gestion des bibliothèques des ouvrages
       </div>
       <div class="card-body p-0">
-         <a class="nav-link w-100 p-2 menu-link" href="views/administrator/dashboard.php">- liste des ouvrages</a>
+         <a class="nav-link w-100 p-2 menu-link" href="views/administrator/settings/work.php">- liste des ouvrages</a>
       </div>
       <div class="card-footer bg-gris-fonce"></div>
    </div>
@@ -151,8 +109,8 @@ $content = <<<HTML
          <i class="bi bi-building me-2"></i>Gestion pour chantier
       </div>
       <div class="card-body p-0">
-         <a class="nav-link w-100 p-2 menu-link" href="views/administrator/dashboard.php">- liste du métariel</a>
-         <a class="nav-link w-100 p-2 menu-link" href="views/administrator/dashboard.php">- liste de la main d'oeuvre</a>
+         <a class="nav-link w-100 p-2 menu-link" href="views/administrator/settings/material.php">- liste du matériel</a>
+         <a class="nav-link w-100 p-2 menu-link" href="views/administrator/settings/workforce.php">- liste de la main d'oeuvre</a>
       </div>
       <div class="card-footer bg-gris-fonce"></div>
    </div>
