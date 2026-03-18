@@ -145,52 +145,37 @@ ob_start();
     </div>
 
     <div class="row">
-
-       
-
-        <!-- MESSAGES NON LUS AJAX -->
-        <div class="col-md-6">
-            <div class="card shadow-sm p-4 mb-4">
-                <h5 class="text-orange-fonce">Messages non lus clients</h5>
-                <div id="messagesContainer">
-                    <!-- Messages chargés via AJAX -->
-                    <p>Chargement...</p>
-                </div>
-                                                <a href="/projet/views/administrator/settings/messenger_customer.php" class="btn6 text-white mt-3">
-                    Voir toutes les messages
-                </a>
+    <!-- MESSAGES CLIENTS -->
+    <div class="col-md-6">
+        <div class="card shadow-sm p-4 mb-4 h-100">
+            <h5 class="text-orange-fonce">Messages non lus clients</h5>
+            <div id="messagesContainer">
+                <p>Chargement...</p>
             </div>
+            <a href="/projet/views/administrator/settings/messenger_customer.php" class="btn6 text-white mt-3">
+                Voir toutes les messages
+            </a>
         </div>
+    </div>
 
-<div class="col-md-6">
-    <div class="card shadow-sm p-4 mb-4">
-        <h5 class="text-orange-fonce">Messages non lus contact</h5>
-        <div id="messagesContactContainer">
-            <p>Chargement...</p>
+    <!-- MESSAGES CONTACT -->
+    <div class="col-md-6">
+        <div class="card shadow-sm p-4 mb-4 h-100">
+            <h5 class="text-orange-fonce">Messages non lus contact</h5>
+            <div id="messagesContactContainer">
+                <p>Chargement...</p>
+            </div>
+            <a href="/projet/views/administrator/settings/messenger_contact.php" class="btn6 text-white mt-3">
+                Voir tous les messages contact
+            </a>
         </div>
-        <a href="/projet/views/administrator/settings/messenger_contact.php" class="btn6 text-white mt-3">
-            Voir tous les messages contact
-        </a>
     </div>
 </div>
 
-
-
-
-
-
-
-
-
-
-
-
-
     <div class="row">
-
         <!-- DERNIERS DEVIS -->
         <div class="col-md-6">
-            <div class="card shadow-sm p-4 mb-4">
+            <div class="card shadow-sm p-4 mb-4 mt-4">
                 <h5 class="text-orange-fonce">Derniers devis</h5>
 
                 <?php if ($quotes): ?>
@@ -199,7 +184,7 @@ ob_start();
                             $status_class = match($q['status']) {
                                 'en attente' => 'bg-info',
                                 'signé' => 'bg-success',
-                                'annulé' => 'bg-warning',
+                                'annulé' => 'bg-dark',
                                 default => 'bg-secondary'
                             };
                         ?>
@@ -231,16 +216,15 @@ ob_start();
 
         <!-- DERNIÈRES FACTURES -->
         <div class="col-md-6">
-            <div class="card shadow-sm p-4 mb-4">
+            <div class="card shadow-sm p-4 mb-4  mt-4">
                 <h5 class="text-orange-fonce">Dernières factures</h5>
-
                 <?php if ($invoices): ?>
                     <ul class="list-group  border-0">
                         <?php foreach ($invoices as $inv):
                             $status_class = match($inv['status']) {
                                 'en attente de paiement' => 'bg-danger',
                                 'payée' => 'bg-success',
-                                'annulée' => 'bg-warning',
+                                'annulée' => 'bg-dark',
                                 default => 'bg-secondary'
                             };
                         ?>
@@ -269,19 +253,15 @@ ob_start();
                 </a>
             </div>
         </div>
-
     </div>
 
 <div class="row">
-
     <!-- FACTURES EN ATTENTE -->
     <div class="col-md-6">
         <div class="card shadow-sm p-4 mb-4">
             <h5 class="text-orange-fonce">Factures en attente</h5>
-
             <?php if ($pendingInvoices): ?>
                 <ul class="list-group list-group-flush rounded-1 border-0" style="max-height: 400px; overflow-y: auto;">
-                    
                     <?php foreach ($pendingInvoices as $inv): 
                         $status_class = match($inv['status']) {
                             'en attente de paiement' => 'bg-danger',
@@ -290,21 +270,17 @@ ob_start();
                             default => 'bg-secondary'
                         };
                     ?>
-
                     <li class="list-group-item d-flex justify-content-between align-items-center rounded-1 border border-white"
                         style="width: 98%; margin: auto; transition: transform 0.2s; padding: 0.75rem 1rem;">
-                        
                         <div>
                             <strong><?= htmlentities($inv['invoice_number']) ?></strong><br>
                             <small>Échéance : <?= htmlentities($inv['due_date']) ?></small><br>
                             <?= htmlentities($inv['firstname'].' '.$inv['lastname']) ?>
                         </div>
-
                         <div class="d-flex align-items-center gap-2">
                             <span class="badge <?= $status_class ?> py-1 px-2">
                                 <?= ucfirst($inv['status']) ?>
                             </span>
-
                             <a href="/projet/views/administrator/download_invoice.php?id=<?= $inv['id_invoice'] ?>"
                                class="btn3 btn-sm d-flex justify-content-center align-items-center text-white rounded-1"
                                style="width:40px; height:40px;"
@@ -312,7 +288,6 @@ ob_start();
                                 <i class="fa-solid fa-file-pdf fa-beat"></i>
                             </a>
                         </div>
-
                     </li>
 
                     <?php endforeach; ?>

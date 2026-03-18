@@ -41,7 +41,6 @@ ob_start();
 ?>
 
 <section class="mt-5 mb-5">
-
     <?php if ($message): ?>
         <div class="d-flex justify-content-between align-items-center mb-4">
             <h1 class="text-orange-fonce">Message de <?= htmlentities($message['firstname'] . ' ' . $message['lastname']) ?></h1>
@@ -49,28 +48,26 @@ ob_start();
                 <i class="bi bi-arrow-left me-2"></i> Retour
             </a>
         </div>
-
         <div class="card shadow-sm mb-4">
             <div class="card-header bg-gris-fonce text-white">
-                <strong>Demande :</strong> <?= htmlentities($message['demande']) ?>
+                <h4 class="pt-2"><b>Demande :</b> <?= htmlentities($message['demande']) ?></h4>
             </div>
             <div class="card-body">
                 <p><strong>Nom :</strong> <?= htmlentities($message['firstname'] . ' ' . $message['lastname']) ?></p>
                 <?php if (!empty($message['email'])): ?>
-                    <p><strong>Email :</strong> <?= htmlentities($message['email']) ?></p>
+                    <p><b>Email :</b> <?= htmlentities($message['email']) ?></p>
                 <?php endif; ?>
                 <?php if (!empty($message['phone'])): ?>
-                    <p><strong>Téléphone :</strong> <?= htmlentities($message['phone']) ?></p>
+                    <p><b>Téléphone: </b> <?= htmlentities($message['phone']) ?></p>
                 <?php endif; ?>
-                <p><strong>Message :</strong><br><?= nl2br(htmlentities($message['demande'])) ?></p>
-                <p><small>Envoyé le <?= htmlentities($message['created_at']) ?></small></p>
+                <p><b>Message: </b><?= nl2br(htmlentities($message['demande'])) ?></p>
+                <p><b>Reçu le </b><?= htmlentities($message['created_at']) ?></small></p>
             </div>
         </div>
     <?php else: ?>
         <p>Aucun message trouvé.</p>
         <a href="messenger_customer.php" class="btn text-white mt-3">Retour aux messages</a>
     <?php endif; ?>
-
 </section>
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>

@@ -58,6 +58,7 @@ $notification = ob_get_clean();
                        class="text-decoration-none d-block">
                         <p class="fw-bold m-0"><?= htmlentities($msg['firstname'].' '.$msg['lastname']) ?></p>
                         <p class="m-0"><?= htmlentities($msg['demande']) ?></p>
+                        <p class="m-0">Reçu le <?= htmlentities($msg['created_at']) ?></p>
                     </a>
                 </div>
 

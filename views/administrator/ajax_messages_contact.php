@@ -13,7 +13,6 @@ $stmt = $pdo->prepare("
     FROM contact
     WHERE is_read = 0
     ORDER BY created_at DESC
-    LIMIT 5
 ");
 $stmt->execute();
 $messages = $stmt->fetchAll(PDO::FETCH_ASSOC);
@@ -24,9 +23,9 @@ if ($messages) {
         echo '<li class="list-group-item d-flex justify-content-between align-items-center rounded-1 border border-white"
                     style="width: 97%; margin: auto; transition: transform 0.2s; padding: 0.75rem 1rem; border-radius: 0;">
                 <div>
-                    <strong>'.htmlentities($msg['first_name'].' '.$msg['last_name']).'</strong><br>
-                    '.htmlentities($msg['subject']).'<br>
-                    <small>'.htmlentities($msg['created_at']).'</small>
+                    <div class="fw-bold">'.htmlentities($msg['first_name'].' '.$msg['last_name']).'</div>
+                    <div class="small">'.htmlentities($msg['subject']).'</div>
+                    <div class="small text-white">'.htmlentities($msg['created_at']).'</div>
                 </div>
                 <div>
                     <a href="views/administrator/settings/view_messenger_contact.php?id='.$msg['id_contact'].'&action=read"

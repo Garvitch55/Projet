@@ -53,14 +53,14 @@ ob_start();
 
         <div class="card shadow-sm mb-4">
             <div class="card-header bg-gris-fonce text-white">
-                <strong>Sujet :</strong> <?= htmlentities($message['subject']) ?>
+                <h3 class="pt-2"><b>Sujet :</b> <?= htmlentities($message['subject']) ?></h3>
             </div>
             <div class="card-body">
-                <p><strong>Nom :</strong> <?= htmlentities($message['first_name'] . ' ' . $message['last_name']) ?></p>
-                <p><strong>Email :</strong> <?= htmlentities($message['email']) ?></p>
-                <p><strong>Téléphone :</strong> <?= htmlentities($message['phone']) ?></p>
-                <p><strong>Message :</strong><br><?= nl2br(htmlentities($message['message'])) ?></p>
-                <p><small>Envoyé le <?= htmlentities($message['created_at']) ?></small></p>
+                <p><b>Nom: </b><?= htmlentities($message['first_name'] . ' ' . $message['last_name']) ?></p>
+                <p><b>Email: </b><?= htmlentities($message['email']) ?></p>
+                <p><b>Téléphone: </b><?= htmlentities($message['phone']) ?></p>
+                <p><b>Message: </b><?= nl2br(htmlentities($message['message'])) ?></p>
+                <p><b>Envoyé le : </b><?= htmlentities($message['created_at']) ?></p>
             </div>
         </div>
     <?php else: ?>

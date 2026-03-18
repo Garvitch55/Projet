@@ -71,7 +71,7 @@ $notification = ob_get_clean();
     <?php foreach ($all_quotes as $quote):
         $id = $quote['id_quote'];
         $status_class = match($quote['status']) {
-    'en attente' => 'bg-warning',
+    'en attente' => 'bg-dark',
     'signé' => 'bg-success',
     'annulé' => 'bg-danger',
             default => 'bg-secondary'

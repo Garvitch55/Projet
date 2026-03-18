@@ -71,9 +71,9 @@ $notification = ob_get_clean();
             $id = $invoice['id_invoice'];
             $status_class = match($invoice['status']) {
                 'brouillon' => 'bg-secondary',
-                'en attente de paiement' => 'bg-info',
+                'en attente de paiement' => 'bg-danger',
                 'payée' => 'bg-success',
-                'annulée' => 'bg-danger',
+                'annulée' => 'bg-info',
                 default => 'bg-secondary'
             };
         ?>

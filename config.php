@@ -58,9 +58,9 @@ function load(?string $file)
 function getPDO(): PDO
 {
     $pdo = new PDO(
-'mysql:host=db;port=3306;dbname=gestion_entreprise;charset=utf8mb4', 'root', '1234'
+//'mysql:host=db;port=3306;dbname=gestion_entreprise;charset=utf8mb4', 'root', '1234'//
 
-// 'mysql:host=localhost;dbname=gestion_entreprise;charset=utf8mb4', 'root', '' //
+'mysql:host=localhost;dbname=gestion_entreprise;charset=utf8mb4', 'root', ''
 
 //'mysql:host=127.0.0.1;port=3306;dbname=gestion_entreprise;charset=utf8mb4', 'root', '1234'
 
