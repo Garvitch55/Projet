@@ -13,7 +13,7 @@ if (!isset($_SESSION['id']) || $_SESSION['role'] !== 'administrateur') {
 $title = "Créer un client";
 
 
-
+ob_start();
 ?>
 
 <?php
