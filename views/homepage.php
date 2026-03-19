@@ -9,7 +9,7 @@ $content = <<<HTML
 <header class="mt-1 mb-4">
    <h2 class="title mb-3">Accueil</h2>
 
-   <div class="d-flex flex-row gap-4">
+   <div class="d-flex flex-column flex-md-row gap-4">
       <div id="carouselExampleCaptions" class="carousel slide w-55 flex">
          <div class="carousel-indicators">
             <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>

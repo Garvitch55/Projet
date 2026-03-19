@@ -1,19 +1,13 @@
 <?php
 require_once __DIR__ . '/config.php';
-require_once __DIR__ . '/head.php'; // contient head_with_title()
+require_once __DIR__ . '/head.php';
 
-// Titre dynamique par défaut
 $title = $title ?? 'Bienvenue';
-
-// Appel de la fonction pour afficher le <head> et ouvrir <body>
 head_with_title($title);
 
-// -------------------------
-// Détection de la page courante pour le menu actif
 $current_page = basename($_SERVER['PHP_SELF']);
 $current_path = $_SERVER['REQUEST_URI'];
 
-// Définir les pages et dossiers qui font partie du menu Paramétrages
 $is_param_active = false;
 if (
     strpos($current_path, '/administrator/parameter.php') !== false ||
@@ -22,23 +16,24 @@ if (
     $is_param_active = true;
 }
 
-// -------------------------
-// Récupérer le nombre de messages non lus si admin
 $unread_count = 0;
 $latest_messages = [];
+
 if (isUserLoggedIn() && getUserRole() === 'administrateur') {
     $pdo = getPDO();
+
     $stmt = $pdo->query("SELECT COUNT(*) as unread FROM contact WHERE is_read = 0");
     $unread_count = (int)$stmt->fetch()['unread'];
 
-    // Récupérer les derniers messages avec id_contact
-    $stmt2 = $pdo->query("SELECT id_contact, first_name, last_name, subject, created_at, is_read FROM contact ORDER BY created_at DESC LIMIT 3");
+    $stmt2 = $pdo->query("SELECT id_contact, first_name, last_name, subject, created_at, is_read 
+                          FROM contact ORDER BY created_at DESC LIMIT 3");
     $latest_messages = $stmt2->fetchAll(PDO::FETCH_ASSOC);
 }
 ?>
 
-<!-- ================= NAVBAR HORIZONTALE (TOP) ================= -->
+<!-- ================= NAVBAR ================= -->
 <nav class="navbar navbar-light bg-body-tertiary px-4 shadow">
+
     <!-- Logo -->
     <a class="navbar-brand logo" href="./">
         <img src="assets/statics/images/logo.png" alt="Logo de l'entreprise" style="height:80px; margin-right:10px;">
@@ -56,8 +51,9 @@ if (isUserLoggedIn() && getUserRole() === 'administrateur') {
                Connexion
             </a>
         <?php else: ?>
+
             <?php
-            $role = getUserRole(); // "administrateur" ou "client"
+            $role = getUserRole();
             $roleLabel = ($role === 'administrateur') ? 'Administrateur' : 'Client';
             ?>
 
@@ -118,37 +114,82 @@ if (isUserLoggedIn() && getUserRole() === 'administrateur') {
             </div>
             <?php endif; ?>
 
-            <!-- Menu utilisateur -->
+            <!-- USER DROPDOWN -->
             <div class="dropdown">
-                <a class="btn-user dropdown-toggle d-flex align-items-center" href="#" role="button" id="userDropdown" data-bs-toggle="dropdown" aria-expanded="false">
+                <a class="btn-user dropdown-toggle d-flex align-items-center" href="#" data-bs-toggle="dropdown">
                     <div class="me-2 text-start">
                         <div class="text-uppercase"><?= htmlentities($_SESSION['name']) ?></div>
                         <div><?= $roleLabel ?></div>
                     </div>
                 </a>
-                <ul class="dropdown-menu dropdown-menu-end dropdown-menu-user">
+
+<ul class="dropdown-menu dropdown-menu-end dropdown-menu-user position-absolute">
+
+    <!-- ================= MENU MOBILE ================= -->
+    
+    <li class="d-md-none px-3 pt-2 fw-bold">NOTRE ENTREPRISE</li>
+
+    <li class="d-md-none"><a class="dropdown-item" href="views/homepage.php">Accueil</a></li>
+    <li class="d-md-none"><a class="dropdown-item" href="views/service.php">Nos services</a></li>
+    <li class="d-md-none"><a class="dropdown-item" href="views/reference.php">Nos réalisations</a></li>
+    <li class="d-md-none"><a class="dropdown-item" href="views/contact.php">Nous contacter</a></li>
+
+    <li class="d-md-none"><hr class="dropdown-divider"></li>
+
+    <?php if (isUserLoggedIn()): ?>
+        <?php $role = getUserRole(); ?>
+
+        <?php if ($role === 'client'): ?>
+
+            <li class="d-md-none px-3 fw-bold">ESPACE CLIENT</li>
+
+            <li class="d-md-none"><a class="dropdown-item" href="views/customer/dashboard.php">Tableau de bord</a></li>
+            <li class="d-md-none"><a class="dropdown-item" href="views/customer/quotation.php">Devis</a></li>
+            <li class="d-md-none"><a class="dropdown-item" href="views/customer/invoice.php">Factures</a></li>
+            <li class="d-md-none"><a class="dropdown-item" href="views/customer/messenger.php">Nos échanges</a></li>
+
+        <?php elseif ($role === 'administrateur'): ?>
+
+            <li class="d-md-none px-3 fw-bold">ESPACE ADMINISTRATEUR</li>
+
+            <li class="d-md-none"><a class="dropdown-item" href="views/administrator/dashboard.php">Tableau de bord</a></li>
+            <li class="d-md-none"><a class="dropdown-item" href="views/administrator/customer.php">Clients</a></li>
+            <li class="d-md-none"><a class="dropdown-item" href="views/administrator/project.php">Chantiers</a></li>
+            <li class="d-md-none"><a class="dropdown-item" href="views/administrator/quotation.php">Devis</a></li>
+            <li class="d-md-none"><a class="dropdown-item" href="views/administrator/invoice.php">Factures</a></li>
+            <li class="d-md-none"><a class="dropdown-item" href="views/administrator/parameter.php">Paramétrages</a></li>
+
+        <?php endif; ?>
+    <?php endif; ?>
+
+    <li class="d-md-none"><hr class="dropdown-divider"></li>
+
+                    <!-- Déconnexion -->
                     <li class="p-2 me-2 text-end">
-                        <a href="controller/auth/logout_ctrl.php" class="text-white text-decoration-none shadow">
+                        <a href="controller/auth/logout_ctrl.php" class="text-white text-decoration-none shadow fw-bold">
                             <i class="bi bi-box-arrow-right me-2"></i>Déconnexion
                         </a>
                     </li>
+
                 </ul>
             </div>
+
         <?php endif; ?>
     </div>
 </nav>
 
-<!-- ================= LAYOUT PRINCIPAL ================= -->
+<!-- ================= LAYOUT ================= -->
 <div class="d-flex">
 
-    <!-- ================= SIDEBAR VERTICALE ================= -->
-    <nav class="p-3 bg-orange-fonce w-20 sidebar-vertical">
+    <!-- SIDEBAR DESKTOP -->
+    <nav class="p-3 bg-orange-fonce w-20 sidebar-vertical d-none d-md-block">
+
         <ul class="nav flex-column">
+
             <div class="mt-3 text-decoration-underline">
                 <h6>NOTRE ENTREPRISE</h6>
             </div>
 
-            <!-- Navigation générale -->
             <li class="nav-item">
                 <a class="nav-link rounded text-white <?= ($current_page=='homepage.php') ? 'active' : '' ?>" href="views/homepage.php">Accueil</a>
             </li>
@@ -165,84 +206,59 @@ if (isUserLoggedIn() && getUserRole() === 'administrateur') {
             <?php if (isUserLoggedIn()): ?>
                 <?php $role = getUserRole(); ?>
 
-                <!-- CLIENT -->
                 <?php if ($role === 'client'): ?>
+
                     <div class="mt-3 text-decoration-underline">
                         <h6>ESPACE CLIENT</h6>
                     </div>
-                    <li class="nav-item">
-                        <a class="nav-link rounded text-white <?= ($current_page=='dashboard.php') ? 'active' : '' ?>" href="views/customer/dashboard.php"><i class="fa-solid fa-chart-line fa-beat me-2"></i>Tableau de bord</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link rounded text-white <?= ($current_page=='quotation.php') ? 'active' : '' ?>" href="views/customer/quotation.php"><i class="fa-solid fa-file-signature fa-beat me-2"></i> Devis</a>
-                    </li>
 
-                    <li class="nav-item">
-                        <a class="nav-link rounded text-white <?= ($current_page=='invoice.php') ? 'active' : '' ?>" href="views/customer/invoice.php"><i class="fa-solid fa-file-invoice fa-bounce me-3"></i> Factures</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link rounded text-white <?= ($current_page=='messenger.php') ? 'active' : '' ?>" href="views/customer/messenger.php"><i class="fa-solid fa-file-invoice fa-bounce me-3"></i> Nos échanges</a>
-                    </li>
-                <!-- ADMIN -->
+                    <li><a class="nav-link rounded text-white <?= ($current_page=='dashboard.php') ? 'active' : '' ?>" href="views/customer/dashboard.php">Tableau de bord</a></li>
+                    <li><a class="nav-link rounded text-white <?= ($current_page=='quotation.php') ? 'active' : '' ?>" href="views/customer/quotation.php">Devis</a></li>
+                    <li><a class="nav-link rounded text-white <?= ($current_page=='invoice.php') ? 'active' : '' ?>" href="views/customer/invoice.php">Factures</a></li>
+                    <li><a class="nav-link rounded text-white <?= ($current_page=='messenger.php') ? 'active' : '' ?>" href="views/customer/messenger.php">Nos échanges</a></li>
+
                 <?php elseif ($role === 'administrateur'): ?>
+
                     <div class="mt-3 text-decoration-underline">
                         <h6>ESPACE ADMINISTRATEUR</h6>
                     </div>
 
-                    <li class="nav-item">
-                        <a class="nav-link rounded text-white <?= ($current_page=='dashboard.php') ? 'active' : '' ?>" href="views/administrator/dashboard.php"><i class="fa-solid fa-chart-line fa-beat me-2"></i> Tableau de bord</a>
-                    </li>
+                    <li><a class="nav-link rounded text-white <?= ($current_page=='dashboard.php') ? 'active' : '' ?>" href="views/administrator/dashboard.php">Tableau de bord</a></li>
+                    <li><a class="nav-link rounded text-white <?= ($current_page=='customer.php') ? 'active' : '' ?>" href="views/administrator/customer.php">Clients</a></li>
+                    <li><a class="nav-link rounded text-white <?= ($current_page=='project.php') ? 'active' : '' ?>" href="views/administrator/project.php">Chantiers</a></li>
+                    <li><a class="nav-link rounded text-white <?= ($current_page=='quotation.php') ? 'active' : '' ?>" href="views/administrator/quotation.php">Devis</a></li>
+                    <li><a class="nav-link rounded text-white <?= ($current_page=='invoice.php') ? 'active' : '' ?>" href="views/administrator/invoice.php">Factures</a></li>
+                    <li><a class="nav-link rounded text-white <?= $is_param_active ? 'active' : '' ?>" href="views/administrator/parameter.php">Paramétrages</a></li>
 
-                    <li class="nav-item">
-                        <a class="nav-link rounded text-white <?= ($current_page=='customer.php') ? 'active' : '' ?>" href="views/administrator/customer.php"><i class="fa-solid fa-users fa-beat  me-2"></i> Clients</a>
-                    </li>
-
-                    <li class="nav-item">
-                        <a class="nav-link rounded text-white <?= ($current_page=='project.php') ? 'active' : '' ?>" href="views/administrator/project.php"><i class="fa-solid fa-helmet-safety fa-beat  me-2"></i> Chantiers</a>
-                    </li>
-
-                    <li class="nav-item">
-                        <a class="nav-link rounded text-white <?= ($current_page=='quotation.php') ? 'active' : '' ?>" href="views/administrator/quotation.php"><i class="fa-solid fa-file-signature fa-beat me-2"></i> Devis</a>
-                    </li>
-
-                    <li class="nav-item">
-                        <a class="nav-link rounded text-white <?= ($current_page=='invoice.php') ? 'active' : '' ?>" href="views/administrator/invoice.php"><i class="fa-solid fa-file-invoice fa-bounce me-3"></i> Factures</a>
-                    </li>
-
-                    <li class="nav-item">
-                        <a class="nav-link rounded text-white <?= $is_param_active ? 'active' : '' ?>" href="views/administrator/parameter.php"><i class="fa-solid fa-gear fa-spin-pulse me-2"></i> Paramétrages</a>
-                    </li>
                 <?php endif; ?>
             <?php endif; ?>
+
         </ul>
     </nav>
 
-    <!-- ================= CONTENU PRINCIPAL ================= -->
+    <!-- CONTENU -->
     <main class="flex-fill w-80">
-        <?php if (isset($notification)) echo $notification; ?>
         <div class="p-3">
+            <?php if (isset($notification)) echo $notification; ?>
             <?php if (isset($content)) echo $content; ?>
         </div>
     </main>
 
 </div>
 
+<!-- FOOTER -->
 <footer class="text-white mt-auto py-3">
-  <div class="container d-flex flex-column flex-md-row justify-content-between align-items-center">
+    <div class="container d-flex flex-column flex-md-row justify-content-between align-items-center">
+        <div>&copy; <?= date('Y') ?> A.GARNIER CONSTRUCTION. Tous droits réservés.</div>
 
-    <div>
-      &copy; <?= date('Y') ?> A.GARNIER CONSTRUCTION. Tous droits réservés.
+        <div class="mt-2 mt-md-0">
+            <a href="#" class="text-white me-3">Contact</a>
+            <a href="#" class="text-white me-3">Mentions légales</a>
+            <a href="#" class="text-white">Politique de confidentialité</a>
+        </div>
     </div>
-
-    <div class="mt-2 mt-md-0">
-      <a href="#" class="text-white me-3">Contact</a>
-      <a href="#" class="text-white me-3">Mentions légales</a>
-      <a href="#" class="text-white">Politique de confidentialité</a>
-    </div>
-  </div>
 </footer>
 
-<!-- Bootstrap JS -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
 
 </body>

@@ -14,7 +14,8 @@ $fixtures = [
     'quote_items_fixture.php',  // lignes de devis et calculs totaux
     'invoices_fixture.php',     // factures liées aux clients et devis signés
     'invoice_items_fixture.php', // lignes de factures et calculs totaux
-    'adrien_jury_fixtures.php'
+    'adrien_jury_fixtures.php',
+    'reference_management_fixture.php'
 ];
 
 foreach ($fixtures as $file) {
