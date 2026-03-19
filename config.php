@@ -1,5 +1,8 @@
 <?php
+require_once __DIR__ . '/vendor/autoload.php';
 
+$dotenv = Dotenv\Dotenv::createImmutable(__DIR__);
+$dotenv->load();
 // --------------------------
 // SESSION
 // --------------------------
@@ -55,19 +58,26 @@ function load(?string $file)
  * Retourne un objet PDO connecté à la base de données
  * @return PDO
  */
+
+
+
+
 function getPDO(): PDO
 {
+    $host = $_ENV['DB_HOST'];
+    $port = $_ENV['DB_PORT'];
+    $dbname = $_ENV['DB_NAME'];
+    $user = $_ENV['DB_USER'];
+    $pass = $_ENV['DB_PASS'];
+
     $pdo = new PDO(
-'mysql:host=db;port=3306;dbname=gestion_entreprise;charset=utf8mb4', 'root', '1234'
-
-//'mysql:host=localhost;dbname=gestion_entreprise;charset=utf8mb4', 'root', ''//
-
-//'mysql:host=127.0.0.1;port=3306;dbname=gestion_entreprise;charset=utf8mb4', 'root', '1234'//
-
-// 'mysql:host=db;port=3306;dbname=gestion_entreprise;charset=utf8mb4', 'root', '1234'//
-
+        "mysql:host=$host;port=$port;dbname=$dbname;charset=utf8mb4",
+        $user,
+        $pass
     );
+
     $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+
     return $pdo;
 }
 
