@@ -49,7 +49,7 @@ CREATE TABLE IF NOT EXISTS gestion_personnel (
 CREATE TABLE IF NOT EXISTS client_replies (
     id_reply INT AUTO_INCREMENT PRIMARY KEY,
     client_id INT NOT NULL,                         -- Lien vers le client
-    message TEXT NOT NULL,                          -- Message initial / demande
+    message TEXT NULL,                          -- Message initial / demande
     reply_client TEXT NULL,                         -- Réponse du client
     reply_personnel TEXT NULL,                      -- Réponse du personnel / admin
     personnel_id INT NULL,                          -- Personnel ayant répondu

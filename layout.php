@@ -180,7 +180,9 @@ if (isUserLoggedIn() && getUserRole() === 'administrateur') {
                     <li class="nav-item">
                         <a class="nav-link rounded text-white <?= ($current_page=='invoice.php') ? 'active' : '' ?>" href="views/customer/invoice.php"><i class="fa-solid fa-file-invoice fa-bounce me-3"></i> Factures</a>
                     </li>
-
+                    <li class="nav-item">
+                        <a class="nav-link rounded text-white <?= ($current_page=='messenger.php') ? 'active' : '' ?>" href="views/customer/messenger.php"><i class="fa-solid fa-file-invoice fa-bounce me-3"></i> Nos échanges</a>
+                    </li>
                 <!-- ADMIN -->
                 <?php elseif ($role === 'administrateur'): ?>
                     <div class="mt-3 text-decoration-underline">
