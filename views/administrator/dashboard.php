@@ -100,43 +100,43 @@ ob_start();
     <!-- ================= STATS ================= -->
     <div class="row mb-4 g-3">
 
-    <div class="col-md-2 col-6"> <!-- col-6 pour 2 par ligne sur mobile -->
-        <div class="card text-center shadow-sm p-3 bg-gris-fonce text-white">
+    <div class="col-md-2 col-6 d-flex"> <!-- col-6 pour 2 par ligne sur mobile -->
+       <div class="card text-center shadow-sm p-3 bg-gris-fonce text-white flex-fill d-flex flex-column justify-content-center">
             <h6 class="text-white fs-6 fs-md-6 fs-lg-6">Devis</h6> <!-- plus petit sur mobile -->
             <h3 class="fs-5 fs-md-4 fs-lg-3"><?= $totalQuotes ?></h3>
         </div>
     </div>
 
-    <div class="col-md-2 col-6">
-        <div class="card text-center shadow-sm p-3 bg-gris-fonce text-white">
+    <div class="col-md-2 col-6 d-flex">
+       <div class="card text-center shadow-sm p-3 bg-gris-fonce text-white flex-fill d-flex flex-column justify-content-center">
             <h6 class="text-white fs-6 fs-md-6 fs-lg-6">Factures</h6>
             <h3 class="fs-5 fs-md-4 fs-lg-3"><?= $totalInvoices ?></h3>
         </div>
     </div>
 
-    <div class="col-md-2 col-6">
-        <div class="card text-center shadow-sm p-3 bg-danger text-white">
+    <div class="col-md-2 col-6 d-flex">
+        <div class="card text-center shadow-sm p-3 bg-danger text-white flex-fill d-flex flex-column justify-content-center">
             <h6 class="text-white fs-6">Factures en attente</h6>
             <h3 class="fs-5"><?= $totalPending ?></h3>
         </div>
     </div>
 
-    <div class="col-md-2 col-6">
-        <div class="card text-center shadow-sm p-3 bg-info text-white">
+    <div class="col-md-2 col-6 d-flex">
+        <div class="card text-center shadow-sm p-3 bg-info text-white flex-fill d-flex flex-column justify-content-center">
             <h6 class="text-white fs-6">Montant devis en attente</h6>
             <h3 class="fs-5"><?= number_format($totalPendingQuotesAmount, 2, ',', ' ') ?> €</h3>
         </div>
     </div>
 
-    <div class="col-md-2 col-6">
-        <div class="card text-center shadow-sm p-3 bg-orange-fonce text-white">
+    <div class="col-md-2 col-6 d-flex">
+        <div class="card text-center shadow-sm p-3 bg-success text-white flex-fill d-flex flex-column justify-content-center">
             <h6 class="text-white fs-6">Facturé</h6>
             <h3 class="fs-5"><?= number_format($totalPaid, 2, ',', ' ') ?> €</h3>
         </div>
     </div>
 
-    <div class="col-md-2 col-6">
-        <div class="card text-center shadow-sm p-3 bg-danger text-white">
+    <div class="col-md-2 col-6 d-flex">
+        <div class="card text-center shadow-sm p-3 bg-danger text-white flex-fill d-flex flex-column justify-content-center">
             <h6 class="text-white fs-6">À encaisser</h6>
             <h3 class="fs-5"><?= number_format($totalPendingAmount, 2, ',', ' ') ?> €</h3>
         </div>

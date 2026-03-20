@@ -94,31 +94,31 @@ $notification = ob_get_clean();
     </div>
 
     <!-- ================= STATS ================= -->
-    <div class="row mb-4">
+    <div class="row mb-4 g-2">
 
-        <div class="col-md-3">
-            <div class="card text-center shadow-sm p-3 bg-gris-fonce text-white">
+       <div class="col-md-3 col-6 d-flex">
+       <div class="card text-center shadow-sm p-3 bg-gris-fonce text-white flex-fill d-flex flex-column justify-content-center">
                 <h5>Devis</h5>
                 <h2><?= $totalQuotes ?></h2>
             </div>
         </div>
 
-        <div class="col-md-3">
-            <div class="card text-center shadow-sm p-3 bg-gris-fonce text-white">
+        <div class="col-md-3 col-6 d-flex">
+       <div class="card text-center shadow-sm p-3 bg-gris-fonce text-white flex-fill d-flex flex-column justify-content-center">
                 <h5>Factures</h5>
                 <h2><?= $totalInvoices ?></h2>
             </div>
         </div>
 
-        <div class="col-md-3">
-            <div class="card text-center shadow-sm p-3 bg-orange-fonce text-white">
+        <div class="col-md-3 col-6 d-flex">
+       <div class="card text-center shadow-sm p-3 bg-orange-fonce text-white flex-fill d-flex flex-column justify-content-center">
                 <h5>Total payé</h5>
                 <h2><?= number_format($totalAmount, 2, ',', ' ') ?> €</h2>
             </div>
         </div>
 
-        <div class="col-md-3">
-            <div class="card text-center shadow-sm p-3 bg-danger text-white">
+        <div class="col-md-3 col-6 d-flex">
+       <div class="card text-center shadow-sm p-3 bg-danger text-white flex-fill d-flex flex-column justify-content-center">
                 <h5>Factures en attente</h5>
                 <h2><?= count($pendingInvoices) ?></h2>
             </div>
@@ -126,11 +126,11 @@ $notification = ob_get_clean();
 
     </div>
 
-    <div class="row">
 
-        <!-- ================= DEVIS ================= -->
+    <div class="row g-2 mb-4">
+        <!-- DERNIERS DEVIS -->
         <div class="col-md-6">
-            <div class="card shadow-sm p-4 mb-4 gap-3">
+            <div class="card shadow-sm p-4">
                 <h5 class="text-orange-fonce">Mes derniers devis</h5>
 
                 <?php if (!empty($quotes)): ?>
@@ -173,15 +173,13 @@ $notification = ob_get_clean();
 
         <!-- ================= FACTURES ================= -->
         <div class="col-md-6">
-            <div class="card shadow-sm p-4 mb-4 gap-3">
+            <div class="card shadow-sm p-4">
                 <h5 class="text-orange-fonce">Mes dernières factures</h5>
 
                 <?php if (!empty($invoices)): ?>
                     <ul class="list-group">
                         <?php foreach ($invoices as $inv): 
-    
-    
-    
+           
     $status_class = match($inv['status']) {
         'brouillon' => 'bg-secondary',
         'en attente de paiement' => 'bg-danger',
@@ -197,7 +195,9 @@ $notification = ob_get_clean();
     </div>
 
     <div class="d-flex align-items-center gap-2">
-        <span class="badge <?= $status_class ?> py-1 px-2"><?= ucfirst($inv['status']) ?></span>
+<span class="badge <?= $status_class ?> py-1 px-2 text-truncate" style="max-width:120px;" title="<?= $inv['status'] ?>">
+    <?= ucfirst($inv['status']) ?>
+</span>
         <a href="/projet/views/customer/download_invoice.php?id=<?= $inv['id_invoice'] ?>"
            class="btn3 btn-sm d-flex justify-content-center align-items-center text-white"
            style="width:40px; height:40px;"
@@ -221,9 +221,9 @@ $notification = ob_get_clean();
     </div>
 
     <!-- ================= FACTURES EN ATTENTE ================= -->
-    <div class="row">
+    <div class="row g-0">
         <div class="col-12">
-            <div class="card shadow-sm p-4 mb-4 gap-3">
+            <div class="card shadow-sm p-4 mb-4">
                 <h5 class="text-orange-fonce">Factures en attente de paiement</h5>
 
                 <?php if (!empty($pendingInvoices)): ?>
@@ -237,8 +237,8 @@ $notification = ob_get_clean();
         <small>Échéance : <?= htmlentities($p['due_date']) ?></small>
     </div>
 
-    <div class="d-flex align-items-center gap-2">
-        <span class="badge <?= $status_class ?> py-1 px-2"><?= ucfirst($p['status']) ?></span>
+    <div class="d-flex align-items-center">
+        <span  class="badge <?= $status_class ?> py-1 px-2 me-2 d-inline-block text-truncate" style="max-width:120px;" ><?= ucfirst($p['status']) ?></span>
         <a href="/projet/views/customer/download_invoice.php?id=<?= $p['id_invoice'] ?>"
            class="btn3 btn-sm d-flex justify-content-center align-items-center text-white"
            style="width:40px; height:40px;"
