@@ -14,7 +14,7 @@ $cards = '';
 
 foreach ($references as $ref) {
 $cards .= '
-<div class="col-md-4 mb-4">
+<div class="col-12 col-sm-6 col-md-6 col-lg-4 mb-4">
     <div class="card h-100 card-references">
         
         <img src="/projet/assets/statics/images/'.($ref['image']).'" class="card-img-top rounded-1" alt="'.($ref['name']).'">

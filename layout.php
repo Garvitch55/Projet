@@ -43,13 +43,35 @@ if (isUserLoggedIn() && getUserRole() === 'administrateur') {
     <div class="ms-auto d-flex align-items-center">
 
         <?php if (!isUserLoggedIn()): ?>
+            <!-- Desktop Connexion -->
             <a href="views/login.php"
-               class="btn"
-               style="background:#e38f3c; color:#fff;"
-               onmouseover="this.style.background='#41403b'"
-               onmouseout="this.style.background='#e38f3c'">
+               class="btn text-white d-none d-md-inline"
+               >
                Connexion
             </a>
+<!-- Mobile Burger -->
+<div class="dropdown d-md-none">
+    <button class="btn btn3 dropdown-toggle" type="button" id="mobileBurger" data-bs-toggle="dropdown" aria-expanded="false">
+        <i class="bi bi-list"></i>
+    </button>
+
+    <!-- Mobile Menu déconnecté -->
+    <ul class="dropdown-menu dropdown-menu-user position-relative" aria-labelledby="mobileBurger">
+        <li class="px-3 pt-2 fw-bold">NOTRE ENTREPRISE</li>
+        <li><a class="dropdown-item text-white <?= ($current_page=='homepage.php') ? 'active' : '' ?>" href="views/homepage.php">Accueil</a></li>
+        <li><a class="dropdown-item text-white <?= ($current_page=='service.php') ? 'active' : '' ?>" href="views/service.php">Nos services</a></li>
+        <li><a class="dropdown-item text-white <?= ($current_page=='reference.php') ? 'active' : '' ?>" href="views/reference.php">Nos réalisations</a></li>
+        <li><a class="dropdown-item text-white <?= ($current_page=='contact.php') ? 'active' : '' ?>" href="views/contact.php">Nous contacter</a></li>
+        <li><hr class="dropdown-divider"></li>
+        <li class="p-2 text-center">
+            <a href="views/login.php" class="text-white text-decoration-none shadow fw-bold w-100" style="background:#e38f3c;">
+                Connexion
+            </a>
+        </li>
+    </ul>
+</div>
+
+
         <?php else: ?>
 
             <?php
@@ -73,18 +95,13 @@ if (isUserLoggedIn() && getUserRole() === 'administrateur') {
                     <?php if (!empty($latest_messages)): ?>
                         <div class="d-flex flex-column px-3">
                             <?php foreach ($latest_messages as $msg): ?>
-                                <?php $msg_id = $msg['id_contact']; ?>
                                 <a href="views/administrator/settings/view_messenger_contact.php?id=<?= $msg['id_contact'] ?>&action=read" class="text-decoration-none">
                                     <li class="dropdown-item text-white d-flex align-items-start gap-2 bell-message rounded-1">
-
-                                        <!-- Contenu du message -->
                                         <div class="flex-grow-1">
                                             <p class="m-0 fw-bold"><?= htmlentities($msg['first_name'].' '.$msg['last_name']) ?></p>
                                             <p class="m-0"><?= htmlentities($msg['subject']) ?></p>
                                             <small class="text-white"><?= htmlentities($msg['created_at']) ?></small>
                                         </div>
-
-                                        <!-- Badge à droite -->
                                         <div class="ms-auto">
                                             <?php if(isset($msg['is_read']) && $msg['is_read'] == 1): ?>
                                                 <span class="badge bg-success">Lu</span>
@@ -92,7 +109,6 @@ if (isUserLoggedIn() && getUserRole() === 'administrateur') {
                                                 <span class="badge bg-danger">Non lu</span>
                                             <?php endif; ?>
                                         </div>
-
                                     </li>
                                 </a>
                                 <li><hr class="dropdown-divider text-white"></li>
@@ -102,7 +118,6 @@ if (isUserLoggedIn() && getUserRole() === 'administrateur') {
                         <li class="dropdown-item text-center text-white">Aucun message</li>
                     <?php endif; ?>
 
-                    <!-- Bouton centré -->
                     <div class="text-center pb-2">
                         <li>
                             <a class="btn5" href="views/administrator/settings/messenger_contact.php">
@@ -123,54 +138,51 @@ if (isUserLoggedIn() && getUserRole() === 'administrateur') {
                     </div>
                 </a>
 
-<ul class="dropdown-menu dropdown-menu-end dropdown-menu-user position-absolute">
+                <ul class="dropdown-menu dropdown-menu-end dropdown-menu-user position-absolute">
 
-    <!-- ================= MENU MOBILE ================= -->
-    
-    <li class="d-md-none px-3 pt-2 fw-bold">NOTRE ENTREPRISE</li>
+                    <!-- ================= MENU MOBILE ================= -->
+                    
+                    <li class="d-md-none px-3 pt-2 fw-bold">NOTRE ENTREPRISE</li>
 
-    <li class="d-md-none"><a class="dropdown-item" href="views/homepage.php">Accueil</a></li>
-    <li class="d-md-none"><a class="dropdown-item" href="views/service.php">Nos services</a></li>
-    <li class="d-md-none"><a class="dropdown-item" href="views/reference.php">Nos réalisations</a></li>
-    <li class="d-md-none"><a class="dropdown-item" href="views/contact.php">Nous contacter</a></li>
-
-    <li class="d-md-none"><hr class="dropdown-divider"></li>
-
-    <?php if (isUserLoggedIn()): ?>
-        <?php $role = getUserRole(); ?>
-
-        <?php if ($role === 'client'): ?>
-
-            <li class="d-md-none px-3 fw-bold">ESPACE CLIENT</li>
-
-            <li class="d-md-none"><a class="dropdown-item" href="views/customer/dashboard.php">Tableau de bord</a></li>
-            <li class="d-md-none"><a class="dropdown-item" href="views/customer/quotation.php">Devis</a></li>
-            <li class="d-md-none"><a class="dropdown-item" href="views/customer/invoice.php">Factures</a></li>
-            <li class="d-md-none"><a class="dropdown-item" href="views/customer/messenger.php">Nos échanges</a></li>
-
-        <?php elseif ($role === 'administrateur'): ?>
-
-            <li class="d-md-none px-3 fw-bold">ESPACE ADMINISTRATEUR</li>
-
-            <li class="d-md-none"><a class="dropdown-item" href="views/administrator/dashboard.php">Tableau de bord</a></li>
-            <li class="d-md-none"><a class="dropdown-item" href="views/administrator/customer.php">Clients</a></li>
-            <li class="d-md-none"><a class="dropdown-item" href="views/administrator/project.php">Chantiers</a></li>
-            <li class="d-md-none"><a class="dropdown-item" href="views/administrator/quotation.php">Devis</a></li>
-            <li class="d-md-none"><a class="dropdown-item" href="views/administrator/invoice.php">Factures</a></li>
-            <li class="d-md-none"><a class="dropdown-item" href="views/administrator/parameter.php">Paramétrages</a></li>
-
-        <?php endif; ?>
-    <?php endif; ?>
-
-    <li class="d-md-none"><hr class="dropdown-divider"></li>
-
-                    <!-- Déconnexion -->
-                    <li class="p-2 me-2 text-end">
-                        <a href="controller/auth/logout_ctrl.php" class="text-white text-decoration-none shadow fw-bold">
-                            <i class="bi bi-box-arrow-right me-2"></i>Déconnexion
-                        </a>
+                    <li class="nav-item d-md-none">
+                        <a class="dropdown-item text-white <?= ($current_page=='homepage.php') ? 'active' : '' ?>" href="views/homepage.php">Accueil</a>
+                    </li>
+                    <li class="nav-item d-md-none">
+                        <a class="dropdown-item text-white <?= ($current_page=='service.php') ? 'active' : '' ?>" href="views/service.php">Nos services</a>
+                    </li>
+                    <li class="nav-item d-md-none">
+                        <a class="dropdown-item text-white <?= ($current_page=='reference.php') ? 'active' : '' ?>" href="views/reference.php">Nos réalisations</a>
+                    </li>
+                    <li class="nav-item d-md-none">
+                        <a class="dropdown-item text-white <?= ($current_page=='contact.php') ? 'active' : '' ?>" href="views/contact.php">Nous contacter</a>
                     </li>
 
+                    <li class="d-md-none"><hr class="dropdown-divider"></li>
+
+                    <?php if ($role === 'client'): ?>
+                        <li class="d-md-none px-3 fw-bold">ESPACE CLIENT</li>
+                        <li class="nav-item d-md-none"><a class="dropdown-item text-white <?= ($current_page=='dashboard.php') ? 'active' : '' ?>" href="views/customer/dashboard.php">Tableau de bord</a></li>
+                        <li class="nav-item d-md-none"><a class="dropdown-item text-white <?= ($current_page=='quotation.php') ? 'active' : '' ?>" href="views/customer/quotation.php">Devis</a></li>
+                        <li class="nav-item d-md-none"><a class="dropdown-item text-white <?= ($current_page=='invoice.php') ? 'active' : '' ?>" href="views/customer/invoice.php">Factures</a></li>
+                        <li class="nav-item d-md-none"><a class="dropdown-item text-white <?= ($current_page=='messenger.php') ? 'active' : '' ?>" href="views/customer/messenger.php">Nos échanges</a></li>
+                    <?php elseif ($role === 'administrateur'): ?>
+                        <li class="d-md-none px-3 fw-bold">ESPACE ADMINISTRATEUR</li>
+                        <li class="nav-item d-md-none"><a class="dropdown-item text-white <?= ($current_page=='dashboard.php') ? 'active' : '' ?>" href="views/administrator/dashboard.php">Tableau de bord</a></li>
+                        <li class="nav-item d-md-none"><a class="dropdown-item text-white <?= ($current_page=='customer.php') ? 'active' : '' ?>" href="views/administrator/customer.php">Clients</a></li>
+                        <li class="nav-item d-md-none"><a class="dropdown-item text-white <?= ($current_page=='project.php') ? 'active' : '' ?>" href="views/administrator/project.php">Chantiers</a></li>
+                        <li class="nav-item d-md-none"><a class="dropdown-item text-white <?= ($current_page=='quotation.php') ? 'active' : '' ?>" href="views/administrator/quotation.php">Devis</a></li>
+                        <li class="nav-item d-md-none"><a class="dropdown-item text-white <?= ($current_page=='invoice.php') ? 'active' : '' ?>" href="views/administrator/invoice.php">Factures</a></li>
+                        <li class="nav-item d-md-none"><a class="dropdown-item text-white <?= ($current_page=='parameter.php') ? 'active' : '' ?>" href="views/administrator/parameter.php">Paramétrages</a></li>
+                    <?php endif; ?>
+
+                    <li class="d-md-none"><hr class="dropdown-divider"></li>
+
+                    <!-- Déconnexion -->
+                    <li class="p-2 text-center">
+                        <a href="controller/auth/logout_ctrl.php" class="text-white text-decoration-none shadow fw-bold w-100">
+                            <i class="bi bi-box-arrow-right me-2"></i>Déconnexion  
+                        </a>
+                    </li>
                 </ul>
             </div>
 
@@ -179,7 +191,7 @@ if (isUserLoggedIn() && getUserRole() === 'administrateur') {
 </nav>
 
 <!-- ================= LAYOUT ================= -->
-<div class="d-flex">
+<main class="d-flex">
 
     <!-- SIDEBAR DESKTOP -->
     <nav class="p-3 bg-orange-fonce w-20 sidebar-vertical d-none d-md-block">
@@ -244,11 +256,11 @@ if (isUserLoggedIn() && getUserRole() === 'administrateur') {
         </div>
     </main>
 
-</div>
+</main>
 
 <!-- FOOTER -->
-<footer class="text-white mt-auto py-3">
-    <div class="container d-flex flex-column flex-md-row justify-content-between align-items-center">
+<footer class="text-white mt-auto py-4">
+    <div class="container d-flex flex-column flex-lg-row justify-content-between align-items-center text-center text-lg-start">
         <div>&copy; <?= date('Y') ?> A.GARNIER CONSTRUCTION. Tous droits réservés.</div>
 
         <div class="mt-2 mt-md-0">

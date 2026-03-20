@@ -10,6 +10,9 @@
 */
 body {
   background-color: #ebdfd6;
+}
+
+main {
   min-height: 100vh;
 }
 
@@ -309,7 +312,7 @@ h6 {
 .dropdown-menu-user {
   border-bottom-left-radius: 15px;
   border-bottom-right-radius: 15px;
-  background-color: rgba(227, 143, 60, 0.7);
+  background-color: rgba(227, 143, 60, 0.9);
   color: #fff;
 }
 .dropdown-menu-user:hover {
@@ -409,11 +412,18 @@ h6 {
   text-align: justify;
 }
 
+.w-120 {
+  width: 118%;
+}
+
 .service-item {
   position: relative;
   overflow: hidden;
   cursor: pointer;
   height: 210px;
+}
+.service-item .w-120 {
+  width: 118%;
 }
 .service-item img {
   display: block;
@@ -498,7 +508,8 @@ h6 {
   min-height: 100%;
 }
 .sidebar-vertical li.nav-item {
-  margin: 0; /* supprime tout espace entre les items */
+  margin: 0;
+  /* supprime tout espace entre les items */
 }
 .sidebar-vertical a.nav-link {
   color: #fff;
@@ -637,8 +648,10 @@ footer a:hover {
 
 /*************PAGE LISTE CLIENT*******************/
 .pagination .page-link:hover {
-  color: #fff !important; /* texte blanc au hover */
-  background-color: inherit !important; /* garde la couleur du bouton parent */
+  color: #fff !important;
+  /* texte blanc au hover */
+  background-color: inherit !important;
+  /* garde la couleur du bouton parent */
   text-decoration: none;
 }
 
@@ -651,8 +664,9 @@ footer a:hover {
   transition: transform 0.3s ease;
 }
 
+/* MOBILE LAYOUT */
 @media (max-width: 768px) {
-  /* LAYOUT */
+  /* dropdown mobile */
   .dropdown {
     position: static !important;
   }
@@ -667,6 +681,21 @@ footer a:hover {
     transform: none !important;
     max-height: 80vh;
     overflow-y: auto;
+  }
+  .dropdown-menu-user .dropdown-item {
+    color: #41403b !important;
+  }
+  .dropdown-menu-user .dropdown-item:hover, .dropdown-menu-user .dropdown-item:focus {
+    background-color: #41403b !important;
+    color: #fff !important;
+  }
+  .dropdown-menu-user .dropdown-item.active {
+    background-color: #41403b !important;
+    color: #fff !important;
+  }
+  .dropdown-menu-user .btn5:hover, .dropdown-menu-user .btn5:focus {
+    background-color: #e38f3c !important;
+    color: #fff !important;
   }
   #notificationDropdown {
     position: relative;
@@ -683,6 +712,16 @@ footer a:hover {
     transform: none !important;
     max-height: 80vh;
     overflow-y: auto;
+    background-color: rgba(227, 143, 60, 0.9) !important;
+  }
+  #notificationDropdown + .dropdown-menu-bell .btn5 {
+    margin: 5px;
+  }
+  #notificationDropdown + .dropdown-menu-bell:hover {
+    background-color: #41403b !important;
+  }
+  footer {
+    font-size: 12px;
   }
   /* PAGE HOMEPAGE */
   .w-55 {
@@ -708,6 +747,45 @@ footer a:hover {
     background: none;
     color: #000;
     height: auto;
+    padding: 10px 0;
+    align-items: flex-start;
+  }
+  .service-item:hover .overlay-list {
+    transform: none;
+    opacity: 1;
+  }
+  .service-item img {
+    transform: none !important;
+  }
+  .reference-item {
+    height: auto;
+  }
+  .reference-item ul {
+    height: auto;
+  }
+}
+/* TABLETTE PORTRAIT ET PAYSAGE */
+@media (min-width: 768px) and (max-width: 991px) {
+  .sidebar-vertical {
+    width: 200px !important;
+  }
+  .service-item {
+    height: 100%;
+  }
+  .service-item h6 {
+    position: relative;
+    top: auto;
+  }
+  .service-item ul {
+    background-color: rgba(65, 64, 59, 0.7) !important;
+  }
+  .service-item .overlay-list {
+    position: relative !important;
+    transform: none !important;
+    opacity: 1 !important;
+    background: none;
+    color: #000;
+    height: 100%;
     padding: 10px 0;
     align-items: flex-start;
   }

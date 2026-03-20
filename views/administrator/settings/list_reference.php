@@ -55,7 +55,7 @@ foreach ($references as $ref) {
     $id = urlencode($ref['id']);
 
     $content .= "
-        <div class='col-md-4 mb-4'>
+        <div class='col-12 col-sm-6 col-md-6 col-lg-4 mb-4'>
             <div class='card h-100 card-references position-relative'>
                 <a href='#' 
                    class='btn3 btn-sm position-absolute top-0 end-0 m-2 rounded-circle d-flex align-items-center justify-content-center'

@@ -93,28 +93,28 @@ $notification = ob_get_clean();
 </div>
 
 <!-- MENU ALPHABÉTIQUE -->
-<div class="mb-3 d-flex justify-content-between align-items-center mt-3">
-    <div>
+<div class="mb-3 mt-3">
     <span>Filtrer par lettre : </span>
-</div>
- <div class=" rounded-3">
-    <?php
-        $letters = range('A', 'Z');
-    ?>
-    <a href="/projet/views/administrator/customer.php?letter=ALL" 
-       class="btn-alpha btn-sm text-white rounded-start <?= $letter === 'ALL' ? 'active' : '' ?>">
-        Tous
-    </a>
-    <?php foreach ($letters as $l): ?>
-        <a href="/projet/views/administrator/customer.php?letter=<?= $l ?>" 
-           class="btn-alpha btn-sm text-white bg-gris-fonce <?= $letter === $l ? 'active' : '' ?>          <?= $letter === $l ? 'active bg-orange-fonce' : 'bg-gris-fonce' ?>
-          <?= $l === 'Z' ? 'rounded-end' : '' ?>">
-            <?= $l ?>
+    <div class="d-flex flex-wrap w-100 mt-2 gap-1"> <!-- <-- gap ajoute de l'espace vertical et horizontal -->
+        <?php
+            $letters = range('A', 'Z');
+            $allBtnClasses = ($letter === 'ALL') ? 'active bg-orange-fonce' : 'bg-gris-fonce';
+        ?>
+        <a href="/projet/views/administrator/customer.php?letter=ALL" 
+           class="btn-alpha btn-sm text-white text-center flex-fill <?= $allBtnClasses ?>">
+            Tous
         </a>
-    <?php endforeach; ?>
+
+        <?php foreach ($letters as $l): 
+            $classes = ($letter === $l) ? 'active bg-orange-fonce' : 'bg-gris-fonce';
+        ?>
+            <a href="/projet/views/administrator/customer.php?letter=<?= $l ?>" 
+               class="btn-alpha btn-sm text-white text-center flex-fill <?= $classes ?>">
+                <?= $l ?>
+            </a>
+        <?php endforeach; ?>
     </div>
 </div>
-
 
 
 

@@ -52,21 +52,9 @@ $content = <<<HTML
       </div>
 
       <div class="flex w-45">
-         <h6 class="text-orange-fonce fw-bold text-decoration-underline mb-4 mt-4">Votre partenaire en maçonnerie de confiance :</h6>
+         <h6 class="text-orange-fonce fw-bold text-decoration-underline mb-4">Votre partenaire en maçonnerie de confiance :</h6>
          <p class="text-justify">Spécialistes du gros œuvre, nous accompagnons particuliers et professionnels dans leurs projets de construction et de rénovation. De la fondation à l’élévation des structures, notre équipe met son savoir-faire au service de chantiers solides, durables et conformes aux normes en vigueur.</p>
 
-         <div class="dropdown">
-            <a class="btn btn2 dropdown-toggle d-flex align-items-center w-50 shadow" href="#" role="button" id="userDropdown" data-bs-toggle="dropdown" aria-expanded="false">
-               <div class="me-2 text-start">
-                  <div class="text-uppercase">Demandez un devis</div>
-               </div>
-            </a>
-            <ul class="dropdown-menu dropdown-menu-end dropdown-menu-border shadow">
-               <li class="p-2 me-2 text-end">
-                  <a href="views/auth/add_client_form.php" class="text-white text-decoration-none"><i class="bi bi-person-plus me-2"></i>Veuillez vous inscrire</a>
-               </li>
-            </ul>
-         </div>
       </div>
    </div>
 </header>
@@ -113,17 +101,18 @@ $content = <<<HTML
             <div class="service-item position-relative">
                <a href="views/service.php" class="text-decoration-none">
             <h6 class="carousel-caption-bg2 p-2 mb-0">Études & suivi de chantier</h6>
-            <img src="assets/statics/images/etude-suivi.webp" alt="" class="w-100">
+            <img src="assets/statics/images/etude.jpg" alt="" class="w-120" >
                <ul class="overlay-list position-absolute top-0 start-0 d-flex flex-column justify-content-start align-items-center text-white">
                   <li>Lecture de plans et études techniques</li>
                   <li>Implantation et préparation de chantier</li>
                   <li>Coordination du gros œuvre</li>
                   <li>Respect des normes (DTU, sécurité)</li>
                </ul>
-               </div>
+  
                </a>
+            </div>
          </div>
-      </div>
+                  </div>
    </div>
 </section>
 
@@ -136,37 +125,37 @@ $content = <<<HTML
       </a>
    </div>
 
-<div class="d-flex flex-row">
-   <div class="w-50 reference-item position-relative">
+<div class="d-flex flex-column flex-md-row">
+   <div class="w-100 reference-item position-relative">
       <a href="views/reference.php" class="text-decoration-none" >
          <h6 class="carousel-caption-bg2 p-2 m-0">Secteur privé</h6>
-         <div class="d-flex bg-gris-opacity">
-            <ul class="w-50 text-white p-3 m-0">
+         <div class="d-flex flex-column flex-md-row bg-gris-opacity">
+            <ul class="order-2 order-md-1 w-100 text-white p-3 m-0">
                <li>Maisons indivduelles</li>
                <li>Piscines</li>
                <li>Renforcements de structures</li>
                <li>Démolitions</li>
             </ul>
-            <div class="w-50">
-               <img src="assets/statics/images/reference-secteur-prive.png" alt="">
+            <div class="order-1 order-md-2 w-100 overflow-hidden">
+               <img src="assets/statics/images/reference-secteur-prive.png" alt="" class="h-100">
             </div>
          </div>
       </a>
    </div>
   
-   <div class="w-50 reference-item position-relative">
+   <div class="w-100 reference-item position-relative">
       <a href="views/reference.php" class="text-decoration-none" >
       <h6 class="carousel-caption-bg p-2 m-0">Secteur public</h6>
-     <div class="d-flex bg-gris-opacity">
-       <ul class="w-50 text-white p-3 m-0">
+     <div class="d-flex flex-column flex-md-row bg-gris-opacity">
+       <ul class="order-2 order-md-1 w-100 text-white p-3 m-0">
               <li>Ecoles primaire</li>
                <li>Maisons de santé</li>
                <li>Magasins</li>
                <li>Démolitions</li>
             </ul>
-       <div class="w-50">
-   <img src="assets/statics/images/reference-secteur-public.png" alt="" class="w-100">
-   </div>
+<div class="order-1 order-md-2 w-100 overflow-hidden">
+   <img src="assets/statics/images/reference-secteur-public1.png" alt="" class="h-100">
+</div>
 
 </div>
 </a>

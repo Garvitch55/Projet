@@ -98,56 +98,57 @@ ob_start();
     </div>
 
     <!-- ================= STATS ================= -->
-    <div class="row mb-4">
+    <div class="row mb-4 g-3">
 
-        <div class="col-md-2">
-            <div class="card text-center shadow-sm p-3 bg-gris-fonce text-white">
-                <h6 class="text-white">Devis</h6>
-                <h3><?= $totalQuotes ?></h3>
-            </div>
+    <div class="col-md-2 col-6"> <!-- col-6 pour 2 par ligne sur mobile -->
+        <div class="card text-center shadow-sm p-3 bg-gris-fonce text-white">
+            <h6 class="text-white fs-6 fs-md-6 fs-lg-6">Devis</h6> <!-- plus petit sur mobile -->
+            <h3 class="fs-5 fs-md-4 fs-lg-3"><?= $totalQuotes ?></h3>
         </div>
-
-        <div class="col-md-2">
-            <div class="card text-center shadow-sm p-3 bg-gris-fonce text-white">
-                <h6 class="text-white">Factures</h6>
-                <h3><?= $totalInvoices ?></h3>
-            </div>
-        </div>
-
-        <div class="col-md-2">
-            <div class="card text-center shadow-sm p-3 bg-danger text-white">
-                <h6 class="text-white">Factures en attente</h6>
-                <h3><?= $totalPending ?></h3>
-            </div>
-        </div>
-
-        <div class="col-md-2">
-            <div class="card text-center shadow-sm p-3 bg-info text-white">
-                <h6 class="text-white">Montant devis en attente</h6>
-                <h3><?= number_format($totalPendingQuotesAmount, 2, ',', ' ') ?> €</h3>
-            </div>
-        </div>
-
-        <div class="col-md-2">
-            <div class="card text-center shadow-sm p-3 bg-orange-fonce text-white">
-                <h6 class="text-white">Facturé</h6>
-                <h3><?= number_format($totalPaid, 2, ',', ' ') ?> €</h3>
-            </div>
-        </div>
-
-        <div class="col-md-2">
-            <div class="card text-center shadow-sm p-3 bg-danger text-white">
-                <h6 class="text-white">À encaisser</h6>
-                <h3><?= number_format($totalPendingAmount, 2, ',', ' ') ?> €</h3>
-            </div>
-        </div>
-
     </div>
 
-    <div class="row">
+    <div class="col-md-2 col-6">
+        <div class="card text-center shadow-sm p-3 bg-gris-fonce text-white">
+            <h6 class="text-white fs-6 fs-md-6 fs-lg-6">Factures</h6>
+            <h3 class="fs-5 fs-md-4 fs-lg-3"><?= $totalInvoices ?></h3>
+        </div>
+    </div>
+
+    <div class="col-md-2 col-6">
+        <div class="card text-center shadow-sm p-3 bg-danger text-white">
+            <h6 class="text-white fs-6">Factures en attente</h6>
+            <h3 class="fs-5"><?= $totalPending ?></h3>
+        </div>
+    </div>
+
+    <div class="col-md-2 col-6">
+        <div class="card text-center shadow-sm p-3 bg-info text-white">
+            <h6 class="text-white fs-6">Montant devis en attente</h6>
+            <h3 class="fs-5"><?= number_format($totalPendingQuotesAmount, 2, ',', ' ') ?> €</h3>
+        </div>
+    </div>
+
+    <div class="col-md-2 col-6">
+        <div class="card text-center shadow-sm p-3 bg-orange-fonce text-white">
+            <h6 class="text-white fs-6">Facturé</h6>
+            <h3 class="fs-5"><?= number_format($totalPaid, 2, ',', ' ') ?> €</h3>
+        </div>
+    </div>
+
+    <div class="col-md-2 col-6">
+        <div class="card text-center shadow-sm p-3 bg-danger text-white">
+            <h6 class="text-white fs-6">À encaisser</h6>
+            <h3 class="fs-5"><?= number_format($totalPendingAmount, 2, ',', ' ') ?> €</h3>
+        </div>
+    </div>
+
+</div>
+
+
+    <div class="row g-2 mb-4">
     <!-- MESSAGES CLIENTS -->
     <div class="col-md-6">
-        <div class="card shadow-sm p-4 mb-4 h-100">
+        <div class="card shadow-sm p-4 h-100">
             <h5 class="text-orange-fonce">Messages non lus clients</h5>
             <div id="messagesContainer">
                 <p>Chargement...</p>
@@ -160,7 +161,7 @@ ob_start();
 
     <!-- MESSAGES CONTACT -->
     <div class="col-md-6">
-        <div class="card shadow-sm p-4 mb-4 h-100">
+        <div class="card shadow-sm p-4 h-100">
             <h5 class="text-orange-fonce">Messages non lus contact</h5>
             <div id="messagesContactContainer">
                 <p>Chargement...</p>
@@ -172,10 +173,10 @@ ob_start();
     </div>
 </div>
 
-    <div class="row">
+    <div class="row g-2 mb-4">
         <!-- DERNIERS DEVIS -->
         <div class="col-md-6">
-            <div class="card shadow-sm p-4 mb-4 mt-4">
+            <div class="card shadow-sm p-4">
                 <h5 class="text-orange-fonce">Derniers devis</h5>
 
                 <?php if ($quotes): ?>
@@ -216,7 +217,7 @@ ob_start();
 
         <!-- DERNIÈRES FACTURES -->
         <div class="col-md-6">
-            <div class="card shadow-sm p-4 mb-4  mt-4">
+            <div class="card shadow-sm p-4">
                 <h5 class="text-orange-fonce">Dernières factures</h5>
                 <?php if ($invoices): ?>
                     <ul class="list-group  border-0">
@@ -273,9 +274,8 @@ ob_start();
                     <li class="list-group-item d-flex justify-content-between align-items-center rounded-1 border border-white"
                         style="width: 98%; margin: auto; transition: transform 0.2s; padding: 0.75rem 1rem;">
                         <div>
-                            <strong><?= htmlentities($inv['invoice_number']) ?></strong><br>
-                            <small>Échéance : <?= htmlentities($inv['due_date']) ?></small><br>
-                            <?= htmlentities($inv['firstname'].' '.$inv['lastname']) ?>
+                            <div><b><?= htmlentities($inv['invoice_number']) ?></b></div>
+                            <div><?= htmlentities($inv['due_date']) ?></div>
                         </div>
                         <div class="d-flex align-items-center gap-2">
                             <span class="badge <?= $status_class ?> py-1 px-2">

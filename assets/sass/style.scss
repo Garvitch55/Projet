@@ -20,11 +20,11 @@
 
 body {
     background-color: #ebdfd6;
-    min-height: 100vh;
 }
 
-
-
+main {
+    min-height: 100vh;
+}
 
 $bg-orange-fonce: #e38f3c;
 $bg-gris-fonce: #41403b;
@@ -141,13 +141,13 @@ $text-gris-fonce: #41403b;
         box-shadow: 0 0.75rem 1.5rem rgba(0, 0, 0, 0.6);
         background-color: rgba($bg-gris-fonce, 0.8);
 
-   
-            h5 {
-                color: $bg-orange-fonce;
-    
-            }
+
+        h5 {
+            color: $bg-orange-fonce;
+
         }
     }
+}
 
 .logo {
     &:hover {
@@ -171,11 +171,12 @@ $text-gris-fonce: #41403b;
     color: $text-gris-fonce;
     background-color: transparent;
     box-shadow: none;
-    padding : 10px 20px;
-        border-top-left-radius: 10px;
-        border-top-right-radius: 10px;
-        border-bottom-left-radius: 7px;
-        border-bottom-right-radius: 7px;
+    padding: 10px 20px;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    border-bottom-left-radius: 7px;
+    border-bottom-right-radius: 7px;
+
     &:hover {
         background-color: $bg-gris-fonce;
         color: #fff;
@@ -195,8 +196,9 @@ $text-gris-fonce: #41403b;
     background-color: $bg-orange-fonce;
     color: $text-gris-fonce;
     box-shadow: none;
-    padding : 10px 20px;
-        border-radius: 10px;
+    padding: 10px 20px;
+    border-radius: 10px;
+
     &:hover {
         background-color: $bg-gris-fonce;
         color: #fff;
@@ -243,27 +245,28 @@ $text-gris-fonce: #41403b;
 }
 
 .btn3 {
-            color: #fff;
+    color: #fff;
     background-color: rgba($bg-orange-fonce, 0.8);
     transition: transform 0.4s ease;
 
     &:hover {
-        background-color: rgba($bg-gris-fonce,0.8);
+        background-color: rgba($bg-gris-fonce, 0.8);
         transform: scale(1.20);
     }
 }
+
 .btn4 {
     width: 160px;
     text-decoration: none;
     font-weight: bold;
     text-align: center;
-            color: #fff;
+    color: #fff;
     background-color: rgba($bg-orange-fonce, 0.8);
     transition: transform 0.4s ease;
 
     &:hover {
         border-style: none;
-        background-color: rgba($bg-gris-fonce,0.8);
+        background-color: rgba($bg-gris-fonce, 0.8);
     }
 }
 
@@ -286,7 +289,7 @@ $text-gris-fonce: #41403b;
 .btn-alpha {
     background-color: $bg-gris-fonce;
     box-shadow: 0 0.25rem 0.5rem rgba(0, 0, 0, 0.1);
-    padding: 6px 12px ;
+    padding: 6px 12px;
     border-right: 1px solid #fff;
     text-decoration: none;
 
@@ -296,7 +299,7 @@ $text-gris-fonce: #41403b;
         box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
     }
 
-        &.active {
+    &.active {
         background-color: $bg-orange-fonce;
         color: #ffffff;
 
@@ -361,11 +364,13 @@ h6 {
 .dropdown-menu-user {
     border-bottom-left-radius: 15px;
     border-bottom-right-radius: 15px;
-    background-color: rgba(227, 143, 60, 0.7);
+    background-color: rgba(227, 143, 60, 0.9);
     color: #fff;
-        &:hover {    background-color: $bg-gris-fonce;
-    color: #ffffff;
-       
+
+    &:hover {
+        background-color: $bg-gris-fonce;
+        color: #ffffff;
+
     }
 }
 
@@ -375,31 +380,26 @@ h6 {
     border-bottom-right-radius: 15px;
     background-color: rgba(227, 143, 60, 0.7);
     color: #fff;
-   
-       .bell-message {
 
+    .bell-message {
         &:hover {
             background-color: $bg-orange-fonce;
             color: #fff;
         }
     }
-   
     li {
         background-color: transparent;
         color: #fff;
-
     }
-
     li:has(.btn5) {
         border-top: 1px solid #ffffff;
         margin-top: 0.5rem;
         padding-top: 0.5rem;
     }
-
     .btn5 {
         display: block;
         width: 95%;
-        margin: 0 auto;   // centre le bouton
+        margin: 0 auto; // centre le bouton
         padding: 0.5rem;
         color: #fff;
         text-decoration: none;
@@ -407,30 +407,23 @@ h6 {
         border-radius: 8px;
         transition: background-color 0.3s, color 0.3s;
         background-color: $bg-gris-fonce;
-
         &:hover {
             background-color: $bg-orange-fonce;
             color: #fff;
         }
     }
-
-
     &:hover {
         background-color: $bg-gris-fonce;
         color: #ffffff;
-
         li .btn5 {
             background-color: $bg-orange-fonce;
         }
-
         li {
             background-color: $bg-gris-fonce;
             color: #fff;
         }
     }
 }
-
-
 
 
 #suggestions {
@@ -478,20 +471,22 @@ h6 {
     text-align: justify;
 }
 
-
+    .w-120{
+width: 118%;
+    }
 .service-item {
     position: relative;
     overflow: hidden;
     cursor: pointer;
     height: 210px;
-
+    .w-120{
+width: 118%;
+    }
     img {
         display: block;
         width: 100%;
-
         transition: transform 0.3s ease;
     }
-
     .overlay-list {
         position: absolute;
         top: 20px;
@@ -507,12 +502,10 @@ h6 {
         padding: 1rem;
         margin: 0;
         list-style: none;
-
         opacity: 1;
         transform: translateY(-100%);
         transition: opacity 0.3s ease, transform 0.3s ease;
     }
-
     &:hover {
         h6 {
             background-color: $bg-gris-fonce;
@@ -520,19 +513,14 @@ h6 {
             justify-content: center;
             align-items: center;
         }
-
         img {
             transform: scale(1.05);
-
         }
-
         .overlay-list {
             opacity: 1;
             transform: translateY(28px);
-
         }
     }
-
     li {
         margin: 0.3rem 0;
         text-align: center;
@@ -544,85 +532,66 @@ h6 {
     overflow: hidden;
     cursor: pointer;
     height: 165px;
-
     ul {
         height: 130px;
         list-style: none;
         transition: transform 0.3s ease;
     }
-
     li {
         padding: 0;
         text-align: center;
     }
-
     img {
         display: block;
         width: 100%;
         transition: transform 0.3s ease;
     }
-
-
     &:hover {
-
         h6 {
             background-color: $bg-gris-fonce;
             color: #fff;
         }
-
         ul {
             transform: scale(1.05);
             background-color: rgba(227, 143, 60, 0.7);
         }
-
         img {
             transform: scale(1.05);
         }
-
     }
-
-
 }
 
 
 .sidebar-vertical {
-  min-height: 100vh;
-  background: linear-gradient( to right, rgba(227, 143, 60, 1), rgba(227, 143, 60, 0.8), rgba(227, 143, 60, 0.6));
-
-  padding: 1rem;
-
-  ul.nav {
-    min-height: 100%;
-  }
-
-  li.nav-item {
-    margin: 0; /* supprime tout espace entre les items */
-  }
-
+    min-height: 100vh;
+    background: linear-gradient(to right, rgba(227, 143, 60, 1), rgba(227, 143, 60, 0.8), rgba(227, 143, 60, 0.6));
+    padding: 1rem;
+    ul.nav {
+        min-height: 100%;
+    }
+    li.nav-item {
+        margin: 0;
+        /* supprime tout espace entre les items */
+    }
     a.nav-link {
-    color: #fff;
-
-
-    &:hover {
-      background-color: rgba($bg-gris-fonce, 0.50);
-      color: #fff;
-      box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
-    }
-
-    &.active {
-      background-color: $bg-gris-fonce;
-      color: #fff;
-
-      &:hover {
-        background-color: #41403b;
         color: #fff;
-      }
+        &:hover {
+            background-color: rgba($bg-gris-fonce, 0.50);
+            color: #fff;
+            box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
+        }
+        &.active {
+            background-color: $bg-gris-fonce;
+            color: #fff;
+            &:hover {
+                background-color: #41403b;
+                color: #fff;
+            }
+        }
     }
-
+    h6 {
+        color: $bg-gris-fonce;
     }
-  h6 {
-    color: $bg-gris-fonce;
-  }
 }
 
 footer {
@@ -630,256 +599,288 @@ footer {
     background-color: $bg-gris-fonce;
     color: #fff;
     width: 100%;
-
-
-  a {
+    a {
         text-decoration: none;
-    &:hover {
-      text-decoration: underline;
+        &:hover {
+            text-decoration: underline;
+        }
     }
-  }
-
-
 }
 
 /********PAGE NOS SERVICES***************/
-.service-card{
+.service-card {
     position: relative;
-        min-height: 300px;
-        overflow: hidden;
-        border-radius: 8px;
-        color: #fff;
-    
-        box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.5);
-        transition: transform 0.4s ease, box-shadow 0.4s ease;
-    
+    min-height: 300px;
+    overflow: hidden;
+    border-radius: 8px;
+    color: #fff;
+    box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.5);
+    transition: transform 0.4s ease, box-shadow 0.4s ease;
+    h5 {
+        text-decoration: underline;
+    }
+    &:hover {
+        transform: scale(1.05);
+        box-shadow: 0 0.75rem 1.5rem rgba(0, 0, 0, 0.6);
         h5 {
-            text-decoration: underline;
-        }
-    
-        &:hover {
-            transform: scale(1.05);
-            box-shadow: 0 0.75rem 1.5rem rgba(0, 0, 0, 0.6);
-    
-            h5 {
-                color: $bg-orange-fonce;
-    
-            }
-        }
-    
-        /* overlay couleur */
-        &::before {
-            content: "";
-            position: absolute;
-            inset: 0;
-            background-color: rgba($bg-orange-fonce, 0.5);
-            z-index: 2;
-            transition: background-color 0.4s ease;
-        }
-    
-        &:hover::before {
-            background-color: rgba($bg-gris-fonce, 0.8);
+            color: $bg-orange-fonce;
         }
     }
+    /* overlay couleur */
+    &::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background-color: rgba($bg-orange-fonce, 0.5);
+        z-index: 2;
+        transition: background-color 0.4s ease;
+    }
+    &:hover::before {
+        background-color: rgba($bg-gris-fonce, 0.8);
+    }
+}
 
-.contact-card{
+.contact-card {
     position: relative;
     overflow: hidden;
     border-radius: 8px;
     color: #fff;
-
-    box-shadow: 0 0.5rem 1rem rgba(0,0,0,0.5);
+    box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.5);
     transition: transform 0.4s ease, box-shadow 0.4s ease;
-
-    h5{
+    h5 {
         text-decoration: underline;
     }
-
-    &:hover{
+    &:hover {
         transform: scale(1.02);
-        background-color: rgba($bg-gris-fonce,1);
-        box-shadow: 0 0.75rem 1.5rem rgba(0,0,0,0.6);
+        background-color: rgba($bg-gris-fonce, 1);
+        box-shadow: 0 0.75rem 1.5rem rgba(0, 0, 0, 0.6);
     }
-
-
 }
 
 /* image de fond */
-.service-bg{
-    position:absolute;
-    inset:0;
-    width:100%;
-    height:100%;
-    object-fit:cover;
-    z-index:1;
+.service-bg {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: 1;
 }
-
 /* contenu texte */
-.service-content{
-    position:relative;
-    z-index:3;
+.service-content {
+    position: relative;
+    z-index: 3;
 }
-
-.certification-card{
-    img{
+.certification-card {
+    img {
         width: 100px;
         aspect-ratio: 1 / 1;
-    }}
+    }
+}
 
 
 
 /*************PAGE TOUS LES MESSAGES*******************/
-
-
 .list-group-item {
     position: relative;
     background-color: rgba($bg-orange-fonce, 0.6);
     transition: transform 0.2s ease, background-color 0.2s ease, box-shadow 0.2s ease;
     // Appliquer la couleur au texte et aux liens à l'intérieur
-
-padding:0;
-margin:0;
+    padding: 0;
+    margin: 0;
     a {
-        padding:15px;
-        color: $text-gris-fonce;           // Texte du lien par défaut
-        text-decoration: none;             // Supprime le soulignement
-        display: block;                     // Rend toute la zone cliquable
+        padding: 15px;
+        color: $text-gris-fonce; // Texte du lien par défaut
+        text-decoration: none; // Supprime le soulignement
+        display: block; // Rend toute la zone cliquable
         transition: transform 0.2s ease, background-color 0.2s ease, box-shadow 0.2s ease, color 0.2s ease;
-
         &:hover {
-            color: $text-orange-fonce;     // Texte sur hover
+            color: $text-orange-fonce; // Texte sur hover
         }
-        .btn5{
-        &:hover {
-            color: $text-orange-fonce;     // Texte sur hover
+        .btn5 {
+            &:hover {
+                color: $text-orange-fonce; // Texte sur hover
+            }
         }
-
-        }
-    }    
-    
+    }
     &:hover {
         transform: scale(1.02);
         background-color: rgba($bg-gris-fonce, 0.8);
         box-shadow: 0 0.75rem 1.5rem rgba(0, 0, 0, 0.6);
         border-radius: 0.25rem;
-        color: $text-orange-fonce;     // Texte sur hover
+        color: $text-orange-fonce; // Texte sur hover
     }
 }
 
 /*************PAGE LISTE CLIENT*******************/
 .pagination .page-link:hover {
-  color: #fff !important; /* texte blanc au hover */
-  background-color: inherit !important; /* garde la couleur du bouton parent */
-  text-decoration: none;
+    color: #fff !important;
+    /* texte blanc au hover */
+    background-color: inherit !important;
+    /* garde la couleur du bouton parent */
+    text-decoration: none;
 }
 
 
 .nav-link {
-  color: white;
-  border-radius: 0.25rem;
-
-  i {
-    margin-right: 0.5rem; // correspond à me-2
-    transition: transform 0.3s ease; // pour un effet plus fluide
-  }
-
- 
+    color: white;
+    border-radius: 0.25rem;
+    i {
+        margin-right: 0.5rem; // correspond à me-2
+        transition: transform 0.3s ease; // pour un effet plus fluide
+    }
 }
+
+
+    /* MOBILE LAYOUT */
 @media (max-width: 768px) {
 
-
-  /* LAYOUT */
-
+/* dropdown mobile */
     .dropdown {
         position: static !important;
     }
 
     .dropdown-menu-user {
         position: absolute !important;
-
         left: 0 !important;
         right: 0 !important;
         top: 100% !important;
-
         width: 100% !important;
-
         margin: 0 !important;
         border-radius: 0 !important;
-
         transform: none !important;
-
         max-height: 80vh;
         overflow-y: auto;
+        .dropdown-item {
+            color: $text-gris-fonce !important;
+            // hover et focus
+            &:hover,
+            &:focus {
+                background-color: $bg-gris-fonce !important;
+                color: #fff !important;
+            }
+            // lien actif
+            &.active {
+                background-color: $bg-gris-fonce !important;
+                color: #fff !important;
+            }
+        }
+
+        // bouton btn5 qui doit garder sa couleur au focus
+        .btn5 {
+            &:hover,
+            &:focus {
+                background-color: $bg-orange-fonce !important;
+                color: #fff !important;
+            }
+        }
     }
 
- #notificationDropdown {
+    #notificationDropdown {
         position: relative;
         z-index: 1000;
     }
 
-    #notificationDropdown + .dropdown-menu-bell {
+    #notificationDropdown+.dropdown-menu-bell {
         position: absolute !important;
-
         left: 0 !important;
         right: 0 !important;
         top: 100% !important;
-
         width: 100% !important;
-
         margin: 0 !important;
         border-radius: 0 !important;
-
         transform: none !important;
-
         max-height: 80vh;
         overflow-y: auto;
+        background-color: rgba($bg-orange-fonce, 0.9) !important;
+        .btn5 {
+            margin: 5px;
+        }
+        &:hover {
+            background-color: rgba($bg-gris-fonce, 1) !important;
+        }
+    }
+    footer {
+        font-size: 12px;
     }
 
-
-  /* PAGE HOMEPAGE */
-
+    /* PAGE HOMEPAGE */
     .w-55 {
         width: 100% !important;
     }
-
-  
     .w-45 {
         width: 100% !important;
     }
-
-
- .service-item {
+    .service-item {
         height: auto;
-
         h6 {
             position: relative;
             top: auto;
         }
-        ul{
+        ul {
             background-color: rgba($bg-gris-fonce, 0.7) !important;
         }
-
-
         .overlay-list {
             position: relative !important;
             transform: none !important;
             opacity: 1 !important;
-
             background: none;
             color: #000;
-
             height: auto;
             padding: 10px 0;
             align-items: flex-start;
         }
-
         &:hover {
             .overlay-list {
                 transform: none;
                 opacity: 1;
             }
         }
+        img {
+            transform: none !important;
+        }
+    }
+    .reference-item {
+        height: auto;
+    }
+    .reference-item ul {
+        height: auto;
+    }
+}
+/* TABLETTE PORTRAIT ET PAYSAGE */
+@media (min-width: 768px) and (max-width: 991px) {
 
+
+    .sidebar-vertical {
+        width: 200px !important;
+
+    }
+
+.service-item {
+        height: 100%;
+        h6 {
+            position: relative;
+            top: auto;
+        }
+        ul {
+            background-color: rgba($bg-gris-fonce, 0.7) !important;
+        }
+        .overlay-list {
+            position: relative !important;
+            transform: none !important;
+            opacity: 1 !important;
+            background: none;
+            color: #000;
+            height: 100%;
+            padding: 10px 0;
+            align-items: flex-start;
+        }
+        &:hover {
+            .overlay-list {
+                transform: none;
+                opacity: 1;
+            }
+        }
         img {
             transform: none !important;
         }
@@ -888,12 +889,5 @@ margin:0;
 
 
 
-
-
-
-
-
-
-
-
+    
 }
