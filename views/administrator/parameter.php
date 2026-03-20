@@ -51,8 +51,8 @@ $content = <<<HTML
              <i class="bi bi-person-gear me-2"></i>Gestion des Utilisateurs
           </div>
           <div class="card-body p-0">
-             <a class="nav-link w-100 p-2 menu-link" href="views/administrator/settings/list_staff.php">- utilisateurs internes</a>
-             <a class="nav-link w-100 p-2 menu-link" href="views/administrator/parameter.php">- utilisateurs clients: page en construction</a>
+             <a class="nav-link w-100 p-2 menu-link" href="views/administrator/settings/list_staff.php">- liste du personnel</a>
+
           </div>
           <div class="card-footer bg-gris-fonce"></div>
        </div>

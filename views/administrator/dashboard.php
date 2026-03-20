@@ -195,7 +195,7 @@ ob_start();
                                 <small><?= htmlentities($q['quote_date']) ?></small>
                             </div>
                             <div class="d-flex align-items-center gap-2">
-                                <span class="badge <?= $status_class ?> py-1 px-2"><?= ucfirst($q['status']) ?></span>
+                                <span class="badge <?= $status_class ?> py-1 px-2t ext-truncate" style="max-width:90px;"><?= ucfirst($q['status']) ?></span>
                                 <a href="/projet/views/administrator/download_quotation.php?id=<?= $q['id_quote'] ?>"
                                    class="btn3 btn-sm d-flex justify-content-center align-items-center text-white rounded-1"
                                    style="width:40px; height:40px;"
@@ -235,7 +235,7 @@ ob_start();
                                 <small><?= htmlentities($inv['invoice_date']) ?></small>
                             </div>
                             <div class="d-flex align-items-center gap-2">
-                                <span class="badge <?= $status_class ?> py-1 px-2"><?= ucfirst($inv['status']) ?></span>
+                                <span class="badge <?= $status_class ?> py-1 px-2 text-truncate" style="max-width:90px;"><?= ucfirst($inv['status']) ?></span>
                                 <a href="/projet/views/administrator/download_invoice.php?id=<?= $inv['id_invoice'] ?>"
                                    class="btn3 btn-sm d-flex justify-content-center align-items-center text-white rounded-1"
                                    style="width:40px; height:40px;"
@@ -278,7 +278,7 @@ ob_start();
                             <div><?= htmlentities($inv['due_date']) ?></div>
                         </div>
                         <div class="d-flex align-items-center gap-2">
-                            <span class="badge <?= $status_class ?> py-1 px-2">
+                            <span class="badge <?= $status_class ?> py-1 px-2 text-truncate" style="max-width:90px;">
                                 <?= ucfirst($inv['status']) ?>
                             </span>
                             <a href="/projet/views/administrator/download_invoice.php?id=<?= $inv['id_invoice'] ?>"
