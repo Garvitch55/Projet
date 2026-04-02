@@ -1,7 +1,7 @@
 <?php
 require_once __DIR__ . '/../config.php';
 require_once __DIR__ . '/../head.php';    // head_with_title
-$title = "Accueil";
+$title = "A.GARNIER CONSTRUCTION DE VERDUN";
 
 // ----------------- CONTENT -----------------
 $content = <<<HTML
