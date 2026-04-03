@@ -16,7 +16,7 @@ if ($_SESSION['role'] !== 'administrateur') {
     exit;
 }
 
-$title = "Dashboard administrateur";
+$title = "Tableau de bord administrateur";
 
 $pdo = getPDO();
 

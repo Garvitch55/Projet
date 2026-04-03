@@ -40,41 +40,41 @@ if (isUserLoggedIn() && getUserRole() === 'administrateur') {
     <!-- SIDEBAR DESKTOP -->
     <nav class="flex d-flex p-3 d-none d-md-block align-items-end justify-content-end w-75">
         <ul class="nav flex-row gap-3 justify-content-between">
-            <div class="d-flex flex-row gap-2">
-                <li class="nav-item bg-orange-fonce rounded-1">
-                    <a class="nav-link rounded text-white <?= ($current_page == 'homepage.php') ? 'active' : '' ?>" href="views/homepage.php">Accueil</a>
+            <div class="d-flex flex-row rounded-start">
+                <li class="nav-item bg-orange-fonce rounded-start border-end border-white">
+                    <a class="rounded-start nav-link text-white <?= ($current_page == 'homepage.php') ? 'active' : '' ?>" href="views/homepage.php">Accueil</a>
                 </li>
-                <li class="nav-item bg-orange-fonce rounded-1">
-                    <a class="nav-link rounded text-white <?= ($current_page == 'service.php') ? 'active' : '' ?>" href="views/service.php">Nos services</a>
+                <li class="nav-item bg-orange-fonce border-end border-white">
+                    <a class="nav-link text-white <?= ($current_page == 'service.php') ? 'active' : '' ?>" href="views/service.php">Nos services</a>
                 </li>
-                <li class="nav-item bg-orange-fonce rounded-1">
-                    <a class="nav-link rounded text-white <?= ($current_page == 'reference.php') ? 'active' : '' ?>" href="views/reference.php">Nos réalisations</a>
+                <li class="nav-item bg-orange-fonce border-end border-white">
+                    <a class="nav-link text-white <?= ($current_page == 'reference.php') ? 'active' : '' ?>" href="views/reference.php">Nos réalisations</a>
                 </li>
-                <li class="nav-item bg-orange-fonce rounded-1">
-                    <a class="nav-link rounded text-white <?= ($current_page == 'contact.php') ? 'active' : '' ?>" href="views/contact.php">Nous contacter</a>
+                <li class="nav-item bg-orange-fonce rounded-end">
+                    <a class="nav-link rounded-end text-white <?= ($current_page == 'contact.php') ? 'active' : '' ?>" href="views/contact.php">Nous contacter</a>
                 </li>
             </div>
-            <div class="d-flex flex-row gap-2">
+            <div class="d-flex flex-row ">
                 <?php if (isUserLoggedIn()): ?>
                     <?php $role = getUserRole(); ?>
                     <?php if ($role === 'client'): ?>
                         <li class="d-flex justify-content-center align-items-center">
-                            <h5 class="text-orange-fonce me-2">VOTRE ESPACE</h5>
+                            <h5 class="text-orange-fonce me-2">Votre espace</h5>
                         </li>
-                        <li class="nav-item bg-orange-fonce rounded-1"><a class="nav-link rounded text-white <?= ($current_page == 'dashboard.php') ? 'active' : '' ?>" href="views/customer/dashboard.php">Tableau de bord</a></li>
-                        <li class="nav-item bg-orange-fonce rounded-1"><a class="nav-link bg-orange-fonce rounded text-white <?= ($current_page == 'quotation.php') ? 'active' : '' ?>" href="views/customer/quotation.php">Devis</a></li>
-                        <li class="nav-item bg-orange-fonce rounded-1"><a class="nav-link bg-orange-fonce rounded text-white <?= ($current_page == 'invoice.php') ? 'active' : '' ?>" href="views/customer/invoice.php">Factures</a></li>
-                        <li class="nav-item bg-orange-fonce rounded-1"><a class="nav-link bg-orange-fonce rounded text-white <?= ($current_page == 'messenger.php') ? 'active' : '' ?>" href="views/customer/messenger.php">Nos échanges</a></li>
+                        <li class="nav-item bg-orange-fonce border-end border-white  rounded-start"><a class=" rounded-start nav-link text-white <?= ($current_page == 'dashboard.php') ? 'active' : '' ?>" href="views/customer/dashboard.php">Tableau de bord</a></li>
+                        <li class="nav-item bg-orange-fonce border-end border-white"><a class="nav-link bg-orange-fonce text-white <?= ($current_page == 'quotation.php') ? 'active' : '' ?>" href="views/customer/quotation.php">Devis</a></li>
+                        <li class="nav-item bg-orange-fonce border-end border-white"><a class="nav-link bg-orange-fonce text-white <?= ($current_page == 'invoice.php') ? 'active' : '' ?>" href="views/customer/invoice.php">Factures</a></li>
+                        <li class="nav-item bg-orange-fonce border-end border-white"><a class="nav-link bg-orange-fonce text-white <?= ($current_page == 'messenger.php') ? 'active' : '' ?>" href="views/customer/messenger.php">Nos échanges</a></li>
                     <?php elseif ($role === 'administrateur'): ?>
                         <li class="d-flex justify-content-center align-items-center">
-                            <h5 class="text-orange-fonce m-2">VOTRE ESPACE</h5>
+                            <h5 class="text-orange-fonce m-2">Votre espace</h5>
                         </li>
-                        <li  class="nav-item bg-orange-fonce rounded-1"><a class="nav-link rounded text-white <?= ($current_page == 'dashboard.php') ? 'active' : '' ?>" href="views/administrator/dashboard.php">Tableau de bord</a></li>
-                        <li  class="nav-item bg-orange-fonce rounded-1"><a class="nav-link  bg-orange-fonce rounded text-white <?= ($current_page == 'customer.php') ? 'active' : '' ?>" href="views/administrator/customer.php">Clients</a></li>
-                        <li  class="nav-item bg-orange-fonce rounded-1"><a class="nav-link  bg-orange-fonce rounded text-white <?= ($current_page == 'project.php') ? 'active' : '' ?>" href="views/administrator/project.php">Chantiers</a></li>
-                        <li  class="nav-item bg-orange-fonce rounded-1"><a class="nav-link  bg-orange-fonce rounded text-white <?= ($current_page == 'quotation.php') ? 'active' : '' ?>" href="views/administrator/quotation.php">Devis</a></li>
-                        <li  class="nav-item bg-orange-fonce rounded-1"><a class="nav-link  bg-orange-fonce rounded text-white <?= ($current_page == 'invoice.php') ? 'active' : '' ?>" href="views/administrator/invoice.php">Factures</a></li>
-                        <li  class="nav-item bg-orange-fonce rounded-1"><a class="nav-link  bg-orange-fonce rounded text-white <?= $is_param_active ? 'active' : '' ?>" href="views/administrator/parameter.php">Paramétrages</a></li>
+                        <li class="nav-item bg-orange-fonce border-end border-white rounded-start"><a class="rounded-start nav-link text-white <?= ($current_page == 'dashboard.php') ? 'active' : '' ?>" href="views/administrator/dashboard.php">Tableau de bord</a></li>
+                        <li class="nav-item bg-orange-fonce border-end border-white"><a class="nav-link bg-orange-fonce text-white <?= ($current_page == 'customer.php') ? 'active' : '' ?>" href="views/administrator/customer.php">Clients</a></li>
+                        <li class="nav-item bg-orange-fonce border-end border-white"><a class="nav-link bg-orange-fonce text-white <?= ($current_page == 'project.php') ? 'active' : '' ?>" href="views/administrator/project.php">Chantiers</a></li>
+                        <li class="nav-item bg-orange-fonce border-end border-white"><a class="nav-link bg-orange-fonce text-white <?= ($current_page == 'quotation.php') ? 'active' : '' ?>" href="views/administrator/quotation.php">Devis</a></li>
+                        <li class="nav-item bg-orange-fonce border-end border-white"><a class="nav-link bg-orange-fonce text-white <?= ($current_page == 'invoice.php') ? 'active' : '' ?>" href="views/administrator/invoice.php">Factures</a></li>
+                        <li class="nav-item bg-orange-fonce border-end border-white rounded-end"><a class="nav-link rounded-end bg-orange-fonce text-white <?= $is_param_active ? 'active' : '' ?>" href="views/administrator/parameter.php">Paramétrages</a></li>
                     <?php endif; ?>
                 <?php endif; ?>
         </ul>
@@ -228,9 +228,6 @@ if (isUserLoggedIn() && getUserRole() === 'administrateur') {
 
 <!-- ================= LAYOUT ================= -->
 <main class="d-flex">
-
-
-
     <!-- CONTENU -->
     <main class="flex-fill w-80">
         <div class="p-3">
